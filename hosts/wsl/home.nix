@@ -29,15 +29,15 @@
       source = ../../config/fish;
       recursive = true;
     };
+".config/nvim" = {
+      source = ../../config/nvim;
+      recursive = true;
+    };
 
     ".wezterm.lua" = {
       source = ../../config/wezterm/.wezterm.lua;
     };
 
-    ".config/nvim" = {
-      source = ../../config/nvim;
-      recursive = true;
-    };
   };
 
   home.sessionVariables = {
