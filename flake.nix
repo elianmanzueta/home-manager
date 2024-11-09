@@ -21,7 +21,7 @@
 
           modules = [
             ./hosts/wsl/home.nix
-
+            ./hosts/wsl/programs.nix
 
           ];
 

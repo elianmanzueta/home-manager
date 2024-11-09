@@ -16,6 +16,8 @@
     pkgs.eza
     pkgs.fd
     pkgs.progress
+    pkgs.wezterm
+    pkgs.gcc
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -29,12 +31,6 @@
       source = ../../config/fish;
       recursive = true;
     };
-
-    ".config/nvim" = {
-      source = ../../config/nvim;
-      recursive = true;
-    };
-
 
     ".wezterm.lua" = {
       source = ../../config/wezterm/.wezterm.lua;
