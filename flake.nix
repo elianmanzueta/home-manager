@@ -18,7 +18,6 @@
       homeConfigurations = {
         "elian-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-
           modules = [
             ./hosts/wsl/home.nix
             ./hosts/wsl/programs.nix

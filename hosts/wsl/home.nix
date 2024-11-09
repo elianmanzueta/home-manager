@@ -16,8 +16,9 @@
     pkgs.eza
     pkgs.fd
     pkgs.progress
-    pkgs.wezterm
     pkgs.gcc
+    pkgs.nodejs
+    pkgs.go
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
