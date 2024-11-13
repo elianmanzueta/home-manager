@@ -21,9 +21,15 @@
           modules = [
             ./hosts/wsl/home.nix
             ./hosts/wsl/programs.nix
-
           ];
 
+        };
+        "cachy" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/cachy/home.nix
+            ./hosts/cachy/programs.nix
+          ];
         };
       };
     };
