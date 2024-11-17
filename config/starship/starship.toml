@@ -19,8 +19,10 @@ style_user = "bold green"
 
 [directory]
 style = "bold green"
-[character]
+truncate_to_repo = false
+truncation_length = 4
 
+[character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
