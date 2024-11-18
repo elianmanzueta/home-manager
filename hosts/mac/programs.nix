@@ -26,6 +26,12 @@
     };
   };
 
+  homebrew = {
+    enable = true;
+    casks = [
+    ];
+  };
+
   system = {
     stateVersion = 4;
     defaults = {
@@ -36,6 +42,12 @@
         mineffect = "suck";
         magnification = true;
       };
+
+      finder = {
+        AppleShowAllExtensions = true;
+        ShowPathbar = true;
+      };
     };
+
   };
 }

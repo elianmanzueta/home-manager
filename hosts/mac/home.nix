@@ -20,9 +20,6 @@
     pkgs.rustup
     pkgs.fd
     pkgs.progress
-    pkgs.obsidian
-    pkgs.discord
-    pkgs.spotify
     pkgs.pyright
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })

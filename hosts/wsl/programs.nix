@@ -9,7 +9,7 @@
       userName = "Elian Manzueta";
       userEmail = "elianmanzueta@protonmail.com";
     };
-    
+
     fish = {
       enable = true;
     };
@@ -17,7 +17,6 @@
     starship = {
       enable = true;
     };
-
   };
 }
 

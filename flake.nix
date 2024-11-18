@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-      nix-darwin = {
+    nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -21,35 +21,35 @@
     in
     {
       darwinConfigurations = {
-          "mbp" = nix-darwin.lib.darwinSystem {
-            system = "aarch64-darwin";
-            modules = [
-              ./hosts/mac/configuration.nix
-              ./hosts/mac/programs.nix
-              home-manager.darwinModules.home-manager
-              {
-                home-manager.backupFileExtension = "hm-backup";
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.verbose = true;
-                home-manager.users.elian = import ./hosts/mac/home.nix;
-              }
-            ];
-          };
+        "mbp" = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/mac/configuration.nix
+            ./hosts/mac/programs.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.backupFileExtension = "hm-backup";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.verbose = true;
+              home-manager.users.elian = import ./hosts/mac/home.nix;
+            }
+          ];
         };
+      };
 
-        homeConfigurations = {
-          "elian-wsl" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
-              ./hosts/wsl/home.nix
-              ./hosts/wsl/programs.nix
-            ];
+      homeConfigurations = {
+        "elian-wsl" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/wsl/home.nix
+            ./hosts/wsl/programs.nix
+          ];
 
-          };
-          "cachy" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
+        };
+        "cachy" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
             ./hosts/cachy/home.nix
             ./hosts/cachy/programs.nix
           ];

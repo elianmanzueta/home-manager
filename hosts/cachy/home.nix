@@ -32,7 +32,7 @@
       source = ../../config/fish;
       recursive = true;
     };
-    
+
     ".config/nvim" = {
       source = ../../config/nvim;
       recursive = true;
