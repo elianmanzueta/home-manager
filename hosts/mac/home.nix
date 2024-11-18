@@ -23,9 +23,7 @@
     pkgs.obsidian
     pkgs.discord
     pkgs.spotify
-    pkgs.emacs
     pkgs.pyright
-    pkgs.ruff
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
