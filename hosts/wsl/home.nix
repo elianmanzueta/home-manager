@@ -19,6 +19,8 @@
     pkgs.gcc
     pkgs.nodejs
     pkgs.go
+    pkgs.python3
+    pkgs.uv
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
