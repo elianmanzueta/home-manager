@@ -33,15 +33,18 @@
       recursive = true;
     };
 
-    ".config/nvim" = {
-      source = ../../config/nvim;
-      recursive = true;
-    };
-
     ".wezterm.lua" = {
       source = ../../config/wezterm/.wezterm.lua;
     };
 
+
+  };
+
+  xdg.configFile = {
+    "nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/nvim";
+      recursive = true;
+    };
 
   };
 
