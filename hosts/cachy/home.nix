@@ -28,6 +28,11 @@
       source = ../../config/starship/starship.toml;
     };
 
+    ".config/paru/" = {
+      source = ../../config/paru;
+      recursive = true;
+    };
+
     ".config/fish" = {
       source = ../../config/fish;
       recursive = true;
@@ -36,7 +41,6 @@
     ".wezterm.lua" = {
       source = ../../config/wezterm/.wezterm.lua;
     };
-
 
   };
 

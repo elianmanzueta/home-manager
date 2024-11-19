@@ -31,9 +31,15 @@
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/starship.toml";
     };
 
+    ".config/paru/" = {
+      source = ../../config/paru;
+      recursive = true;
+    };
+
     ".wezterm.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
     };
+
   };
 
   xdg.configFile = {
