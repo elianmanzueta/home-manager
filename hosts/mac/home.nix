@@ -42,10 +42,6 @@
       recursive = true;
     };
 
-    "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/nvim";
-      recursive = true;
-    };
   };
 
   home.sessionVariables = {
