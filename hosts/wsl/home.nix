@@ -23,6 +23,7 @@
     pkgs.python3
     pkgs.xclip
     pkgs.sqlite
+    pkgs.uv
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
