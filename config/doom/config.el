@@ -7,6 +7,7 @@
       make-backup-files t)
 (setq display-line-numbers-type 'relative)
 (setq confirm-kill-emacs nil)
+(setq evil-shift-width 2)
 
 ;; Terminal Stuff
 (setq explicit-shell-file-name
@@ -28,3 +29,8 @@
   (evil-snipe-override-mode -1))
 (map! :n "s" #'avy-goto-char-timer)
 (map! :n "s" #'evil-avy-goto-char-timer)
+
+;; Treemacs
+(after! treemacs
+  (map! :leader "e" #'+treemacs-toggle)
+  )
