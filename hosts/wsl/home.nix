@@ -8,6 +8,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = [
+    pkgs.xclip
     pkgs.neovim
     pkgs.fzf
     pkgs.ripgrep
