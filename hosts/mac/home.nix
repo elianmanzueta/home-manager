@@ -22,6 +22,8 @@
     pkgs.progress
     pkgs.pyright
     pkgs.nil
+    pkgs.go
+    pkgs.gopls
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
