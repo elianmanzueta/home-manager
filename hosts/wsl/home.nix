@@ -42,6 +42,11 @@
       source = ../../config/wezterm/.wezterm.lua;
     };
 
+    ".doom.d/" = {
+    source = ../../config/.doom.d;
+    recursive = true;
+    };
+
   };
 
   home.sessionVariables = {
