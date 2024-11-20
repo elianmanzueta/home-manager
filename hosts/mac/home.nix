@@ -24,6 +24,9 @@
     pkgs.nil
     pkgs.go
     pkgs.gopls
+    pkgs.uv
+    pkgs.sqlite
+    pkgs.ispell
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -42,7 +45,11 @@
     ".wezterm.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
     };
-
+    
+    ".config/doom" = {
+      source = ../../config/doom;
+      recursive = true;
+    };
   };
 
   xdg.configFile = {
