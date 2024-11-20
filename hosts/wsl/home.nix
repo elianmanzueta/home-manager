@@ -19,6 +19,10 @@
     pkgs.gcc
     pkgs.nodejs
     pkgs.go
+    pkgs.ispell
+    pkgs.python3
+    pkgs.xclip
+    pkgs.sqlite
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -43,7 +47,7 @@
     };
 
     ".doom.d/" = {
-    source = ../../config/.doom.d;
+    source = ../../config/doom;
     recursive = true;
     };
 

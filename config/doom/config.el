@@ -9,16 +9,14 @@
       make-backup-files t)
 (setq display-line-numbers-type 'relative)
 (setq confirm-kill-emacs nil)
-(setq initial-frame-alist '((top . 1) (left . 1) (width . 114) (height . 32)))
 
 ;; Org
 (setq org-directory "~/org/")
 
 ;; Avy
-(setq avy-timeout-seconds)
-(map! :n "s"(after! evil-snipe
-              (map! :map evil-snipe-local-mode-map
-                    :n "s" nil)))
+(after! evil-snipe
+        (evil-snipe-mode -1)
+        (evil-snipe-override-mode -1))
 
 (map! :n "s" #'avy-goto-char-timer)
 (map! :n "s" #'evil-avy-goto-char-timer)
