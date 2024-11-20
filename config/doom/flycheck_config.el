@@ -18,7 +18,6 @@
 ;; Vterm
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
-
 ;; Org
 (setq org-directory "~/org/")
 
