@@ -1,8 +1,7 @@
 #+TITLE: Elian's Doom Emacs Config
 
-* Doom Config
-
-Initial setup
+* Configuration
+** Initial setup
 #+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
@@ -13,13 +12,14 @@ Initial setup
 (setq evil-shift-width 2)
 #+end_src
 
-Theme and Fonts
+** Theme and fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
 (setq doom-theme 'doom-monokai-pro)
 #+END_SRC
 
-Some stuff to make the terminal work right
+** Terminal setup
+*** TODO Auto-switch to ~:term~ if on OS X?
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -30,29 +30,31 @@ Some stuff to make the terminal work right
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
+*** TODO Figure out why vterm doesn't work on OS X
 
-Org mode settings
+** Org mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 #+END_SRC
 
-Evil-snipe configuration to replicate flash.nvim
+** Evil-snipe
+Replicating flash.nvim
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! evil-snipe
-(evil-snipe-mode -1)
-(evil-snipe-override-mode -1))
+  (evil-snipe-mode -1)
+  (evil-snipe-override-mode -1))
 (map! :n "s" #'avy-goto-char-timer)
 (map! :n "s" #'evil-avy-goto-char-timer)
 #+END_SRC
 
-Treemacs neo-tree keybind
+** Treemacs
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! treemacs
-(map! :leader "e" #'treemacs)
-)
+  (map! :leader "e" #'treemacs)
+  )
 #+END_SRC
 
-Kill-ring
+** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "p" #'yank-from-kill-ring)
 #+END_SRC
