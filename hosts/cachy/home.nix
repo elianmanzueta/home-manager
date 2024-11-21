@@ -8,6 +8,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = [
+    # Terminal
     pkgs.neovim
     pkgs.fzf
     pkgs.ripgrep
@@ -15,13 +16,25 @@
     pkgs.zoxide
     pkgs.eza
     pkgs.fd
+    pkgs.uv
+    pkgs.emacs
     pkgs.progress
     pkgs.gcc
     pkgs.nodejs
-    pkgs.go
-    pkgs.python3
-    pkgs.uv
 
+    # Go
+    pkgs.go
+    pkgs.gopls
+
+    # Python
+    pkgs.python3
+    pkgs.pyright
+
+    # Emacs stuff
+    pkgs.sqlite
+    pkgs.ispell
+    
+    # Font
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -37,6 +50,11 @@
 
     ".config/fish" = {
       source = ../../config/fish;
+      recursive = true;
+    };
+
+    ".config/doom" = {
+      source = ../../config/doom;
       recursive = true;
     };
 

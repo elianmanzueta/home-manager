@@ -20,6 +20,10 @@
     pkgs.nodejs
     pkgs.go
     pkgs.python3
+    pkgs.ispell
+    pkgs.python3
+    pkgs.xclip
+    pkgs.sqlite
     pkgs.uv
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -42,6 +46,11 @@
 
     ".wezterm.lua" = {
       source = ../../config/wezterm/.wezterm.lua;
+    };
+
+    ".doom.d/" = {
+    source = ../../config/doom;
+    recursive = true;
     };
 
   };

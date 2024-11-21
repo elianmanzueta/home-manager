@@ -1,0 +1,65 @@
+:PROPERTIES:
+:ID:       58399678-8569-4be7-ae77-2374c1ad7825
+:END:
+#+TITLE: Elian's Doom Emacs Config
+
+[[attachment:_20241121_000400screenshot.png]]
+
+* Configuration
+** Initial setup
+#+begin_src emacs-lisp :tangle ./config.el
+(setq user-full-name "Elian Manzueta")
+(setq user-mail-address "elianmanzueta@protonmail.com")
+(setq auto-save-default t
+      make-backup-files t)
+(setq display-line-numbers-type 'relative)
+(setq confirm-kill-emacs nil)
+(setq evil-shift-width 2)
+#+end_src
+
+** Theme and fonts
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
+(setq doom-theme 'doom-monokai-pro)
+#+END_SRC
+
+** Terminal setup
+*** TODO Auto-switch to ~:term~ if on OS X?
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
+       (t "/bin/bash")))
+
+(after! vterm
+  (setq vterm-shell explicit-shell-file-name))
+#+END_SRC
+*** TODO Figure out why vterm doesn't work on OS X
+
+** Org mode
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq org-directory "~/org/")
+#+END_SRC
+
+** Evil-snipe
+Replicating flash.nvim
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(after! evil-snipe
+  (evil-snipe-mode -1)
+  (evil-snipe-override-mode -1))
+(map! :n "s" #'avy-goto-char-timer)
+(map! :n "s" #'evil-avy-goto-char-timer)
+#+END_SRC
+
+** Treemacs
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(after! treemacs
+  (map! :leader "e" #'treemacs)
+  )
+#+END_SRC
+
+** Kill-ring
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(map! :leader "p" #'yank-from-kill-ring)
+#+END_SRC
