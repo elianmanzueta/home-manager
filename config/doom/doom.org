@@ -1,4 +1,9 @@
+:PROPERTIES:
+:ID:       58399678-8569-4be7-ae77-2374c1ad7825
+:END:
 #+TITLE: Elian's Doom Emacs Config
+
+[[attachment:_20241121_000400screenshot.png]]
 
 * Configuration
 ** Initial setup
