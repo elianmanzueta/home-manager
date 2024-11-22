@@ -8,7 +8,7 @@ abbr --add ga git add
 abbr --add cr cargo run
 
 # Emacs
-abbr --add em emacsclient -c
+abbr --add em emacsclient -c &
 abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
 abbr --add emacs emacs --daemon
 
