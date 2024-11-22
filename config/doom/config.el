@@ -20,11 +20,7 @@
 
 (setq org-directory "~/org/")
 
-(after! evil-snipe
-  (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1))
-(map! :n "s" #'avy-goto-char-timer)
-(map! :n "s" #'evil-avy-goto-char-timer)
+(after! evil-snipe (evil-snipe-mode -1) (evil-snipe-override-mode -1)) (map! :u "s" #'avy-goto-char-timer) (map! :u "s" #'evil-avy-goto-char-timer)
 
 (after! treemacs
   (map! :leader "e" #'treemacs)
