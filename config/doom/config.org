@@ -14,13 +14,11 @@
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
 #+end_src
-
 ** Theme and fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
 (setq doom-theme 'doom-monokai-pro)
 #+END_SRC
-
 ** Terminal setup
 *** TODO Auto-switch to ~:term~ if on OS X?
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -39,7 +37,6 @@
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 #+END_SRC
-
 ** Evil-snipe
 Replicating flash.nvim
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -56,13 +53,10 @@ Replicating flash.nvim
   (map! :leader "e" #'treemacs)
   )
 #+END_SRC
-
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
 #+END_SRC
-
-
 ** Auto-fill Mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (add-hook 'text-mode-hook #'auto-fill-mode)
