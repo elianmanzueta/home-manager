@@ -21,7 +21,7 @@
 #+END_SRC
 ** Terminal setup
 *** TODO Auto-switch to ~:term~ if you don't have vterm
-* TODO In
+*** TODO Install fish through Homebrew
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -32,8 +32,7 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
-*** TODO Figure out why vterm doesn't work on OS X
-
+*** TODO Figure out why vterm doesn't work on OS X or Ubuntu
 ** Org mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
