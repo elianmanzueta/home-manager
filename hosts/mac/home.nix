@@ -33,6 +33,11 @@
 
   home.file = {
 
+    ".config/fish" = {
+      source = ../../config/fish;
+      recursive = true;
+    };
+
     ".config/starship.toml" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/starship.toml";
     };
@@ -50,14 +55,6 @@
       source = ../../config/doom;
       recursive = true;
     };
-  };
-
-  xdg.configFile = {
-    "fish" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/fish";
-      recursive = true;
-    };
-
   };
 
   home.sessionVariables = {
