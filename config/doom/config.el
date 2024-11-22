@@ -7,11 +7,11 @@
 (setq evil-shift-width 2)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
-(setq doom-theme 'doom-monokai-)
+(setq doom-theme 'doom-monokai-spectrum)
 
 (setq explicit-shell-file-name
       (cond
-
+       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
        ((eq system-type 'gnu/linux) "/bin/fish")
        (t "/bin/bash")))
 
