@@ -17,10 +17,11 @@
 ** Theme and fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-monokai-)
 #+END_SRC
 ** Terminal setup
-*** TODO Auto-switch to ~:term~ if on OS X?
+*** TODO Auto-switch to ~:term~ if you don't have vterm
+* TODO In
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -37,12 +38,14 @@
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 #+END_SRC
-** Evil-snipe
-Replicating flash.nvim
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(after! evil-snipe (evil-snipe-mode -1) (evil-snipe-override-mode -1)) (map! :u "s" #'avy-goto-char-timer) (map! :u "s" #'evil-avy-goto-char-timer)
-#+END_SRC
+** Evil-snipe/Avy
+Trying to =replicate= flash.nvim
 
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(after! evil-snipe
+  (evil-snipe-mode -1)
+  (evil-snipe-override-mode -1))
+#+END_SRC
 ** Treemacs
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! treemacs
