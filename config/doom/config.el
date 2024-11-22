@@ -12,7 +12,7 @@
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
-       ((eq system-type 'gnu/linux) "/usr/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
        (t "/bin/bash")))
 
 (after! vterm
@@ -31,3 +31,6 @@
   )
 
 (map! :leader "y" #'yank-from-kill-ring)
+
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
