@@ -26,10 +26,6 @@
     pkgs.go
     pkgs.gopls
 
-    # Python
-    pkgs.python3
-    pkgs.pyright
-
     # Emacs stuff
     pkgs.sqlite
     pkgs.ispell
