@@ -9,16 +9,8 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
 (setq doom-theme 'doom-monokai-spectrum)
 
-(setq explicit-shell-file-name
-      (cond
-       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
-       ((eq system-type 'gnu/linux) "/bin/fish")
-       (t "/bin/bash")))
-
-(after! vterm
-  (setq vterm-shell explicit-shell-file-name))
-
 (setq org-directory "~/org/")
+(setq org-agenda-files "~/org")
 
 (after! evil-snipe
   (evil-snipe-mode -1)
