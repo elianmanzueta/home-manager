@@ -6,8 +6,8 @@
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-theme 'doom-gruvbox)
 
 (setq explicit-shell-file-name
       (cond
@@ -18,12 +18,17 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 
+(after! term
+  (if (eq system-type 'darwin)
+      (map! :leader "ot" #'+term/toggle)))
+
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org"))
 
 (after! evil-snipe
   (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1))
+  (evil-snipe-override-mode -1)
+  )
 
 (after! treemacs
   (map! :leader "e" #'treemacs)
@@ -33,5 +38,3 @@
 
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
-
-(setq evil-lookup-func')

@@ -16,12 +16,11 @@
 #+end_src
 ** Theme and fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18))
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-theme 'doom-gruvbox)
 #+END_SRC
 ** Terminal setup
-*** TODO Auto-switch to ~:term~ if you don't have vterm
-*** TODO Install fish through Homebrew
+Setting shells.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -32,14 +31,20 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
-*** TODO Figure out why vterm doesn't work on OS X or Ubuntu
+
+Changing the terminal popup keybind to use term on Mac
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(after! term
+  (if (eq system-type 'darwin)
+      (map! :leader "ot" #'+term/toggle)))
+#+END_SRC
 ** Org mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org"))
 #+END_SRC
 ** Evil-snipe/Avy
-Trying to =replicate= flash.nvim
+Trying to replicate flash.nvim
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! evil-snipe
   (evil-snipe-mode -1)
