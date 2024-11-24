@@ -20,18 +20,31 @@
 (setq doom-theme 'doom-monokai-spectrum)
 #+END_SRC
 ** Terminal setup
+*** TODO Auto-switch to ~:term~ if you don't have vterm
+*** TODO Install fish through Homebrew
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
+       (t "/bin/bash")))
+
+(after! vterm
+  (setq vterm-shell explicit-shell-file-name))
+#+END_SRC
+*** TODO Figure out why vterm doesn't work on OS X or Ubuntu
 ** Org mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
-(setq org-agenda-files "~/org")
+(setq org-agenda-files '("~/org"))
 #+END_SRC
 ** Evil-snipe/Avy
 Trying to =replicate= flash.nvim
-
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! evil-snipe
   (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1))
+  (evil-snipe-override-mode -1)
+  )
 #+END_SRC
 ** Treemacs
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
