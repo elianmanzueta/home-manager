@@ -29,7 +29,8 @@
     # Emacs stuff
     pkgs.sqlite
     pkgs.ispell
-    
+    pkgs.nixpkgs-fmt
+
     # Font
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
