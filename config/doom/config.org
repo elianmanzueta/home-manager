@@ -40,8 +40,10 @@ Changing the terminal popup keybind to use term on Mac
 #+END_SRC
 ** Org mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org"))
+(after! org
+  (setq org-directory "~/org/")
+  (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
+  )
 #+END_SRC
 ** Evil-snipe/Avy
 Trying to replicate flash.nvim

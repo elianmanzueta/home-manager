@@ -22,8 +22,10 @@
   (if (eq system-type 'darwin)
       (map! :leader "ot" #'+term/toggle)))
 
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org"))
+(after! org
+  (setq org-directory "~/org/")
+  (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
+  )
 
 (after! evil-snipe
   (evil-snipe-mode -1)
