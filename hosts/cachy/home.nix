@@ -30,6 +30,11 @@
     pkgs.sqlite
     pkgs.ispell
     pkgs.nixpkgs-fmt
+    
+    # Desktop
+    pkgs.spotify
+    pkgs.vesktop
+    pkgs.easyeffects
 
     # Font
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })

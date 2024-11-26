@@ -52,6 +52,7 @@
           modules = [
             ./hosts/cachy/home.nix
             ./hosts/cachy/programs.nix
+	    ./hosts/cachy/configuration.nix
           ];
         };
       };
