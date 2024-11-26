@@ -17,7 +17,6 @@
     pkgs.eza
     pkgs.fd
     pkgs.uv
-    pkgs.emacs
     pkgs.progress
     pkgs.gcc
     pkgs.nodejs
