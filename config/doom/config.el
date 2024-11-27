@@ -7,7 +7,7 @@
 (setq evil-shift-width 2)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-1337)
 
 (setq explicit-shell-file-name
       (cond
@@ -22,10 +22,24 @@
   (if (eq system-type 'darwin)
       (map! :leader "ot" #'+term/toggle)))
 
+(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
+
+(after! org (setq org-hide-emphasis-markers t))
+(add-hook! org-mode :append #'org-appear-mode)
+(add-hook 'org-mode-hook #'+org-pretty-mode)
+(after! org (setq org-fontify-quote-and-verse-blocks t))
+
 (after! org
-  (setq org-directory "~/org/")
-  (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
-  )
+  (custom-set-faces!
+    '(outline-1 :weight extra-bold :height 1.25)
+    '(outline-2 :weight bold :height 1.15)
+    '(outline-3 :weight bold :height 1.12)
+    '(outline-4 :weight semi-bold :height 1.09)
+    '(outline-5 :weight semi-bold :height 1.06)
+    '(outline-6 :weight semi-bold :height 1.03)
+    '(outline-8 :weight semi-bold)
+    '(outline-9 :weight semi-bold)))
 
 (after! evil-snipe
   (evil-snipe-mode -1)
