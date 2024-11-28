@@ -42,14 +42,7 @@
   '(outline-9 :weight semi-bold)
   '(org-document-title :weight extra-bold :height 1.5)))
 
-(after! evil-snipe
-  (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1)
-  )
-
-(after! treemacs
-  (map! :leader "e" #'treemacs)
-  )
+(map! :leader "e" #'treemacs)
 
 (map! :leader "y" #'yank-from-kill-ring)
 
