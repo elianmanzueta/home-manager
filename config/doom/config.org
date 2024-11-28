@@ -1,10 +1,7 @@
-:PROPERTIES:
-:ID:       58399678-8569-4be7-ae77-2374c1ad7825
-:END:
 #+TITLE: Elian's Doom Emacs Config
 
 * Configuration
-** Initial setup
+** Initial Setup
 #+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
@@ -15,13 +12,12 @@
 (setq evil-shift-width 2)
 #+end_src
 
-** Theme and fonts
+** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-1337)
 #+END_SRC
-
-** Terminal setup
+** Terminal Setup
 Setting shells.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
@@ -40,8 +36,7 @@ Changing the terminal popup keybind to use term on Mac
   (if (eq system-type 'darwin)
       (map! :leader "ot" #'+term/toggle)))
 #+END_SRC
-
-** Org mode
+** Org Mode
 Set org and agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
@@ -60,32 +55,22 @@ Make headings bigger
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
 (custom-set-faces!
-  '(outline-1 :weight extra-bold :height 1.25)
+  '(outline-1 :weight bold :height 1.25)
   '(outline-2 :weight bold :height 1.15)
   '(outline-3 :weight bold :height 1.12)
   '(outline-4 :weight semi-bold :height 1.09)
   '(outline-5 :weight semi-bold :height 1.06)
   '(outline-6 :weight semi-bold :height 1.03)
   '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)))
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5))
 #+end_src
 
-** Evil-snipe/Avy
-Trying to replicate flash.nvim
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(after! evil-snipe
-  (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1)
-  )
-#+END_SRC
-
 ** Treemacs
+Map treemacs to SPC e
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(after! treemacs
-  (map! :leader "e" #'treemacs)
-  )
+(map! :leader "e" #'treemacs)
 #+END_SRC
-
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
