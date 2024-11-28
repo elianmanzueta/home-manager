@@ -31,18 +31,19 @@
 (setq org-fontify-quote-and-verse-blocks t)
 
 (after! org
-(custom-set-faces!
-  '(outline-1 :weight bold :height 1.25)
-  '(outline-2 :weight bold :height 1.15)
-  '(outline-3 :weight bold :height 1.12)
-  '(outline-4 :weight semi-bold :height 1.09)
-  '(outline-5 :weight semi-bold :height 1.06)
-  '(outline-6 :weight semi-bold :height 1.03)
-  '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)
-  '(org-document-title :weight extra-bold :height 1.5)))
+  (custom-set-faces!
+    '(outline-1 :weight bold :height 1.25)
+    '(outline-2 :weight bold :height 1.15)
+    '(outline-3 :weight bold :height 1.12)
+    '(outline-4 :weight semi-bold :height 1.09)
+    '(outline-5 :weight semi-bold :height 1.06)
+    '(outline-6 :weight semi-bold :height 1.03)
+    '(outline-8 :weight semi-bold)
+    '(outline-9 :weight semi-bold)
+    '(org-document-title :weight extra-bold :height 1.5)))
 
-(map! :leader "e" #'treemacs)
+(after! treemacs 
+  (map! :leader "e" #'treemacs))
 
 (map! :leader "y" #'yank-from-kill-ring)
 
