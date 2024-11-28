@@ -1,11 +1,3 @@
-:PROPERTIES:
-:ID:       58399678-8569-4be7-ae77-2374c1ad7825
-:END:
-#+TITLE: Elian's Doom Emacs Config
-
-* Configuration
-** Initial setup
-#+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
 (setq auto-save-default t
@@ -13,17 +5,10 @@
 (setq display-line-numbers-type 'relative)
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
-#+end_src
 
-** Theme and fonts
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-1337)
-#+END_SRC
 
-** Terminal setup
-Setting shells.
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
@@ -32,33 +17,18 @@ Setting shells.
 
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
-#+END_SRC
 
-Changing the terminal popup keybind to use term on Mac
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! term
   (if (eq system-type 'darwin)
       (map! :leader "ot" #'+term/toggle)))
-#+END_SRC
 
-** Org mode
-Set org and agenda directories
-#+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
-#+end_src
 
-Hook for org pretty mode + other visual stuff
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-appear-mode)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
-#+end_src
 
-Make headings bigger
-#+begin_src emacs-lisp :tangle ./config.el
-(after! org
 (custom-set-faces!
   '(outline-1 :weight extra-bold :height 1.25)
   '(outline-2 :weight bold :height 1.15)
@@ -67,32 +37,18 @@ Make headings bigger
   '(outline-5 :weight semi-bold :height 1.06)
   '(outline-6 :weight semi-bold :height 1.03)
   '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)))
-#+end_src
+  '(outline-9 :weight semi-bold))
 
-** Evil-snipe/Avy
-Trying to replicate flash.nvim
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! evil-snipe
   (evil-snipe-mode -1)
   (evil-snipe-override-mode -1)
   )
-#+END_SRC
 
-** Treemacs
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (after! treemacs
   (map! :leader "e" #'treemacs)
   )
-#+END_SRC
 
-** Kill-ring
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
-#+END_SRC
 
-** Auto-fill Mode
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
-#+END_SRC
