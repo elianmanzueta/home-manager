@@ -6,8 +6,6 @@
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
 
-(setq global-vi-tilde-fringe-mode nil)
-
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-1337)
 
@@ -43,6 +41,9 @@
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
+
+(after! org
+  (setq vi-tilde-fringe-mode nil))
 
 ((map! :leader "e" #'treemacs))
 
