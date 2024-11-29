@@ -11,6 +11,11 @@
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
 #+end_src
+
+Turn off vi fringe mode
+#+begin_src emacs-lisp :tangle ./config.el
+(setq global-vi-tilde-fringe-mode nil)
+#+end_src
 ** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
@@ -29,11 +34,12 @@ Setting shells.
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
 
+#+RESULTS:
+
 Changing the terminal popup keybind to use term on Mac
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(after! term
-  (if (eq system-type 'darwin)
-      (map! :leader "ot" #'+term/toggle)))
+(if (eq system-type 'darwin)
+    (map! :leader "ot" #'+term/toggle))
 #+END_SRC
 ** Org Mode
 Set org and agenda directories
@@ -46,6 +52,7 @@ Hook for org pretty mode and org appear
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
@@ -67,8 +74,7 @@ Make headings and title bigger
 ** Treemacs
 Map treemacs to SPC e
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(after! treemacs
-  (map! :leader "e" #'treemacs))
+((map! :leader "e" #'treemacs))
 #+END_SRC
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el

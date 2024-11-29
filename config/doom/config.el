@@ -6,6 +6,8 @@
 (setq confirm-kill-emacs nil)
 (setq evil-shift-width 2)
 
+(setq global-vi-tilde-fringe-mode nil)
+
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-1337)
 
@@ -18,15 +20,15 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 
-(after! term
-  (if (eq system-type 'darwin)
-      (map! :leader "ot" #'+term/toggle)))
+(if (eq system-type 'darwin)
+    (map! :leader "ot" #'+term/toggle))
 
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
 
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 
@@ -42,8 +44,7 @@
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
 
-(after! treemacs 
-  (map! :leader "e" #'treemacs))
+((map! :leader "e" #'treemacs))
 
 (map! :leader "y" #'yank-from-kill-ring)
 
