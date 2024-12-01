@@ -29,6 +29,8 @@
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
+(remove-hook 'text-mode-hook #'vi-tilde-fringe-mode)
+(remove-hook 'prog-mode-hook #'vi-tilde-fringe-mode)
 
 (after! org
   (custom-set-faces!
@@ -41,9 +43,6 @@
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
-
-(after! org
-  (setq vi-tilde-fringe-mode nil))
 
 ((map! :leader "e" #'treemacs))
 

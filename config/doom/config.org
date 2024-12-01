@@ -50,6 +50,8 @@ Hook for org pretty mode and org appear
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
+(remove-hook 'text-mode-hook #'vi-tilde-fringe-mode)
+(remove-hook 'prog-mode-hook #'vi-tilde-fringe-mode)
 #+end_src
 
 Make headings and title bigger
@@ -67,10 +69,6 @@ Make headings and title bigger
     '(org-document-title :weight extra-bold :height 1.5)))
 #+end_src
 
-#+begin_src emacs-lisp :tangle ./config.el
-(after! org
-  (setq vi-tilde-fringe-mode nil))
-#+end_src
 ** Treemacs
 Map treemacs to SPC e
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
