@@ -59,7 +59,6 @@ Set pyright type-checking mode
 
 Set pyright venv path/directory
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-venv-directory ".venv")
 (setq lsp-pyright-venv-path ".")
 #+end_src
 ** Eww

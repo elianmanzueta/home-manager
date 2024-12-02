@@ -33,7 +33,6 @@
 
 (setq lsp-pyright-type-checking-mode "all")
 
-(setq lsp-pyright-venv-directory ".venv")
 (setq lsp-pyright-venv-path ".")
 
 (setq +lookup-open-url-fn #'eww)
