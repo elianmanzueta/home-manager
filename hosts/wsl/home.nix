@@ -21,10 +21,10 @@
     pkgs.go
     pkgs.python3
     pkgs.ispell
-    pkgs.python3
     pkgs.xclip
     pkgs.sqlite
     pkgs.uv
+    pkgs.basedpyright
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];

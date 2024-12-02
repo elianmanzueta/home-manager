@@ -15,8 +15,7 @@
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-monokai-spectrum)
-#+END_SRC
-** Terminal Setup
+#+END_SRC ** Terminal Setup
 Setting shells.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
@@ -54,7 +53,7 @@ Enable inlay hints in Python
 *** Based Pyright
 Set pyright type-checking mode
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-type-checking-mode "all")
+(setq lsp-pyright-type-checking-mode "strict")
 #+end_src
 
 Set pyright venv path/directory
