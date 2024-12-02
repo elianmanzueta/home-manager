@@ -21,6 +21,21 @@
 (if (eq system-type 'darwin)
     (map! :leader "ot" #'+term/toggle))
 
+(add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode)
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+
+(setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+(setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+(setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+(setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+
+(setq lsp-pyright-type-checking-mode "all")
+
+(setq lsp-pyright-venv-directory ".venv")
+(setq lsp-pyright-venv-path ".")
+
 (setq +lookup-open-url-fn #'eww)
 
 (setq org-directory "~/org/")

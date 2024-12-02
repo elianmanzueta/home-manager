@@ -34,6 +34,34 @@ Changing the terminal popup keybind to use term on Mac
 (if (eq system-type 'darwin)
     (map! :leader "ot" #'+term/toggle))
 #+END_SRC
+** Code
+*** Inlay Hints
+Enable inlay hints in Rust
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode)
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+#+end_src
+
+Enable inlay hints in Python
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+(setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+(setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+(setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+#+end_src
+*** Based Pyright
+Set pyright type-checking mode
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-pyright-type-checking-mode "all")
+#+end_src
+
+Set pyright venv path/directory
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-pyright-venv-directory ".venv")
+(setq lsp-pyright-venv-path ".")
+#+end_src
 ** Eww
 Open lookups inside of eww
 #+begin_src emacs-lisp :tangle ./config.el
