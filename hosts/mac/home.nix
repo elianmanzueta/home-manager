@@ -20,11 +20,12 @@
     pkgs.rustup
     pkgs.fd
     pkgs.progress
-    pkgs.pyright
+    pkgs.basedpyright
     pkgs.nil
     pkgs.go
     pkgs.gopls
     pkgs.uv
+    pkgs.pyenv
     pkgs.sqlite
     pkgs.ispell
 
@@ -39,7 +40,7 @@
     };
 
     ".config/starship.toml" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/starship.toml";
+      source = ../../config/starship/starship.toml;
     };
 
     ".config/paru/" = {
