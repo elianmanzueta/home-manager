@@ -48,6 +48,7 @@
             ./shared/code/rust.nix
             ./shared/editor/emacs.nix
             ./shared/editor/neovim.nix
+            ./shared/terminal/default.nix
           ];
 
         };
