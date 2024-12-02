@@ -6,12 +6,6 @@
     shell = pkgs.fish;
   };
 
-  programs = {
-    fish = {
-      enable = true;
-    };
-  };
-
   environment = {
     systemPackages = with pkgs; [
       neovim
@@ -30,8 +24,8 @@
     enable = true;
     taps = [
     ];
-    brews = ["fish"];
-    casks = [];
+    brews = [ "fish" ];
+    casks = [ ];
   };
 
   system = {

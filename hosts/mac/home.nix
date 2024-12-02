@@ -8,26 +8,6 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = [
-    pkgs.neovim
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.lazygit
-    pkgs.wget
-    pkgs.zoxide
-    pkgs.nodejs
-    pkgs.python3
-    pkgs.eza
-    pkgs.rustup
-    pkgs.fd
-    pkgs.progress
-    pkgs.pyright
-    pkgs.nil
-    pkgs.go
-    pkgs.gopls
-    pkgs.uv
-    pkgs.sqlite
-    pkgs.ispell
-
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -50,15 +30,11 @@
     ".wezterm.lua" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
     };
-    
+
     ".config/doom" = {
       source = ../../config/doom;
       recursive = true;
     };
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
@@ -77,10 +53,5 @@
         push.autoSetupRemote = true;
       };
     };
-
-    starship = {
-      enable = true;
-    };
   };
-
 }

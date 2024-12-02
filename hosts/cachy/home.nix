@@ -8,28 +8,6 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = [
-    # Terminal
-    pkgs.neovim
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.wget
-    pkgs.zoxide
-    pkgs.eza
-    pkgs.fd
-    pkgs.uv
-    pkgs.progress
-    pkgs.gcc
-    pkgs.nodejs
-
-    # Go
-    pkgs.go
-    pkgs.gopls
-
-    # Emacs stuff
-    pkgs.sqlite
-    pkgs.ispell
-    pkgs.nixpkgs-fmt
-    
     # Desktop
     pkgs.spotify
     pkgs.vesktop

@@ -8,24 +8,6 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = [
-    pkgs.neovim
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.wget
-    pkgs.zoxide
-    pkgs.eza
-    pkgs.fd
-    pkgs.progress
-    pkgs.gcc
-    pkgs.nodejs
-    pkgs.go
-    pkgs.python3
-    pkgs.ispell
-    pkgs.xclip
-    pkgs.sqlite
-    pkgs.uv
-    pkgs.basedpyright
-
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -49,8 +31,8 @@
     };
 
     ".doom.d/" = {
-    source = ../../config/doom;
-    recursive = true;
+      source = ../../config/doom;
+      recursive = true;
     };
 
   };

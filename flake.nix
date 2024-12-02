@@ -26,6 +26,12 @@
           modules = [
             ./hosts/mac/configuration.nix
             ./hosts/mac/programs.nix
+            ./shared/code/python.nix
+            ./shared/code/go.nix
+            ./shared/code/rust.nix
+            ./shared/editor/emacs.nix
+            ./shared/editor/neovim.nix
+
             home-manager.darwinModules.home-manager
             {
               home-manager.backupFileExtension = "hm-backup";
@@ -43,7 +49,11 @@
           inherit pkgs;
           modules = [
             ./hosts/wsl/home.nix
-            ./hosts/wsl/programs.nix
+            ./shared/code/nix.nix
+            ./shared/code/python.nix
+            ./shared/code/rust.nix
+            ./shared/editor/emacs.nix
+            ./shared/editor/neovim.nix
           ];
 
         };
@@ -52,7 +62,11 @@
           modules = [
             ./hosts/cachy/home.nix
             ./hosts/cachy/programs.nix
-	    ./hosts/cachy/configuration.nix
+            ./hosts/cachy/configuration.nix
+            ./shared/code/python.nix
+            ./shared/code/rust.nix
+            ./shared/editor/emacs.nix
+            ./shared/editor/neovim.nix
           ];
         };
       };

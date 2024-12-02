@@ -37,7 +37,7 @@ Changing the terminal popup keybind to use term on Mac
 *** Inlay Hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode)
+(add-hook 'rust-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
@@ -45,6 +45,7 @@ Enable inlay hints in Rust
 
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
@@ -59,6 +60,7 @@ Set pyright type-checking mode
 Set pyright venv path/directory
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-pyright-venv-path ".")
+(setq lsp-pyright-venv-directory ".venv")
 #+end_src
 ** Eww
 Open lookups inside of eww
