@@ -1,9 +1,15 @@
-{ pkgs, ... }:
+ { pkgs, ... }:
 {
   users.users.elian = {
     name = "elian";
     home = "/Users/elian";
     shell = pkgs.fish;
+  };
+
+  programs = {
+    fish = {
+      enable = true;
+    };
   };
 
   environment = {
@@ -24,8 +30,8 @@
     enable = true;
     taps = [
     ];
-    brews = [ "fish" ];
-    casks = [ ];
+    brews = ["fish"];
+    casks = [];
   };
 
   system = {

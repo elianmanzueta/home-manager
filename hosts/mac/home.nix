@@ -8,6 +8,26 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = [
+    pkgs.neovim
+    pkgs.fzf
+    pkgs.ripgrep
+    pkgs.lazygit
+    pkgs.wget
+    pkgs.zoxide
+    pkgs.nodejs
+    pkgs.python3
+    pkgs.eza
+    pkgs.rustup
+    pkgs.fd
+    pkgs.progress
+    pkgs.pyright
+    pkgs.nil
+    pkgs.go
+    pkgs.gopls
+    pkgs.uv
+    pkgs.sqlite
+    pkgs.ispell
+
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -37,6 +57,10 @@
     };
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
@@ -53,5 +77,14 @@
         push.autoSetupRemote = true;
       };
     };
+
+    fish = {
+      enable = true;
+    };
+
+    starship = {
+      enable = true;
+    };
   };
+
 }

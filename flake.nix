@@ -26,15 +26,9 @@
           modules = [
             ./hosts/mac/configuration.nix
             ./hosts/mac/programs.nix
-            ./shared/code/python.nix
-            ./shared/code/go.nix
-            ./shared/code/rust.nix
-            ./shared/editor/emacs.nix
-            ./shared/editor/neovim.nix
-
             home-manager.darwinModules.home-manager
             {
-              home-manager.backupFileExtension = "hm-backup";
+              home-manager.backupFileExtension = "backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.verbose = true;
