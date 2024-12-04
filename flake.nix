@@ -39,7 +39,7 @@
       };
 
       homeConfigurations = {
-        "elian-wsl" = home-manager.lib.homeManagerConfiguration {
+        "wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./hosts/wsl/home.nix
@@ -52,7 +52,7 @@
           ];
 
         };
-        "cachy" = home-manager.lib.homeManagerConfiguration {
+        "linux" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./hosts/cachy/home.nix

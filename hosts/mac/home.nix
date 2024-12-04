@@ -29,6 +29,8 @@
     pkgs.sqlite
     pkgs.ispell
     pkgs.pandoc
+    pkgs.gocode-gomod
+    pkgs.just
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];

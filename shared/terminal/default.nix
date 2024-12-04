@@ -13,6 +13,7 @@
     eza
     zoxide
     wget
+    just
   ];
 
   home.sessionVariables = {

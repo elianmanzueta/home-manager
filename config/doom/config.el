@@ -41,10 +41,11 @@
 (if (eq system-type 'darwin)
     (add-to-list 'load-path "~/emacs-libvterm"))
 
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
+(setq indent-bars-mode 't)
 
-(after! rustic
-  (setq rustic-lsp-server 'rust-analyzer))
+(setq! go-eldoc-gocode "gocode-gomod")
+
+(add-hook 'rustic-mode-hook #'lsp)
 (add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)

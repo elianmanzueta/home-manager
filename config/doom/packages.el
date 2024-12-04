@@ -16,3 +16,4 @@
            :repo "awth13/org-appear"))
 
 (package! pet)
+(package! just-mode)

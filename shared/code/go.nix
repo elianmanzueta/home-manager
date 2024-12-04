@@ -9,6 +9,7 @@
     go
     gopls
     gofmt
+    gocode-gomod
   ];
 }
 
