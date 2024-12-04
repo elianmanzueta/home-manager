@@ -66,7 +66,7 @@ Path to vterm for Mac
 ** Code
 *** Indentation
 #+begin_src emacs-lisp :tangle ./config.el
-(setq indent-bars-mode 't)
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
 #+end_src
 *** Go
 **** Gocode Autocomplete
@@ -74,16 +74,21 @@ Path to vterm for Mac
 (setq! go-eldoc-gocode "gocode-gomod")
 #+end_src
 *** Rust
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'rustic-mode-hook #'lsp)
+#+end_src
 **** Inlay Hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'rustic-mode-hook #'lsp)
 (add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
 *** Python
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'python-mode-hook #'lsp)
+#+end_src
 **** Inlay Hints
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el

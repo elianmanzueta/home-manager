@@ -43,12 +43,12 @@
           inherit pkgs;
           modules = [
             ./hosts/wsl/home.nix
+            ./shared/terminal/default.nix
+            ./shared/editor/neovim.nix
+            ./shared/editor/emacs.nix
             ./shared/code/nix.nix
             ./shared/code/python.nix
             ./shared/code/rust.nix
-            ./shared/editor/emacs.nix
-            ./shared/editor/neovim.nix
-            ./shared/terminal/default.nix
           ];
 
         };

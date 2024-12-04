@@ -41,15 +41,18 @@
 (if (eq system-type 'darwin)
     (add-to-list 'load-path "~/emacs-libvterm"))
 
-(setq indent-bars-mode 't)
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (setq! go-eldoc-gocode "gocode-gomod")
 
 (add-hook 'rustic-mode-hook #'lsp)
+
 (add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
+
+(add-hook 'python-mode-hook #'lsp)
 
 (add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
@@ -61,6 +64,12 @@
 
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
+
+(use-package just-mode
+  :ensure t
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
 
 (setq +lookup-open-url-fn #'eww)
 
