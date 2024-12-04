@@ -17,7 +17,6 @@
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (setq which-key-idle-delay 0.5)
-
 #+end_src
 
 #+begin_src emacs-lisp :tangle ./config.el
