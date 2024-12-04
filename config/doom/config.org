@@ -64,7 +64,7 @@ Path to vterm for Mac
     (add-to-list 'load-path "~/emacs-libvterm"))
 #+END_SRC
 ** Code
-*** Indentation
+*** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 #+end_src
@@ -114,7 +114,6 @@ Set pyright venv path/directory
 **** just-mode
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package just-mode
-  :ensure t
   :mode ("justfile\\'" . just-mode)
   :config
   (setq just-indent-offset 4))
