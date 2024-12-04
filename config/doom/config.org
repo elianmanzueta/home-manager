@@ -15,7 +15,8 @@
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-monokai-spectrum)
-#+END_SRC ** Terminal Setup
+#+END_SRC
+** Terminal Setup
 Setting shells.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
