@@ -3,7 +3,6 @@ default:
 
 rebuild:
     @if [ "$(uname)" = "Darwin" ]; then \
-        echo "Running darwin-rebuild on macOS..."; \
         darwin-rebuild switch --flake .#mbp; \
     elif [ "$(uname -a | grep -i WSL)" ]; then \
         home-manager switch --flake .#wsl; \
