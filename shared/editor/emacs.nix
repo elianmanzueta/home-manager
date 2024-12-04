@@ -15,6 +15,7 @@
     nodejs
     ispell
     sqlite
+    pandoc
     emacs
   ];
 }

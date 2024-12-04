@@ -28,6 +28,7 @@
     pkgs.pyenv
     pkgs.sqlite
     pkgs.ispell
+    pkgs.pandoc
 
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
