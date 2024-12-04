@@ -39,9 +39,13 @@
   (setq vterm-shell explicit-shell-file-name))
 
 (if (eq system-type 'darwin)
-    (map! :leader "ot" #'+term/toggle))
+    (add-to-list 'load-path "~/emacs-libvterm"))
 
-(add-hook 'rust-mode-hook #'lsp-inlay-hints-mode)
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
+
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer))
+(add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)

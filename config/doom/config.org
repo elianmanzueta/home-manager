@@ -58,21 +58,27 @@ Setting shells.
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
 
-Changing the terminal popup keybind to use term on Mac
+Path to vterm for Mac
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (if (eq system-type 'darwin)
-    (map! :leader "ot" #'+term/toggle))
+    (add-to-list 'load-path "~/emacs-libvterm"))
 #+END_SRC
 ** Code
-*** Inlay Hints
+Toggle indent bars in LSP mode
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
+#+end_src
+*** Rust
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'rust-mode-hook #'lsp-inlay-hints-mode)
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer))
+(add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
-
+*** Python
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
@@ -81,7 +87,7 @@ Enable inlay hints in Python
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 #+end_src
-*** Based Pyright
+
 Set pyright type-checking mode
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-pyright-type-checking-mode "strict")
