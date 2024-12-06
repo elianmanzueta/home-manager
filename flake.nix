@@ -55,9 +55,9 @@
         "linux" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            ./hosts/cachy/configuration.nix
             ./hosts/cachy/home.nix
             ./hosts/cachy/programs.nix
-            ./hosts/cachy/configuration.nix
             ./shared/code/python.nix
             ./shared/code/rust.nix
             ./shared/editor/emacs.nix
