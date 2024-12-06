@@ -13,7 +13,7 @@ end
 
 -- Apperance
 config.color_scheme = "duckbones"
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("JetBrainsMono")
 
 -- Keys
 config.keys = {
