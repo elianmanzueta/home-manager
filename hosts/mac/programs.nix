@@ -1,4 +1,5 @@
- { pkgs, ... }:
+{ pkgs, ... }:
+
 {
   users.users.elian = {
     name = "elian";
@@ -6,50 +7,28 @@
     shell = pkgs.fish;
   };
 
-  programs = {
-    fish = {
-      enable = true;
-    };
-  };
-
   environment = {
-    systemPackages = with pkgs; [
-      neovim
-    ];
+    systemPackages = with pkgs; [ neovim git ];
 
-    shells = [
-      pkgs.fish
-      pkgs.bash
-      pkgs.zsh
-    ];
-
+    shells = [ pkgs.fish pkgs.bash pkgs.zsh ];
   };
 
+  programs = { fish = { enable = true; }; };
 
   homebrew = {
     enable = true;
-    taps = [
-    ];
-    brews = ["fish"];
-    casks = [];
+
+    onActivation = { autoUpdate = false; };
+
+    taps = [ "homebrew/services" ];
+
+    # `brew install`
+    # TODO Feel free to add your favorite apps here.
+    brews = [ "fish" ];
+
+    # `brew install --cask`
+    # TODO Feel free to add your favorite apps here.
+    casks = [ "vivaldi" "proton-mail" "proton-pass" "jagex" "wezterm" "anki" ];
   };
 
-  system = {
-    stateVersion = 4;
-    defaults = {
-      dock = {
-        autohide = true;
-        tilesize = 24;
-        autohide-delay = 0.0;
-        mineffect = "suck";
-        magnification = true;
-      };
-
-      finder = {
-        AppleShowAllExtensions = true;
-        ShowPathbar = true;
-      };
-    };
-
-  };
 }

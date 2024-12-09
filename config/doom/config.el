@@ -5,7 +5,8 @@
       make-backup-files t)
 (setq confirm-kill-emacs nil)
 (setq display-line-numbers-type nil)
-(setq evil-shift-width 2)
+(setq-default evil-shift-width 2)
+
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  window-combination-resize t                      ; take new window space from all other windows (not just current)
@@ -27,7 +28,7 @@
       evil-vsplit-window-right t)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'doom-material-dark)
 
 (setq explicit-shell-file-name
       (cond
@@ -52,9 +53,9 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(add-hook 'python-mode-hook #'lsp)
+(add-hook! 'python-mode-hook #'lsp)
 
-(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
+(add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
@@ -66,7 +67,6 @@
 (setq lsp-pyright-venv-directory ".venv")
 
 (use-package just-mode
-  :ensure t
   :mode ("justfile\\'" . just-mode)
   :config
   (setq just-indent-offset 4))

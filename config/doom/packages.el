@@ -17,3 +17,4 @@
 
 (package! pet)
 (package! just-mode)
+(package! github-dark-vscode-theme)
