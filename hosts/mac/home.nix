@@ -42,9 +42,7 @@
       recursive = true;
     };
 
-    ".config/starship.toml" = {
-      source = ../../config/starship/starship.toml;
-    };
+    ".config/starship.toml" = { source = ../../config/starship/starship.toml; };
 
     ".config/paru/" = {
       source = ../../config/paru;
@@ -52,7 +50,8 @@
     };
 
     ".wezterm.lua" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
+      source = config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
     };
 
     ".config/doom" = {
@@ -61,9 +60,7 @@
     };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   # Let Home Manager install and manage itself.
   programs = {
@@ -73,22 +70,17 @@
       enable = true;
       userName = "Elian Manzueta";
       userEmail = "elianmanzueta@protonmail.com";
-      ignores = [
-        ".DS_Store"
-      ];
+      ignores = [ ".DS_Store" ];
       extraConfig = {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
       };
     };
 
-    fish = {
-      enable = true;
-    };
+    fish = { enable = true; };
 
-    starship = {
-      enable = true;
-    };
+    starship = { enable = true; };
+
   };
 
 }

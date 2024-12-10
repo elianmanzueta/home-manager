@@ -18,13 +18,13 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
+    in {
       darwinConfigurations = {
         "mbp" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            ./hosts/mac/configuration.nix
+            ./hosts/mac/system.nix
+            ./hosts/mac/nix-core.nix
             ./hosts/mac/programs.nix
             home-manager.darwinModules.home-manager
             {
