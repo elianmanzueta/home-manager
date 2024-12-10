@@ -17,3 +17,8 @@
 
 (package! pet)
 (package! just-mode)
+(package! git-auto-commit-mode)
+(package! anki-editor
+  :recipe (:host github :repo "anki-editor/anki-editor"))
+(package! ankiorg
+  :recipe (:host github :repo "orgtre/ankiorg"))
