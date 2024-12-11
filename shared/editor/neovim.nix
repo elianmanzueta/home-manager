@@ -13,7 +13,6 @@
     ripgrep
     fd
     nodejs
-    gcc
     lazygit
   ];
 }

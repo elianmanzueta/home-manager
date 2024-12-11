@@ -43,7 +43,7 @@ Focus new window after splitting.
 ** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-theme 'doom-material-dark)
+(setq doom-theme 'doom-monokai-pro)
 #+END_SRC
 ** Terminal Setup
 Setting shells.
@@ -56,12 +56,6 @@ Setting shells.
 
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
-#+END_SRC
-
-Path to vterm for Mac
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(if (eq system-type 'darwin)
-    (add-to-list 'load-path "~/emacs-libvterm"))
 #+END_SRC
 ** Code
 *** Indent Bars Mode

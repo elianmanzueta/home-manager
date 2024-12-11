@@ -28,7 +28,7 @@
       evil-vsplit-window-right t)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-theme 'doom-material-dark)
+(setq doom-theme 'doom-monokai-pro)
 
 (setq explicit-shell-file-name
       (cond
@@ -39,8 +39,7 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 
-(if (eq system-type 'darwin)
-    (add-to-list 'load-path "~/emacs-libvterm"))
+
 
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 

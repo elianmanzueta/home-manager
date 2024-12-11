@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     go
     gopls
-    gofmt
     gocode-gomod
   ];
 }

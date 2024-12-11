@@ -58,6 +58,7 @@
             ./hosts/cachy/home.nix
             ./hosts/cachy/programs.nix
             ./shared/code/python.nix
+            ./shared/code/go.nix
             ./shared/editor/emacs.nix
             ./shared/editor/neovim.nix
             ./shared/terminal/default.nix

@@ -11,11 +11,9 @@
     fzf
     ripgrep
     fd
-    gcc
     nodejs
     ispell
     sqlite
     pandoc
-    emacs
   ];
 }
