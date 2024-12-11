@@ -39,8 +39,6 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 
-
-
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (setq! go-eldoc-gocode "gocode-gomod")
@@ -92,6 +90,8 @@
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
+
+(setq gac-automatically-push-p 't)
 
 (map! :leader "e" #'treemacs)
 

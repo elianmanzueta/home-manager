@@ -118,13 +118,13 @@ Open lookups inside of eww
 (setq +lookup-open-url-fn #'eww)
 #+end_src
 ** Org Mode
-Set org and agenda directories
+*** Set org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
 #+end_src
 
-Hook for org pretty mode and org appear
+*** Org pretty mode and org-appear hooks
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
@@ -133,7 +133,7 @@ Hook for org pretty mode and org appear
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
 
-Make headings and title bigger
+*** Custom heading/title sizing
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
   (custom-set-faces!
@@ -146,6 +146,16 @@ Make headings and title bigger
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
+#+end_src
+
+*** Git auto commit and push
+The Git-auto-commit mode is enabled using ~/org/.dir-locals.el.
+#+begin_src emacs-lisp
+((nil . ((eval git-auto-commit-mode 1))))
+#+end_src
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq gac-automatically-push-p 't)
 #+end_src
 ** Treemacs
 Map treemacs to SPC e
