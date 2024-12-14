@@ -45,8 +45,10 @@ Focus new window after splitting.
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-monokai-pro)
 #+END_SRC
+
 ** Terminal Setup
-Setting shells.
+*** Fish
+Setting fish shell paths.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -57,6 +59,11 @@ Setting shells.
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
+*** Vterm
+Setting vterm path.
+#+begin_src emacs-lisp :tangle ./config.el
+(add-load-path! "~/emacs-libvterm")
+ #+end_src
 ** Code
 *** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el

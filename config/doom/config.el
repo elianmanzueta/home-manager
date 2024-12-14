@@ -39,6 +39,8 @@
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
 
+(add-load-path! "~/emacs-libvterm")
+
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (setq! go-eldoc-gocode "gocode-gomod")
