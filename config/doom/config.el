@@ -95,6 +95,8 @@
 
 (setq gac-automatically-push-p 't)
 
+(map! :leader "wa" #'ace-select-window)
+
 (map! :leader "e" #'treemacs)
 
 (map! :leader "y" #'yank-from-kill-ring)

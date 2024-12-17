@@ -155,6 +155,7 @@ Open lookups inside of eww
     '(org-document-title :weight extra-bold :height 1.5)))
 #+end_src
 
+    Git
 *** Git auto commit and push
 The Git-auto-commit mode is enabled using ~/org/.dir-locals.el.
 #+begin_src emacs-lisp
@@ -163,6 +164,11 @@ The Git-auto-commit mode is enabled using ~/org/.dir-locals.el.
 
 #+begin_src emacs-lisp :tangle ./config.el
 (setq gac-automatically-push-p 't)
+#+end_src
+** Windows
+Setting a keybind for ~ace-select-window~.
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader "wa" #'ace-select-window)
 #+end_src
 ** Treemacs
 Map treemacs to SPC e
