@@ -73,7 +73,7 @@
 (setq +lookup-open-url-fn #'eww)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)

@@ -58,6 +58,8 @@
       source = ../../config/doom;
       recursive = true;
     };
+
+    ".aerospace.toml" = { source = ../../config/aerospace/aerospace.toml; };
   };
 
   home.sessionVariables = { EDITOR = "nvim"; };

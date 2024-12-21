@@ -128,7 +128,7 @@ Open lookups inside of eww
 *** Set org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 #+end_src
 
 *** Org pretty mode and org-appear hooks
@@ -157,11 +157,11 @@ Open lookups inside of eww
 
     Git
 *** Git auto commit and push
-The Git-auto-commit mode is enabled using ~/org/.dir-locals.el.
+The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
+code here:
 #+begin_src emacs-lisp
 ((nil . ((eval git-auto-commit-mode 1))))
 #+end_src
-
 #+begin_src emacs-lisp :tangle ./config.el
 (setq gac-automatically-push-p 't)
 #+end_src
