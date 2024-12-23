@@ -154,14 +154,14 @@ Open lookups inside of eww
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)))
 #+end_src
-
-    Git
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
 code here:
 #+begin_src emacs-lisp
 ((nil . ((eval git-auto-commit-mode 1))))
 #+end_src
+
+Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (setq gac-automatically-push-p 't)
 #+end_src
