@@ -1,14 +1,9 @@
 local wezterm = require("wezterm")
 local config = {}
 
--- x86_64-pc-windows-msvc - Windows
--- x86_64-apple-darwin - macOS (Intel)
--- aarch64-apple-darwin - macOS (Apple Silicon)
--- x86_64-unknown-linux-gnu - Linux
-
 -- WSL
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.default_domain = "WSL:Arch"
+	config.default_domain = "WSL:Ubuntu"
 end
 
 -- Apperance
