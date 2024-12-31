@@ -125,12 +125,11 @@ Open lookups inside of eww
 (setq +lookup-open-url-fn #'eww)
 #+end_src
 ** Org Mode
-*** Set org and org agenda directories
+*** Org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 #+end_src
-
 *** Org pretty mode and org-appear hooks
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook '+org-pretty-mode)
@@ -139,7 +138,6 @@ Open lookups inside of eww
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
-
 *** Custom heading/title sizing
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
@@ -152,7 +150,8 @@ Open lookups inside of eww
     '(outline-6 :weight semi-bold :height 1.03)
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)))
+    '(org-document-title :weight extra-bold :height 1.5)
+    '(org-code :inherit org-block :foreground "dark gray")))
 #+end_src
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
@@ -164,6 +163,16 @@ code here:
 Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (setq gac-automatically-push-p 't)
+#+end_src
+*** Org Download
+**** Default image width
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-download-image-org-width '350)
+#+end_src
+
+**** Heading level
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-download-heading-lvl nil)
 #+end_src
 ** Windows
 Setting a keybind for ~ace-select-window~.

@@ -22,3 +22,4 @@
   :recipe (:host github :repo "anki-editor/anki-editor"))
 (package! ankiorg
   :recipe (:host github :repo "orgtre/ankiorg"))
+(package! fish-mode)

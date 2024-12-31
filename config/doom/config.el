@@ -91,9 +91,14 @@
     '(outline-6 :weight semi-bold :height 1.03)
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)))
+    '(org-document-title :weight extra-bold :height 1.5)
+    '(org-code :inherit org-block :foreground "dark gray")))
 
 (setq gac-automatically-push-p 't)
+
+(setq org-download-image-org-width '350)
+
+(setq org-download-heading-lvl nil)
 
 (map! :leader "wa" #'ace-select-window)
 
