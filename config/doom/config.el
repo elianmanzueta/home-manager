@@ -92,7 +92,7 @@
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-code :inherit org-block :foreground "dark gray")))
+    '(org-code :inherit org-block :foreground "gainsboro")))
 
 (setq gac-automatically-push-p 't)
 

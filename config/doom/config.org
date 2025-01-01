@@ -138,7 +138,7 @@ Open lookups inside of eww
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
-*** Custom heading/title sizing
+*** Custom faces
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
   (custom-set-faces!
@@ -151,7 +151,7 @@ Open lookups inside of eww
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-code :inherit org-block :foreground "dark gray")))
+    '(org-code :inherit org-block :foreground "gainsboro")))
 #+end_src
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
