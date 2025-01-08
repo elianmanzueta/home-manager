@@ -1,4 +1,5 @@
 #+TITLE: Elian's Doom Emacs Config
+#+auto_tangle: t
 
 * Configuration
 ** Misc
