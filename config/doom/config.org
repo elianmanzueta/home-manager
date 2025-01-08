@@ -175,6 +175,10 @@ Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-download-heading-lvl nil)
 #+end_src
+*** Org auto tangle
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
+#+end_src`
 ** Windows
 Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el
