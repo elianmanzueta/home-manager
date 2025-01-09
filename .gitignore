@@ -3,4 +3,4 @@
 *.log
 tmp/
 
-.stow/.config/fish/fish_variables
+stow/.config/fish/fish_variables
