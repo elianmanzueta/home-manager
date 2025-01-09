@@ -1,9 +1,3 @@
-#+TITLE: Elian's Doom Emacs Config
-#+auto_tangle: t
-
-* Configuration
-** Misc
-#+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
 
@@ -11,7 +5,9 @@
       make-backup-files t)
 (setq confirm-kill-emacs nil)
 (setq display-line-numbers-type 'relative)
-(setq-default evil-shift-width 2)
+(setq evil-shift-width 2)
+(setq projectile-project-search-path
+      '("~/projects"))
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -19,9 +15,7 @@
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (setq which-key-idle-delay 0.5)
-#+end_src
 
-#+begin_src emacs-lisp :tangle ./config.el
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
@@ -29,28 +23,15 @@
       )
 
 (display-time-mode 1)
-#+end_src
 
-Set the Scratch buffer's initial mode to ~lisp-interaction-mode~.
-#+begin_src emacs-lisp :tangle ./config.el
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
-#+end_src
 
-Focus new window after splitting.
-#+begin_src emacs-lisp :tangle ./config.el
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
-#+end_src
-** Theme and Fonts
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-theme 'doom-monokai-pro)
-#+END_SRC
 
-** Terminal Setup
-*** Fish
-Setting fish shell paths.
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-theme 'doom-ayu-dark)
+
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
@@ -59,88 +40,58 @@ Setting fish shell paths.
 
 (after! vterm
   (setq vterm-shell explicit-shell-file-name))
-#+END_SRC
-*** Vterm
-Setting vterm path.
-#+begin_src emacs-lisp :tangle ./config.el
+
 (add-load-path! "~/emacs-libvterm")
- #+end_src
-** Code
-*** Indent Bars Mode
-#+begin_src emacs-lisp :tangle ./config.el
+
+(after! lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode))
+
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
-#+end_src
-*** Go
-**** Gocode Autocomplete
-#+begin_src emacs-lisp :tangle ./config.el
+
 (setq! go-eldoc-gocode "gocode-gomod")
-#+end_src
-*** Rust
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'rustic-mode-hook #'lsp)
-#+end_src
-**** Inlay Hints
-Enable inlay hints in Rust
-#+begin_src emacs-lisp :tangle ./config.el
+
+(after! lsp-mode
+  (lsp-register-custom-settings
+   '(("gopls.hints" ((assignVariableTypes . t)
+                     (compositeLiteralFields . t)
+                     (compositeLiteralTypes . t)
+                     (constantValues . t)
+                     (functionTypeParameters . t)
+                     (parameterNames . t)
+                     (rangeVariableTypes . t))))))
+
 (add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
-#+end_src
-*** Python
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook! 'python-mode-hook #'lsp)
-#+end_src
-**** Inlay Hints
-Enable inlay hints in Python
-#+begin_src emacs-lisp :tangle ./config.el
+
 (add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-#+end_src
 
-**** Pyright
-Set pyright type-checking mode
-#+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-pyright-type-checking-mode "strict")
-#+end_src
 
-Set pyright venv path/directory
-#+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
-#+end_src
-*** Justfiles
-**** just-mode
-#+begin_src emacs-lisp :tangle ./config.el
+
 (use-package just-mode
   :mode ("justfile\\'" . just-mode)
   :config
   (setq just-indent-offset 4))
-#+end_src
-** Eww
-Open lookups inside of eww
-#+begin_src emacs-lisp :tangle ./config.el
+
 (setq +lookup-open-url-fn #'eww)
-#+end_src
-** Org Mode
-*** Org and org agenda directories
-#+begin_src emacs-lisp :tangle ./config.el
+
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
-#+end_src
-*** Org pretty mode and org-appear hooks
-#+begin_src emacs-lisp :tangle ./config.el
+
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
-#+end_src
-*** Custom faces
-#+begin_src emacs-lisp :tangle ./config.el
+
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
@@ -152,49 +103,20 @@ Open lookups inside of eww
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-code :inherit org-block :foreground "gainsboro")))
-#+end_src
-*** Git auto commit and push
-The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
-code here:
-#+begin_src emacs-lisp
-((nil . ((eval git-auto-commit-mode 1))))
-#+end_src
+    '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
+    '(org-scheduled-previously :foreground "dim gray")))
 
-Automatically push git changes.
-#+begin_src emacs-lisp :tangle ./config.el
 (setq gac-automatically-push-p 't)
-#+end_src
-*** Org Download
-**** Default image width
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-download-image-org-width '350)
-#+end_src
 
-**** Heading level
-#+begin_src emacs-lisp :tangle ./config.el
+(setq org-download-image-org-width '350)
+
 (setq org-download-heading-lvl nil)
-#+end_src
-*** Org auto tangle
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
-#+end_src`
-** Windows
-Setting a keybind for ~ace-select-window~.
-#+begin_src emacs-lisp :tangle ./config.el
+
 (map! :leader "wa" #'ace-select-window)
-#+end_src
-** Treemacs
-Map treemacs to SPC e
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+
 (map! :leader "e" #'treemacs)
-#+END_SRC
-** Kill-ring
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+
 (map! :leader "y" #'yank-from-kill-ring)
-#+END_SRC
-** Auto-fill Mode
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
-#+END_SRC

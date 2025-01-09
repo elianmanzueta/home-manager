@@ -19,8 +19,8 @@ style_user = "bold green"
 
 [directory]
 style = "bold green"
-truncate_to_repo = false
-truncation_length = 4
+truncation_length = 2
+fish_style_pwd_dir_length = 1
 
 [character]
 success_symbol = "[❯](purple)"

@@ -86,12 +86,12 @@
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible
+       ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
-       ;;docker
+       docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
@@ -139,7 +139,7 @@
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
+       json              ; At least it ain't XML
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -147,7 +147,7 @@
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
-       ;;lua               ; one-based indices? one-based indices
+       (lua +lsp +tree-sitter)               ; one-based indices? one-based indices
        (markdown +lsp)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        (nix +lsp)               ; I hereby declare "nix geht mehr!"
