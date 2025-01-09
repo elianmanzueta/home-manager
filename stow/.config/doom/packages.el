@@ -15,7 +15,6 @@
   :recipe (:host github
            :repo "awth13/org-appear"))
 
-(package! pet)
 (package! just-mode)
 (package! git-auto-commit-mode)
 (package! anki-editor
@@ -26,3 +25,4 @@
 (package! org-auto-tangle)
 (package! f)
 (package! elfeed)
+(package! powershell)
