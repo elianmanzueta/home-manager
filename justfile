@@ -11,3 +11,6 @@ rebuild:
     else \
         exit 1; \
     fi
+
+stow:
+    @stow -t ~ stow/
