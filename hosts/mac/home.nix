@@ -35,32 +35,32 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
-  home.file = {
-
-    ".config/fish" = {
-      source = ../../config/fish;
-      recursive = true;
-    };
-
-    ".config/starship.toml" = { source = ../../config/starship/starship.toml; };
-
-    ".config/paru/" = {
-      source = ../../config/paru;
-      recursive = true;
-    };
-
-    ".wezterm.lua" = {
-      source = config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
-    };
-
-    ".config/doom" = {
-      source = ../../config/doom;
-      recursive = true;
-    };
-
-    ".aerospace.toml" = { source = ../../config/aerospace/aerospace.toml; };
-  };
+  # home.file = {
+  #
+  #   ".config/fish" = {
+  #     source = ../../config/fish;
+  #     recursive = true;
+  #   };
+  #
+  #   ".config/starship.toml" = { source = ../../config/starship/starship.toml; };
+  #
+  #   ".config/paru/" = {
+  #     source = ../../config/paru;
+  #     recursive = true;
+  #   };
+  #
+  #   ".wezterm.lua" = {
+  #     source = config.lib.file.mkOutOfStoreSymlink
+  #       "${config.home.homeDirectory}/.config/nix/.config/.wezterm.lua";
+  #   };
+  #
+  #   ".config/doom" = {
+  #     source = ../../config/doom;
+  #     recursive = true;
+  #   };
+  #
+  #   ".aerospace.toml" = { source = ../../config/aerospace/aerospace.toml; };
+  # };
 
   home.sessionVariables = { EDITOR = "nvim"; };
 
@@ -78,8 +78,6 @@
         push.autoSetupRemote = true;
       };
     };
-
-    fish = { enable = true; };
 
     starship = { enable = true; };
 

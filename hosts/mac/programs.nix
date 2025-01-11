@@ -4,16 +4,11 @@
   users.users.elian = {
     name = "elian";
     home = "/Users/elian";
-    shell = pkgs.fish;
   };
 
   environment = {
     systemPackages = with pkgs; [ neovim git ];
-
-    shells = [ pkgs.fish pkgs.bash pkgs.zsh ];
   };
-
-  programs = { fish = { enable = true; }; };
 
   homebrew = {
     enable = true;
@@ -28,7 +23,7 @@
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
-    casks = [ "vivaldi" "proton-mail" "proton-pass" "jagex" "wezterm" "anki" ];
+    casks = [ "vivaldi" "proton-mail" "proton-pass"  "wezterm" "anki" ];
   };
 
 }
