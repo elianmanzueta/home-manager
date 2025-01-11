@@ -54,7 +54,7 @@ Setting fish shell paths.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
-       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
        ((eq system-type 'gnu/linux) "/bin/fish")
        (t "/bin/bash")))
 

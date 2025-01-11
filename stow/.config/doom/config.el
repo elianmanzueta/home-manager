@@ -14,7 +14,7 @@
  window-combination-resize t                      ; take new window space from all other windows (not just current)
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
-(setq which-key-idle-delay 0.3)
+(setq which-key-idle-delay 0.5)
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
@@ -34,7 +34,7 @@
 
 (setq explicit-shell-file-name
       (cond
-       ((eq system-type 'darwin) "/Users/elian/.nix-profile/bin/fish")
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
        ((eq system-type 'gnu/linux) "/bin/fish")
        (t "/bin/bash")))
 
@@ -107,6 +107,8 @@
     '(org-scheduled-previously :foreground "dim gray")))
 
 (setq gac-automatically-push-p 't)
+
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
 (setq org-download-image-org-width '350)
 
