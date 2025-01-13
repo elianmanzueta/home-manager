@@ -14,5 +14,6 @@
     fd
     nodejs
     lazygit
+    nodePackages.prettier
   ];
 }

@@ -15,5 +15,6 @@
     ispell
     sqlite
     pandoc
+    nodePackages.prettier
   ];
 }
