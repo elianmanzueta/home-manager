@@ -196,10 +196,10 @@ Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader "wa" #'ace-select-window)
 #+end_src
-** Treemacs
-Map treemacs to SPC e
+** Dirvish
+Map dirvish to SPC e
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(map! :leader "e" #'treemacs)
+(map! :leader "e" #'dirvish-jump)
 #+END_SRC
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el

@@ -116,7 +116,7 @@
 
 (map! :leader "wa" #'ace-select-window)
 
-(map! :leader "e" #'treemacs)
+(map! :leader "e" #'dirvish-jump)
 
 (map! :leader "y" #'yank-from-kill-ring)
 
