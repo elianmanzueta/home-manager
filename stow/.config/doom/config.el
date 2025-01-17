@@ -116,7 +116,11 @@
 
 (map! :leader "wa" #'ace-select-window)
 
-(map! :leader "e" #'dirvish-jump)
+(map! :leader "e" #'dired-jump)
+
+;; Don't worry, Dirvish is still performant even if you enable all these attributes
+(setq dirvish-attributes
+      '(vc-state subtree-state collapse git-msg -time file-size file-time))
 
 (map! :leader "y" #'yank-from-kill-ring)
 

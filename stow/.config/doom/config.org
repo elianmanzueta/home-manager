@@ -197,10 +197,17 @@ Setting a keybind for ~ace-select-window~.
 (map! :leader "wa" #'ace-select-window)
 #+end_src
 ** Dirvish
-Map dirvish to SPC e
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(map! :leader "e" #'dirvish-jump)
+(map! :leader "e" #'dired-jump)
 #+END_SRC
+*** Dirvish attributes
+#+begin_src emacs-lisp :tangle ./config.el
+;; Don't worry, Dirvish is still performant even if you enable all these attributes
+(setq dirvish-attributes
+      '(vc-state subtree-state collapse git-msg -time file-size file-time))
+#+end_src
+
+
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
