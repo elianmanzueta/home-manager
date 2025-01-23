@@ -43,6 +43,8 @@
 
 (add-load-path! "~/emacs-libvterm")
 
+(setq vterm-buffer-name-string "vterm: %s")
+
 (after! lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode))
 

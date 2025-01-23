@@ -62,9 +62,14 @@ Setting fish shell paths.
   (setq vterm-shell explicit-shell-file-name))
 #+END_SRC
 *** Vterm
+**** Set ~libvterm~ path
 Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
+#+end_src
+**** ~vterm-buffer-name-string~
+#+begin_src emacs-lisp :tangle ./config.el
+(setq vterm-buffer-name-string "vterm: %s")
 #+end_src
 ** Code
 #+begin_src emacs-lisp :tangle ./config.el
