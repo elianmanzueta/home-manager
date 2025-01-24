@@ -69,13 +69,9 @@ Setting vterm path.
 #+end_src
 **** ~vterm-buffer-name-string~
 #+begin_src emacs-lisp :tangle ./config.el
-(setq vterm-buffer-name-string "vterm: %s")
+(setq vterm-buffer-name-string "%s")
 #+end_src
 ** Code
-#+begin_src emacs-lisp :tangle ./config.el
-(after! lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode))
-#+end_src
 *** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
@@ -102,25 +98,33 @@ Setting vterm path.
 **** Inlay hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
+(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
 *** Python
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook! 'python-mode-hook #'lsp)
+(add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
+#+end_src
 **** Inlay hints
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 #+end_src
 **** Pyright
+Set pyright to basedpyright
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-pyright-langserver-command "basedpyright")
+#+end_src
+
 Set pyright type-checking mode
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-type-checking-mode "strict")
+(setq lsp-pyright-type-checking-mode "standard")
 #+end_src
 
 Set pyright venv path/directory
@@ -154,6 +158,11 @@ Open lookups inside of eww
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
+#+end_src
+*** Org tab-width
+#+begin_src emacs-lisp :tangle ./config.el
+(after! org
+  (setq tab-width 2))
 #+end_src
 ** Faces
 #+begin_src emacs-lisp :tangle ./config.el
@@ -211,8 +220,6 @@ Setting a keybind for ~ace-select-window~.
 (setq dirvish-attributes
       '(vc-state subtree-state collapse git-msg -time file-size file-time))
 #+end_src
-
-
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)

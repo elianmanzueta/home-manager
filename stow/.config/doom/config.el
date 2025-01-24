@@ -43,10 +43,7 @@
 
 (add-load-path! "~/emacs-libvterm")
 
-(setq vterm-buffer-name-string "vterm: %s")
-
-(after! lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-inlay-hints-mode))
+(setq vterm-buffer-name-string "%s")
 
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
@@ -62,18 +59,22 @@
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 
-(add-hook 'rustic-mode-hook #'lsp-inlay-hints-mode)
+(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
+(add-hook! 'python-mode-hook #'lsp)
 (add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
+
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
-(setq lsp-pyright-type-checking-mode "strict")
+(setq lsp-pyright-langserver-command "basedpyright")
+
+(setq lsp-pyright-type-checking-mode "standard")
 
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
@@ -93,6 +94,9 @@
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
+
+(after! org
+  (setq tab-width 2))
 
 (after! org
   (custom-set-faces!
