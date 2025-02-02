@@ -105,8 +105,9 @@ Enable inlay hints in Rust
 #+end_src
 *** Python
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook! 'python-mode-hook #'lsp)
-(add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
+(add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
+
 #+end_src
 **** Inlay hints
 Enable inlay hints in Python
@@ -116,6 +117,11 @@ Enable inlay hints in Python
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 #+end_src
+**** Ruff
+***** Flymake Ruff
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'python-mode-local-vars-hook #'flymake-ruff-load)
+#+end_src
 **** Pyright
 Set pyright to basedpyright
 #+begin_src emacs-lisp :tangle ./config.el
@@ -124,7 +130,7 @@ Set pyright to basedpyright
 
 Set pyright type-checking mode
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-type-checking-mode "standard")
+(setq lsp-pyright-type-checking-mode "basic")
 #+end_src
 
 Set pyright venv path/directory

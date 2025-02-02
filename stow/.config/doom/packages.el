@@ -26,3 +26,4 @@
 (package! f)
 (package! elfeed)
 (package! powershell)
+(package! flymake-ruff)

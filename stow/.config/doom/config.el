@@ -64,17 +64,19 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(add-hook! 'python-mode-hook #'lsp)
-(add-hook! 'python-mode-hook #'lsp-inlay-hints-mode)
+(add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
 
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
+(add-hook 'python-mode-local-vars-hook #'flymake-ruff-load)
+
 (setq lsp-pyright-langserver-command "basedpyright")
 
-(setq lsp-pyright-type-checking-mode "standard")
+(setq lsp-pyright-type-checking-mode "basic")
 
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
