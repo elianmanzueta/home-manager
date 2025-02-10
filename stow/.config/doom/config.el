@@ -138,7 +138,7 @@
 (setq vterm-buffer-name-string "%s")
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-snazzy)
 
 (setq doom-vibrant-brighter-comments 't)
 (setq doom-vibrant-brighter-modeline 't)

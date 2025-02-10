@@ -236,7 +236,7 @@ Setting vterm path.
 ** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-snazzy)
 #+END_SRC
 *** ~doom-vibrant~
 #+begin_src emacs-lisp :tangle ./config.el
