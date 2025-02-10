@@ -1,8 +1,6 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
-
 (setq! go-eldoc-gocode "gocode-gomod")
 
 (after! lsp-mode
@@ -15,10 +13,12 @@
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 
-(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
-(setq lsp-rust-analyzer-display-chaining-hints t)
-(setq lsp-rust-analyzer-display-closure-return-type-hints t)
-(setq lsp-rust-analyzer-display-parameter-hints t)
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
+
+(use-package just-mode
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
 
 (add-hook 'python-mode-hook #'lsp)
 (add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
@@ -37,14 +37,10 @@
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
 
-(use-package just-mode
-  :mode ("justfile\\'" . just-mode)
-  :config
-  (setq just-indent-offset 4))
-
-(use-package! gptel)
-(setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
-(setq gptel-default-mode #'org-mode)
+(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
 
 (map! :leader "e" #'dired-jump)
 
@@ -56,6 +52,7 @@
 
 (after! org
   (custom-set-faces!
+    '(bold :weight extra-bold)
     '(outline-1 :weight bold :height 1.25)
     '(outline-2 :weight bold :height 1.15)
     '(outline-3 :weight bold :height 1.12)
@@ -64,7 +61,9 @@
     '(outline-6 :weight semi-bold :height 1.03)
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
+    '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
+    '(org-verbatim :weight bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 
@@ -76,37 +75,11 @@
 
 (setq org-download-heading-lvl nil)
 
-(setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
-
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(setq org-hide-emphasis-markers t)
-(setq org-fontify-quote-and-verse-blocks t)
-
-(after! org
-  (setq tab-width 2))
-
-(map! :leader "wa" #'ace-select-window)
+(use-package! gptel)
+(setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
+(setq gptel-default-mode #'org-mode)
 
 (map! :leader "y" #'yank-from-kill-ring)
-
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
-(setq doom-theme 'doom-ayu-dark)
-
-(setq explicit-shell-file-name
-      (cond
-       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-       ((eq system-type 'gnu/linux) "/bin/fish")
-       (t "/bin/bash")))
-
-(after! vterm
-  (setq vterm-shell explicit-shell-file-name))
-
-(add-load-path! "~/emacs-libvterm")
-
-(setq vterm-buffer-name-string "%s")
 
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
@@ -138,3 +111,36 @@
 
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+
+(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
+
+(add-hook 'org-mode-hook '+org-pretty-mode)
+(add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(setq org-hide-emphasis-markers t)
+(setq org-fontify-quote-and-verse-blocks t)
+
+(after! org
+  (setq tab-width 2))
+
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
+       (t "/bin/bash")))
+
+(after! vterm
+  (setq vterm-shell explicit-shell-file-name))
+
+(add-load-path! "~/emacs-libvterm")
+
+(setq vterm-buffer-name-string "%s")
+
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-theme 'doom-vibrant)
+
+(setq doom-vibrant-brighter-comments 't)
+(setq doom-vibrant-brighter-modeline 't)
+
+(map! :leader "wa" #'ace-select-window)
