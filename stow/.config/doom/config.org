@@ -97,6 +97,7 @@ Open lookups inside of eww
 (setq +lookup-open-url-fn #'eww)
 #+end_src
 ** Faces
+*** Custom
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
   (custom-set-faces!
@@ -111,7 +112,7 @@ Open lookups inside of eww
     '(outline-9 :weight semi-bold)
     '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :weight bold)
+    '(org-verbatim :weight semi-bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 #+end_src
@@ -235,7 +236,7 @@ Setting vterm path.
 #+end_src
 ** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-snazzy)
 #+END_SRC
 *** ~doom-vibrant~

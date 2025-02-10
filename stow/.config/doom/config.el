@@ -63,7 +63,7 @@
     '(outline-9 :weight semi-bold)
     '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :weight bold)
+    '(org-verbatim :weight semi-bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 
@@ -137,7 +137,7 @@
 
 (setq vterm-buffer-name-string "%s")
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-theme 'doom-snazzy)
 
 (setq doom-vibrant-brighter-comments 't)
