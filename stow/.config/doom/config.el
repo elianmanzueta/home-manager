@@ -1,49 +1,5 @@
-(setq user-full-name "Elian Manzueta")
-(setq user-mail-address "elianmanzueta@protonmail.com")
-
-(setq auto-save-default t
-      make-backup-files t)
-(setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
-(setq evil-shift-width 2)
-(setq projectile-project-search-path
-      '("~/projects"))
-
-(setq-default
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t)                              ; Stretch cursor to the glyph width
-
-(setq which-key-idle-delay 0.5)
-
-(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
-      )
-
-(display-time-mode 1)
-
-(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
-
-(setq evil-split-window-below t
-      evil-vsplit-window-right t)
-
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
-(setq doom-theme 'doom-ayu-dark)
-
-(setq explicit-shell-file-name
-      (cond
-       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-       ((eq system-type 'gnu/linux) "/bin/fish")
-       (t "/bin/bash")))
-
-(after! vterm
-  (setq vterm-shell explicit-shell-file-name))
-
-(add-load-path! "~/emacs-libvterm")
-
-(setq vterm-buffer-name-string "%s")
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
 
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
@@ -86,19 +42,17 @@
   :config
   (setq just-indent-offset 4))
 
+(use-package! gptel)
+(setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
+(setq gptel-default-mode #'org-mode)
+
+(map! :leader "e" #'dired-jump)
+
+;; Don't worry, Dirvish is still performant even if you enable all these attributes
+(setq dirvish-attributes
+      '(vc-state subtree-state collapse git-msg -time file-size file-time))
+
 (setq +lookup-open-url-fn #'eww)
-
-(setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
-
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(setq org-hide-emphasis-markers t)
-(setq org-fontify-quote-and-verse-blocks t)
-
-(after! org
-  (setq tab-width 2))
 
 (after! org
   (custom-set-faces!
@@ -122,15 +76,65 @@
 
 (setq org-download-heading-lvl nil)
 
+(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
+
+(add-hook 'org-mode-hook '+org-pretty-mode)
+(add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(setq org-hide-emphasis-markers t)
+(setq org-fontify-quote-and-verse-blocks t)
+
+(after! org
+  (setq tab-width 2))
+
 (map! :leader "wa" #'ace-select-window)
-
-(map! :leader "e" #'dired-jump)
-
-;; Don't worry, Dirvish is still performant even if you enable all these attributes
-(setq dirvish-attributes
-      '(vc-state subtree-state collapse git-msg -time file-size file-time))
 
 (map! :leader "y" #'yank-from-kill-ring)
 
-(add-hook 'text-mode-hook #'auto-fill-mode)
-(setq-default fill-column 80)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-theme 'doom-ayu-dark)
+
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
+       (t "/bin/bash")))
+
+(after! vterm
+  (setq vterm-shell explicit-shell-file-name))
+
+(add-load-path! "~/emacs-libvterm")
+
+(setq vterm-buffer-name-string "%s")
+
+(setq user-full-name "Elian Manzueta")
+(setq user-mail-address "elianmanzueta@protonmail.com")
+
+(setq auto-save-default t
+      make-backup-files t)
+(setq confirm-kill-emacs nil)
+(setq display-line-numbers-type 'relative)
+(setq evil-shift-width 2)
+(setq projectile-project-search-path
+      '("~/projects"))
+
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq which-key-idle-delay 0.5)
+
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      )
+
+(display-time-mode 1)
+
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
+
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)

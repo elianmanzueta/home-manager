@@ -27,3 +27,4 @@
 (package! elfeed)
 (package! powershell)
 (package! flymake-ruff)
+(package! gptel)

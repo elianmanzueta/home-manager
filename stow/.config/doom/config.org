@@ -2,75 +2,11 @@
 #+auto_tangle: t
 
 * Configuration
-** Misc
-#+begin_src emacs-lisp :tangle ./config.el
-(setq user-full-name "Elian Manzueta")
-(setq user-mail-address "elianmanzueta@protonmail.com")
-
-(setq auto-save-default t
-      make-backup-files t)
-(setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
-(setq evil-shift-width 2)
-(setq projectile-project-search-path
-      '("~/projects"))
-
-(setq-default
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t)                              ; Stretch cursor to the glyph width
-
-(setq which-key-idle-delay 0.5)
-#+end_src
-
-#+begin_src emacs-lisp :tangle ./config.el
-(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
-      )
-
-(display-time-mode 1)
-#+end_src
-
-Set the Scratch buffer's initial mode to ~lisp-interaction-mode~.
-#+begin_src emacs-lisp :tangle ./config.el
-(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
-#+end_src
-
-Focus new window after splitting.
-#+begin_src emacs-lisp :tangle ./config.el
-(setq evil-split-window-below t
-      evil-vsplit-window-right t)
-#+end_src
-** Theme and Fonts
+** Auto-fill Mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
-(setq doom-theme 'doom-ayu-dark)
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
 #+END_SRC
-** Terminal Setup
-*** Fish
-Setting fish shell paths.
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq explicit-shell-file-name
-      (cond
-       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-       ((eq system-type 'gnu/linux) "/bin/fish")
-       (t "/bin/bash")))
-
-(after! vterm
-  (setq vterm-shell explicit-shell-file-name))
-#+END_SRC
-*** Vterm
-**** Set ~libvterm~ path
-Setting vterm path.
-#+begin_src emacs-lisp :tangle ./config.el
-(add-load-path! "~/emacs-libvterm")
-#+end_src
-**** ~vterm-buffer-name-string~
-#+begin_src emacs-lisp :tangle ./config.el
-(setq vterm-buffer-name-string "%s")
-#+end_src
 ** Code
 *** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el
@@ -146,29 +82,26 @@ Set pyright venv path/directory
   :config
   (setq just-indent-offset 4))
 #+end_src
+** gptel
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! gptel)
+(setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
+(setq gptel-default-mode #'org-mode)
+#+end_src
+** Dirvish
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(map! :leader "e" #'dired-jump)
+#+END_SRC
+*** Dirvish attributes
+#+begin_src emacs-lisp :tangle ./config.el
+;; Don't worry, Dirvish is still performant even if you enable all these attributes
+(setq dirvish-attributes
+      '(vc-state subtree-state collapse git-msg -time file-size file-time))
+#+end_src
 ** Eww
 Open lookups inside of eww
 #+begin_src emacs-lisp :tangle ./config.el
 (setq +lookup-open-url-fn #'eww)
-#+end_src
-** Org Mode
-*** Org and org agenda directories
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
-#+end_src
-*** Org pretty mode and org-appear hooks
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(setq org-hide-emphasis-markers t)
-(setq org-fontify-quote-and-verse-blocks t)
-#+end_src
-*** Org tab-width
-#+begin_src emacs-lisp :tangle ./config.el
-(after! org
-  (setq tab-width 2))
 #+end_src
 ** Faces
 #+begin_src emacs-lisp :tangle ./config.el
@@ -211,27 +144,100 @@ Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-download-heading-lvl nil)
 #+end_src
+** Org Mode
+*** Org and org agenda directories
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-directory "~/org/")
+(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
+#+end_src
+*** Org pretty mode and org-appear hooks
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'org-mode-hook '+org-pretty-mode)
+(add-hook '+org-pretty-mode-hook 'org-appear-mode)
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(setq org-hide-emphasis-markers t)
+(setq org-fontify-quote-and-verse-blocks t)
+#+end_src
+*** Org tab-width
+#+begin_src emacs-lisp :tangle ./config.el
+(after! org
+  (setq tab-width 2))
+#+end_src
 ** Windows
 Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader "wa" #'ace-select-window)
 #+end_src
-** Dirvish
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(map! :leader "e" #'dired-jump)
-#+END_SRC
-*** Dirvish attributes
-#+begin_src emacs-lisp :tangle ./config.el
-;; Don't worry, Dirvish is still performant even if you enable all these attributes
-(setq dirvish-attributes
-      '(vc-state subtree-state collapse git-msg -time file-size file-time))
-#+end_src
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
 #+END_SRC
-** Auto-fill Mode
+** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(add-hook 'text-mode-hook #'auto-fill-mode)
-(setq-default fill-column 80)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16 :weight 'semibold))
+(setq doom-theme 'doom-ayu-dark)
 #+END_SRC
+** Terminal Setup
+*** Fish
+Setting fish shell paths.
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+       ((eq system-type 'gnu/linux) "/bin/fish")
+       (t "/bin/bash")))
+
+(after! vterm
+  (setq vterm-shell explicit-shell-file-name))
+#+END_SRC
+*** Vterm
+**** Set ~libvterm~ path
+Setting vterm path.
+#+begin_src emacs-lisp :tangle ./config.el
+(add-load-path! "~/emacs-libvterm")
+#+end_src
+**** ~vterm-buffer-name-string~
+#+begin_src emacs-lisp :tangle ./config.el
+(setq vterm-buffer-name-string "%s")
+#+end_src
+** Misc
+#+begin_src emacs-lisp :tangle ./config.el
+(setq user-full-name "Elian Manzueta")
+(setq user-mail-address "elianmanzueta@protonmail.com")
+
+(setq auto-save-default t
+      make-backup-files t)
+(setq confirm-kill-emacs nil)
+(setq display-line-numbers-type 'relative)
+(setq evil-shift-width 2)
+(setq projectile-project-search-path
+      '("~/projects"))
+
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq which-key-idle-delay 0.5)
+#+end_src
+
+#+begin_src emacs-lisp :tangle ./config.el
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      )
+
+(display-time-mode 1)
+#+end_src
+
+Set the Scratch buffer's initial mode to ~lisp-interaction-mode~.
+#+begin_src emacs-lisp :tangle ./config.el
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
+#+end_src
+
+Focus new window after splitting.
+#+begin_src emacs-lisp :tangle ./config.el
+(setq evil-split-window-below t
+      evil-vsplit-window-right t)
+#+end_src
