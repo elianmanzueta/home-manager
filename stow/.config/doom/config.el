@@ -67,7 +67,8 @@
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 
-(setq gac-automatically-push-p 't)
+(setq gac-automatically-push-p 't
+      gac-automatically-add-new-files-p 't)
 
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
@@ -78,6 +79,19 @@
 (use-package! gptel)
 (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
 (setq gptel-default-mode #'org-mode)
+(setq gptel-display-buffer-action 'display-buffer-in-child-frame)
+
+(after! gptel
+  (setq gptel-prompt-prefix-alist
+        '((markdown-mode . "### ")
+         (org-mode . "*** Prompt:\n")
+         (text-mode . "### "))
+        )
+  (setq gptel-response-prefix-alist
+        '((markdown-mode . "")
+         (org-mode . "*** GPT:\n")
+         (text-mode . ""))
+        ))
 
 (map! :leader "y" #'yank-from-kill-ring)
 
@@ -121,8 +135,19 @@
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 
+(setq org-roam-capture-templates
+      '(("d" "default" plain (file "~/org/roam/templates/default.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
+         :unnarrowed t)))
+
 (after! org
-  (setq tab-width 2))
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" plain (file "~/org/roam/templates/daily.org")
+           :if-new (file+datetree "daily-journal.org" week)
+           :unarrowed t)
+          ("w" "work-todo" plain (file "~/org/roam/templates/work-daily.org")
+           :if-new (file+datetree "cstate-daily.org" week)
+           :unarrowed t))))
 
 (setq explicit-shell-file-name
       (cond
