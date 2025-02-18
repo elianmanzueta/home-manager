@@ -93,6 +93,14 @@
           (text-mode . ""))
         ))
 
+(map! :leader
+      :desc "Git pull from upstream"
+      "g d p" 'magit-pull-from-upstream)
+
+(map! :leader
+      :desc "Git push to remote"
+      "g d P" 'magit-push-to-remote)
+
 (map! :leader "y" #'yank-from-kill-ring)
 
 (setq user-full-name "Elian Manzueta")

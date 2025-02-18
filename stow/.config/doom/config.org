@@ -166,6 +166,18 @@ Automatically push git changes.
         ))
 #+end_src
 
+** Keybindings
+*** Git pull and push
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader
+      :desc "Git pull from upstream"
+      "g d p" 'magit-pull-from-upstream)
+
+(map! :leader
+      :desc "Git push to remote"
+      "g d P" 'magit-push-to-remote)
+
+#+end_src
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (map! :leader "y" #'yank-from-kill-ring)
