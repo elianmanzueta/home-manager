@@ -84,13 +84,13 @@
 (after! gptel
   (setq gptel-prompt-prefix-alist
         '((markdown-mode . "### ")
-         (org-mode . "*** Prompt:\n")
-         (text-mode . "### "))
+          (org-mode . "*** Prompt:\n")
+          (text-mode . "### "))
         )
   (setq gptel-response-prefix-alist
         '((markdown-mode . "")
-         (org-mode . "*** GPT:\n")
-         (text-mode . ""))
+          (org-mode . "*** GPT:\n")
+          (text-mode . ""))
         ))
 
 (map! :leader "y" #'yank-from-kill-ring)
@@ -138,7 +138,13 @@
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
-         :unnarrowed t)))
+         :unnarrowed t)
+        ("s" "study" plain (file "~/org/roam/templates/study.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags study:%^{topics}")
+         :unarrowed t
+         )
+        )
+      )
 
 (after! org
   (setq org-roam-dailies-capture-templates
@@ -147,7 +153,10 @@
            :unarrowed t)
           ("w" "work-todo" plain (file "~/org/roam/templates/work-daily.org")
            :if-new (file+datetree "cstate-daily.org" week)
-           :unarrowed t))))
+           :unarrowed t)
+          )
+        )
+  )
 
 (setq explicit-shell-file-name
       (cond

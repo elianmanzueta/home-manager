@@ -1,5 +1,6 @@
 # Environment
-set -gx EDITOR nvim
+set -gx EDITOR emacsclient -nw
+set -gx VISUAL emacsclient -nw
 
 # PATH
 
