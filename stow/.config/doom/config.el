@@ -63,7 +63,7 @@
     '(outline-9 :weight semi-bold)
     '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :weight semi-bold)
+    '(org-verbatim :inherit bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 
