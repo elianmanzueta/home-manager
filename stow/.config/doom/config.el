@@ -138,15 +138,13 @@
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)")
+      '((sequence "TODO(t)" "PROG(s)" "LOOP(r)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)")
         (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-        (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
         (sequence "|" "NOTE"))
       )
 
 (setq org-todo-keyword-faces
       '(("[-]" . +org-todo-active)
-        ("STRT" . +org-todo-active)
         ("[?]" . +org-todo-onhold)
         ("WAIT" . +org-todo-onhold)
         ("HOLD" . +org-todo-onhold)

@@ -232,15 +232,13 @@ Focus new window after splitting.
 *** Org faces
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "PROJ(p)" "LOOP(r)" "STRT(s)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)")
+      '((sequence "TODO(t)" "PROG(s)" "LOOP(r)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)")
         (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-        (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
         (sequence "|" "NOTE"))
       )
 
 (setq org-todo-keyword-faces
       '(("[-]" . +org-todo-active)
-        ("STRT" . +org-todo-active)
         ("[?]" . +org-todo-onhold)
         ("WAIT" . +org-todo-onhold)
         ("HOLD" . +org-todo-onhold)
@@ -258,7 +256,6 @@ Focus new window after splitting.
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
-
 *** Org roam
 **** Capture templates
 #+begin_src emacs-lisp :tangle ./config.el
