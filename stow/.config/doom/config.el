@@ -109,7 +109,7 @@
 (setq auto-save-default t
       make-backup-files t)
 (setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '("~/projects"))
