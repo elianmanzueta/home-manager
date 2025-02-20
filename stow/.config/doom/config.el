@@ -137,23 +137,6 @@
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "PROG(s)" "LOOP(r)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)")
-        (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-        (sequence "|" "NOTE"))
-      )
-
-(setq org-todo-keyword-faces
-      '(("[-]" . +org-todo-active)
-        ("[?]" . +org-todo-onhold)
-        ("WAIT" . +org-todo-onhold)
-        ("HOLD" . +org-todo-onhold)
-        ("PROJ" . +org-todo-project)
-        ("NO" . +org-todo-cancel)
-        ("KILL" . +org-todo-cancel)
-        ("NOTE" . +org-todo-cancel))
-      )
-
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
@@ -166,6 +149,10 @@
          :unnarrowed t)
         ("s" "study" plain (file "~/org/roam/templates/study.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags study:%^{topics}")
+         :unarrowed t
+         )
+        ("w" "work" plain (file "~/org/roam/templates/default.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags work")
          :unarrowed t
          )
         )
