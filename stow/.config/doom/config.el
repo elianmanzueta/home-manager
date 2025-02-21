@@ -72,7 +72,7 @@
 
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
-(setq org-download-image-org-width '350)
+(setq org-download-image-org-width '450)
 
 (setq org-download-heading-lvl nil)
 
@@ -169,6 +169,17 @@
           )
         )
   )
+
+(use-package! websocket
+  :after org)
+
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 (setq explicit-shell-file-name
       (cond
