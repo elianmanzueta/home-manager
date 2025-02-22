@@ -137,7 +137,7 @@ Automatically push git changes.
 *** Org download
 **** Default image width
 #+begin_src emacs-lisp :tangle ./config.el
-(setq org-download-image-org-width '350)
+(setq org-download-image-org-width '450)
 #+end_src
 
 **** Heading level
@@ -191,7 +191,7 @@ Automatically push git changes.
 (setq auto-save-default t
       make-backup-files t)
 (setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '("~/projects"))
@@ -238,7 +238,6 @@ Focus new window after splitting.
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
-
 *** Org roam
 **** Capture templates
 #+begin_src emacs-lisp :tangle ./config.el
@@ -248,6 +247,10 @@ Focus new window after splitting.
          :unnarrowed t)
         ("s" "study" plain (file "~/org/roam/templates/study.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags study:%^{topics}")
+         :unarrowed t
+         )
+        ("w" "work" plain (file "~/org/roam/templates/default.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags work")
          :unarrowed t
          )
         )
@@ -268,7 +271,19 @@ Focus new window after splitting.
         )
   )
 #+end_src
+**** Org Roam UI
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! websocket
+  :after org)
 
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+end_src
 ** Terminal Setup
 *** Fish
 Setting fish shell paths.

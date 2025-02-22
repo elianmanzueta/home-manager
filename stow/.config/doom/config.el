@@ -73,7 +73,7 @@
 
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
-(setq org-download-image-org-width '350)
+(setq org-download-image-org-width '450)
 
 (setq org-download-heading-lvl nil)
 
@@ -110,7 +110,7 @@
 (setq auto-save-default t
       make-backup-files t)
 (setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '("~/projects"))
@@ -152,6 +152,10 @@
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags study:%^{topics}")
          :unarrowed t
          )
+        ("w" "work" plain (file "~/org/roam/templates/default.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags work")
+         :unarrowed t
+         )
         )
       )
 
@@ -166,6 +170,17 @@
           )
         )
   )
+
+(use-package! websocket
+  :after org)
+
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 (setq explicit-shell-file-name
       (cond
