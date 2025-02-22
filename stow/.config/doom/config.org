@@ -114,6 +114,7 @@ Open lookups inside of eww
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
+    '(markdown-code-face :inherit org-code :background "gray15")
     '(org-scheduled-previously :foreground "dim gray")))
 #+end_src
 *** Git auto commit and push
