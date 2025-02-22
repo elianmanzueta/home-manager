@@ -65,7 +65,7 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
-    '(markdown-code-face :inherit org-code :background "gray15")
+    '(markdown-code-face :inherit org-block :background "gray15")
     '(org-scheduled-previously :foreground "dim gray")))
 
 (setq gac-automatically-push-p 't
