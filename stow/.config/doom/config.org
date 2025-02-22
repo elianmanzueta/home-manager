@@ -114,6 +114,7 @@ Open lookups inside of eww
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
+    '(markdown-code-face :inherit org-code :background "gray15")
     '(org-scheduled-previously :foreground "dim gray")))
 #+end_src
 *** Git auto commit and push
@@ -136,7 +137,7 @@ Automatically push git changes.
 *** Org download
 **** Default image width
 #+begin_src emacs-lisp :tangle ./config.el
-(setq org-download-image-org-width '350)
+(setq org-download-image-org-width '450)
 #+end_src
 
 **** Heading level
@@ -269,6 +270,19 @@ Focus new window after splitting.
           )
         )
   )
+#+end_src
+**** Org Roam UI
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! websocket
+  :after org)
+
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 #+end_src
 ** Terminal Setup
 *** Fish

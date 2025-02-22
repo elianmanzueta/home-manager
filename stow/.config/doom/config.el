@@ -65,6 +65,7 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
     '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
+    '(markdown-code-face :inherit org-code :background "gray15")
     '(org-scheduled-previously :foreground "dim gray")))
 
 (setq gac-automatically-push-p 't
@@ -72,7 +73,7 @@
 
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 
-(setq org-download-image-org-width '350)
+(setq org-download-image-org-width '450)
 
 (setq org-download-heading-lvl nil)
 
@@ -169,6 +170,17 @@
           )
         )
   )
+
+(use-package! websocket
+  :after org)
+
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 (setq explicit-shell-file-name
       (cond
