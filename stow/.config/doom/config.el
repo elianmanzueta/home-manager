@@ -79,7 +79,6 @@
 (use-package! gptel)
 (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
 (setq gptel-default-mode #'org-mode)
-(setq gptel-display-buffer-action 'display-buffer-in-child-frame)
 
 (after! gptel
   (setq gptel-prompt-prefix-alist
@@ -153,6 +152,10 @@
          )
         ("w" "work" plain (file "~/org/roam/templates/default.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags work")
+         :unarrowed t
+         )
+        ("i" "ignore" plain (file "~/org/roam/templates/default.org")
+         :if-new (file+head "ignore/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags ignore")
          :unarrowed t
          )
         )
