@@ -1,6 +1,6 @@
 # Environment
-set -gx EDITOR emacsclient -nw
-set -gx VISUAL emacsclient -nw
+set -gx EDITOR emacsclient -c
+set -gx VISUAL emacsclient -c
 
 # PATH
 

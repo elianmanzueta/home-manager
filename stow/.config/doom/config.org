@@ -245,15 +245,15 @@ Focus new window after splitting.
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
          :unnarrowed t)
         ("s" "study" plain (file "~/org/roam/templates/study.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags study:%^{topics}")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: study:%^{topics}")
          :unarrowed t
          )
         ("w" "work" plain (file "~/org/roam/templates/default.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags work")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
          :unarrowed t
          )
         ("i" "ignore" plain (file "~/org/roam/templates/default.org")
-         :if-new (file+head "ignore/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags ignore")
+         :if-new (file+head "ignore/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: ignore")
          :unarrowed t
          )
         )
