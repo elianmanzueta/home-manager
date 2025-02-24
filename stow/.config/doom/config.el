@@ -156,7 +156,7 @@
          :unarrowed t
          )
         ("i" "ignore" plain (file "~/org/roam/templates/default.org")
-         :if-new (file+head "ignore/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: ignore")
+         :if-new (file+head "sensitive/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: ignore")
          :unarrowed t
          )
         )
