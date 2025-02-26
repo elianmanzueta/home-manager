@@ -3,6 +3,11 @@
 
 (setq avy-timeout-seconds 0.35)
 
+(setq lsp-ui-doc-show-with-cursor t)
+(setq lsp-ui-doc-delay 0.6)
+(setq lsp-ui-doc-max-width 150)
+(setq lsp-ui-doc-max-height 13)
+
 (setq! go-eldoc-gocode "gocode-gomod")
 
 (after! lsp-mode
@@ -23,7 +28,6 @@
   (setq just-indent-offset 4))
 
 (add-hook 'python-mode-hook #'lsp)
-(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
 
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)

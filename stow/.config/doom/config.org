@@ -12,6 +12,13 @@
 (setq avy-timeout-seconds 0.35)
 #+end_src
 ** Code
+*** All
+#+begin_src emacs-lisp :tangle yes
+(setq lsp-ui-doc-show-with-cursor t)
+(setq lsp-ui-doc-delay 0.6)
+(setq lsp-ui-doc-max-width 150)
+(setq lsp-ui-doc-max-height 13)
+#+end_src
 *** Go
 **** Gocode
 #+begin_src emacs-lisp :tangle ./config.el
@@ -45,7 +52,6 @@
 *** Python
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'python-mode-hook #'lsp)
-(add-hook 'python-mode-hook #'lsp-inlay-hints-mode)
 #+end_src
 **** Inlay hints
 Enable inlay hints in Python
