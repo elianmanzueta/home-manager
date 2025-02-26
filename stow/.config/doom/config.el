@@ -1,6 +1,8 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
+(setq avy-timeout-seconds 0.35)
+
 (setq! go-eldoc-gocode "gocode-gomod")
 
 (after! lsp-mode
@@ -170,16 +172,18 @@
         )
   )
 
-(use-package! websocket
-  :after org)
-
-(use-package! org-roam-ui
-  :after org
-  :config
-  (setq org-roam-ui-sync-theme t
+(after! org
+(setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+
+(add-hook 'org-mode-hook (lambda ()
+  "Beautify Org Checkbox Symbol"
+  (push '("[ ]" .  "") prettify-symbols-alist)
+  (push '("[X]" . "✅" ) prettify-symbols-alist)
+  (push '("[-]" . "⚠" ) prettify-symbols-alist)
+  (prettify-symbols-mode)))
 
 (setq explicit-shell-file-name
       (cond
@@ -195,6 +199,7 @@
 (setq vterm-buffer-name-string "%s")
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-emoji-font "Noto Color Emoji")
 (setq doom-theme 'doom-snazzy)
 
 (setq doom-vibrant-brighter-comments 't)

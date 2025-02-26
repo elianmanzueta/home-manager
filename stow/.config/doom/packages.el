@@ -28,3 +28,6 @@
 (package! powershell)
 (package! flymake-ruff)
 (package! gptel)
+(package! websocket)
+(package! org-roam-ui)
+(package! sqlite3)
