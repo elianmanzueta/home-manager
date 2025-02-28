@@ -3,10 +3,11 @@
 
 (setq avy-timeout-seconds 0.35)
 
-(setq lsp-ui-doc-show-with-cursor t)
-(setq lsp-ui-doc-delay 0.1)
-(setq lsp-ui-doc-max-width 160)
-(setq lsp-ui-doc-max-height 13)
+(after! lsp-ui
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-doc-delay 0.2)
+  (setq lsp-ui-doc-max-width 160)
+  (setq lsp-ui-doc-max-height 13))
 
 (setq flycheck-display-errors-delay 0.1)
 (setq flycheck-idle-change-delay 0.5)
@@ -58,6 +59,12 @@
       '(vc-state subtree-state collapse git-msg -time file-size file-time))
 
 (setq +lookup-open-url-fn #'eww)
+
+(use-package! ultra-scroll
+  :init
+  :config
+  (setq scroll-conservatively 101)
+  (setq ultra-scroll-mode t))
 
 (after! org
   (custom-set-faces!
@@ -138,7 +145,8 @@
 
 (display-time-mode 1)
 
-(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
+(setq doom-scratch-initial-major-mode 'org-mode)
+(setq initial-scratch-message "")
 
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
@@ -180,17 +188,17 @@
   )
 
 (after! org
-(setq org-roam-ui-sync-theme t
+  (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
 (add-hook 'org-mode-hook (lambda ()
-  "Beautify Org Checkbox Symbol"
-  (push '("[ ]" .  "") prettify-symbols-alist)
-  (push '("[X]" . "✅" ) prettify-symbols-alist)
-  (push '("[-]" . "⏳" ) prettify-symbols-alist)
-  (prettify-symbols-mode)))
+                           "Beautify Org Checkbox Symbol"
+                           (push '("[ ]" .  "") prettify-symbols-alist)
+                           (push '("[X]" . "✅" ) prettify-symbols-alist)
+                           (push '("[-]" . "⏳" ) prettify-symbols-alist)
+                           (prettify-symbols-mode)))
 
 (setq explicit-shell-file-name
       (cond
@@ -202,8 +210,6 @@
   (setq vterm-shell explicit-shell-file-name))
 
 (add-load-path! "~/emacs-libvterm")
-
-(setq vterm-buffer-name-string "%s")
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")

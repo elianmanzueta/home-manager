@@ -31,3 +31,5 @@
 (package! org-roam-ui)
 (package! sqlite3)
 (package! ob-powershell)
+(package! ultra-scroll
+  :recipe ( :host github :repo "jdtsmith/ultra-scroll"))

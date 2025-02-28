@@ -14,10 +14,11 @@
 ** Code
 *** lsp-ui-doc
 #+begin_src emacs-lisp :tangle yes
-(setq lsp-ui-doc-show-with-cursor t)
-(setq lsp-ui-doc-delay 0.1)
-(setq lsp-ui-doc-max-width 160)
-(setq lsp-ui-doc-max-height 13)
+(after! lsp-ui
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-doc-delay 0.2)
+  (setq lsp-ui-doc-max-width 160)
+  (setq lsp-ui-doc-max-height 13))
 #+end_src
 *** Flycheck
 #+begin_src emacs-lisp :tangle ./config.el
@@ -110,6 +111,14 @@ Enable inlay hints in Rust
 Open lookups inside of eww
 #+begin_src emacs-lisp :tangle ./config.el
 (setq +lookup-open-url-fn #'eww)
+#+end_src
+** Evil-scroll
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! ultra-scroll
+  :init
+  :config
+  (setq scroll-conservatively 101)
+  (setq ultra-scroll-mode t))
 #+end_src
 ** Faces
 *** Custom
@@ -228,9 +237,10 @@ Automatically push git changes.
 (display-time-mode 1)
 #+end_src
 
-Set the Scratch buffer's initial mode to ~lisp-interaction-mode~.
+Set the Scratch buffer's initial mode to org mode.
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
+(setq doom-scratch-initial-major-mode 'org-mode)
+(setq initial-scratch-message "")
 #+end_src
 
 Focus new window after splitting.
@@ -288,7 +298,7 @@ Focus new window after splitting.
 **** Org Roam UI
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
-(setq org-roam-ui-sync-theme t
+  (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
@@ -296,11 +306,11 @@ Focus new window after splitting.
 **** Prettify Symbols
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook (lambda ()
-  "Beautify Org Checkbox Symbol"
-  (push '("[ ]" .  "") prettify-symbols-alist)
-  (push '("[X]" . "✅" ) prettify-symbols-alist)
-  (push '("[-]" . "⏳" ) prettify-symbols-alist)
-  (prettify-symbols-mode)))
+                           "Beautify Org Checkbox Symbol"
+                           (push '("[ ]" .  "") prettify-symbols-alist)
+                           (push '("[X]" . "✅" ) prettify-symbols-alist)
+                           (push '("[-]" . "⏳" ) prettify-symbols-alist)
+                           (prettify-symbols-mode)))
 #+end_src
 ** Terminal Setup
 *** Fish
@@ -320,10 +330,6 @@ Setting fish shell paths.
 Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
-#+end_src
-**** ~vterm-buffer-name-string~
-#+begin_src emacs-lisp :tangle ./config.el
-(setq vterm-buffer-name-string "%s")
 #+end_src
 ** Theme and Fonts
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
