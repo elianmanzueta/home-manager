@@ -14,7 +14,6 @@
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
-
 (package! just-mode)
 (package! git-auto-commit-mode)
 (package! anki-editor
@@ -31,3 +30,4 @@
 (package! websocket)
 (package! org-roam-ui)
 (package! sqlite3)
+(package! ob-powershell)

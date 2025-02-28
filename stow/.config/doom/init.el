@@ -81,7 +81,7 @@
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       (syntax +childframe +flymake +icons)              ; tasing you for every semicolon you forget
+       (syntax +icons)              ; tasing you for every semicolon you forget
        (spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
@@ -92,11 +92,11 @@
        debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        (docker +lsp)
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       lsp               ; M-x vscode
+       lsp                 ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -185,8 +185,8 @@
        ;;calendar
        ;;emms
        everywhere        ; *leave* Emacs!? You must be joking
-       ;;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;;irc             ; how neckbeards socialize
+       rss               ; emacs as an RSS reader
 
        :config
        ;;literate

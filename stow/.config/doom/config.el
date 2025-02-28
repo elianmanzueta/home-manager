@@ -4,9 +4,12 @@
 (setq avy-timeout-seconds 0.35)
 
 (setq lsp-ui-doc-show-with-cursor t)
-(setq lsp-ui-doc-delay 0.6)
-(setq lsp-ui-doc-max-width 150)
+(setq lsp-ui-doc-delay 0.1)
+(setq lsp-ui-doc-max-width 160)
 (setq lsp-ui-doc-max-height 13)
+
+(setq flycheck-display-errors-delay 0.1)
+(setq flycheck-idle-change-delay 0.5)
 
 (setq! go-eldoc-gocode "gocode-gomod")
 
@@ -186,7 +189,7 @@
   "Beautify Org Checkbox Symbol"
   (push '("[ ]" .  "") prettify-symbols-alist)
   (push '("[X]" . "✅" ) prettify-symbols-alist)
-  (push '("[-]" . "⚠" ) prettify-symbols-alist)
+  (push '("[-]" . "⏳" ) prettify-symbols-alist)
   (prettify-symbols-mode)))
 
 (setq explicit-shell-file-name
