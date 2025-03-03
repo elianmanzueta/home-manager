@@ -60,12 +60,6 @@
 
 (setq +lookup-open-url-fn #'eww)
 
-(use-package! ultra-scroll
-  :init
-  :config
-  (setq scroll-conservatively 101)
-  (setq ultra-scroll-mode t))
-
 (after! org
   (custom-set-faces!
     '(bold :weight extra-bold)
@@ -199,6 +193,11 @@
                            (push '("[X]" . "✅" ) prettify-symbols-alist)
                            (push '("[-]" . "⏳" ) prettify-symbols-alist)
                            (prettify-symbols-mode)))
+
+(setq org-emphasis-alist
+      '(("*" bold) ("/" italic) ("_" underline) ("=" org-verbatim bold)
+        ("~" org-code verbatim) ("+" (:strike-through t)))
+      )
 
 (setq explicit-shell-file-name
       (cond

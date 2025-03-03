@@ -112,14 +112,6 @@ Open lookups inside of eww
 #+begin_src emacs-lisp :tangle ./config.el
 (setq +lookup-open-url-fn #'eww)
 #+end_src
-** Evil-scroll
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! ultra-scroll
-  :init
-  :config
-  (setq scroll-conservatively 101)
-  (setq ultra-scroll-mode t))
-#+end_src
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el
@@ -311,6 +303,13 @@ Focus new window after splitting.
                            (push '("[X]" . "✅" ) prettify-symbols-alist)
                            (push '("[-]" . "⏳" ) prettify-symbols-alist)
                            (prettify-symbols-mode)))
+#+end_src
+*** Org-emphasis-alist
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-emphasis-alist
+      '(("*" bold) ("/" italic) ("_" underline) ("=" org-verbatim bold)
+        ("~" org-code verbatim) ("+" (:strike-through t)))
+      )
 #+end_src
 ** Terminal Setup
 *** Fish
