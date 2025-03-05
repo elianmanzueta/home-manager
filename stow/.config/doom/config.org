@@ -129,8 +129,7 @@ Open lookups inside of eww
     '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
-    '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
-    '(markdown-code-face :inherit org-block :background "gray15")
+    ;; '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 #+end_src
 *** Git auto commit and push
@@ -181,6 +180,26 @@ Automatically push git changes.
           (org-mode . "*** GPT:\n")
           (text-mode . ""))
         ))
+#+end_src
+*** Set system directives
+#+begin_src emacs-lisp :tangle ./config.el
+(setq gptel-directives
+      '((default
+         . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
+        (programming
+         . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+        (writing
+         . "You are a large language model and a writing assistant. Respond concisely.")
+        (chat
+         . "You are a large language model and a conversation partner. Respond concisely."))
+
+      )
+#+end_src
+*** Perplexity
+#+begin_src emacs-lisp :tangle ./config.el
+(gptel-make-perplexity "Perplexity"
+  :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
+  :stream t)
 #+end_src
 
 ** Keybindings
@@ -256,6 +275,10 @@ Focus new window after splitting.
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
 *** Org roam
+**** Default sort
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-roam-node-default-sort 'file-atime)
+#+end_src
 **** Capture templates
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-roam-capture-templates
@@ -345,7 +368,7 @@ Setting vterm path.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
-(setq doom-theme 'doom-snazzy)
+(setq doom-theme 'doom-acario-light)
 #+END_SRC
 *** ~doom-vibrant~
 #+begin_src emacs-lisp :tangle ./config.el

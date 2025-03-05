@@ -29,6 +29,6 @@ function fish_prompt --description 'Write out the prompt; do not replace this. I
     # Remove the trailing newline from the original prompt. This is done
     # using the string builtin from fish, but to make sure any escape codes
     # are correctly interpreted, use %b for printf.
-    printf "%b" (string join "\n" (vterm_old_fish_prompt))
+    printf "test %b" (string join "\n" (vterm_old_fish_prompt))
     vterm_prompt_end
 end

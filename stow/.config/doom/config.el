@@ -74,8 +74,7 @@
     '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold)
-    '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
-    '(markdown-code-face :inherit org-block :background "gray15")
+    ;; '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
     '(org-scheduled-previously :foreground "dim gray")))
 
 (setq gac-automatically-push-p 't
@@ -103,6 +102,22 @@
           (org-mode . "*** GPT:\n")
           (text-mode . ""))
         ))
+
+(setq gptel-directives
+      '((default
+         . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
+        (programming
+         . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+        (writing
+         . "You are a large language model and a writing assistant. Respond concisely.")
+        (chat
+         . "You are a large language model and a conversation partner. Respond concisely."))
+
+      )
+
+(gptel-make-perplexity "Perplexity"
+  :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
+  :stream t)
 
 (map! :leader
       :desc "Git pull from upstream"
@@ -154,6 +169,8 @@
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
+
+(setq org-roam-node-default-sort 'file-atime)
 
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
@@ -221,7 +238,7 @@
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
-(setq doom-theme 'doom-snazzy)
+(setq doom-theme 'doom-acario-light)
 
 (setq doom-vibrant-brighter-comments 't)
 (setq doom-vibrant-brighter-modeline 't)
