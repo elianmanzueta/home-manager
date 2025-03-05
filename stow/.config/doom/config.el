@@ -90,6 +90,7 @@
 (use-package! gptel)
 (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
 (setq gptel-default-mode #'org-mode)
+(setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
 
 (after! gptel
   (setq gptel-prompt-prefix-alist
@@ -195,9 +196,17 @@
                            (prettify-symbols-mode)))
 
 (setq org-emphasis-alist
-      '(("*" bold) ("/" italic) ("_" underline) ("=" org-verbatim bold)
+      '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
         ("~" org-code verbatim) ("+" (:strike-through t)))
       )
+
+(setq org-attach-auto-tag nil)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
+(setq org-attach-id-to-path-function-list
+      '(org-attach-id-ts-folder-format
+        org-attach-id-uuid-folder-format
+        org-attach-id-fallback-folder-format))
 
 (setq explicit-shell-file-name
       (cond
@@ -216,5 +225,12 @@
 
 (setq doom-vibrant-brighter-comments 't)
 (setq doom-vibrant-brighter-modeline 't)
+
+(setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+
+(setq tramp-default-method "rsync")
 
 (map! :leader "wa" #'ace-select-window)

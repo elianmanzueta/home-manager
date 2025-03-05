@@ -165,6 +165,7 @@ Automatically push git changes.
 (use-package! gptel)
 (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
 (setq gptel-default-mode #'org-mode)
+(setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
 #+end_src
 
 *** Set Prefixes
@@ -307,9 +308,19 @@ Focus new window after splitting.
 *** Org-emphasis-alist
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-emphasis-alist
-      '(("*" bold) ("/" italic) ("_" underline) ("=" org-verbatim bold)
+      '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
         ("~" org-code verbatim) ("+" (:strike-through t)))
       )
+#+end_src
+*** Org attach
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-attach-auto-tag nil)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
+(setq org-attach-id-to-path-function-list
+      '(org-attach-id-ts-folder-format
+        org-attach-id-uuid-folder-format
+        org-attach-id-fallback-folder-format))
 #+end_src
 ** Terminal Setup
 *** Fish
@@ -341,6 +352,19 @@ Setting vterm path.
 (setq doom-vibrant-brighter-comments 't)
 (setq doom-vibrant-brighter-modeline 't)
 #+end_src
+** TRAMP
+*** Ignore version control
+#+begin_src emacs-lisp :tangle ./config.el
+(setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+#+end_src
+*** Set default method
+#+begin_src emacs-lisp :tangle ./config.el
+(setq tramp-default-method "rsync")
+#+end_src
+
 ** Windows
 Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el

@@ -14,7 +14,6 @@
     nodejs
     ispell
     sqlite
-    pandoc
     nodePackages.prettier
   ];
 }
