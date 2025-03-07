@@ -368,13 +368,8 @@ Setting vterm path.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
-(setq doom-theme 'doom-acario-light)
+(setq doom-theme 'modus-operandi-tinted)
 #+END_SRC
-*** ~doom-vibrant~
-#+begin_src emacs-lisp :tangle ./config.el
-(setq doom-vibrant-brighter-comments 't)
-(setq doom-vibrant-brighter-modeline 't)
-#+end_src
 ** TRAMP
 *** Ignore version control
 #+begin_src emacs-lisp :tangle ./config.el

@@ -238,10 +238,7 @@
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
-(setq doom-theme 'doom-acario-light)
-
-(setq doom-vibrant-brighter-comments 't)
-(setq doom-vibrant-brighter-modeline 't)
+(setq doom-theme 'modus-operandi-tinted)
 
 (setq vc-ignore-dir-regexp
       (format "\\(%s\\)\\|\\(%s\\)"
