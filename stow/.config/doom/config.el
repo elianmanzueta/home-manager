@@ -150,7 +150,8 @@
       gac-automatically-add-new-files-p 't)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "~/org/roam" "\\.org$"))
+(setq org-log-done t)
 
 (setq org-attach-auto-tag nil)
 (setq org-id-method 'ts)
@@ -213,6 +214,13 @@
                            (push '("[X]" . "✅" ) prettify-symbols-alist)
                            (push '("[-]" . "⏳" ) prettify-symbols-alist)
                            (prettify-symbols-mode)))
+
+(after! org
+  (setq org-todo-keywords
+        '((sequence "TODO(t!)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
+          (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
+          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
+        ))
 
 (setq org-emphasis-alist
       '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
