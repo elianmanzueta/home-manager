@@ -3,12 +3,6 @@
 
 (setq avy-timeout-seconds 0.35)
 
-(after! lsp-ui
-  (setq lsp-ui-doc-show-with-cursor t)
-  (setq lsp-ui-doc-delay 0.2)
-  (setq lsp-ui-doc-max-width 160)
-  (setq lsp-ui-doc-max-height 13))
-
 (setq flycheck-display-errors-delay 0.1)
 (setq flycheck-idle-change-delay 0.5)
 
@@ -31,6 +25,10 @@
   :config
   (setq just-indent-offset 4))
 
+(setq lsp-idle-delay 0.1)
+(setq corfu-auto-delay 0.1)
+(setq which-key-idle-delay 0.1)
+
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
@@ -45,7 +43,6 @@
 (setq lsp-pyright-venv-path ".")
 (setq lsp-pyright-venv-directory ".venv")
 
-(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)

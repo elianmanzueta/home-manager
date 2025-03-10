@@ -12,14 +12,6 @@
 (setq avy-timeout-seconds 0.35)
 #+end_src
 ** Code
-*** lsp-ui-doc
-#+begin_src emacs-lisp :tangle yes
-(after! lsp-ui
-  (setq lsp-ui-doc-show-with-cursor t)
-  (setq lsp-ui-doc-delay 0.2)
-  (setq lsp-ui-doc-max-width 160)
-  (setq lsp-ui-doc-max-height 13))
-#+end_src
 *** Flycheck
 #+begin_src emacs-lisp :tangle ./config.el
 (setq flycheck-display-errors-delay 0.1)
@@ -55,6 +47,12 @@
   :config
   (setq just-indent-offset 4))
 #+end_src
+*** LSP
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-idle-delay 0.1)
+(setq corfu-auto-delay 0.1)
+(setq which-key-idle-delay 0.1)
+#+end_src
 *** Python
 **** Inlay hints
 Enable inlay hints in Python
@@ -89,7 +87,6 @@ Set pyright venv path/directory
 **** Inlay hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook! 'rustic-mode-hook #'lsp-inlay-hints-mode)
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
@@ -345,7 +342,7 @@ Automatically push git changes.
 
 #+RESULTS:
 | sequence | TODO(t!) | IN-PROGRESS(w) |         |        | DONE(d!) | WONT-DO(w@/!) |
-| sequence | [ ](T)    | [-](S)          | [?](W)  |        |          | [X](D)         |
+| sequence | [ ](T)    | [-](S)           | [?](W)  |        |          | [X](D)          |
 | sequence |          |                | OKAY(o) | YES(y) | NO(n)    |               |
 
 *** Org-emphasis-alist
