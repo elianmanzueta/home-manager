@@ -33,3 +33,4 @@
 (package! ob-powershell)
 (package! ultra-scroll
   :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
+(package! org-special-block-extras)

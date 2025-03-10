@@ -56,9 +56,6 @@
   (setq just-indent-offset 4))
 #+end_src
 *** Python
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'python-mode-hook #'lsp)
-#+end_src
 **** Inlay hints
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
@@ -117,7 +114,6 @@ Open lookups inside of eww
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
   (custom-set-faces!
-    '(bold :weight extra-bold)
     '(outline-1 :weight bold :height 1.25)
     '(outline-2 :weight bold :height 1.15)
     '(outline-3 :weight bold :height 1.12)
@@ -126,38 +122,8 @@ Open lookups inside of eww
     '(outline-6 :weight semi-bold :height 1.03)
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
-    '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold)
-    ;; '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
-    '(org-scheduled-previously :foreground "dim gray")))
-#+end_src
-*** Git auto commit and push
-The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
-code here:
-#+begin_src emacs-lisp
-((nil . ((eval git-auto-commit-mode 1))))
-#+end_src
-
-Automatically push git changes.
-#+begin_src emacs-lisp :tangle ./config.el
-(setq gac-automatically-push-p 't
-      gac-automatically-add-new-files-p 't)
-#+end_src
-
-*** Org auto tangle
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
-#+end_src
-*** Org download
-**** Default image width
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-download-image-org-width '450)
-#+end_src
-
-**** Heading level
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-download-heading-lvl nil)
+    '(org-verbatim :inherit bold :weight extra-bold)
 #+end_src
 ** gptel
 #+begin_src emacs-lisp :tangle ./config.el
@@ -261,11 +227,49 @@ Focus new window after splitting.
       evil-vsplit-window-right t)
 #+end_src
 ** Org Mode
+*** Git auto commit and push
+The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
+code here:
+#+begin_src emacs-lisp
+((nil . ((eval git-auto-commit-mode 1))))
+#+end_src
+
+Automatically push git changes.
+#+begin_src emacs-lisp :tangle ./config.el
+(setq gac-automatically-push-p 't
+      gac-automatically-add-new-files-p 't)
+#+end_src
+
 *** Org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
 #+end_src
+*** Org attach
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-attach-auto-tag nil)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
+(setq org-attach-id-to-path-function-list
+      '(org-attach-id-ts-folder-format
+        org-attach-id-uuid-folder-format
+        org-attach-id-fallback-folder-format))
+#+end_src
+*** Org auto tangle
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
+#+end_src
+*** Org download
+**** Default image width
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-download-image-org-width '450)
+#+end_src
+
+**** Heading level
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-download-heading-lvl nil)
+#+end_src
+
 *** Org pretty mode and org-appear hooks
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook '+org-pretty-mode)
@@ -335,16 +339,6 @@ Focus new window after splitting.
         ("~" org-code verbatim) ("+" (:strike-through t)))
       )
 #+end_src
-*** Org attach
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-attach-auto-tag nil)
-(setq org-id-method 'ts)
-(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-(setq org-attach-id-to-path-function-list
-      '(org-attach-id-ts-folder-format
-        org-attach-id-uuid-folder-format
-        org-attach-id-fallback-folder-format))
-#+end_src
 ** Terminal Setup
 *** Fish
 Setting fish shell paths.
@@ -371,13 +365,6 @@ Setting vterm path.
 (setq doom-theme 'modus-operandi-tinted)
 #+END_SRC
 ** TRAMP
-*** Ignore version control
-#+begin_src emacs-lisp :tangle ./config.el
-(setq vc-ignore-dir-regexp
-      (format "\\(%s\\)\\|\\(%s\\)"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
-#+end_src
 *** Set default method
 #+begin_src emacs-lisp :tangle ./config.el
 (setq tramp-default-method "rsync")

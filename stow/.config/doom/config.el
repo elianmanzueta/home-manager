@@ -31,8 +31,6 @@
   :config
   (setq just-indent-offset 4))
 
-(add-hook 'python-mode-hook #'lsp)
-
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
@@ -62,7 +60,6 @@
 
 (after! org
   (custom-set-faces!
-    '(bold :weight extra-bold)
     '(outline-1 :weight bold :height 1.25)
     '(outline-2 :weight bold :height 1.15)
     '(outline-3 :weight bold :height 1.12)
@@ -71,20 +68,8 @@
     '(outline-6 :weight semi-bold :height 1.03)
     '(outline-8 :weight semi-bold)
     '(outline-9 :weight semi-bold)
-    '(whitespace-tab :background "242631")
     '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold)
-    ;; '(org-code :inherit org-block :background "gray15" :foreground "white" :slant italic :weight semi-bold)
-    '(org-scheduled-previously :foreground "dim gray")))
-
-(setq gac-automatically-push-p 't
-      gac-automatically-add-new-files-p 't)
-
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
-
-(setq org-download-image-org-width '450)
-
-(setq org-download-heading-lvl nil)
+    '(org-verbatim :inherit bold :weight extra-bold)))
 
 (use-package! gptel)
 (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
@@ -161,8 +146,25 @@
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
+(setq gac-automatically-push-p 't
+      gac-automatically-add-new-files-p 't)
+
 (setq org-directory "~/org/")
 (setq org-agenda-files (directory-files-recursively "~/org/agenda/" "\\.org$"))
+
+(setq org-attach-auto-tag nil)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
+(setq org-attach-id-to-path-function-list
+      '(org-attach-id-ts-folder-format
+        org-attach-id-uuid-folder-format
+        org-attach-id-fallback-folder-format))
+
+(add-hook 'org-mode-hook 'org-auto-tangle-mode)
+
+(setq org-download-image-org-width '450)
+
+(setq org-download-heading-lvl nil)
 
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
@@ -217,14 +219,6 @@
         ("~" org-code verbatim) ("+" (:strike-through t)))
       )
 
-(setq org-attach-auto-tag nil)
-(setq org-id-method 'ts)
-(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-(setq org-attach-id-to-path-function-list
-      '(org-attach-id-ts-folder-format
-        org-attach-id-uuid-folder-format
-        org-attach-id-fallback-folder-format))
-
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
@@ -239,11 +233,6 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-theme 'modus-operandi-tinted)
-
-(setq vc-ignore-dir-regexp
-      (format "\\(%s\\)\\|\\(%s\\)"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
 
 (setq tramp-default-method "rsync")
 
