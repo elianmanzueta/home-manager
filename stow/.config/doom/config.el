@@ -26,6 +26,7 @@
   (setq just-indent-offset 4))
 
 (setq eglot-booster-mode t)
+(fset #'jsonrpc--log-event #'ignore)
 (setq lsp-idle-delay 0.1)
 (setq corfu-auto-delay 0.1)
 (setq which-key-idle-delay 0.1)
@@ -207,16 +208,9 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-(add-hook 'org-mode-hook (lambda ()
-                           "Beautify Org Checkbox Symbol"
-                           (push '("[ ]" .  "") prettify-symbols-alist)
-                           (push '("[X]" . "✅" ) prettify-symbols-alist)
-                           (push '("[-]" . "⏳" ) prettify-symbols-alist)
-                           (prettify-symbols-mode)))
-
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
+        '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
         ))

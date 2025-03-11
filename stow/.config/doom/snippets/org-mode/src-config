@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: config
-# uuid:
-# key: config
-# condition: t
-# --
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-$0
-#+END_SRC

@@ -50,6 +50,7 @@
 *** LSP
 #+begin_src emacs-lisp :tangle ./config.el
 (setq eglot-booster-mode t)
+(fset #'jsonrpc--log-event #'ignore)
 (setq lsp-idle-delay 0.1)
 (setq corfu-auto-delay 0.1)
 (setq which-key-idle-delay 0.1)
@@ -323,30 +324,15 @@ Automatically push git changes.
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 #+end_src
-**** Prettify Symbols
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook (lambda ()
-                           "Beautify Org Checkbox Symbol"
-                           (push '("[ ]" .  "") prettify-symbols-alist)
-                           (push '("[X]" . "✅" ) prettify-symbols-alist)
-                           (push '("[-]" . "⏳" ) prettify-symbols-alist)
-                           (prettify-symbols-mode)))
-#+end_src
 *** Org Todos
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
   (setq org-todo-keywords
-        '((sequence "TODO(t!)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
+        '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
         ))
 #+end_src
-
-#+RESULTS:
-| sequence | TODO(t!) | IN-PROGRESS(w) |         |        | DONE(d!) | WONT-DO(w@/!) |
-| sequence | [ ](T)    | [-](S)           | [?](W)  |        |          | [X](D)          |
-| sequence |          |                | OKAY(o) | YES(y) | NO(n)    |               |
-
 *** Org-emphasis-alist
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-emphasis-alist
