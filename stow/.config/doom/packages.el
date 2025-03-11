@@ -9,6 +9,8 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
+(setenv "LSP_USE_PLISTS" "1")
+
 (package! org-download)
 (package! org-remark)
 (package! org-appear
@@ -34,3 +36,5 @@
 (package! ultra-scroll
   :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
 (package! org-special-block-extras)
+(package! eglot-booster
+  :recipe (:host github :repo "jdtsmith/eglot-booster"))
