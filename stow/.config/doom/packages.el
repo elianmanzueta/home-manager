@@ -25,7 +25,6 @@
 (package! fish-mode)
 (package! org-auto-tangle)
 (package! f)
-(package! elfeed)
 (package! powershell)
 (package! flymake-ruff)
 (package! gptel)

@@ -208,6 +208,8 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
+(add-hook! 'org-roam 'org-roam-timestamps-mode)
+
 (after! org
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
@@ -242,6 +244,14 @@
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
+
+(setq modus-themes-common-palette-overrides
+      '((border-mode-line-active bg-mode-line-active)
+        (border-mode-line-inactive bg-mode-line-inactive)))
+
+(setq modus-themes-common-palette-overrides
+      '((prose-done green-intense)
+        (prose-todo red-intense)))
 
 (setq tramp-default-method "rsync")
 
