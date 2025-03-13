@@ -3,8 +3,18 @@
 
 (setq avy-timeout-seconds 0.35)
 
-(setq flycheck-display-errors-delay 0.1)
-(setq flycheck-idle-change-delay 0.5)
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(use-package! powershell-ts-mode)
+
+(use-package! flycheck
+  :config
+  (setq flycheck-display-errors-delay 0.1)
+  (setq flycheck-idle-change-delay 0.5))
 
 (setq! go-eldoc-gocode "gocode-gomod")
 
@@ -25,18 +35,23 @@
   :config
   (setq just-indent-offset 4))
 
-(setq eglot-booster-mode t)
 (fset #'jsonrpc--log-event #'ignore)
 (setq lsp-idle-delay 0.1)
 (setq corfu-auto-delay 0.1)
 (setq which-key-idle-delay 0.1)
 
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(use-package! powershell-ts-mode)
+
 (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
 (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
 (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-
-(add-hook 'python-mode-local-vars-hook #'flymake-ruff-load)
 
 (setq lsp-pyright-langserver-command "basedpyright")
 
@@ -70,34 +85,33 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
 
-(use-package! gptel)
-(setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
-(setq gptel-default-mode #'org-mode)
-(setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
-
-(after! gptel
+(use-package! gptel
+  :config
+  (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
+  (setq gptel-default-mode #'org-mode)
+  (setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
   (setq gptel-prompt-prefix-alist
         '((markdown-mode . "### ")
           (org-mode . "*** Prompt:\n")
           (text-mode . "### "))
         )
+
   (setq gptel-response-prefix-alist
         '((markdown-mode . "")
           (org-mode . "*** GPT:\n")
           (text-mode . ""))
+        )
+
+  (setq gptel-directives
+        '((default
+           . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
+          (programming
+           . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
+          (writing
+           . "You are a large language model and a writing assistant. Respond concisely.")
+          (chat
+           . "You are a large language model and a conversation partner. Respond concisely."))
         ))
-
-(setq gptel-directives
-      '((default
-         . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
-        (programming
-         . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
-        (writing
-         . "You are a large language model and a writing assistant. Respond concisely.")
-        (chat
-         . "You are a large language model and a conversation partner. Respond concisely."))
-
-      )
 
 (gptel-make-perplexity "Perplexity"
   :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
@@ -202,7 +216,12 @@
         )
   )
 
-(after! org
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org
+  :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t

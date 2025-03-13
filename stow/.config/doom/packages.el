@@ -24,16 +24,13 @@
   :recipe (:host github :repo "orgtre/ankiorg"))
 (package! fish-mode)
 (package! org-auto-tangle)
-(package! f)
-(package! powershell)
-(package! flymake-ruff)
 (package! gptel)
 (package! websocket)
+(unpin! org-roam)
 (package! org-roam-ui)
-(package! sqlite3)
-(package! ob-powershell)
 (package! ultra-scroll
   :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
-(package! org-special-block-extras)
 (package! eglot-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster"))
+(package! powershell-ts-mode
+  :recipe (:host github :repo "dmille56/powershell-ts-mode"))
