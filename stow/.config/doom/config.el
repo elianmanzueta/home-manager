@@ -3,14 +3,6 @@
 
 (setq avy-timeout-seconds 0.35)
 
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-(use-package! powershell-ts-mode)
-
 (use-package! flycheck
   :config
   (setq flycheck-display-errors-delay 0.1)
@@ -48,17 +40,19 @@
 
 (use-package! powershell-ts-mode)
 
-(setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-(setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-(setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-(setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+(use-package! lsp-pyright
+  :hook (python-mode . lsp-inlay-hints-mode)
+  :config
+  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
-(setq lsp-pyright-langserver-command "basedpyright")
+  (setq lsp-pyright-langserver-command "basedpyright")
+  (setq lsp-pyright-type-checking-mode "basic")
 
-(setq lsp-pyright-type-checking-mode "basic")
-
-(setq lsp-pyright-venv-path ".")
-(setq lsp-pyright-venv-directory ".venv")
+  (setq lsp-pyright-venv-path ".")
+  (setq lsp-pyright-venv-directory ".venv"))
 
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
@@ -66,11 +60,8 @@
 
 (map! :leader "e" #'dired-jump)
 
-;; Don't worry, Dirvish is still performant even if you enable all these attributes
 (setq dirvish-attributes
       '(vc-state subtree-state collapse git-msg -time file-size file-time))
-
-(setq +lookup-open-url-fn #'eww)
 
 (after! org
   (custom-set-faces!
@@ -84,6 +75,9 @@
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
+
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-emoji-font "Noto Color Emoji")
 
 (use-package! gptel
   :config
@@ -116,14 +110,6 @@
 (gptel-make-perplexity "Perplexity"
   :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
   :stream t)
-
-(map! :leader
-      :desc "Git pull from upstream"
-      "g d p" 'magit-pull-from-upstream)
-
-(map! :leader
-      :desc "Git push to remote"
-      "g d P" 'magit-push-to-remote)
 
 (map! :leader "y" #'yank-from-kill-ring)
 
@@ -252,8 +238,6 @@
 
 (add-load-path! "~/emacs-libvterm")
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-emoji-font "Noto Color Emoji")
 (setq doom-theme 'modus-operandi-tinted)
 
 (setq modus-themes-italic-constructs t)
@@ -275,3 +259,24 @@
 (setq tramp-default-method "rsync")
 
 (map! :leader "wa" #'ace-select-window)
+
+(use-package! vertico
+  :config
+  (setq vertico-buffer-display-action '(display-buffer-reuse-window))
+  )
+
+(use-package! vertico-directory
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package! nerd-icons-completion
+  :after (marginalia nerd-icons-completion))
+
+(use-package! orderless
+  :custom
+  (orderless-matching-styles '(orderless-literal
+                               orderless-prefixes
+                               orderless-initialism
+                               orderless-regexp
+                               orderless-flex)
+)

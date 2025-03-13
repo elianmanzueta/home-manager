@@ -13,16 +13,6 @@
 #+end_src
 
 ** Code
-*** Powershell
-#+begin_src emacs-lisp :tangle yes
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-(use-package! powershell-ts-mode)
-#+end_src
 *** Flycheck
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! flycheck
@@ -70,35 +60,29 @@
 *** Powershell
 #+begin_src emacs-lisp :tangle yes
 (use-package! powershell
-  :mode "\\.ps1\\'" . powershell-mode
+  :mode ("\\.ps1\\'" . powershell-mode)
+  :hook (powershell-mode . lsp-mode)
   :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe")
-  )
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(use-package! powershell-ts-mode)
 #+end_src
 *** Python
-**** Inlay hints
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-(setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-(setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-(setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-#+end_src
-**** Pyright
-Set pyright to basedpyright
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-langserver-command "basedpyright")
-#+end_src
+(use-package! lsp-pyright
+  :hook (python-mode . lsp-inlay-hints-mode)
+  :config
+  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
-Set pyright type-checking mode
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-type-checking-mode "basic")
-#+end_src
+  (setq lsp-pyright-langserver-command "basedpyright")
+  (setq lsp-pyright-type-checking-mode "basic")
 
-Set pyright venv path/directory
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-pyright-venv-path ".")
-(setq lsp-pyright-venv-directory ".venv")
+  (setq lsp-pyright-venv-path ".")
+  (setq lsp-pyright-venv-directory ".venv"))
 #+end_src
 *** Rust
 **** Inlay hints
@@ -114,14 +98,8 @@ Enable inlay hints in Rust
 #+END_SRC
 *** Dirvish attributes
 #+begin_src emacs-lisp :tangle ./config.el
-;; Don't worry, Dirvish is still performant even if you enable all these attributes
 (setq dirvish-attributes
       '(vc-state subtree-state collapse git-msg -time file-size file-time))
-#+end_src
-** Eww
-Open lookups inside of eww
-#+begin_src emacs-lisp :tangle ./config.el
-(setq +lookup-open-url-fn #'eww)
 #+end_src
 ** Faces
 *** Custom
@@ -138,6 +116,11 @@ Open lookups inside of eww
     '(outline-9 :weight semi-bold)
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
+#+end_src
+** Fonts
+#+begin_src emacs-lisp :tangle ./config.el
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-emoji-font "Noto Color Emoji")
 #+end_src
 ** gptel
 #+begin_src emacs-lisp :tangle ./config.el
@@ -172,18 +155,6 @@ Open lookups inside of eww
 (gptel-make-perplexity "Perplexity"
   :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
   :stream t)
-#+end_src
-** Keybindings
-*** Git pull and push
-#+begin_src emacs-lisp :tangle ./config.el
-(map! :leader
-      :desc "Git pull from upstream"
-      "g d p" 'magit-pull-from-upstream)
-
-(map! :leader
-      :desc "Git push to remote"
-      "g d P" 'magit-push-to-remote)
-
 #+end_src
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -375,10 +346,8 @@ Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
 #+end_src
-** Theme and Fonts
+** Theme
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
-(setq doom-emoji-font "Noto Color Emoji")
 (setq doom-theme 'modus-operandi-tinted)
 #+END_SRC
 *** Modus themes
@@ -410,4 +379,29 @@ Setting vterm path.
 Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader "wa" #'ace-select-window)
+#+end_src
+** Vertico
+#+begin_src emacs-lisp :tangle yes
+(use-package! vertico
+  :config
+  (setq vertico-buffer-display-action '(display-buffer-reuse-window))
+  )
+
+(use-package! vertico-directory
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package! nerd-icons-completion
+  :after (marginalia nerd-icons-completion))
+#+end_src
+** Orderless
+#+begin_src emacs-lisp :tangle yes
+(use-package! orderless
+  :custom
+  (orderless-matching-styles '(orderless-literal
+                               orderless-prefixes
+                               orderless-initialism
+                               orderless-regexp
+                               orderless-flex)
+)
 #+end_src

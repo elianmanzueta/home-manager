@@ -11,26 +11,24 @@
 
 (setenv "LSP_USE_PLISTS" "1")
 
+;; Org mode stuff
 (package! org-download)
 (package! org-remark)
 (package! org-appear
   :recipe (:host github
            :repo "awth13/org-appear"))
-(package! just-mode)
-(package! git-auto-commit-mode)
-(package! anki-editor
-  :recipe (:host github :repo "anki-editor/anki-editor"))
-(package! ankiorg
-  :recipe (:host github :repo "orgtre/ankiorg"))
-(package! fish-mode)
 (package! org-auto-tangle)
-(package! gptel)
-(package! websocket)
+(package! git-auto-commit-mode)
 (unpin! org-roam)
+(package! websocket)
 (package! org-roam-ui)
+
+;; Misc
+(package! just-mode)
+(package! fish-mode)
+(package! gptel)
 (package! ultra-scroll
   :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
-(package! eglot-booster
-  :recipe (:host github :repo "jdtsmith/eglot-booster"))
 (package! powershell-ts-mode
   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
+(package! nerd-icons-completion)
