@@ -2,11 +2,21 @@
 (setq-default fill-column 80)
 
 (setq avy-timeout-seconds 0.35)
+(setq avy-all-windows t)
+(evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
+(after! evil-snipe
+  (setq evil-snipe-scope 'whole-visible)
+  (setq evil-snipe-smart-case t)
+  (evil-define-key '(normal motion) evil-snipe-local-mode-map
+    "s" nil
+    "S" nil)
+  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
 
 (use-package! flycheck
+  :init
   :config
   (setq flycheck-display-errors-delay 0.1)
-  (setq flycheck-idle-change-delay 0.5))
+  (setq flycheck-idle-change-delay 0.5)
 
 (setq! go-eldoc-gocode "gocode-gomod")
 
@@ -58,10 +68,23 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(map! :leader "e" #'dired-jump)
+(use-package! centaur-tabs
+  :init
+  (setq centaur-tabs-set-close-button nil)
+  (setq centaur-tabs-set-bar 'right)
+  )
 
-(setq dirvish-attributes
-      '(vc-state subtree-state collapse git-msg -time file-size file-time))
+(use-package! nerd-icons)
+(use-package! dirvish
+  :config
+  (setq dirvish-attributes
+        '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
+        dirvish-side-attributes
+        '(vc-state nerd-icons collapse file-size))
+  (setq dirvish-default-layout '(0 0.50 0.50))
+  (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
+  )
+(map! :leader "e" #'dirvish)
 
 (after! org
   (custom-set-faces!
@@ -256,14 +279,22 @@
       '((prose-done green-intense)
         (prose-todo red-intense)))
 
-(setq tramp-default-method "rsync")
+(use-package! tramp
+  :config
+  (setq tramp-default-method "rsync")
+  (setq tramp-chunksize 2000)
+  )
 
 (map! :leader "wa" #'ace-select-window)
 
 (use-package! vertico
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
+  (setq vertico-multiform-commands '((org-roam-node-find grid)))
+  (setq vertico-multiform-mode 1)
+  (setq vertico-grid-min-columns 3)
   )
+
 
 (use-package! vertico-directory
   :after vertico
@@ -275,8 +306,6 @@
 (use-package! orderless
   :custom
   (orderless-matching-styles '(orderless-literal
-                               orderless-prefixes
-                               orderless-initialism
-                               orderless-regexp
-                               orderless-flex)
-)
+                               orderless-flex
+                               orderless-regexp)
+                             ))
