@@ -5,7 +5,7 @@
 (setq avy-all-windows t)
 (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
 (after! evil-snipe
-  (setq evil-snipe-scope 'whole-visible)
+  (setq evil-snipe-scope 'visible)
   (setq evil-snipe-smart-case t)
   (evil-define-key '(normal motion) evil-snipe-local-mode-map
     "s" nil
@@ -16,7 +16,7 @@
   :init
   :config
   (setq flycheck-display-errors-delay 0.1)
-  (setq flycheck-idle-change-delay 0.5)
+  (setq flycheck-idle-change-delay 0.5))
 
 (setq! go-eldoc-gocode "gocode-gomod")
 
