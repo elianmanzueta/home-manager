@@ -109,6 +109,13 @@
   (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
   (setq gptel-default-mode #'org-mode)
   (setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
+
+  (setq
+   gptel-model   'sonar
+   gptel-backend (gptel-make-perplexity "Perplexity"
+                   :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
+                   :stream t))
+
   (setq gptel-prompt-prefix-alist
         '((markdown-mode . "### ")
           (org-mode . "*** Prompt:\n")
@@ -131,10 +138,6 @@
           (chat
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
-
-(gptel-make-perplexity "Perplexity"
-  :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
-  :stream t)
 
 (map! :leader "y" #'yank-from-kill-ring)
 
@@ -288,9 +291,9 @@
   :config
   (setq tramp-default-method "rsync")
   (setq vc-ignore-dir-regexp
-      (format "\\(%s\\)\\|\\(%s\\)"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
+        (format "\\(%s\\)\\|\\(%s\\)"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp))
   )
 
 (map! :leader "wa" #'ace-select-window)
@@ -314,4 +317,4 @@
   :custom
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
-                             )))
+                               )))
