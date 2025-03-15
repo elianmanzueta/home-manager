@@ -27,7 +27,7 @@
   :init
   :config
   (setq flycheck-display-errors-delay 0.1)
-  (setq flycheck-idle-change-delay 0.5)
+  (setq flycheck-idle-change-delay 0.5))
 #+end_src
 *** Go
 **** Gocode
@@ -126,7 +126,6 @@ Enable inlay hints in Rust
 
 #+RESULTS:
 : dirvish
-
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el
@@ -246,7 +245,7 @@ Automatically push git changes.
 *** Org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/roam" "\\.org$"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/todo.org"))
 (setq org-log-done t)
 #+end_src
 *** Org attach
@@ -400,7 +399,7 @@ Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! tramp
   :config
-  (setq tramp-default-method "rsync")
+  (setq tramp-default-method "scp")
   (setq tramp-chunksize 2000)
   )
 #+end_src
@@ -420,7 +419,6 @@ Setting a keybind for ~ace-select-window~.
   (setq vertico-grid-min-columns 3)
   )
 
-
 (use-package! vertico-directory
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
@@ -433,7 +431,7 @@ Setting a keybind for ~ace-select-window~.
 (use-package! orderless
   :custom
   (orderless-matching-styles '(orderless-literal
-                               orderless-flex
-                               orderless-regexp)
+                               orderless-regexp
+                               orderless-flex)
                              ))
 #+end_src

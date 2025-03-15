@@ -5,7 +5,7 @@
 (setq avy-all-windows t)
 (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
 (after! evil-snipe
-  (setq evil-snipe-scope 'visible)
+  (setq evil-snipe-scope 'whole-visible)
   (setq evil-snipe-smart-case t)
   (evil-define-key '(normal motion) evil-snipe-local-mode-map
     "s" nil
@@ -173,7 +173,7 @@
       gac-automatically-add-new-files-p 't)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files (directory-files-recursively "~/org/roam" "\\.org$"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/todo.org"))
 (setq org-log-done t)
 
 (setq org-attach-auto-tag nil)
@@ -281,7 +281,7 @@
 
 (use-package! tramp
   :config
-  (setq tramp-default-method "rsync")
+  (setq tramp-default-method "scp")
   (setq tramp-chunksize 2000)
   )
 
@@ -295,7 +295,6 @@
   (setq vertico-grid-min-columns 3)
   )
 
-
 (use-package! vertico-directory
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
@@ -306,6 +305,6 @@
 (use-package! orderless
   :custom
   (orderless-matching-styles '(orderless-literal
-                               orderless-flex
-                               orderless-regexp)
+                               orderless-regexp
+                               orderless-flex)
                              ))
