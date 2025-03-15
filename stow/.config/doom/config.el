@@ -74,6 +74,8 @@
   (setq centaur-tabs-set-bar 'right)
   )
 
+(setq +doom-dashboard-pwd-policy "~/")
+
 (use-package! nerd-icons)
 (use-package! dirvish
   :config
@@ -184,7 +186,10 @@
         org-attach-id-uuid-folder-format
         org-attach-id-fallback-folder-format))
 
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
+(use-package! org-auto-tangle
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
 
 (setq org-download-image-org-width '450)
 
@@ -281,8 +286,11 @@
 
 (use-package! tramp
   :config
-  (setq tramp-default-method "scp")
-  (setq tramp-chunksize 2000)
+  (setq tramp-default-method "rsync")
+  (setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
   )
 
 (map! :leader "wa" #'ace-select-window)
@@ -306,5 +314,4 @@
   :custom
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
-                               orderless-flex)
-                             ))
+                             )))

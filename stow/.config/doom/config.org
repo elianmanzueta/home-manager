@@ -109,6 +109,10 @@ Enable inlay hints in Rust
   (setq centaur-tabs-set-bar 'right)
   )
 #+end_src
+** Dashboard
+#+begin_src emacs-lisp :tangle ./config.el
+(setq +doom-dashboard-pwd-policy "~/")
+#+end_src
 ** Dirvish
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (use-package! nerd-icons)
@@ -123,9 +127,6 @@ Enable inlay hints in Rust
   )
 (map! :leader "e" #'dirvish)
 #+END_SRC
-
-#+RESULTS:
-: dirvish
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el
@@ -260,7 +261,10 @@ Automatically push git changes.
 #+end_src
 *** Org auto tangle
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook 'org-auto-tangle-mode)
+(use-package! org-auto-tangle
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
 #+end_src
 *** Org download
 **** Default image width
@@ -399,8 +403,11 @@ Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! tramp
   :config
-  (setq tramp-default-method "scp")
-  (setq tramp-chunksize 2000)
+  (setq tramp-default-method "rsync")
+  (setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
   )
 #+end_src
 
@@ -432,6 +439,5 @@ Setting a keybind for ~ace-select-window~.
   :custom
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
-                               orderless-flex)
-                             ))
+                             )))
 #+end_src
