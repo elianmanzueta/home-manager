@@ -105,16 +105,17 @@
 (setq doom-emoji-font "Noto Color Emoji")
 
 (use-package! gptel
+  :init
+  (map! :leader "g p" #'gptel)
   :config
   (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
-  (setq gptel-default-mode #'org-mode)
-  (setq gptel-display-buffer-action '(nil (body-function . pop-up-window )))
-
   (setq
    gptel-model   'sonar
    gptel-backend (gptel-make-perplexity "Perplexity"
                    :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
                    :stream t))
+
+  (setq gptel-default-mode #'org-mode)
 
   (setq gptel-prompt-prefix-alist
         '((markdown-mode . "### ")
