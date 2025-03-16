@@ -88,6 +88,20 @@
   )
 (map! :leader "e" #'dirvish)
 
+(use-package! eat
+  :init
+  (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
+  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
+  (setq eat-kill-buffer-on-exit t)
+  :config
+  (eat-eshell-mode)
+  (setq eshell-visual-commands '()))
+
+(setq +eshell-aliases '(("q" "exit") ("f" "find-file $1") ("ff" "find-file-other-window $1")
+                        ("bd" "eshell-up $1") ("rg" "rg --color=always $*") ("ls" "eza -lhaF") ("l" "eza -lhaF $*")
+                        ("ll" "eza -lah $*") ("git" "git --no-pager $*") ("gst" "magit-status")
+                        ("clear" "clear-scrollback") ("d" "dirvish $1")))
+
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
