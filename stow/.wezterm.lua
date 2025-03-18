@@ -20,9 +20,7 @@ config.keys = {
 	{ key = "h", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Left") },
 	{ key = "l", mods = "CTRL|ALT", action = wezterm.action.ActivatePaneDirection("Right") },
 
-	{ key = "s", mods = "CTRL", action = wezterm.action.PaneSelect },
-
-  -- Tabs
+	-- Tabs
 	{ key = "{", mods = "ALT", action = wezterm.action.ActivateTabRelative(-1) },
 	{ key = "}", mods = "ALT", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "t", mods = "SHIFT|ALT", action = wezterm.action.SpawnTab("CurrentPaneDomain") },

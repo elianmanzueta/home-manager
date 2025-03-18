@@ -98,8 +98,8 @@
   (setq eshell-visual-commands '()))
 
 (setq +eshell-aliases '(("q" "exit") ("f" "find-file $1") ("ff" "find-file-other-window $1")
-                        ("bd" "eshell-up $1") ("rg" "rg --color=always $*") ("ls" "eza -lhaF") ("l" "eza -lhaF $*")
-                        ("ll" "eza -lah $*") ("git" "git --no-pager $*") ("gst" "magit-status")
+                        ("bd" "eshell-up $1") ("rg" "rg --color=always $*") ("ls" "ls -lhaF --colors=auto")
+                        ("git" "git --no-pager $*") ("gst" "magit-status")
                         ("clear" "clear-scrollback") ("d" "dirvish $1")))
 
 (after! org
@@ -316,7 +316,8 @@
 (use-package! vertico
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
-  (setq vertico-multiform-commands '((org-roam-node-find grid)))
+  (setq vertico-multiform-commands '((org-roam-node-find grid)
+                                     (org-roam-node-insert grid)))
   (setq vertico-multiform-mode 1)
   (setq vertico-grid-min-columns 3)
   )
