@@ -254,8 +254,7 @@
 (use-package! org-roam-ui
   :after org
   :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
+  (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
