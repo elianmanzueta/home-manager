@@ -44,7 +44,7 @@
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -77,7 +77,7 @@
        :term
        eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
-       term              ; basic terminal emulator for Emacs
+       ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
@@ -103,7 +103,7 @@
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;terraform         ; infrastructure as code
-       tmux              ; an API for interacting with tmux
+       ;;tmux              ; an API for interacting with tmux
        tree-sitter       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
@@ -184,9 +184,9 @@
        :app
        ;;calendar
        ;;emms
-       everywhere        ; *leave* Emacs!? You must be joking
+       ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc             ; how neckbeards socialize
-       rss               ; emacs as an RSS reader
+       ;;rss               ; emacs as an RSS reader
 
        :config
        ;;literate
