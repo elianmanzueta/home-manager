@@ -165,7 +165,7 @@
 (setq display-line-numbers-type nil)
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
-      '("~/projects"))
+      '(("~/projects/" . 3)))
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
