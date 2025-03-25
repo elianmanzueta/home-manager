@@ -97,11 +97,6 @@
   (eat-eshell-mode)
   (setq eshell-visual-commands '()))
 
-(setq +eshell-aliases '(("q" "exit") ("f" "find-file $1") ("ff" "find-file-other-window $1")
-                        ("bd" "eshell-up $1") ("rg" "rg --color=always $*") ("ls" "ls -lhaF --colors=auto")
-                        ("git" "git --no-pager $*") ("gst" "magit-status")
-                        ("clear" "clear-scrollback") ("d" "dirvish $1")))
-
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
@@ -117,6 +112,8 @@
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
+
+(setq ispell-dictionary "english")
 
 (use-package! gptel
   :init
@@ -173,7 +170,7 @@
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (after! which-key
-  (setq which-key-idle-delay 0.1))
+  (setq which-key-idle-delay 0.05))
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
@@ -315,8 +312,15 @@
 (use-package! vertico
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
+
+  (setq vertico-multiform-categories
+        '((symbol (vertico-sort-function . vertico-sort-alpha))
+          (file (vertico-sort-function . sort-directories-first)
+                )))
+
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
+
   (setq vertico-multiform-mode 1)
   (setq vertico-grid-min-columns 3)
   )
@@ -328,8 +332,28 @@
 (use-package! nerd-icons-completion
   :after (marginalia nerd-icons-completion))
 
+(defvar +vertico-current-arrow t)
+
+(cl-defmethod vertico--format-candidate :around
+  (cand prefix suffix index start &context ((and +vertico-current-arrow
+                                                 (not (bound-and-true-p vertico-flat-mode)))
+                                            (eql t)))
+  (setq cand (cl-call-next-method cand prefix suffix index start))
+  (if (bound-and-true-p vertico-grid-mode)
+      (if (= vertico--index index)
+          (concat #("▶" 0 1 (face vertico-current)) cand)
+        (concat #("_" 0 1 (display " ")) cand))
+    (if (= vertico--index index)
+        (concat
+         #(" " 0 1 (display (left-fringe right-triangle vertico-current)))
+         cand)
+      cand)))
+
 (use-package! orderless
   :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (syles partial-completion))))
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
                                )))

@@ -12,6 +12,7 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 ;; Org mode stuff
+(unpin! org-roam)
 (package! org-download)
 (package! org-remark)
 (package! org-appear
@@ -19,7 +20,6 @@
            :repo "awth13/org-appear"))
 (package! org-auto-tangle)
 (package! git-auto-commit-mode)
-(unpin! org-roam)
 (package! websocket)
 (package! org-roam-ui)
 

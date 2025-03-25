@@ -138,13 +138,6 @@ Enable inlay hints in Rust
   (eat-eshell-mode)
   (setq eshell-visual-commands '()))
 #+end_src
-** Eshell
-#+begin_src emacs-lisp :tangle ./config.el
-(setq +eshell-aliases '(("q" "exit") ("f" "find-file $1") ("ff" "find-file-other-window $1")
-                        ("bd" "eshell-up $1") ("rg" "rg --color=always $*") ("ls" "ls -lhaF --colors=auto")
-                        ("git" "git --no-pager $*") ("gst" "magit-status")
-                        ("clear" "clear-scrollback") ("d" "dirvish $1")))
-#+end_src
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el
@@ -165,6 +158,10 @@ Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
+#+end_src
+** Spelling
+#+begin_src emacs-lisp :tangle ./config.el
+(setq ispell-dictionary "english")
 #+end_src
 ** gptel
 #+begin_src emacs-lisp :tangle ./config.el
@@ -228,7 +225,7 @@ Enable inlay hints in Rust
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (after! which-key
-  (setq which-key-idle-delay 0.1))
+  (setq which-key-idle-delay 0.05))
 #+end_src
 
 #+begin_src emacs-lisp :tangle ./config.el
@@ -443,8 +440,15 @@ Setting a keybind for ~ace-select-window~.
 (use-package! vertico
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
+
+  (setq vertico-multiform-categories
+        '((symbol (vertico-sort-function . vertico-sort-alpha))
+          (file (vertico-sort-function . sort-directories-first)
+                )))
+
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
+
   (setq vertico-multiform-mode 1)
   (setq vertico-grid-min-columns 3)
   )
@@ -456,10 +460,34 @@ Setting a keybind for ~ace-select-window~.
 (use-package! nerd-icons-completion
   :after (marginalia nerd-icons-completion))
 #+end_src
+
+Add an arrow to selected candidate
+#+begin_src emacs-lisp :tangle ./config.el
+(defvar +vertico-current-arrow t)
+
+(cl-defmethod vertico--format-candidate :around
+  (cand prefix suffix index start &context ((and +vertico-current-arrow
+                                                 (not (bound-and-true-p vertico-flat-mode)))
+                                            (eql t)))
+  (setq cand (cl-call-next-method cand prefix suffix index start))
+  (if (bound-and-true-p vertico-grid-mode)
+      (if (= vertico--index index)
+          (concat #("▶" 0 1 (face vertico-current)) cand)
+        (concat #("_" 0 1 (display " ")) cand))
+    (if (= vertico--index index)
+        (concat
+         #(" " 0 1 (display (left-fringe right-triangle vertico-current)))
+         cand)
+      cand)))
+
+#+end_src
 ** Orderless
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! orderless
   :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (syles partial-completion))))
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
                                )))
