@@ -216,6 +216,10 @@
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 
+(setq org-appear-autolinks t)
+(setq org-appear-autoentities t)
+(setq org-appear-autokeywords t)
+
 (setq org-roam-node-default-sort 'file-atime)
 
 (setq org-roam-capture-templates
@@ -321,16 +325,8 @@
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
 
-  (setq vertico-multiform-mode 1)
   (setq vertico-grid-min-columns 3)
   )
-
-(use-package! vertico-directory
-  :after vertico
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package! nerd-icons-completion
-  :after (marginalia nerd-icons-completion))
 
 (defvar +vertico-current-arrow t)
 
@@ -348,6 +344,13 @@
          #(" " 0 1 (display (left-fringe right-triangle vertico-current)))
          cand)
       cand)))
+
+(use-package! vertico-directory
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package! nerd-icons-completion
+  :after (marginalia nerd-icons-completion))
 
 (use-package! orderless
   :custom

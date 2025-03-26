@@ -305,6 +305,12 @@ Automatically push git changes.
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src
+**** Org appear
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-appear-autolinks t)
+(setq org-appear-autoentities t)
+(setq org-appear-autokeywords t)
+#+end_src
 *** Org roam
 **** Default sort
 #+begin_src emacs-lisp :tangle ./config.el
@@ -449,20 +455,9 @@ Setting a keybind for ~ace-select-window~.
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
 
-  (setq vertico-multiform-mode 1)
   (setq vertico-grid-min-columns 3)
   )
 
-(use-package! vertico-directory
-  :after vertico
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package! nerd-icons-completion
-  :after (marginalia nerd-icons-completion))
-#+end_src
-
-Add an arrow to selected candidate
-#+begin_src emacs-lisp :tangle ./config.el
 (defvar +vertico-current-arrow t)
 
 (cl-defmethod vertico--format-candidate :around
@@ -480,7 +475,15 @@ Add an arrow to selected candidate
          cand)
       cand)))
 
+(use-package! vertico-directory
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package! nerd-icons-completion
+  :after (marginalia nerd-icons-completion))
 #+end_src
+
+Add an arrow to selected candidate
 ** Orderless
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! orderless
