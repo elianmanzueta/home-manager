@@ -83,7 +83,6 @@
         '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
         dirvish-side-attributes
         '(vc-state nerd-icons collapse file-size))
-  (setq dirvish-default-layout '(0 0.50 0.50))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   )
 (map! :leader "e" #'dirvish)

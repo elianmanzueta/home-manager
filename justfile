@@ -3,7 +3,7 @@ default:
 
 rebuild:
     @if [ "$(uname)" = "Darwin" ]; then \
-        darwin-rebuild switch -b backup --flake .#mbp; \
+        home-manager switch -b backup --flake .#mac; \
     elif [ "$(uname -a | grep -i WSL)" ]; then \
         home-manager switch -b backup --flake .#wsl; \
     elif [ "$(uname)" = "Linux" ]; then \

@@ -16,31 +16,26 @@
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgsDarwin = nixpkgs.legacyPackages.aarch64-darwin;
+      pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
+
     in {
-      darwinConfigurations = {
-        "mbp" = nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
+      homeConfigurations = {
+        "mac" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsDarwin;
           modules = [
-            ./hosts/mac/system.nix
-            ./hosts/mac/nix-core.nix
-            ./hosts/mac/programs.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.backupFileExtension = "backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.verbose = true;
-              home-manager.users.elian = import ./hosts/mac/home.nix;
-            }
+            ./hosts/mac/home.nix
+            ./shared/terminal/default.nix
+            ./shared/editor/neovim.nix
+            ./shared/editor/emacs.nix
+            ./shared/code/nix.nix
+            ./shared/code/python.nix
+
           ];
         };
-      };
 
-      homeConfigurations = {
         "wsl" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgsLinux;
           modules = [
             ./hosts/wsl/home.nix
             ./shared/terminal/default.nix
@@ -52,7 +47,7 @@
 
         };
         "linux" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgsLinux;
           modules = [
             ./hosts/cachy/configuration.nix
             ./hosts/cachy/home.nix
