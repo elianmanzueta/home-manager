@@ -83,6 +83,7 @@
         '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
         dirvish-side-attributes
         '(vc-state nerd-icons collapse file-size))
+  (setq dirvish-default-layout '(0 0.50 0.50))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   )
 (map! :leader "e" #'dirvish)
@@ -91,10 +92,7 @@
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-kill-buffer-on-exit t)
-  :config
-  (eat-eshell-mode)
-  (setq eshell-visual-commands '()))
+  (setq eat-kill-buffer-on-exit t))
 
 (after! org
   (custom-set-faces!

@@ -122,6 +122,7 @@ Enable inlay hints in Rust
         '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
         dirvish-side-attributes
         '(vc-state nerd-icons collapse file-size))
+  (setq dirvish-default-layout '(0 0.50 0.50))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   )
 (map! :leader "e" #'dirvish)
@@ -132,11 +133,8 @@ Enable inlay hints in Rust
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-kill-buffer-on-exit t)
-  :config
-  (eat-eshell-mode)
-  (setq eshell-visual-commands '()))
-#+end_src
+  (setq eat-kill-buffer-on-exit t))
+  #+end_src
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el

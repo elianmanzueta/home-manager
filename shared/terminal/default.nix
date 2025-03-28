@@ -12,6 +12,7 @@
     zoxide
     wget
     just
+    gh
   ];
 
   home.sessionVariables = {
