@@ -8,6 +8,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = [
+    pkgs.hadolint
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 

@@ -22,6 +22,10 @@ abbr --add fishconfig nvim ~/.config/fish/
 abbr --add starshipconfig nvim ~/.config/starship.toml
 abbr --add nvimconfig nvim ~/.config/nvim
 
+# System
+abbr --add update sudo aptitude update
+abbr --add upgrade sudo aptitude upgrade
+
 # Nix
 abbr --add rebuild darwin-rebuild switch --flake /Users/elian/.config/nix
 
