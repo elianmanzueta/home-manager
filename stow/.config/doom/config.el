@@ -18,8 +18,6 @@
   (setq flycheck-display-errors-delay 0.1)
   (setq flycheck-idle-change-delay 0.5))
 
-(setq! go-eldoc-gocode "gocode-gomod")
-
 (after! lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
@@ -158,7 +156,7 @@
 (setq auto-save-default t
       make-backup-files t)
 (setq confirm-kill-emacs nil)
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '(("~/projects/" . 3)))
@@ -283,7 +281,7 @@
 
 (add-load-path! "~/emacs-libvterm")
 
-(setq doom-theme 'modus-operandi-tinted)
+(setq doom-theme 'doom-one)
 
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)
