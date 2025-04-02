@@ -93,12 +93,8 @@
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
   (setq eat-kill-buffer-on-exit t))
-<<<<<<< HEAD
-
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-=======
->>>>>>> 4b1ffa505146943a486753cef029467f080b031e
 
 (after! org
   (custom-set-faces!
