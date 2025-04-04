@@ -263,11 +263,6 @@ Automatically push git changes.
 (setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/todo.org"))
 (setq org-log-done t)
 #+end_src
-*** Git safe
-#+begin_src emacs-lisp :tangle yes
-(setq org-safe-remote-resources
-      '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
-#+end_src
 *** Org attach
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-attach-auto-tag nil)

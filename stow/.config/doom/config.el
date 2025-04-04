@@ -190,9 +190,6 @@
 (setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/todo.org"))
 (setq org-log-done t)
 
-(setq org-safe-remote-resources
-      '("\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
-
 (setq org-attach-auto-tag nil)
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
