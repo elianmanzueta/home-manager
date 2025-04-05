@@ -305,6 +305,10 @@ Automatically push git changes.
 (setq org-appear-autoentities t)
 (setq org-appear-autokeywords t)
 #+end_src
+**** Org modern star
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-modern-star 'replace)
+#+end_src
 *** Org roam
 **** Default sort
 #+begin_src emacs-lisp :tangle ./config.el
@@ -367,6 +371,10 @@ Automatically push git changes.
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
         ))
+#+end_src
+*** Org safe remote
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 #+end_src
 *** Org-emphasis-alist
 #+begin_src emacs-lisp :tangle ./config.el

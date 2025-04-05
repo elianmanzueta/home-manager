@@ -217,6 +217,8 @@
 (setq org-appear-autoentities t)
 (setq org-appear-autokeywords t)
 
+(setq org-modern-star 'replace)
+
 (setq org-roam-node-default-sort 'file-atime)
 
 (setq org-roam-capture-templates
@@ -264,6 +266,8 @@
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
         ))
+
+(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 
 (setq org-emphasis-alist
       '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
