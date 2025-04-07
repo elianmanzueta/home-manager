@@ -309,6 +309,12 @@ Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-modern-star 'replace)
 #+end_src
+**** Org time-grid
+#+begin_src emacs-lisp :tangle ./config.el
+(setq org-agenda-timegrid-use-ampm 't)
+(setq org-display-custom-times t)
+(setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>"))
+#+end_src
 *** Org roam
 **** Default sort
 #+begin_src emacs-lisp :tangle ./config.el

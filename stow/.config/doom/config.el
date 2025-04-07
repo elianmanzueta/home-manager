@@ -219,6 +219,10 @@
 
 (setq org-modern-star 'replace)
 
+(setq org-agenda-timegrid-use-ampm 't)
+(setq org-display-custom-times t)
+(setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>"))
+
 (setq org-roam-node-default-sort 'file-atime)
 
 (setq org-roam-capture-templates
