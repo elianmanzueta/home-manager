@@ -324,7 +324,7 @@
 
   (setq vertico-multiform-categories
         '((symbol (vertico-sort-function . vertico-sort-alpha))
-          (file (vertico-sort-function . sort-directories-first)
+          (file (vertico-sort-function . vertico-sort-history-alpha)
                 )))
 
   (setq vertico-multiform-commands '((org-roam-node-find grid)
@@ -361,7 +361,7 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
-  (completion-category-overrides '((file (syles partial-completion))))
+  (completion-category-overrides '((file (styles partial-completion))))
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
                                )))
