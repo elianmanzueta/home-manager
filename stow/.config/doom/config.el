@@ -126,15 +126,15 @@
   (setq gptel-default-mode #'org-mode)
 
   (setq gptel-prompt-prefix-alist
-        '((markdown-mode . "### ")
-          (org-mode . "*** Prompt:\n")
-          (text-mode . "### "))
+        '((markdown-mode . "# Prompt:\n")
+          (org-mode . "* Prompt:\n")
+          (text-mode . "Prompt:\n "))
         )
 
   (setq gptel-response-prefix-alist
-        '((markdown-mode . "")
-          (org-mode . "*** GPT:\n")
-          (text-mode . ""))
+        '((markdown-mode . "# Response:\n")
+          (org-mode . "* Response:\n")
+          (text-mode . "Response:\n"))
         )
 
   (setq gptel-directives
