@@ -219,6 +219,10 @@
 
 (setq org-modern-star 'replace)
 
+(setq org-agenda-timegrid-use-ampm 't)
+(setq org-display-custom-times t)
+(setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>"))
+
 (setq org-roam-node-default-sort 'file-atime)
 
 (setq org-roam-capture-templates
@@ -320,7 +324,7 @@
 
   (setq vertico-multiform-categories
         '((symbol (vertico-sort-function . vertico-sort-alpha))
-          (file (vertico-sort-function . sort-directories-first)
+          (file (vertico-sort-function . vertico-sort-history-alpha)
                 )))
 
   (setq vertico-multiform-commands '((org-roam-node-find grid)
@@ -357,7 +361,7 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
-  (completion-category-overrides '((file (syles partial-completion))))
+  (completion-category-overrides '((file (styles partial-completion))))
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
                                )))
