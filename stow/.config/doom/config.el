@@ -284,8 +284,10 @@
        ((eq system-type 'gnu/linux) "/bin/fish")
        (t "/bin/bash")))
 
-(after! vterm
-  (setq vterm-shell explicit-shell-file-name))
+(use-package! vterm
+  :init
+  (setq vterm-shell explicit-shell-file-name)
+  (setq vterm-buffer-name-string "vterm: %s"))
 
 (add-load-path! "~/emacs-libvterm")
 
