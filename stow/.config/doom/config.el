@@ -311,11 +311,18 @@
 
 (use-package! tramp
   :config
-  (setq tramp-default-method "rsync")
+  (setq tramp-default-method "scp")
   (setq vc-ignore-dir-regexp
         (format "\\(%s\\)\\|\\(%s\\)"
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp))
+  (setq tramp-ssh-controlmaster-options
+        (concat
+         "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
+         "-o ControlMaster=auto -o ControlPersist=yes"))
+
+  (setq lsp-auto-register-remote-clients nil)
+  (setq lsp-warn-no-matched-clients nil)
   )
 
 (map! :leader "wa" #'ace-select-window)
