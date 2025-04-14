@@ -311,6 +311,8 @@
 
 (use-package! tramp
   :config
+  (setq tramp-verbose 0)
+  (setq tramp-chunksize 2000)
   (setq tramp-default-method "scp")
   (setq vc-ignore-dir-regexp
         (format "\\(%s\\)\\|\\(%s\\)"
