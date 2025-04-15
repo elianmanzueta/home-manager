@@ -12,11 +12,15 @@
     "S" nil)
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
 
+(use-package! centaur-tabs
+  :init
+  (setq centaur-tabs-set-close-button nil)
+  (setq centaur-tabs-set-bar 'right)
+  )
+
 (use-package! flycheck
   :init
-  :config
-  (setq flycheck-display-errors-delay 0.1)
-  (setq flycheck-idle-change-delay 0.5))
+  (setq flycheck-display-errors-delay 0.1))
 
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -66,12 +70,6 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(use-package! centaur-tabs
-  :init
-  (setq centaur-tabs-set-close-button nil)
-  (setq centaur-tabs-set-bar 'right)
-  )
-
 (setq +doom-dashboard-pwd-policy "~/")
 
 (use-package! nerd-icons)
@@ -109,8 +107,6 @@
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
-
-(setq ispell-dictionary "english")
 
 (use-package! gptel
   :init
@@ -182,6 +178,15 @@
 
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
+
+(use-package! orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion))))
+  (orderless-matching-styles '(orderless-literal
+                               orderless-regexp
+                               )))
 
 (setq gac-automatically-push-p 't
       gac-automatically-add-new-files-p 't)
@@ -278,6 +283,8 @@
         ("~" org-code verbatim) ("+" (:strike-through t)))
       )
 
+(setq ispell-dictionary "english")
+
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
@@ -327,7 +334,12 @@
   (setq lsp-warn-no-matched-clients nil)
   )
 
-(map! :leader "wa" #'ace-select-window)
+(use-package! ultra-scroll
+  :init
+  (setq scroll-conservatively 101
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
 
 (use-package! vertico
   :config
@@ -368,11 +380,4 @@
 (use-package! nerd-icons-completion
   :after (marginalia nerd-icons-completion))
 
-(use-package! orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion))))
-  (orderless-matching-styles '(orderless-literal
-                               orderless-regexp
-                               )))
+(map! :leader "wa" #'ace-select-window)
