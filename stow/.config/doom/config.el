@@ -66,6 +66,41 @@
   (setq lsp-pyright-venv-path ".")
   (setq lsp-pyright-venv-directory ".venv"))
 
+(defun uv-activate ()
+  "Activate Python environment managed by uv based on current project directory.
+Looks for .venv directory in project root and activates the Python interpreter."
+  (interactive)
+  (let* ((project-root (project-root (project-current t)))
+         (venv-path (expand-file-name ".venv" project-root))
+         (python-path (expand-file-name
+                       (if (eq system-type 'windows-nt)
+                           "Scripts/python.exe"
+                         "bin/python")
+                       venv-path)))
+    (if (file-exists-p python-path)
+        (progn
+          ;; Set Python interpreter path
+          (setq python-shell-interpreter python-path)
+
+          ;; Update exec-path to include the venv's bin directory
+          (let ((venv-bin-dir (file-name-directory python-path)))
+            (setq exec-path (cons venv-bin-dir
+                                  (remove venv-bin-dir exec-path))))
+
+          ;; Update PATH environment variable
+          (setenv "PATH" (concat (file-name-directory python-path)
+                                 path-separator
+                                 (getenv "PATH")))
+
+          ;; Update VIRTUAL_ENV environment variable
+          (setenv "VIRTUAL_ENV" venv-path)
+
+          ;; Remove PYTHONHOME if it exists
+          (setenv "PYTHONHOME" nil)
+
+          (message "Activated UV Python environment at %s" venv-path))
+      (error "No UV Python environment found in %s" project-root))))
+
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
@@ -192,8 +227,10 @@
       gac-automatically-add-new-files-p 't)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/todo.org"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/projects/"))
 (setq org-log-done t)
+(setq org-agenda-hide-tags-regexp ".")
+(setq org-agenda-prefix-format '((todo . " ")))
 
 (setq org-attach-auto-tag nil)
 (setq org-id-method 'ts)
@@ -211,6 +248,11 @@
 (setq org-download-image-org-width '450)
 
 (setq org-download-heading-lvl nil)
+
+(setq org-emphasis-alist
+      '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+        ("~" org-code verbatim) ("+" (:strike-through t)))
+      )
 
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
@@ -247,11 +289,8 @@
 
 (after! org
   (setq org-roam-dailies-capture-templates
-        '(("d" "default" plain (file "~/org/roam/templates/daily.org")
-           :if-new (file+datetree "daily-journal.org" week)
-           :unarrowed t)
-          ("w" "work-todo" plain (file "~/org/roam/templates/work-daily.org")
-           :if-new (file+datetree "cstate-daily.org" week)
+        '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
+           :if-new (file+datetree "work-todo.org" week)
            :unarrowed t)
           )
         )
@@ -269,19 +308,14 @@
 
 (add-hook! 'org-roam 'org-roam-timestamps-mode)
 
+(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
+
 (after! org
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
         ))
-
-(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
-
-(setq org-emphasis-alist
-      '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-        ("~" org-code verbatim) ("+" (:strike-through t)))
-      )
 
 (setq ispell-dictionary "english")
 
@@ -318,21 +352,27 @@
 
 (use-package! tramp
   :config
-  (setq tramp-verbose 0)
+  (setq tramp-inline-compress-start-size 50000)
+  (setq tramp-verbose 1)
   (setq tramp-chunksize 2000)
   (setq tramp-default-method "scp")
+
   (setq vc-ignore-dir-regexp
         (format "\\(%s\\)\\|\\(%s\\)"
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp))
-  (setq tramp-ssh-controlmaster-options
-        (concat
-         "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
-         "-o ControlMaster=auto -o ControlPersist=yes"))
 
+  (setq tramp-ssh-controlmaster-options nil)
   (setq lsp-auto-register-remote-clients nil)
   (setq lsp-warn-no-matched-clients nil)
   )
+
+(connection-local-set-profile-variables
+ 'remote-direct-async-process
+ '((tramp-direct-async-process . t)))
+(connection-local-set-profiles
+ '(:application tramp :protocol "sshx")
+ 'remote-direct-async-process)
 
 (use-package! ultra-scroll
   :init
