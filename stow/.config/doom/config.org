@@ -418,6 +418,10 @@ Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook! 'org-roam 'org-roam-timestamps-mode)
 #+end_src
+**** Exclude
+#+begin_src emacs-lisp :tangle ./config.el
+(add-to-list 'org-roam-file-exclude-regexp "archive\\.org$")
+#+end_src
 *** Org safe remote
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))

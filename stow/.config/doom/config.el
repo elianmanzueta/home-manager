@@ -308,6 +308,8 @@ Looks for .venv directory in project root and activates the Python interpreter."
 
 (add-hook! 'org-roam 'org-roam-timestamps-mode)
 
+(add-to-list 'org-roam-file-exclude-regexp "archive\\.org$")
+
 (setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 
 (after! org
