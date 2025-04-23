@@ -420,7 +420,8 @@ Automatically push git changes.
 #+end_src
 **** Exclude
 #+begin_src emacs-lisp :tangle ./config.el
-(add-to-list 'org-roam-file-exclude-regexp "archive\\.org$")
+(setq org-roam-file-exclude-regexp
+      (list "/home/elian/org/.attach/"))
 #+end_src
 *** Org safe remote
 #+begin_src emacs-lisp :tangle ./config.el
