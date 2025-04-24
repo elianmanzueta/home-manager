@@ -127,6 +127,26 @@ Looks for .venv directory in project root and activates the Python interpreter."
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
+(defun +eshell-default-prompt-fn ()
+  "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
+  (require 'shrink-path)
+  (concat (if (bobp) "" "\n")
+          (propertize (eshell-user-login-name) 'face '+eshell-prompt-git-branch)
+          (propertize " in " 'face '+eshell-prompt-pwd)
+          (let ((pwd (eshell/pwd)))
+            (propertize (if (equal pwd "~")
+                            pwd
+                          (abbreviate-file-name (shrink-path-file pwd)))
+                        'face '+eshell-prompt-pwd))
+          (propertize (+eshell--current-git-branch)
+                      'face '+eshell-prompt-git-branch)
+          (propertize " on " 'face '+eshell-prompt-pwd)
+          (propertize (system-name) 'face '+eshell-prompt-git-branch)
+          (propertize "\n>" 'face 'nerd-icons-green)
+
+          ;; (propertize " λ" 'face (if (zerop eshell-last-command-status) 'success 'error))
+          " "))
+
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
