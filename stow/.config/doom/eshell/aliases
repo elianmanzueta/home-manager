@@ -1,0 +1,9 @@
+alias ls eza -lhaF --color=auto --icons=always
+alias gst git status
+alias gcsm git commit --signoff --message
+alias gp git push
+alias ga git add
+alias l eza -lhaF --color=auto --icons=always
+alias lt eza --tree
+alias f find-file $1
+alias gg magit-status
