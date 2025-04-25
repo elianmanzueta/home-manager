@@ -131,17 +131,17 @@ Looks for .venv directory in project root and activates the Python interpreter."
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
   (concat (if (bobp) "" "\n")
-          (propertize (eshell-user-login-name) 'face '+eshell-prompt-git-branch)
+          (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
           (propertize " in " 'face '+eshell-prompt-pwd)
           (let ((pwd (eshell/pwd)))
             (propertize (if (equal pwd "~")
                             pwd
                           (abbreviate-file-name (shrink-path-file pwd)))
-                        'face '+eshell-prompt-pwd))
-          (propertize (+eshell--current-git-branch)
-                      'face '+eshell-prompt-git-branch)
+                        'face 'nerd-icons-green))
+          ;; (propertize (+eshell--current-git-branch)
+          ;;             'face '+eshell-prompt-git-branch)
           (propertize " on " 'face '+eshell-prompt-pwd)
-          (propertize (system-name) 'face '+eshell-prompt-git-branch)
+          (propertize (system-name) 'face 'nerd-icons-green)
           (propertize "\n>" 'face 'nerd-icons-green)
 
           ;; (propertize " λ" 'face (if (zerop eshell-last-command-status) 'success 'error))
@@ -247,7 +247,7 @@ Looks for .venv directory in project root and activates the Python interpreter."
       gac-automatically-add-new-files-p 't)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/projects/"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
 (setq org-log-done t)
 (setq org-agenda-hide-tags-regexp ".")
 (setq org-agenda-prefix-format '((todo . " ")))

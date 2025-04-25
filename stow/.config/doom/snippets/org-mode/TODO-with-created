@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: TODO-with-created
+# key: todo
+# uuid: todo
+# --
+TODO ${1:task description}
+- /Created/ `(let ((time (current-time))) (format-time-string "[%Y-%m-%d %a %H:%M]" time))`
