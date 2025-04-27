@@ -145,6 +145,18 @@ Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (setq +doom-dashboard-pwd-policy "~/")
 #+end_src
+** Completion preview mode
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package completion-preview
+  :hook
+  ((prog-mode org-mode) . completion-preview-mode)
+  :config
+  (setq completion-preview-minimum-symbol-length 2)
+  (setq completion-preview-completion-styles '(basic partial-completion))
+)
+
+(add-hook 'eshell-load-hook #'completion-preview-mode)
+#+end_src
 ** Dirvish
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (use-package! nerd-icons)
@@ -190,6 +202,12 @@ Enable inlay hints in Rust
 
           ;; (propertize " λ" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
+
+(set-eshell-alias!
+ "ls" "eza -lhaF"
+ "l" "eza -lhaF"
+ "gst" "git status"
+ "gcsm" "git commit --signoff --message")
 #+end_src
 
 ** Faces

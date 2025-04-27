@@ -107,6 +107,16 @@ Looks for .venv directory in project root and activates the Python interpreter."
 
 (setq +doom-dashboard-pwd-policy "~/")
 
+(use-package completion-preview
+  :hook
+  ((prog-mode org-mode) . completion-preview-mode)
+  :config
+  (setq completion-preview-minimum-symbol-length 2)
+  (setq completion-preview-completion-styles '(basic partial-completion))
+)
+
+(add-hook 'eshell-load-hook #'completion-preview-mode)
+
 (use-package! nerd-icons)
 (use-package! dirvish
   :config
@@ -146,6 +156,12 @@ Looks for .venv directory in project root and activates the Python interpreter."
 
           ;; (propertize " λ" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
+
+(set-eshell-alias!
+ "ls" "eza -lhaF"
+ "l" "eza -lhaF"
+ "gst" "git status"
+ "gcsm" "git commit --signoff --message")
 
 (after! org
   (custom-set-faces!
