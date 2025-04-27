@@ -141,21 +141,19 @@ Enable inlay hints in Rust
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
-** Dashboard
-#+begin_src emacs-lisp :tangle ./config.el
-(setq +doom-dashboard-pwd-policy "~/")
-#+end_src
 ** Completion preview mode
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package completion-preview
   :hook
-  ((prog-mode org-mode) . completion-preview-mode)
+  ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 2)
+  (setq completion-preview-minimum-symbol-length 1)
   (setq completion-preview-completion-styles '(basic partial-completion))
 )
-
-(add-hook 'eshell-load-hook #'completion-preview-mode)
+#+end_src
+** Dashboard
+#+begin_src emacs-lisp :tangle ./config.el
+(setq +doom-dashboard-pwd-policy "~/")
 #+end_src
 ** Dirvish
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -581,6 +579,7 @@ Setting vterm path.
 
 (defvar +vertico-current-arrow t)
 
+;; Arrows on candidates
 (cl-defmethod vertico--format-candidate :around
   (cand prefix suffix index start &context ((and +vertico-current-arrow
                                                  (not (bound-and-true-p vertico-flat-mode)))
@@ -603,8 +602,6 @@ Setting vterm path.
 (use-package! nerd-icons-completion
   :after (marginalia nerd-icons-completion))
 #+end_src
-
-Add an arrow to selected candidate
 ** Windows
 Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el

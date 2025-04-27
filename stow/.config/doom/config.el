@@ -105,17 +105,15 @@ Looks for .venv directory in project root and activates the Python interpreter."
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(setq +doom-dashboard-pwd-policy "~/")
-
 (use-package completion-preview
   :hook
-  ((prog-mode org-mode) . completion-preview-mode)
+  ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 2)
+  (setq completion-preview-minimum-symbol-length 1)
   (setq completion-preview-completion-styles '(basic partial-completion))
 )
 
-(add-hook 'eshell-load-hook #'completion-preview-mode)
+(setq +doom-dashboard-pwd-policy "~/")
 
 (use-package! nerd-icons)
 (use-package! dirvish
@@ -437,6 +435,7 @@ Looks for .venv directory in project root and activates the Python interpreter."
 
 (defvar +vertico-current-arrow t)
 
+;; Arrows on candidates
 (cl-defmethod vertico--format-candidate :around
   (cand prefix suffix index start &context ((and +vertico-current-arrow
                                                  (not (bound-and-true-p vertico-flat-mode)))
