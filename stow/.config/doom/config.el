@@ -174,7 +174,6 @@ Looks for .venv directory in project root and activates the Python interpreter."
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 
 (use-package! gptel
@@ -324,7 +323,7 @@ Looks for .venv directory in project root and activates the Python interpreter."
 (after! org
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
-           :if-new (file+datetree "work-todo.org" week)
+           :if-new (file+datetree "work-inbox.org" week)
            :unarrowed t)
           )
         )

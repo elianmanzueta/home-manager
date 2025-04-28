@@ -9,7 +9,7 @@
 
   home.packages = [
     pkgs.hadolint
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.nerd-fonts.jetbrains-mono
   ];
 
   fonts.fontconfig.enable = true;

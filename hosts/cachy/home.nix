@@ -11,9 +11,6 @@
     # Desktop
     pkgs.spotify
     pkgs.vesktop
-
-    # Font
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   home.sessionVariables = {

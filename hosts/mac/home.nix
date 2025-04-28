@@ -9,7 +9,6 @@
   programs.home-manager.enable = true;
 
   home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   home.sessionVariables = { EDITOR = "nvim"; };

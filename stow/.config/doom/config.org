@@ -226,7 +226,6 @@ Enable inlay hints in Rust
 #+end_src
 ** Fonts
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 #+end_src
 ** gptel
@@ -434,7 +433,7 @@ Automatically push git changes.
 (after! org
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
-           :if-new (file+datetree "work-todo.org" week)
+           :if-new (file+datetree "work-inbox.org" week)
            :unarrowed t)
           )
         )
