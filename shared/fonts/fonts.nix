@@ -1,8 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-    home.packages = [
+  home.packages = [
       pkgs.nerd-fonts.jetbrains-mono
   ];
 
+  fonts.fontconfig.enable = true;
 }
