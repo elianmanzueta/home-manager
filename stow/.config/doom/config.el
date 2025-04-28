@@ -111,7 +111,7 @@ Looks for .venv directory in project root and activates the Python interpreter."
   :config
   (setq completion-preview-minimum-symbol-length 1)
   (setq completion-preview-completion-styles '(basic partial-completion))
-)
+  )
 
 (setq +doom-dashboard-pwd-policy "~/")
 
@@ -176,9 +176,68 @@ Looks for .venv directory in project root and activates the Python interpreter."
 
 (setq doom-emoji-font "Noto Color Emoji")
 
+(defun nano-popup (buffer)
+  "Toggle a popup window at the bottom of frame displaying the given
+BUFFER. The size fo the window is saved such that toggling the window
+does not change the window size."
+
+  (interactive)
+  (let ((window (get-buffer-window buffer)))
+    (if window
+        (progn
+          (with-current-buffer buffer
+            (setq-local window-height (window-height window))) ;
+          (delete-window window))
+      (progn
+        (with-current-buffer buffer
+          (pop-to-buffer buffer
+                         `((display-buffer-at-bottom)
+                           ,(when (boundp 'window-height)
+                              (cons 'window-height window-height)))))
+        (setq-local window-height (window-height (get-buffer-window buffer)))))))
+(provide 'nano-popup)
+
+(defun nano-term ()
+  "Show/hide eat terminal at the bottom of the frame."
+
+  (interactive)
+  (if (get-buffer eat-buffer-name)
+      (nano-popup eat-buffer-name)
+    (let ((display-buffer-alist `(("\\*eat\\*"
+                                   (display-buffer-at-bottom)
+                                   (window-height . 12)
+                                   (dedicated . t)))))
+      (eat-other-window nil nil)
+      )))
+
+(defun my/prompt-for-eat-term ()
+  "Prompt for a terminal name before opening EAT."
+
+  (interactive)
+  (let ((term-name (read-string "Terminal name: " nil nil "eat")))
+    (setq-local eat-buffer-name term-name)
+    (eat nil nil)))
+
+(defun my/gptel-popup ()
+  "Create a nano-popup window with a gptel session"
+
+  (interactive)
+  (if (get-buffer "gptel-popup")
+      (nano-popup (get-buffer "gptel-popup"))
+    (let ((display-buffer-alist `(("\\gptel-popup\\"
+                                   (display-buffer-at-bottom)
+                                   (window-height . 20)
+                                   (dedicated . t)))))
+      (gptel "gptel-popup" nil nil))))
+
+(map! :leader "o t" #'nano-term)
+(map! :leader "o T" #'eat-prompt-buffer-name)
+(map! :leader "g p" #'my/gptel-popup)
+(map! :leader "g P" #'gptel)
+
 (use-package! gptel
   :init
-  (map! :leader "g p" #'gptel)
+  ;; (map! :leader "g p" #'gptel)
   :config
   (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
   (setq
