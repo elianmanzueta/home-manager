@@ -317,7 +317,7 @@ does not change the window size."
   (interactive)
   (let ((term-name (read-string "Terminal name: " nil nil "eat")))
     (setq-local eat-buffer-name term-name)
-    (eat nil nil)))
+    (eat)))
 
 (defun my/gptel-popup ()
   "Create a nano-popup window with a gptel session"
@@ -332,7 +332,7 @@ does not change the window size."
       (gptel "gptel-popup" nil nil))))
 
 (map! :leader "o t" #'nano-term)
-(map! :leader "o T" #'eat-prompt-buffer-name)
+(map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
 #+end_src
