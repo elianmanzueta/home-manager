@@ -38,8 +38,8 @@
   (setq just-indent-offset 4))
 
 (fset #'jsonrpc--log-event #'ignore)
-(setq lsp-idle-delay 0.1)
-(setq corfu-auto-delay 0.1)
+(setq lsp-idle-delay 0.3)
+(setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.1)
 
 (use-package! powershell
@@ -119,10 +119,18 @@
           " "))
 
 (set-eshell-alias!
- "ls" "eza -lhaF"
- "l" "eza -lhaF"
+ "ls" "ls -lhaF"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+
+(defun my/check-for-eza ()
+  "Check the current shell for an installation of eza."
+
+  (if (zerop (length (shell-command-to-string "which eza")))
+      (message "Eza not found"))
+  (progn
+    (message "Eza found")
+    (eshell/alias "ls" "eza -lhaF $*")))
 
 (after! org
   (custom-set-faces!
@@ -204,7 +212,7 @@
 
 (display-time-mode 1)
 
-(setq doom-scratch-initial-major-mode 'org-mode)
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 
 (setq evil-split-window-below t
@@ -241,7 +249,7 @@ does not change the window size."
                                    (display-buffer-at-bottom)
                                    (window-height . 12)
                                    (dedicated . t)))))
-      (eat-other-window nil nil)
+      (eat-other-window nil -1)
       )))
 
 (defun my/prompt-for-eat-term ()

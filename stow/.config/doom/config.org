@@ -62,8 +62,8 @@ Keybind to enable inlay hints
 *** LSP
 #+begin_src emacs-lisp :tangle ./config.el
 (fset #'jsonrpc--log-event #'ignore)
-(setq lsp-idle-delay 0.1)
-(setq corfu-auto-delay 0.1)
+(setq lsp-idle-delay 0.3)
+(setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.1)
 #+end_src
 *** Powershell
@@ -162,10 +162,18 @@ Enable inlay hints in Rust
           " "))
 
 (set-eshell-alias!
- "ls" "eza -lhaF"
- "l" "eza -lhaF"
+ "ls" "ls -lhaF"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+
+(defun my/check-for-eza ()
+  "Check the current shell for an installation of eza."
+
+  (if (zerop (length (shell-command-to-string "which eza")))
+      (message "Eza not found"))
+  (progn
+    (message "Eza found")
+    (eshell/alias "ls" "eza -lhaF $*")))
 #+end_src
 
 ** Faces
@@ -188,6 +196,7 @@ Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (setq doom-emoji-font "Noto Color Emoji")
 #+end_src
+
 ** gptel
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! gptel
@@ -264,7 +273,7 @@ Enable inlay hints in Rust
 
 Set the Scratch buffer's initial mode to org mode.
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-scratch-initial-major-mode 'org-mode)
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 #+end_src
 
@@ -308,7 +317,7 @@ does not change the window size."
                                    (display-buffer-at-bottom)
                                    (window-height . 12)
                                    (dedicated . t)))))
-      (eat-other-window nil nil)
+      (eat-other-window nil -1)
       )))
 
 (defun my/prompt-for-eat-term ()
@@ -398,6 +407,7 @@ Automatically push git changes.
 #+end_src
 
 *** Org-emphasis-alist
+verbatim
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-emphasis-alist
       '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
