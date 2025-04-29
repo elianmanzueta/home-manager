@@ -119,10 +119,18 @@
           " "))
 
 (set-eshell-alias!
- "ls" "eza -lhaF"
- "l" "eza -lhaF"
+ "ls" "ls -lhaF"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+
+(defun my/check-for-eza ()
+  "Check the current shell for an installation of eza."
+
+  (if (zerop (length (shell-command-to-string "which eza")))
+      (message "Eza not found"))
+  (progn
+    (message "Eza found")
+    (eshell/alias "ls" "eza -lhaF $*")))
 
 (after! org
   (custom-set-faces!
@@ -204,7 +212,7 @@
 
 (display-time-mode 1)
 
-(setq doom-scratch-initial-major-mode 'org-mode)
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 
 (setq evil-split-window-below t

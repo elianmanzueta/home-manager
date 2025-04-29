@@ -162,10 +162,18 @@ Enable inlay hints in Rust
           " "))
 
 (set-eshell-alias!
- "ls" "eza -lhaF"
- "l" "eza -lhaF"
+ "ls" "ls -lhaF"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+
+(defun my/check-for-eza ()
+  "Check the current shell for an installation of eza."
+
+  (if (zerop (length (shell-command-to-string "which eza")))
+      (message "Eza not found"))
+  (progn
+    (message "Eza found")
+    (eshell/alias "ls" "eza -lhaF $*")))
 #+end_src
 
 ** Faces
@@ -265,7 +273,7 @@ Enable inlay hints in Rust
 
 Set the Scratch buffer's initial mode to org mode.
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-scratch-initial-major-mode 'org-mode)
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 #+end_src
 
@@ -399,6 +407,7 @@ Automatically push git changes.
 #+end_src
 
 *** Org-emphasis-alist
+verbatim
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-emphasis-alist
       '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
