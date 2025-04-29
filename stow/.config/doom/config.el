@@ -38,8 +38,8 @@
   (setq just-indent-offset 4))
 
 (fset #'jsonrpc--log-event #'ignore)
-(setq lsp-idle-delay 0.1)
-(setq corfu-auto-delay 0.1)
+(setq lsp-idle-delay 0.3)
+(setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.1)
 
 (use-package! powershell
@@ -241,7 +241,7 @@ does not change the window size."
                                    (display-buffer-at-bottom)
                                    (window-height . 12)
                                    (dedicated . t)))))
-      (eat-other-window nil nil)
+      (eat-other-window nil -1)
       )))
 
 (defun my/prompt-for-eat-term ()
@@ -265,7 +265,7 @@ does not change the window size."
       (gptel "gptel-popup" nil nil))))
 
 (map! :leader "o t" #'nano-term)
-(map! :leader "o T" #'eat-prompt-buffer-name)
+(map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
 
