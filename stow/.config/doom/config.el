@@ -123,15 +123,6 @@
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
 
-(defun my/check-for-eza ()
-  "Check the current shell for an installation of eza."
-
-  (if (zerop (length (shell-command-to-string "which eza")))
-      (message "Eza not found"))
-  (progn
-    (message "Eza found")
-    (eshell/alias "ls" "eza -lhaF $*")))
-
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
