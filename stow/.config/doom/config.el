@@ -283,8 +283,8 @@ does not change the window size."
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
 (setq org-log-done t)
-(setq org-agenda-hide-tags-regexp ".")
-(setq org-agenda-prefix-format '((todo . " ")))
+(setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
+;; (setq org-agenda-prefix-format '((todo . " ")))
 
 (setq org-attach-auto-tag nil)
 (setq org-id-method 'ts)
