@@ -312,11 +312,12 @@ does not change the window size."
                                    (display-buffer-at-bottom)
                                    (window-height . 12)
                                    (dedicated . t)))))
-      (eat-other-window nil -1)
-      )))
+      (eat-other-window nil -1))))
+
 
 (defun my/prompt-for-eat-term ()
   "Prompt for a terminal name before opening EAT."
+
 
   (interactive)
   (let ((term-name (read-string "Terminal name: " nil nil "eat")))
@@ -340,6 +341,12 @@ does not change the window size."
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
 #+end_src
+** Olivetti
+#+begin_src emacs-lisp :tangle yes
+(use-package! olivetti
+  :config
+  (setq olivetti-style "fancy"))
+#+end_src
 ** Orderless
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! orderless
@@ -351,6 +358,7 @@ does not change the window size."
                                orderless-regexp
                                )))
 #+end_src
+
 ** Org Mode
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
@@ -467,6 +475,9 @@ verbatim
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 #+end_src

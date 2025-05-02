@@ -241,11 +241,12 @@ does not change the window size."
                                    (display-buffer-at-bottom)
                                    (window-height . 12)
                                    (dedicated . t)))))
-      (eat-other-window nil -1)
-      )))
+      (eat-other-window nil -1))))
+
 
 (defun my/prompt-for-eat-term ()
   "Prompt for a terminal name before opening EAT."
+
 
   (interactive)
   (let ((term-name (read-string "Terminal name: " nil nil "eat")))
@@ -268,6 +269,10 @@ does not change the window size."
 (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
+
+(use-package! olivetti
+  :config
+  (setq olivetti-style "fancy"))
 
 (use-package! orderless
   :custom
@@ -363,6 +368,9 @@ does not change the window size."
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
 (setq org-hide-emphasis-markers t)
 (setq org-fontify-quote-and-verse-blocks t)
 
