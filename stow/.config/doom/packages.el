@@ -41,3 +41,4 @@
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
 (package! org-super-agenda)
+(package! olivetti)
