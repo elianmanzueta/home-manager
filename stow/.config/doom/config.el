@@ -37,7 +37,6 @@
   :config
   (setq just-indent-offset 4))
 
-(fset #'jsonrpc--log-event #'ignore)
 (setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.1)
@@ -63,6 +62,8 @@
 
   (setq lsp-pyright-venv-path ".")
   (setq lsp-pyright-venv-directory ".venv"))
+
+(setq-hook! 'python-mode-hook +format-with 'ruff)
 
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
@@ -299,6 +300,57 @@ does not change the window size."
   :config
   (setq org-auto-tangle-default t))
 
+(use-package! org-super-agenda
+  :after org-agenda
+  :config
+  (setq org-agenda-start-day nil)
+  (setq org-agenda-block-separator nil)
+  (setq org-agenda-start-day nil)
+  (setq org-habit-show-habits-only-for-today nil)
+  (setq org-habit-show-all-today t)
+  (setq org-super-agenda-unmatched-name "Misc")
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  )
+
+(setq org-agenda-custom-commands
+      '(("n" "Agenda view"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :scheduled today
+                          :order 1)))))
+
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '(;; Each group has an inmplicit boolean OR operator between its selectors.
+                          (:name "Today"
+                           :deadline today
+                           :face (:background "black")
+                           :log t)
+                          (:name "In progress"
+                           :todo ("IN-PROGRESS"))
+                          (:name "Work Important"
+                           :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Work other"
+                           :and (:category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Habits"
+                           :tag "habits"
+                           :time-grid t)
+                          (:name "Scheduled - Future"
+                           :time-grid t
+                           :scheduled future)
+                          (:name "Important"
+                           :priority "A")
+                          (:name "Issues"
+                           :tag "issues"
+                           :order 0)
+                          (:priority<= "B")
+                          ))))))))
+
+(add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
+
 (setq org-download-image-org-width '450)
 
 (setq org-download-heading-lvl nil)
@@ -324,7 +376,7 @@ does not change the window size."
 (setq org-display-custom-times t)
 (setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>"))
 
-(setq org-roam-node-default-sort 'file-atime)
+(setq org-roam-node-default-sort 'file-mtime)
 
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
@@ -338,8 +390,11 @@ does not change the window size."
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
          :unarrowed t
          )
-        )
-      )
+        ("i" "issue" plain (file "~/org/roam/templates/issue.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
+         :unarrowed t
+         )
+        ))
 
 (after! org
   (setq org-roam-dailies-capture-templates

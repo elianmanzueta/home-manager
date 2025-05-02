@@ -61,7 +61,6 @@ Keybind to enable inlay hints
 #+end_src
 *** LSP
 #+begin_src emacs-lisp :tangle ./config.el
-(fset #'jsonrpc--log-event #'ignore)
 (setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.1)
@@ -92,6 +91,11 @@ Enable inlay hints in Python
 
   (setq lsp-pyright-venv-path ".")
   (setq lsp-pyright-venv-directory ".venv"))
+#+end_src
+
+Enable Ruff
+#+begin_src emacs-lisp :tangle ./config.el
+(setq-hook! 'python-mode-hook +format-with 'ruff)
 #+end_src
 *** Rust
 **** Inlay hints
@@ -386,6 +390,59 @@ Automatically push git changes.
   :config
   (setq org-auto-tangle-default t))
 #+end_src
+*** Org super agenda
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! org-super-agenda
+  :after org-agenda
+  :config
+  (setq org-agenda-start-day nil)
+  (setq org-agenda-block-separator nil)
+  (setq org-agenda-start-day nil)
+  (setq org-habit-show-habits-only-for-today nil)
+  (setq org-habit-show-all-today t)
+  (setq org-super-agenda-unmatched-name "Misc")
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  )
+
+(setq org-agenda-custom-commands
+      '(("n" "Agenda view"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :scheduled today
+                          :order 1)))))
+
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '(;; Each group has an inmplicit boolean OR operator between its selectors.
+                          (:name "Today"
+                           :deadline today
+                           :face (:background "black")
+                           :log t)
+                          (:name "In progress"
+                           :todo ("IN-PROGRESS"))
+                          (:name "Work Important"
+                           :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Work other"
+                           :and (:category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Habits"
+                           :tag "habits"
+                           :time-grid t)
+                          (:name "Scheduled - Future"
+                           :time-grid t
+                           :scheduled future)
+                          (:name "Important"
+                           :priority "A")
+                          (:name "Issues"
+                           :tag "issues"
+                           :order 0)
+                          (:priority<= "B")
+                          ))))))))
+
+(add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
+#+end_src
 *** Org download
 **** Default image width
 #+begin_src emacs-lisp :tangle ./config.el
@@ -432,7 +489,7 @@ verbatim
 *** Org roam
 **** Default sort
 #+begin_src emacs-lisp :tangle ./config.el
-(setq org-roam-node-default-sort 'file-atime)
+(setq org-roam-node-default-sort 'file-mtime)
 #+end_src
 **** Capture templates
 #+begin_src emacs-lisp :tangle ./config.el
@@ -448,8 +505,11 @@ verbatim
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
          :unarrowed t
          )
-        )
-      )
+        ("i" "issue" plain (file "~/org/roam/templates/issue.org")
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
+         :unarrowed t
+         )
+        ))
 #+end_src
 
 **** Dailies capture templates
