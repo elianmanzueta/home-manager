@@ -32,6 +32,7 @@
 Keybind to enable inlay hints
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
+
 #+end_src
 *** Go
 **** Gopls
@@ -111,7 +112,7 @@ Enable inlay hints in Rust
   :hook
   ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 1)
+  (setq completion-preview-minimum-symbol-length 3)
   (setq completion-preview-completion-styles '(basic partial-completion))
   )
 #+end_src
@@ -189,6 +190,7 @@ Enable inlay hints in Rust
 #+end_src
 ** Fonts
 #+begin_src emacs-lisp :tangle ./config.el
+(setq doom-font "JetBrainsMono Nerd Font")
 (setq doom-emoji-font "Noto Color Emoji")
 #+end_src
 
@@ -248,9 +250,7 @@ Enable inlay hints in Rust
       '(("~/projects/" . 3)))
 
 (setq-default
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+ delete-by-moving-to-trash t)
 
 (after! which-key
   (setq which-key-idle-delay 0.05))

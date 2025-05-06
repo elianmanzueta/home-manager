@@ -73,7 +73,7 @@
   :hook
   ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 1)
+  (setq completion-preview-minimum-symbol-length 3)
   (setq completion-preview-completion-styles '(basic partial-completion))
   )
 
@@ -137,6 +137,7 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
 
+(setq doom-font "JetBrainsMono Nerd Font")
 (setq doom-emoji-font "Noto Color Emoji")
 
 (use-package! gptel
@@ -189,9 +190,7 @@
       '(("~/projects/" . 3)))
 
 (setq-default
- delete-by-moving-to-trash t                      ; Delete files to trash
- window-combination-resize t                      ; take new window space from all other windows (not just current)
- x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+ delete-by-moving-to-trash t)
 
 (after! which-key
   (setq which-key-idle-delay 0.05))
