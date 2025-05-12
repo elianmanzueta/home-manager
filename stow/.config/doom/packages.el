@@ -41,4 +41,5 @@
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
 (package! org-super-agenda)
-(package! olivetti)
+(package! org-anki)
+(package! anki-editor)
