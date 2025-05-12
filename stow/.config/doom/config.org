@@ -7,6 +7,10 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 #+END_SRC
+** Org-anki
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! anki-editor)
+#+end_src
 ** Avy
 #+begin_src emacs-lisp :tangle ./config.el
 (setq avy-timeout-seconds 0.35)
@@ -110,7 +114,7 @@ Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package completion-preview
   :hook
-  ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
+  ((prog-mode text-mode eshell-mode) . completion-preview-mode)
   :config
   (setq completion-preview-minimum-symbol-length 3)
   (setq completion-preview-completion-styles '(basic partial-completion))
@@ -340,12 +344,6 @@ does not change the window size."
 (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
-#+end_src
-** Olivetti
-#+begin_src emacs-lisp :tangle yes
-(use-package! olivetti
-  :config
-  (setq olivetti-style "fancy"))
 #+end_src
 ** Orderless
 #+begin_src emacs-lisp :tangle ./config.el

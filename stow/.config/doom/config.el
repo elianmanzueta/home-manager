@@ -1,6 +1,8 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
+(use-package! anki-editor)
+
 (setq avy-timeout-seconds 0.35)
 (setq avy-all-windows t)
 (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
@@ -71,7 +73,7 @@
 
 (use-package completion-preview
   :hook
-  ((prog-mode org-mode text-mode eshell-mode) . completion-preview-mode)
+  ((prog-mode text-mode eshell-mode) . completion-preview-mode)
   :config
   (setq completion-preview-minimum-symbol-length 3)
   (setq completion-preview-completion-styles '(basic partial-completion))
@@ -268,10 +270,6 @@ does not change the window size."
 (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
-
-(use-package! olivetti
-  :config
-  (setq olivetti-style "fancy"))
 
 (use-package! orderless
   :custom
