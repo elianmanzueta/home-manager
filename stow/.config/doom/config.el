@@ -1,8 +1,6 @@
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
-(use-package! anki-editor)
-
 (setq avy-timeout-seconds 0.35)
 (setq avy-all-windows t)
 (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
@@ -93,6 +91,10 @@
   )
 (map! :leader "e" #'dirvish)
 
+(setq doom-font "Iosevka Term ")
+(setq doom-emoji-font "Noto Color Emoji")
+(setq doom-theme 'doom-monokai-spectrum)
+
 (use-package! eat
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
@@ -139,12 +141,7 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
 
-(setq doom-font "JetBrainsMono Nerd Font")
-(setq doom-emoji-font "Noto Color Emoji")
-
 (use-package! gptel
-  :init
-  ;; (map! :leader "g p" #'gptel)
   :config
   (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
   (setq
@@ -280,28 +277,6 @@ does not change the window size."
                                orderless-regexp
                                )))
 
-(setq gac-automatically-push-p 't
-      gac-automatically-add-new-files-p 't)
-
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
-(setq org-log-done t)
-(setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
-;; (setq org-agenda-prefix-format '((todo . " ")))
-
-(setq org-attach-auto-tag nil)
-(setq org-id-method 'ts)
-(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-(setq org-attach-id-to-path-function-list
-      '(org-attach-id-ts-folder-format
-        org-attach-id-uuid-folder-format
-        org-attach-id-fallback-folder-format))
-
-(use-package! org-auto-tangle
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (setq org-auto-tangle-default t))
-
 (use-package! org-super-agenda
   :after org-agenda
   :config
@@ -353,33 +328,64 @@ does not change the window size."
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-(setq org-download-image-org-width '450)
-
-(setq org-download-heading-lvl nil)
-
-(setq org-emphasis-alist
-      '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-        ("~" org-code verbatim) ("+" (:strike-through t)))
-      )
-
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
-(setq org-hide-emphasis-markers t)
-(setq org-fontify-quote-and-verse-blocks t)
+(use-package! org
+  :config
+  (setq org-hide-emphasis-markers t
+        org-fontify-quote-and-verse-blocks t
+        org-auto-align-tags nil
+        org-tags-column 0
+        org-agenda-tags-column 0
 
-(setq org-appear-autolinks t)
-(setq org-appear-autoentities t)
-(setq org-appear-autokeywords t)
+        org-modern-star 'replace
 
-(setq org-modern-star 'replace)
+        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+                             ("~" org-code verbatim) ("+" (:strike-through t)))
 
-(setq org-agenda-timegrid-use-ampm 't)
-(setq org-display-custom-times t)
-(setq org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>"))
+        org-appear-autolinks t
+        org-appear-autoentities t
+        org-appear-autokeywords t
+        ))
+
+(use-package! org-agenda
+  :config
+  (setq org-agenda-timegrid-use-ampm 't
+        org-display-custom-times t
+        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
+
+(setq gac-automatically-push-p 't
+      gac-automatically-add-new-files-p 't)
+
+(setq org-directory "~/org/")
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
+(setq org-log-done t)
+(setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
+;; (setq org-agenda-prefix-format '((todo . " ")))
+
+(use-package! anki-editor)
+
+(setq org-attach-auto-tag nil)
+(setq org-id-method 'ts)
+(setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
+(setq org-attach-id-to-path-function-list
+      '(org-attach-id-ts-folder-format
+        org-attach-id-uuid-folder-format
+        org-attach-id-fallback-folder-format))
+
+(use-package! org-auto-tangle
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+
+(use-package! org-download
+  :config
+  (setq org-download-image-org-width '450
+        org-download-heading-lvl nil))
 
 (setq org-roam-node-default-sort 'file-mtime)
 
@@ -448,8 +454,6 @@ does not change the window size."
   (setq vterm-buffer-name-string "vterm: %s"))
 
 (add-load-path! "~/emacs-libvterm")
-
-(setq doom-theme 'doom-one)
 
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)
