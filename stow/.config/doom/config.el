@@ -91,8 +91,9 @@
   )
 (map! :leader "e" #'dirvish)
 
-(setq doom-font "Iosevka Term ")
+(setq doom-font "JetBrainsMono Nerd Font Mono")
 (setq doom-emoji-font "Noto Color Emoji")
+(setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-monokai-spectrum)
 
 (use-package! eat
@@ -362,7 +363,7 @@ does not change the window size."
       gac-automatically-add-new-files-p 't)
 
 (setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org"))
 (setq org-log-done t)
 (setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
 ;; (setq org-agenda-prefix-format '((todo . " ")))

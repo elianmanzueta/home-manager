@@ -48,7 +48,7 @@ Keybind to enable inlay hints
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 #+end_src
-*** Indent Bars Mode
+z** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 #+end_src
@@ -136,8 +136,9 @@ Enable inlay hints in Rust
 #+END_SRC
 ** Doom
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-font "Iosevka Term ")
+(setq doom-font "JetBrainsMono Nerd Font Mono")
 (setq doom-emoji-font "Noto Color Emoji")
+(setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-monokai-spectrum)
 #+end_src
 ** EAT
@@ -454,7 +455,7 @@ Automatically push git changes.
 *** Org and org agenda directories
 #+begin_src emacs-lisp :tangle ./config.el
 (setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/"))
+(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org"))
 (setq org-log-done t)
 (setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
 ;; (setq org-agenda-prefix-format '((todo . " ")))
