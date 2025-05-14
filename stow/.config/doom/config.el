@@ -388,6 +388,8 @@ does not change the window size."
   (setq org-download-image-org-width '450
         org-download-heading-lvl nil))
 
+(setq +org-capture-todo-file "inbox.org")
+
 (setq org-roam-node-default-sort 'file-mtime)
 
 (setq org-roam-capture-templates

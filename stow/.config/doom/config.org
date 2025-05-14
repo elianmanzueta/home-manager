@@ -488,6 +488,10 @@ Automatically push git changes.
   (setq org-download-image-org-width '450
         org-download-heading-lvl nil))
 #+end_src
+*** Org capture
+#+begin_src emacs-lisp :tangle yes
+(setq +org-capture-todo-file "inbox.org")
+#+end_src
 *** Org roam
 **** Default sort
 #+begin_src emacs-lisp :tangle ./config.el
