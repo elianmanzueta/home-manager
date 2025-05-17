@@ -343,7 +343,8 @@ does not change the window size."
         org-tags-column 0
         org-agenda-tags-column 0
 
-        org-modern-star 'replace
+
+        org-startup-folded 'content
 
         org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
                              ("~" org-code verbatim) ("+" (:strike-through t)))
@@ -351,6 +352,12 @@ does not change the window size."
         org-appear-autolinks t
         org-appear-autoentities t
         org-appear-autokeywords t
+        ))
+
+(use-package! org-modern
+  :config
+  (setq org-modern-star 'replace
+        org-modern-replace-stars "◉○✸✿"
         ))
 
 (use-package! org-agenda
