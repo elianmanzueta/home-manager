@@ -43,3 +43,6 @@
 (package! org-super-agenda)
 (package! org-anki)
 (package! anki-editor)
+(package! ef-themes)
+(package! standard-themes)
+(package! catppuccin-theme)

@@ -8,18 +8,32 @@ window-rule {
     match app-id="FortiClient"
     open-floating true
 }
+
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "wl-gammarelay-rs"
 spawn-at-startup "waypaper"
 spawn-at-startup "kwalletd5"
+spawn-at-startup "kitty"
 
-environment {
-    DISPLAY ":0"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORMTHEME "kde"
-}
+spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'"
+
+spawn-at-startup "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 5300"
+spawn-at-startup "swaybg -i /home/elian/home-manager/shared/wallpapers/wallhaven-p9r1d3.png"
+
 
 spawn-at-startup "niriswitcher"
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    DISPLAY ":0"
+    QT_QPA_PLATFORMTHEME "kde"
+    XDG_CURRENT_DESKTOP "kde"
+    XDG_SESSION_TYPE "wayland"
+    RUSTICL_ENABLE "radeonsi"
+    QT_QPA_PLATFORM "wayland"
+    XDG_MENU_PREFIX "arch-"
+}
 
 // End
 input {
