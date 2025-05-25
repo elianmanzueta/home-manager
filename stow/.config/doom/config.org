@@ -408,6 +408,7 @@ does not change the window size."
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 #+end_src
 *** Appearance
+
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
@@ -422,7 +423,7 @@ does not change the window size."
         org-auto-align-tags nil
         org-tags-column 0
         org-agenda-tags-column 0
-
+        org-ellipsis " ▼"
 
         org-startup-folded 'content
 

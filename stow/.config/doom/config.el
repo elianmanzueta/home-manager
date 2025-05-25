@@ -342,7 +342,7 @@ does not change the window size."
         org-auto-align-tags nil
         org-tags-column 0
         org-agenda-tags-column 0
-
+        org-ellipsis " ▼"
 
         org-startup-folded 'content
 
