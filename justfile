@@ -13,4 +13,4 @@ rebuild:
     fi
 
 stow:
-    @stow -t ~ stow/
+    @stow -t ~ stow/ --adopt

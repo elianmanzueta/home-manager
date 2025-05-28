@@ -14,15 +14,12 @@ spawn-at-startup "wl-gammarelay-rs"
 spawn-at-startup "waypaper"
 spawn-at-startup "kwalletd5"
 spawn-at-startup "kitty"
-
+spawn-at-startup "polkit-kde-agent"
 spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'"
-
+spawn-at-startup "niriswitcher"
 spawn-at-startup "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 5300"
 spawn-at-startup "swaybg -i /home/elian/home-manager/shared/wallpapers/wallhaven-p9r1d3.png"
-
-
-spawn-at-startup "niriswitcher"
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -32,7 +29,7 @@ environment {
     XDG_SESSION_TYPE "wayland"
     RUSTICL_ENABLE "radeonsi"
     QT_QPA_PLATFORM "wayland"
-    XDG_MENU_PREFIX "arch-"
+    XDG_MENU_PREFIX "plasma- "
 }
 
 // End
@@ -180,7 +177,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 0.5
 }
 
 // Work around WezTerm's initial configure bug
@@ -304,8 +301,8 @@ binds {
     Mod+Shift+I         { move-workspace-up; }
 
     // Mouse
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-left; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-right; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
@@ -342,7 +339,7 @@ binds {
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
     // Overview
-    Mod+O { toggle-overview; }
+    Mod+MouseForward { toggle-overview; }
 
     // Niri switcher
     Alt+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }

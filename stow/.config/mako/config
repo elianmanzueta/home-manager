@@ -1,0 +1,14 @@
+#Font
+font=JetBrainsMono Nerd Font
+
+# Outupt
+output=DP-2
+
+# Colors
+background-color=#808080
+border-color=#000000
+
+group-by=app-name
+
+# Margin
+outer-margin=5
