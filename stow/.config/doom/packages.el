@@ -34,12 +34,13 @@
 (package! nerd-icons-completion)
 (package! eat
   :recipe (:host codeberg
-           :repo "akib/emacs-eat"
+           :repo "vifon/emacs-eat"
            :files ("*.el" ("term" "term/*.el") "*.texi"
                    "*.ti" ("terminfo/e" "terminfo/e/*")
                    ("terminfo/65" "terminfo/65/*")
                    ("integration" "integration/*")
-                   (:exclude ".dir-locals.el" "*-tests.el"))))
+                   (:exclude ".dir-locals.el" "*-tests.el"))
+           :branch "fish-integration"))
 (package! org-super-agenda)
 (package! org-anki)
 (package! anki-editor)

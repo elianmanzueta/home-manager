@@ -91,7 +91,7 @@
   )
 (map! :leader "e" #'dirvish)
 
-(setq doom-font "JetBrainsMono Nerd Font Mono")
+(setq doom-font "IosevkaTerm Nerd Font Mono")
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-monokai-spectrum)
@@ -99,10 +99,12 @@
 (use-package! eat
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
-  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-kill-buffer-on-exit t))
+  (setq eat-term-name "xterm-256color")) ; https://codeberg.org/akib/emacs-eat/issues/119"
+  (setq eat-shell "/bin/bash")
+
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -118,16 +120,16 @@
           ;; (propertize (+eshell--current-git-branch)
           ;;             'face '+eshell-prompt-git-branch)
           (propertize " on " 'face '+eshell-prompt-pwd)
-          (propertize (system-name) 'face 'nerd-icons-green)
-          (propertize "\n>" 'face 'nerd-icons-green)
-
-          ;; (propertize " λ" 'face (if (zerop eshell-last-command-status) 'success 'error))
+          (propertize (shell-command-to-string "hostname -s") 'face 'nerd-icons-green)
+          (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
 
 (set-eshell-alias!
- "ls" "ls -lhaF"
+ "ls" "ls -lhaF --color=auto"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+
+(setq vterm-tramp-shells '(("ssh" "/bin/bash") ("scp" "/bin/bash") ("docker" "/bin/sh")))
 
 (after! org
   (custom-set-faces!
@@ -264,8 +266,8 @@ does not change the window size."
                                    (dedicated . t)))))
       (gptel "gptel-popup" nil nil))))
 
-(map! :leader "o t" #'nano-term)
-(map! :leader "o T" #'my/prompt-for-eat-term)
+;; (map! :leader "o t" #'nano-term)
+;; (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
 
@@ -484,26 +486,15 @@ does not change the window size."
 (use-package! tramp
   :config
   (setq tramp-inline-compress-start-size 50000)
-  (setq tramp-verbose 1)
-  (setq tramp-chunksize 2000)
   (setq tramp-default-method "scp")
-
   (setq vc-ignore-dir-regexp
         (format "\\(%s\\)\\|\\(%s\\)"
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp))
 
-  (setq tramp-ssh-controlmaster-options nil)
   (setq lsp-auto-register-remote-clients nil)
   (setq lsp-warn-no-matched-clients nil)
   )
-
-(connection-local-set-profile-variables
- 'remote-direct-async-process
- '((tramp-direct-async-process . t)))
-(connection-local-set-profiles
- '(:application tramp :protocol "sshx")
- 'remote-direct-async-process)
 
 (use-package! ultra-scroll
   :init
