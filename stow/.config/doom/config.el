@@ -100,7 +100,6 @@
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color")) ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-shell "/bin/bash")
 
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
