@@ -11,15 +11,16 @@ window-rule {
 
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "wl-gammarelay-rs"
-spawn-at-startup "waypaper"
 spawn-at-startup "kwalletd5"
 spawn-at-startup "kitty"
 spawn-at-startup "polkit-kde-agent"
 spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'"
 spawn-at-startup "niriswitcher"
-spawn-at-startup "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 5300"
-spawn-at-startup "swaybg -i /home/elian/home-manager/shared/wallpapers/wallhaven-p9r1d3.png"
+spawn-at-startup "steam"
+
+spawn-at-startup "/home/elian/home-manager/stow/.scripts/gammarelay.sh"
+spawn-at-startup "/home/elian/home-manager/stow/.scripts/swaybg.sh"
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -340,7 +341,7 @@ binds {
 
     // Overview
     Mod+MouseForward { toggle-overview; }
-
+    Mod+O            { toggle-overview; }
     // Niri switcher
     Alt+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
     Alt+Shift+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }

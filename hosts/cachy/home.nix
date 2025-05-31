@@ -10,7 +10,6 @@
   home.packages = [
     # Desktop
     pkgs.spotify
-    pkgs.vesktop
   ];
 
   home.sessionVariables = {
