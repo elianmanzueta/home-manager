@@ -45,4 +45,5 @@
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
 (package! ef-themes)
-(package! atom-dark-theme)
+(package! standard-themes)
+(package! nov)
