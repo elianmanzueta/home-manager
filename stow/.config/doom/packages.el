@@ -45,4 +45,4 @@
 (package! anki-editor)
 (package! ef-themes)
 (package! standard-themes)
-(package! catppuccin-theme)
+(package! nov)

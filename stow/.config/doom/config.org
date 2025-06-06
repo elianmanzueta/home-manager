@@ -152,6 +152,13 @@ Enable inlay hints in Rust
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 #+end_src
+** nov.el
+#+begin_src emacs-lisp :tangle yes
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-variable-pitch nil))
+#+end_src
 ** Eshell
 #+begin_src emacs-lisp :tangle yes
 (defun +eshell-default-prompt-fn ()

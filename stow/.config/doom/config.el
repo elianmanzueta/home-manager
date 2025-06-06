@@ -105,6 +105,11 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-variable-pitch nil))
+
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
