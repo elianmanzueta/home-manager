@@ -22,6 +22,10 @@
 (package! git-auto-commit-mode)
 (package! websocket)
 (package! org-roam-ui)
+(package! org-super-agenda)
+(package! anki-editor)
+(package! ankiorg
+  :recipe (:host github :repo "orgtre/ankiorg"))
 
 ;; Misc
 (package! just-mode)
@@ -40,9 +44,5 @@
                    ("terminfo/65" "terminfo/65/*")
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
-(package! org-super-agenda)
-(package! org-anki)
-(package! anki-editor)
 (package! ef-themes)
-(package! standard-themes)
-(package! catppuccin-theme)
+(package! atom-dark-theme)

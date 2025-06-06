@@ -471,16 +471,19 @@ Automatically push git changes.
 *** Org-anki
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! anki-editor)
+(use-package! ankiorg)
 #+end_src
 *** Org attach
 #+begin_src emacs-lisp :tangle ./config.el
-(setq org-attach-auto-tag nil)
+(use-package! org-attach
+  :config
+  (setq org-attach-auto-tag nil
+        org-attach-store-link-p 'file
+        org-attach-id-to-path-function-list '(org-attach-id-ts-folder-format
+                                              org-attach-id-uuid-folder-format
+                                              org-attach-id-fallback-folder-format)))
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-(setq org-attach-id-to-path-function-list
-      '(org-attach-id-ts-folder-format
-        org-attach-id-uuid-folder-format
-        org-attach-id-fallback-folder-format))
 #+end_src
 *** Org auto tangle
 #+begin_src emacs-lisp :tangle ./config.el
@@ -501,9 +504,12 @@ Automatically push git changes.
 (setq +org-capture-todo-file "inbox.org")
 #+end_src
 *** Org roam
-**** Default sort
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-roam-node-default-sort 'file-mtime)
+#+begin_src emacs-lisp :tangle yes
+(use-package! org-roam
+  :config
+  (setq org-roam-node-default-sort 'file-mtime
+        org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
+        org-roam-completion-functions nil))
 #+end_src
 **** Capture templates
 #+begin_src emacs-lisp :tangle ./config.el
@@ -548,16 +554,6 @@ Automatically push git changes.
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
-
-#+end_src
-**** Timestamps
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook! 'org-roam 'org-roam-timestamps-mode)
-#+end_src
-**** Exclude
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-roam-file-exclude-regexp
-      (list "/home/elian/org/.attach/"))
 #+end_src
 *** Org safe remote
 #+begin_src emacs-lisp :tangle ./config.el

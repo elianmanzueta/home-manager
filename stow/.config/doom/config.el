@@ -377,14 +377,17 @@ does not change the window size."
 ;; (setq org-agenda-prefix-format '((todo . " ")))
 
 (use-package! anki-editor)
+(use-package! ankiorg)
 
-(setq org-attach-auto-tag nil)
+(use-package! org-attach
+  :config
+  (setq org-attach-auto-tag nil
+        org-attach-store-link-p 'file
+        org-attach-id-to-path-function-list '(org-attach-id-ts-folder-format
+                                              org-attach-id-uuid-folder-format
+                                              org-attach-id-fallback-folder-format)))
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-(setq org-attach-id-to-path-function-list
-      '(org-attach-id-ts-folder-format
-        org-attach-id-uuid-folder-format
-        org-attach-id-fallback-folder-format))
 
 (use-package! org-auto-tangle
   :hook (org-mode . org-auto-tangle-mode)
@@ -398,7 +401,11 @@ does not change the window size."
 
 (setq +org-capture-todo-file "inbox.org")
 
-(setq org-roam-node-default-sort 'file-mtime)
+(use-package! org-roam
+  :config
+  (setq org-roam-node-default-sort 'file-mtime
+        org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
+        org-roam-completion-functions nil))
 
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
@@ -436,11 +443,6 @@ does not change the window size."
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
-
-(add-hook! 'org-roam 'org-roam-timestamps-mode)
-
-(setq org-roam-file-exclude-regexp
-      (list "/home/elian/org/.attach/"))
 
 (setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 
