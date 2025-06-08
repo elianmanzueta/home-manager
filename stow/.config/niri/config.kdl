@@ -181,8 +181,9 @@ animations {
     slowdown 0.5
 }
 
-// Work around WezTerm's initial configure bug
+// Work around WezTerms initial configure bug
 // by setting an empty default-column-width.
+
 window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
@@ -414,8 +415,8 @@ binds {
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
     // so they may, for example, forward the key presses as-is to a remote machine.
-    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-    // so a buggy application can't hold your session hostage.
+    // Its a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application cant hold your session hostage.
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.

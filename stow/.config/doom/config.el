@@ -372,8 +372,11 @@ does not change the window size."
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
-(setq gac-automatically-push-p 't
-      gac-automatically-add-new-files-p 't)
+(use-package! git-auto-commit-mode
+  :config
+  (setq gac-automatically-push-p 't
+        gac-automatically-add-new-files-p 't
+        gac-shell-and " ; and "))
 
 (setq org-directory "~/org/")
 (setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org"))
