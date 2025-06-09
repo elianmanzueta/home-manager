@@ -14,7 +14,7 @@
     ripgrep
     fd
     nodejs
-    enchant
+    # enchant
     sqlite
     nodePackages.prettier
     wkhtmltopdf

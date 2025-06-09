@@ -16,11 +16,7 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    stow
     vivaldi
-    rustup
-    kitty
-    emacs-pgtk
     networkmanager-openvpn
     proton-pass
     protonmail-desktop
@@ -29,16 +25,20 @@
     openfortivpn-webview-qt
     vmware-horizon-client
     vesktop
-    easyeffects
     spotify
     gparted
     remmina
     stremio
     onlyoffice-desktopeditors
-    libvterm
-    xwayland-satellite
-    niri
-    niriswitcher
+    wl-gammarelay-rs
+    wl-gammarelay-applet
+    waybar
+    swaybg
+    waypaper
+    fuzzel
+    pavucontrol
+    cargo
+    rustc
   ];
 
   # basic configuration of git, please change to your own

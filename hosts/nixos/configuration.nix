@@ -62,7 +62,7 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 
@@ -116,6 +116,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Tools
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     curl
@@ -126,8 +127,23 @@
     libgcc
     gcc
     libtool
+    xwayland-satellite
+    easyeffects
+    kitty
+
+    emacs-pgtk
+    enchant
+    libvterm
+    stow
+
+    niri
+    niriswitcher
+
+
     (aspellWithDicts
       (dicts: with dicts; [ en en-computers en-science es]))
+
+
     # Gaming
     mangohud
     protonup-qt
