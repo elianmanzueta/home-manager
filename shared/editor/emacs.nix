@@ -1,5 +1,10 @@
 # emacs.nix
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.stateVersion = "24.05"; # Please read the comment before changing.

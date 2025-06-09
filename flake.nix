@@ -14,12 +14,20 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }@inputs:
     let
       pkgsDarwin = nixpkgs.legacyPackages.aarch64-darwin;
       pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
 
-    in {
+    in
+    {
       homeConfigurations = {
         "mac" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsDarwin;
@@ -62,5 +70,19 @@
           ];
         };
       };
+      nixosConfigurations.elian-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.elian = ./hosts/nixos/home.nix;
+          }
+
+        ];
+      };
+
     };
 }
