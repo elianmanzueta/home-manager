@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of elian";
+  description = "Elian's home-manager configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -25,9 +25,9 @@
     let
       pkgsDarwin = nixpkgs.legacyPackages.aarch64-darwin;
       pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
-
     in
     {
+      # home-manager standalone
       homeConfigurations = {
         "mac" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsDarwin;
@@ -70,6 +70,8 @@
           ];
         };
       };
+
+      # NiOS
       nixosConfigurations.elian-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -79,10 +81,10 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.elian = ./hosts/nixos/home.nix;
+            home-manager.backupFileExtension = "backup";
           }
 
         ];
       };
-
     };
 }

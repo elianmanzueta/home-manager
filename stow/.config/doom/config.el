@@ -474,7 +474,7 @@ does not change the window size."
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 
-(add-load-path! "~/emacs-libvterm")
+
 
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)

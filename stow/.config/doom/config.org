@@ -601,7 +601,6 @@ Setting fish shell paths.
 **** Set ~libvterm~ path
 Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
-(add-load-path! "~/emacs-libvterm")
 #+end_src
 ** Theme Configuration
 *** Modus themes

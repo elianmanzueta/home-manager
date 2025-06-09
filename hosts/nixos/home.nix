@@ -28,12 +28,17 @@
     openfortivpn
     openfortivpn-webview-qt
     vmware-horizon-client
-    libvterm
     vesktop
     easyeffects
     spotify
     gparted
     remmina
+    stremio
+    onlyoffice-desktopeditors
+    libvterm
+    xwayland-satellite
+    niri
+    niriswitcher
   ];
 
   # basic configuration of git, please change to your own
@@ -42,6 +47,11 @@
     userName = "Elian Manzueta";
     userEmail = "elianmanzueta@protonmail.com";
   };
+
+  programs.gh = {
+    enable = true;
+  };
+
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

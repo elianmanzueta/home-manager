@@ -14,9 +14,9 @@
     ripgrep
     fd
     nodejs
-    ispell
     enchant
     sqlite
     nodePackages.prettier
+    wkhtmltopdf
   ];
 }

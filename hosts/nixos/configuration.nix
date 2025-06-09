@@ -106,9 +106,10 @@
     "flakes"
   ];
 
+
   programs.xwayland.enable = true;
   programs.steam.enable = true;
-
+  programs.niri.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
@@ -117,10 +118,17 @@
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    curl
     git
     fish
     cmake
     gnumake
+    libgcc
+    gcc
+    libtool
+    (aspellWithDicts
+      (dicts: with dicts; [ en en-computers en-science es]))
+    # Gaming
     mangohud
     protonup-qt
     lutris
@@ -128,16 +136,10 @@
     heroic
   ];
 
-  programs.fish.enable = true;
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  environment.sessionVariables = {
+  };
 
-  # List services that you want to enable:
+  programs.fish.enable = true;
 
   services.openssh.enable = true;
 
