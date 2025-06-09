@@ -62,9 +62,7 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
 
-  hardware.opengl = {
-    enable = true;
-  };
+  hardware.opengl = { enable = true; };
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -87,13 +85,8 @@
   users.users.elian = {
     isNormalUser = true;
     description = "elian";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    packages = with pkgs; [
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [ ];
     shell = pkgs.fish;
   };
 
@@ -101,11 +94,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable flakes.
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.xwayland.enable = true;
   programs.steam.enable = true;
@@ -121,13 +110,7 @@
     curl
     git
     fish
-    cmake
-    gnumake
-    libgcc
-    gcc
-    libtool
-    (aspellWithDicts
-      (dicts: with dicts; [ en en-computers en-science es]))
+
     # Gaming
     mangohud
     protonup-qt
@@ -137,6 +120,7 @@
   ];
 
   environment.sessionVariables = {
+
   };
 
   programs.fish.enable = true;

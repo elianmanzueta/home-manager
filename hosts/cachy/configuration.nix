@@ -6,4 +6,5 @@
   nix.settings.experimental-features = "nix-command flakes";
   # The platform the configuration will be used on.
   nixpkgs.config.allowUnfree = true;
-}
+
+  }

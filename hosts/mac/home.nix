@@ -3,13 +3,26 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "elian";
-  home.homeDirectory = "/Users/elian";
-  home.stateVersion = "24.05"; # Please read the comment before changing.
-  programs.home-manager.enable = true;
 
-  home.packages = [
+  imports = [
+    ../../shared/terminal/default.nix
+    ../../shared/editor/emacs.nix
+    ../../shared/editor/neovim.nix
+    ../../shared/code/nix.nix
+    ../../shared/fonts/fonts.nix
+    ../../shared/code/go.nix
+    ../../shared/code/python.nix
   ];
 
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.packages = with pkgs; [ neovim stow rustup emacs-pgtk cmake nixfmt ];
+
+  programs.fish.enable = true;
+
+  # The state version is required and should stay at the version you
+  # originally installed.
+  home.stateVersion = "24.05";
+  home.username = "elian";
+  home.homeDirectory = "/Users/elian";
+  programs.home-manager.enable = true;
+
 }

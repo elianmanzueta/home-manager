@@ -1,28 +1,26 @@
 { config, pkgs, ... }: {
   system = {
-    stateVersion = 4;
-    activationScripts.postUserActivation.text = ''
-      # activateSettings -u will reload the settings from the database and apply them to the current session,
-      # so we do not need to logout and login again to make the changes take effect.
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+    stateVersion = 6;
 
     defaults = {
       dock = {
         autohide = true;
-        tilesize = 24;
-        autohide-delay = 0.0;
+        autohide-time-modifier = 0.3;
         mineffect = "suck";
         magnification = true;
+        largesize = 64;
+        launchanim = true;
       };
 
+      controlcenter = { BatteryShowPercentage = true; };
       finder = {
+        AppleShowAllFiles = true;
         AppleShowAllExtensions = true;
         ShowPathbar = true;
+        FXPreferredViewStyle = "Nlsv";
+        FXEnableExtensionChangeWarning = false;
       };
     };
 
   };
-
-  security.pam.enableSudoTouchIdAuth = true;
 }
