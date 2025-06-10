@@ -462,6 +462,7 @@ does not change the window size."
         ))
 
 (setq ispell-dictionary "english")
+(setq ispell-personal-dictionary "~/.config/emacs/.local/etc/ispell/.pws")
 
 (setq explicit-shell-file-name
       (cond
@@ -474,7 +475,7 @@ does not change the window size."
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 
-
+(add-load-path! "~/emacs-libvterm")
 
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)

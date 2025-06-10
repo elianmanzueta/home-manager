@@ -23,15 +23,12 @@
     protonmail-bridge
     openfortivpn
     openfortivpn-webview-qt
-    vmware-horizon-client
     vesktop
     spotify
     gparted
     remmina
     stremio
     onlyoffice-desktopeditors
-    wl-gammarelay-rs
-    wl-gammarelay-applet
     waybar
     swaybg
     waypaper
@@ -39,6 +36,9 @@
     pavucontrol
     cargo
     rustc
+    vmware-horizon-client
+
+    teams-for-linux
   ];
 
   # basic configuration of git, please change to your own
@@ -48,10 +48,7 @@
     userEmail = "elianmanzueta@protonmail.com";
   };
 
-  programs.gh = {
-    enable = true;
-  };
-
+  programs.gh = { enable = true; };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

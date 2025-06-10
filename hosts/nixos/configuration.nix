@@ -99,7 +99,6 @@
   programs.xwayland.enable = true;
   programs.steam.enable = true;
   programs.niri.enable = true;
-  programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
   # List packages installed in system profile. To search, run:
@@ -114,10 +113,15 @@
     xwayland-satellite
     easyeffects
     kitty
+    wl-gammarelay-rs
+    wl-gammarelay-applet
+    freerdp
 
     emacs-pgtk
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
+    hunspell
+    hunspellDicts.en_US
     enchant
-    libvterm
     stow
 
     niri
@@ -129,6 +133,7 @@
     lutris
     bottles
     heroic
+
   ];
 
   environment.sessionVariables = {
@@ -138,6 +143,7 @@
   programs.fish.enable = true;
 
   services.openssh.enable = true;
+  services.flatpak.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

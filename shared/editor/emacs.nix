@@ -15,7 +15,8 @@
     cmake
     libtool
     glibtool
+    gnumake
+    gcc
 
-    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
   ];
 }
