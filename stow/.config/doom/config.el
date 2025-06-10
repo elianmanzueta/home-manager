@@ -462,7 +462,7 @@ does not change the window size."
         ))
 
 (setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/.config/emacs/.lo")
+(setq ispell-personal-dictionary "~/.config/emacs/.local/etc/ispell/.pws")
 
 (setq explicit-shell-file-name
       (cond

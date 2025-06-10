@@ -580,7 +580,7 @@ Automatically push git changes.
 ** Spelling
 #+begin_src emacs-lisp :tangle ./config.el
 (setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/.config/emacs/.lo")
+(setq ispell-personal-dictionary "~/.config/emacs/.local/etc/ispell/.pws")
 #+end_src
 ** Terminal Setup
 *** Fish
