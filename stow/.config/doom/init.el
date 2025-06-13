@@ -83,7 +83,7 @@
 
        :checkers
        (syntax +icons)              ; tasing you for every semicolon you forget
-       (spell +flyspell +enchant) ; tasing you for misspelling mispelling
+       (spell +hunspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools

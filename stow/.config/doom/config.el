@@ -462,19 +462,24 @@ does not change the window size."
         ))
 
 (setq ispell-dictionary "english")
+(setq ispell-personal-dictionary "~/.config/emacs/.local/etc/ispell/.pws")
 
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-       ((eq system-type 'gnu/linux) "/bin/fish")
-       (t "/bin/bash")))
+       ((eq system-type 'gnu/linux)
+        (let ((cmd (shell-command-to-string "uname -a")))
+          (if (string-match "NixOS" cmd)
+              "/run/current-system/sw/bin/fish"
+            "/bin/fish")))
+       (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 
-
+(add-load-path! "~/emacs-libvterm")
 
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)

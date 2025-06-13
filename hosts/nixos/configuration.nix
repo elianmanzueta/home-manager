@@ -99,27 +99,33 @@
   programs.xwayland.enable = true;
   programs.steam.enable = true;
   programs.niri.enable = true;
-  programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Tools
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     wget
     curl
     git
     fish
+    libtool
     xwayland-satellite
     easyeffects
     kitty
+    wl-gammarelay-rs
+    wl-gammarelay-applet
+    freerdp
+    python313Full
 
+    # Emacs
     emacs-pgtk
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
+    hunspell
+    hunspellDicts.en_US
     enchant
-    libvterm
     stow
 
+    # Niri
     niri
     niriswitcher
 
@@ -129,15 +135,15 @@
     lutris
     bottles
     heroic
+
   ];
 
-  environment.sessionVariables = {
-
-  };
+  environment.sessionVariables = { EDITOR = "nvim"; };
 
   programs.fish.enable = true;
 
   services.openssh.enable = true;
+  services.flatpak.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
