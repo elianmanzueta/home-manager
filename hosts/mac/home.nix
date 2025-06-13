@@ -26,6 +26,7 @@
 
   programs.bat.enable = true;
   programs.zoxide.enable = true;
+  programs.fzf.enable = true;
 
   # The state version is required and should stay at the version you
   # originally installed.
