@@ -4,6 +4,9 @@ abbr --add gcsm git commit --signoff --message
 abbr --add gp git push
 abbr --add ga git add
 
+# Brew
+abbr --add bu brew upgrade
+
 # Cargo
 abbr --add cr cargo run
 
@@ -16,18 +19,6 @@ abbr --add emacs emacs --daemon
 abbr --add ls eza -lhaF --color=auto --icons=always
 abbr --add l eza -lhaF --color=auto --icons=always
 abbr --add lt eza --tree
-
-# Config
-abbr --add fishconfig nvim ~/.config/fish/
-abbr --add starshipconfig nvim ~/.config/starship.toml
-abbr --add nvimconfig nvim ~/.config/nvim
-
-# System
-abbr --add update sudo aptitude update
-abbr --add upgrade sudo aptitude upgrade
-
-# Nix
-abbr --add rebuild darwin-rebuild switch --flake /Users/elian/.config/nix
 
 # Zoxide
 abbr --add cd z
