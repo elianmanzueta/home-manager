@@ -110,6 +110,8 @@
   :config
   (setq nov-variable-pitch nil))
 
+(setq my/hostname (shell-command-to-string "hostname -s"))
+
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -121,10 +123,8 @@
                             pwd
                           (abbreviate-file-name (shrink-path-file pwd)))
                         'face 'nerd-icons-green))
-          ;; (propertize (+eshell--current-git-branch)
-          ;;             'face '+eshell-prompt-git-branch)
           (propertize " on " 'face '+eshell-prompt-pwd)
-          (propertize (shell-command-to-string "hostname -s") 'face 'nerd-icons-green)
+          (propertize hostname 'face 'nerd-icons-green)
           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
 
