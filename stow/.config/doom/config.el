@@ -91,7 +91,7 @@
   )
 (map! :leader "e" #'dirvish)
 
-(setq doom-font "IosevkaTerm Nerd Font Mono")
+(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-monokai-spectrum)
@@ -404,8 +404,7 @@ does not change the window size."
 
 (use-package! org-download
   :config
-  (setq org-download-image-org-width '450
-        org-download-heading-lvl nil))
+  (setq org-download-image-org-width '450))
 
 (setq +org-capture-todo-file "inbox.org")
 

@@ -135,7 +135,7 @@ Enable inlay hints in Rust
 #+END_SRC
 ** Doom
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-font "IosevkaTerm Nerd Font Mono")
+(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-monokai-spectrum)
@@ -505,8 +505,7 @@ Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-download
   :config
-  (setq org-download-image-org-width '450
-        org-download-heading-lvl nil))
+  (setq org-download-image-org-width '450))
 #+end_src
 *** Org capture
 #+begin_src emacs-lisp :tangle yes

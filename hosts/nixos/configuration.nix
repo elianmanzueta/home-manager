@@ -116,6 +116,7 @@
     wl-gammarelay-applet
     freerdp
     python313Full
+    wl-clipboard
 
     # Emacs
     emacs-pgtk
@@ -135,6 +136,8 @@
     lutris
     bottles
     heroic
+
+    # Misc
 
   ];
 

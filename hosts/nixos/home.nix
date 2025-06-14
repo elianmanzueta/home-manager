@@ -38,6 +38,7 @@
     rustc
     vmware-horizon-client
 
+    graphviz
     teams-for-linux
   ];
 

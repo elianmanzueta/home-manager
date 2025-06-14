@@ -2,6 +2,12 @@
   description = "Elian's home-manager configuration";
 
   inputs = {
+    lix-module = {
+      url =
+        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -14,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, lix-module, ... }@inputs:
     let
       pkgsDarwin = nixpkgs.legacyPackages.aarch64-darwin;
       pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
@@ -69,6 +75,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixos/configuration.nix
+          lix-module.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
