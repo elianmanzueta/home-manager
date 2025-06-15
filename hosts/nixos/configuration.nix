@@ -103,12 +103,7 @@
 
   environment.systemPackages = with pkgs; [
     # Tools
-    neovim
-    wget
-    curl
-    git
     fish
-    libtool
     xwayland-satellite
     easyeffects
     kitty
@@ -121,11 +116,6 @@
 
     # Emacs
     emacs-pgtk
-    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
-    hunspell
-    hunspellDicts.en_US
-    enchant
-    stow
 
     # Niri
     niri
@@ -137,9 +127,6 @@
     lutris
     bottles
     heroic
-
-    # Misc
-
   ];
 
   environment.sessionVariables = { EDITOR = "nvim"; };

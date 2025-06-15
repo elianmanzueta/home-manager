@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
   home.stateVersion = "24.05"; # Please read the comment before changing.
@@ -18,15 +13,10 @@
     wget
     just
     gh
+    stow
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
-  programs = {
-    starship = {
-      enable = true;
-    };
-  };
+  programs = { starship = { enable = true; }; };
 }
