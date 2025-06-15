@@ -117,6 +117,7 @@
     freerdp
     python313Full
     wl-clipboard
+    dua
 
     # Emacs
     emacs-pgtk
@@ -144,6 +145,8 @@
   environment.sessionVariables = { EDITOR = "nvim"; };
 
   programs.fish.enable = true;
+  programs.partition-manager.enable = true;
+  programs.bat.enable = true;
 
   services.openssh.enable = true;
   services.flatpak.enable = true;
