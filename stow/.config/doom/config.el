@@ -124,7 +124,7 @@
                           (abbreviate-file-name (shrink-path-file pwd)))
                         'face 'nerd-icons-green))
           (propertize " on " 'face '+eshell-prompt-pwd)
-          (propertize hostname 'face 'nerd-icons-green)
+          (propertize my/hostname 'face 'nerd-icons-green)
           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
 

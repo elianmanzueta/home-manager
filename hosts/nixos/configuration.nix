@@ -137,6 +137,7 @@
 
   services.openssh.enable = true;
   services.flatpak.enable = true;
+  services.resolved.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
