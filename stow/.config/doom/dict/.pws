@@ -1,4 +1,4 @@
-personal_ws-1.1 en 195
+personal_ws-1.1 en 213
 aadct
 acls
 addc
@@ -6,8 +6,10 @@ adjacencies
 altiris
 amis
 anki
+ansible
 appstd
 architected
+asta
 avy
 backend
 backplane
@@ -27,6 +29,7 @@ cgroups
 closed
 cloudfront
 cmdlet
+codemeter
 config
 connectionless
 csc
@@ -35,6 +38,7 @@ cstate
 cutover
 datacenters
 datacore
+dcef
 deregistration
 dest
 dhcp
@@ -44,6 +48,8 @@ ebs
 el
 elian
 elian's
+errored
+esha
 eshell
 esxi
 etc
@@ -72,6 +78,7 @@ idworks
 iis
 inbox
 interruptible
+intune
 ips
 ipsec
 ise
@@ -80,6 +87,7 @@ itddb
 jumpstation
 jumpstations
 justfiles
+keepass
 kms
 kubernetes
 lans
@@ -91,12 +99,16 @@ loopback
 lsps
 macos
 manzueta
+mastercam
 mc
 meraki
 mgt
+minitab
 misc
 modus
 multicast
+multilayer
+multisim
 namespaces
 nano
 nautobot
@@ -141,10 +153,15 @@ skus
 snmp
 snmppoller
 solarwinds
+solidworks
 spbm
 splunk
+src
 starship
+stdlic
 sthome
+stick
+subinterface
 subinterfaces
 subnet
 subnets
@@ -161,6 +178,7 @@ tlvs
 todos
 tos
 traceroute
+trustwell
 tsas
 tsdb
 udp
