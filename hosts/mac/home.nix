@@ -12,6 +12,7 @@
     ../../shared/fonts/fonts.nix
     ../../shared/code/go.nix
     ../../shared/code/python.nix
+    ../../shared/code/data.nix
   ];
 
   home.packages = with pkgs; [ neovim stow rustup emacs-pgtk cmake nixfmt ];
