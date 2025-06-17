@@ -36,6 +36,7 @@
             ./shared/editor/emacs.nix
             ./shared/code/nix.nix
             ./shared/code/python.nix
+            ./shared/code/data.nix
             ./shared/fonts/fonts.nix
           ];
 
@@ -48,6 +49,7 @@
             ./hosts/cachy/programs.nix
             ./shared/code/python.nix
             ./shared/code/go.nix
+            ./shared/code/data.nix
             ./shared/editor/emacs.nix
             ./shared/editor/neovim.nix
             ./shared/terminal/default.nix

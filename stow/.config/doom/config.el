@@ -30,45 +30,6 @@
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
-
-(use-package just-mode
-  :mode ("justfile\\'" . just-mode)
-  :config
-  (setq just-indent-offset 4))
-
-(setq lsp-idle-delay 0.3)
-(setq corfu-auto-delay 0.2)
-(setq which-key-idle-delay 0.1)
-
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-(use-package! powershell-ts-mode)
-
-(use-package! lsp-pyright
-  :hook (python-mode . lsp-inlay-hints-mode)
-  :config
-  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-
-  (setq lsp-pyright-langserver-command "basedpyright")
-  (setq lsp-pyright-type-checking-mode "basic")
-
-  (setq lsp-pyright-venv-path ".")
-  (setq lsp-pyright-venv-directory ".venv"))
-
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-
-(setq lsp-rust-analyzer-display-chaining-hints t)
-(setq lsp-rust-analyzer-display-closure-return-type-hints t)
-(setq lsp-rust-analyzer-display-parameter-hints t)
-
 (use-package completion-preview
   :hook
   ((prog-mode text-mode eshell-mode) . completion-preview-mode)
@@ -108,11 +69,6 @@
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
-
-(use-package! nov
-  :mode ("\\.epub\\'" . nov-mode)
-  :config
-  (setq nov-variable-pitch nil))
 
 (setq my/hostname (shell-command-to-string "hostname -s"))
 
@@ -185,6 +141,45 @@
           (chat
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
+
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
+
+(use-package just-mode
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
+
+(setq lsp-idle-delay 0.3)
+(setq corfu-auto-delay 0.2)
+(setq which-key-idle-delay 0.1)
+
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(use-package! powershell-ts-mode)
+
+(use-package! lsp-pyright
+  :hook (python-mode . lsp-inlay-hints-mode)
+  :config
+  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+
+  (setq lsp-pyright-langserver-command "basedpyright")
+  (setq lsp-pyright-type-checking-mode "basic")
+
+  (setq lsp-pyright-venv-path ".")
+  (setq lsp-pyright-venv-directory ".venv"))
+
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
 
 (map! :leader "y" #'yank-from-kill-ring)
 
@@ -278,6 +273,11 @@ does not change the window size."
 ;; (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
+
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-variable-pitch nil))
 
 (use-package! orderless
   :custom
@@ -410,6 +410,10 @@ does not change the window size."
   :config
   (setq org-download-image-org-width '450))
 
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+
 (setq +org-capture-todo-file "inbox.org")
 
 (use-package! org-roam
@@ -466,6 +470,12 @@ does not change the window size."
 
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
+
+(use-package! ssh-config-mode
+  :config
+  (add-to-list 'auto-mode-alist '("/home/elian/.ssh/config'" . ssh-config-mode)))
+
+(add-hook 'ssh-config-mode-hook (lambda () (setq-local evil-shift-width ssh-config-mode-indent)))
 
 (setq explicit-shell-file-name
       (cond

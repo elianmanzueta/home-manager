@@ -28,6 +28,7 @@
   :recipe (:host github :repo "orgtre/ankiorg"))
 
 ;; Misc
+(package! ssh-config-mode)
 (package! just-mode)
 (package! fish-mode)
 (package! gptel)
