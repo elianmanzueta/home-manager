@@ -1,8 +1,9 @@
-personal_ws-1.1 en 218
+personal_ws-1.1 en 224
 aadct
 acls
 addc
 adjacencies
+adminem
 altiris
 amis
 anki
@@ -22,6 +23,7 @@ bebs
 bitlocker
 bootpc
 bootps
+broadcom
 cas
 cbsig
 cgroup
@@ -38,6 +40,7 @@ cstate
 cutover
 datacenters
 datacore
+datastore
 dcef
 deregistration
 dest
@@ -45,6 +48,7 @@ dhcp
 dirvish
 dotnet
 ebs
+ef
 el
 elian
 elian's
@@ -158,6 +162,7 @@ snmppoller
 solarwinds
 solidworks
 spbm
+spfs
 splunk
 src
 starship
@@ -194,6 +199,7 @@ util
 vcenter
 vcon
 vcons
+vcsa
 vdi
 vdiap
 vdis

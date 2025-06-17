@@ -402,9 +402,7 @@ does not change the window size."
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
 (use-package! org-auto-tangle
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (setq org-auto-tangle-default t))
+  :hook (org-mode . org-auto-tangle-mode))
 
 (use-package! org-download
   :config
@@ -509,6 +507,12 @@ does not change the window size."
 (setq modus-themes-common-palette-overrides
       '((prose-done green-intense)
         (prose-todo red-intense)))
+
+(setq ef-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
 
 (use-package! tramp
   :config

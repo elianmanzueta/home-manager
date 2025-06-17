@@ -501,9 +501,7 @@ Automatically push git changes.
 *** Org auto tangle
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-auto-tangle
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (setq org-auto-tangle-default t))
+  :hook (org-mode . org-auto-tangle-mode))
 #+end_src
 *** Org-download
 #+begin_src emacs-lisp :tangle ./config.el
@@ -643,6 +641,14 @@ Setting vterm path.
 (setq modus-themes-common-palette-overrides
       '((prose-done green-intense)
         (prose-todo red-intense)))
+#+end_src
+*** Ef-themes
+#+begin_src emacs-lisp :tangle yes
+(setq ef-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
 #+end_src
 ** TRAMP
 #+begin_src emacs-lisp :tangle ./config.el
