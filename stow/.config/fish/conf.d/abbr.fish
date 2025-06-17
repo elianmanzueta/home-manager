@@ -4,6 +4,7 @@ if type -q git
     abbr --add gcsm git commit --signoff --message
     abbr --add gp git push
     abbr --add ga git add
+    abbr --add gc git clone
 end
 
 # Brew
@@ -15,7 +16,7 @@ end
 if type -q cargo
     abbr --add cr cargo run
 end
-#
+
 # Emacs
 if type -q emacsclient
     abbr --add em "emacsclient -c &"
