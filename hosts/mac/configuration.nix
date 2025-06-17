@@ -23,7 +23,7 @@
     # onActivation.cleanup = "uninstall";
 
     taps = [ ];
-    brews = [ "fish" ];
+    brews = [ "fish" "coreutils" ];
     casks = [
       "vivaldi"
       "stremio"

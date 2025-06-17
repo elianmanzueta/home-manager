@@ -88,7 +88,11 @@
         '(vc-state nerd-icons collapse file-size))
   (setq dirvish-default-layout '(0 0.50 0.50))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
-  )
+  (setq dired-use-ls-dired 't)
+  (setq dirvish-peek-mode 't)
+  (when (and (eq system-type 'darwin) (executable-find "gls"))
+    (setq insert-directory-program "gls")))
+
 (map! :leader "e" #'dirvish)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
