@@ -47,64 +47,6 @@ Keybind to enable inlay hints
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 #+end_src
-z** Indent Bars Mode
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
-#+end_src
-*** Justfiles
-**** just-mode
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package just-mode
-  :mode ("justfile\\'" . just-mode)
-  :config
-  (setq just-indent-offset 4))
-#+end_src
-*** LSP
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-idle-delay 0.3)
-(setq corfu-auto-delay 0.2)
-(setq which-key-idle-delay 0.1)
-#+end_src
-*** Powershell
-#+begin_src emacs-lisp :tangle yes
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-(use-package! powershell-ts-mode)
-#+end_src
-*** Python
-Enable inlay hints in Python
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! lsp-pyright
-  :hook (python-mode . lsp-inlay-hints-mode)
-  :config
-  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-
-  (setq lsp-pyright-langserver-command "basedpyright")
-  (setq lsp-pyright-type-checking-mode "basic")
-
-  (setq lsp-pyright-venv-path ".")
-  (setq lsp-pyright-venv-directory ".venv"))
-#+end_src
-
-Enable Ruff
-#+begin_src emacs-lisp :tangle ./config.el
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-#+end_src
-*** Rust
-**** Inlay hints
-Enable inlay hints in Rust
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-rust-analyzer-display-chaining-hints t)
-(setq lsp-rust-analyzer-display-closure-return-type-hints t)
-(setq lsp-rust-analyzer-display-parameter-hints t)
-#+end_src
 ** Completion preview mode
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package completion-preview
@@ -150,13 +92,6 @@ Enable inlay hints in Rust
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
-#+end_src
-** nov.el
-#+begin_src emacs-lisp :tangle yes
-(use-package! nov
-  :mode ("\\.epub\\'" . nov-mode)
-  :config
-  (setq nov-variable-pitch nil))
 #+end_src
 ** Eshell
 #+begin_src emacs-lisp :tangle yes
@@ -236,6 +171,64 @@ Enable inlay hints in Rust
           (chat
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
+#+end_src
+** Indent Bars Mode
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'lsp-mode-hook #'indent-bars-mode)
+#+end_src
+*** Justfiles
+**** just-mode
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package just-mode
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
+#+end_src
+*** LSP
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-idle-delay 0.3)
+(setq corfu-auto-delay 0.2)
+(setq which-key-idle-delay 0.1)
+#+end_src
+*** Powershell
+#+begin_src emacs-lisp :tangle yes
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(use-package! powershell-ts-mode)
+#+end_src
+*** Python
+Enable inlay hints in Python
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! lsp-pyright
+  :hook (python-mode . lsp-inlay-hints-mode)
+  :config
+  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+
+  (setq lsp-pyright-langserver-command "basedpyright")
+  (setq lsp-pyright-type-checking-mode "basic")
+
+  (setq lsp-pyright-venv-path ".")
+  (setq lsp-pyright-venv-directory ".venv"))
+#+end_src
+
+Enable Ruff
+#+begin_src emacs-lisp :tangle ./config.el
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+#+end_src
+*** Rust
+**** Inlay hints
+Enable inlay hints in Rust
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
 ** Kill-ring
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -345,6 +338,13 @@ does not change the window size."
 ;; (map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
+#+end_src
+** nov.el
+#+begin_src emacs-lisp :tangle yes
+(use-package! nov
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-variable-pitch nil))
 #+end_src
 ** Orderless
 #+begin_src emacs-lisp :tangle ./config.el
@@ -507,6 +507,13 @@ Automatically push git changes.
   :config
   (setq org-download-image-org-width '450))
 #+end_src
+*** Graphviz
+Tweak to make previews work
+#+begin_src emacs-lisp :tangle yes
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+#+end_src
 *** Org capture
 #+begin_src emacs-lisp :tangle yes
 (setq +org-capture-todo-file "inbox.org")
@@ -581,6 +588,14 @@ Automatically push git changes.
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
 #+end_src
+** SSH config mode
+#+begin_src emacs-lisp :tangle yes
+(use-package! ssh-config-mode
+  :config
+  (add-to-list 'auto-mode-alist '("/home/elian/.ssh/config'" . ssh-config-mode)))
+
+(add-hook 'ssh-config-mode-hook (lambda () (setq-local evil-shift-width ssh-config-mode-indent)))
+#+end_src
 ** Terminal Setup
 *** Fish
 Setting fish shell paths.
@@ -624,7 +639,6 @@ Setting vterm path.
 (setq modus-themes-common-palette-overrides
       '((prose-done green-intense)
         (prose-todo red-intense)))
-
 #+end_src
 ** TRAMP
 #+begin_src emacs-lisp :tangle ./config.el
