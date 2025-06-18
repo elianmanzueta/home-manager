@@ -362,6 +362,13 @@ does not change the window size."
                                )))
 #+end_src
 
+** Graphviz
+Tweak to make previews work
+#+begin_src emacs-lisp :tangle yes
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+#+end_src
 ** Org
 *** Agenda
 **** Super Agenda
@@ -509,13 +516,6 @@ Automatically push git changes.
   :config
   (setq org-download-image-org-width '450))
 #+end_src
-*** Graphviz
-Tweak to make previews work
-#+begin_src emacs-lisp :tangle yes
-(use-package! graphviz-dot-mode
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-#+end_src
 *** Org capture
 #+begin_src emacs-lisp :tangle yes
 (setq +org-capture-todo-file "inbox.org")
@@ -545,8 +545,7 @@ Tweak to make previews work
         ("i" "issue" plain (file "~/org/roam/templates/issue.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
          :unarrowed t
-         )
-        ))
+         )))
 #+end_src
 
 **** Dailies capture templates
@@ -555,10 +554,7 @@ Tweak to make previews work
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
            :if-new (file+datetree "work-inbox.org" week)
-           :unarrowed t)
-          )
-        )
-  )
+           :unarrowed t))))
 #+end_src
 **** Org Roam UI
 #+begin_src emacs-lisp :tangle yes
@@ -582,8 +578,26 @@ Tweak to make previews work
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
-        ))
+          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
+          (sequence "NOTE(N)" "|"))))
+
+(setq org-todo-keyword-faces
+      '(("[-]" . +org-todo-active) ("STRT" . +org-todo-active)
+        ("[?]" . +org-todo-onhold) ("WAIT" . +org-todo-onhold)
+        ("HOLD" . +org-todo-onhold) ("PROJ" . +org-todo-project)
+        ("NO" . +org-todo-cancel) ("KILL" . +org-todo-cancel)
+        ("NOTE" . flymake-note-echo)))
+
+(setq org-modern-todo-faces
+      '(("KILL" :inverse-video t :inherit +org-todo-cancel)
+        ("NO" :inverse-video t :inherit +org-todo-cancel)
+        ("PROJ" :inverse-video t :inherit +org-todo-project)
+        ("HOLD" :inverse-video t :inherit +org-todo-onhold)
+        ("WAIT" :inverse-video t :inherit +org-todo-onhold)
+        ("[?]" :inverse-video t :inherit +org-todo-onhold)
+        ("STRT" :inverse-video t :inherit +org-todo-active)
+        ("NOTE" :inverse-video t :inherit flymake-note-echo)
+        ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
 ** Spelling
 #+begin_src emacs-lisp :tangle ./config.el

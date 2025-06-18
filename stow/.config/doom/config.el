@@ -288,6 +288,10 @@ does not change the window size."
                                orderless-regexp
                                )))
 
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+
 (use-package! org-super-agenda
   :after org-agenda
   :config
@@ -408,10 +412,6 @@ does not change the window size."
   :config
   (setq org-download-image-org-width '450))
 
-(use-package! graphviz-dot-mode
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-
 (setq +org-capture-todo-file "inbox.org")
 
 (use-package! org-roam
@@ -435,17 +435,13 @@ does not change the window size."
         ("i" "issue" plain (file "~/org/roam/templates/issue.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
          :unarrowed t
-         )
-        ))
+         )))
 
 (after! org
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
            :if-new (file+datetree "work-inbox.org" week)
-           :unarrowed t)
-          )
-        )
-  )
+           :unarrowed t))))
 
 (use-package! websocket
   :after org-roam)
@@ -463,8 +459,26 @@ does not change the window size."
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))
-        ))
+          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
+          (sequence "NOTE(N)" "|"))))
+
+(setq org-todo-keyword-faces
+      '(("[-]" . +org-todo-active) ("STRT" . +org-todo-active)
+        ("[?]" . +org-todo-onhold) ("WAIT" . +org-todo-onhold)
+        ("HOLD" . +org-todo-onhold) ("PROJ" . +org-todo-project)
+        ("NO" . +org-todo-cancel) ("KILL" . +org-todo-cancel)
+        ("NOTE" . flymake-note-echo)))
+
+(setq org-modern-todo-faces
+      '(("KILL" :inverse-video t :inherit +org-todo-cancel)
+        ("NO" :inverse-video t :inherit +org-todo-cancel)
+        ("PROJ" :inverse-video t :inherit +org-todo-project)
+        ("HOLD" :inverse-video t :inherit +org-todo-onhold)
+        ("WAIT" :inverse-video t :inherit +org-todo-onhold)
+        ("[?]" :inverse-video t :inherit +org-todo-onhold)
+        ("STRT" :inverse-video t :inherit +org-todo-active)
+        ("NOTE" :inverse-video t :inherit flymake-note-echo)
+        ("[-]" :inverse-video t :inherit +org-todo-active)))
 
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
