@@ -1,4 +1,4 @@
-personal_ws-1.1 en 241
+personal_ws-1.1 en 243
 aadct
 acls
 addc
@@ -110,6 +110,7 @@ lic
 lifecycle
 lookups
 loopback
+lsp
 lsps
 macos
 manzueta
@@ -206,6 +207,7 @@ tsas
 tsdb
 udp
 ufw
+ui
 unlink
 untrusted
 uplinks

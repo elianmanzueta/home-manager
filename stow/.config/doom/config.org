@@ -192,8 +192,9 @@ Keybind to enable inlay hints
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 #+end_src
+
 *** Powershell
 #+begin_src emacs-lisp :tangle yes
 (use-package! powershell

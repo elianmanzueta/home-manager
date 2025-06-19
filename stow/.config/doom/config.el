@@ -151,7 +151,7 @@
 
 (setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-mode)
