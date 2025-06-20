@@ -1,4 +1,4 @@
-personal_ws-1.1 en 245
+personal_ws-1.1 en 248
 aadct
 acls
 addc
@@ -37,6 +37,7 @@ cmdlet
 codemeter
 config
 connectionless
+creds
 csc
 cse
 cstate
@@ -74,6 +75,7 @@ fortigate
 fortiguard
 fortimanager
 fsfips
+fslogix
 fw
 gopls
 gpos
@@ -185,6 +187,7 @@ starship
 stdlic
 sthome
 stick
+structs
 subinterface
 subinterfaces
 subnet

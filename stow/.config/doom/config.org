@@ -603,7 +603,7 @@ Automatically push git changes.
 ** Spelling
 #+begin_src emacs-lisp :tangle ./config.el
 (setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
+(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 #+end_src
 ** SSH config mode
 #+begin_src emacs-lisp :tangle yes

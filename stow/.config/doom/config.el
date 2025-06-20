@@ -481,7 +481,7 @@ does not change the window size."
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 
 (setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
+(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 
 (use-package! ssh-config-mode
   :config
