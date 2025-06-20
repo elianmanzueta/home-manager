@@ -17,17 +17,15 @@
 
   home.packages = with pkgs; [ neovim stow rustup emacs-pgtk cmake nixfmt ];
 
-  programs.fish.enable = true;
+  programs.bat.enable = true;
+  programs.zoxide.enable = true;
+  programs.fzf.enable = true;
 
   programs.git = {
     enable = true;
     userName = "Elian Manzueta";
     userEmail = "elianmanzueta@protonmail.com";
   };
-
-  programs.bat.enable = true;
-  programs.zoxide.enable = true;
-  programs.fzf.enable = true;
 
   # The state version is required and should stay at the version you
   # originally installed.

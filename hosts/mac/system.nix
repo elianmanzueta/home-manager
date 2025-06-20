@@ -1,5 +1,8 @@
 { config, pkgs, ... }: {
+
   networking.hostName = "elians-MBP";
+
+  programs.fish.enable = true;
 
   system = {
     stateVersion = 6;
