@@ -24,6 +24,8 @@ if type -q emacsclient
     abbr --add emacs emacs --daemon
 
     abbr --add ff vterm_cmd find-file .
+
+    abbr --add orgidp git commit --signoff --message ".orgids"
 end
 
 # Ls
