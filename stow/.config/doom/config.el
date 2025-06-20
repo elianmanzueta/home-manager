@@ -70,8 +70,6 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
-(setq my/hostname (shell-command-to-string "hostname -s"))
-
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -81,10 +79,8 @@
           (let ((pwd (eshell/pwd)))
             (propertize (if (equal pwd "~")
                             pwd
-                          (abbreviate-file-name (shrink-path-file pwd)))
+                          (abbreviate-file-name pwd))
                         'face 'nerd-icons-green))
-          (propertize " on " 'face '+eshell-prompt-pwd)
-          (propertize my/hostname 'face 'nerd-icons-green)
           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
 
