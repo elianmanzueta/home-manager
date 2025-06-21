@@ -496,6 +496,7 @@ does not change the window size."
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
+  :load-path "~/emacs-libvterm"
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
