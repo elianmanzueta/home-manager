@@ -38,6 +38,7 @@
     cargo
     rustc
     vmware-horizon-client
+    unzip
 
     graphviz
     teams-for-linux
