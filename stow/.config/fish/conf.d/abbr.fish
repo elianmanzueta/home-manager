@@ -34,8 +34,8 @@ if type -q eza
     abbr --add l eza -lhaF --color=auto --icons=always
     abbr --add lt eza --tree
 else
-    abbr --add ls ls -lhaF --color=auto --icons=always
-    abbr --add l ls -lhaF --color=auto --icons=always
+    abbr --add ls ls -lhaF --color=auto
+    abbr --add l ls -lhaF --color=auto
     abbr --add lt ls --tree
 end
 

@@ -31,6 +31,7 @@
           pkgs = pkgsLinux;
           modules = [
             ./hosts/wsl/home.nix
+            ./hosts/wsl/configuration.nix
             ./shared/terminal/default.nix
             ./shared/editor/neovim.nix
             ./shared/editor/emacs.nix

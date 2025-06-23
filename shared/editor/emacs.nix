@@ -12,7 +12,7 @@
     enchant
     hunspell
     hunspellDicts.en_US
-    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
+    # (aspellWithDicts (dicts: with dicts; [ en en-computers en-science es ]))
     sqlite
     nodePackages.prettier
     cmake
