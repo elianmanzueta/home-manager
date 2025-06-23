@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
@@ -404,6 +406,8 @@ does not change the window size."
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
+(use-package! ox-hugo)
+
 (use-package! org-auto-tangle
   :hook (org-mode . org-auto-tangle-mode))
 
@@ -484,8 +488,12 @@ does not change the window size."
 
 (use-package! ssh-config-mode
   :config
-  (add-to-list 'auto-mode-alist '("/home/elian/.ssh/config'" . ssh-config-mode)))
+  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
+  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
+(add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 (add-hook 'ssh-config-mode-hook (lambda () (setq-local evil-shift-width ssh-config-mode-indent)))
 
 (setq explicit-shell-file-name

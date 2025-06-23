@@ -39,6 +39,12 @@
     rustc
     vmware-horizon-client
     unzip
+    hugo
+    nix-search-cli
+    prismlauncher
+    vlc
+    vips
+    obsidian
 
     graphviz
     teams-for-linux

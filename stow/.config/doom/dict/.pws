@@ -1,4 +1,4 @@
-personal_ws-1.1 en 254
+personal_ws-1.1 en 261
 aadct
 acls
 addc
@@ -204,8 +204,10 @@ svis
 svr
 switch
 syslog
+sysprep
 system’s
 tac
+terraform
 theme
 tiering
 tlvs
@@ -219,8 +221,11 @@ tsdb
 udp
 ufw
 ui
+unconfigure
 unlink
 untrusted
+uplink
+uplinked
 uplinks
 user’s
 util
@@ -232,8 +237,10 @@ vdi
 vdiap
 vdiaps
 vdis
+vds
 veaam
 vertico
+virt
 virtualized
 vlan
 vlans

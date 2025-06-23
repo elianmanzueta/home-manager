@@ -26,6 +26,7 @@
 (package! anki-editor)
 (package! ankiorg
   :recipe (:host github :repo "orgtre/ankiorg"))
+(package! ox-hugo)
 
 ;; Misc
 (package! ssh-config-mode)
