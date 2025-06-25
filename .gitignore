@@ -2,5 +2,6 @@
 .idea
 *.log
 tmp/
+.dir-locals.el
 
 stow/.config/fish/fish_variables
