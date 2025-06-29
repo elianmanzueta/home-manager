@@ -40,6 +40,4 @@ else
 end
 
 # Zoxide
-if type -q zoxide
-    abbr --add cd z
-end
+abbr --add cd z
