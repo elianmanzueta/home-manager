@@ -113,7 +113,6 @@
     python313Full
     wl-clipboard
     dua
-    nh
 
     # Emacs
     emacs-pgtk
@@ -135,6 +134,12 @@
   programs.fish.enable = true;
   programs.partition-manager.enable = true;
   programs.bat.enable = true;
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "~/home-manager";
+  };
 
   services.openssh.enable = true;
   services.flatpak.enable = true;
