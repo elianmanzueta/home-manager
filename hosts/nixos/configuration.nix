@@ -113,6 +113,7 @@
     python313Full
     wl-clipboard
     dua
+    nh
 
     # Emacs
     emacs-pgtk
