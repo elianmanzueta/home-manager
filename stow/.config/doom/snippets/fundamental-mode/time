@@ -3,4 +3,4 @@
 # key: time
 # uuid: time
 # --
-`(format-time-string "%a %b %d at %I:%M %p %Y")`
+${1:} `(format-time-string "%a %b %d %I:%M %p")`
