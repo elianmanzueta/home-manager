@@ -1,5 +1,3 @@
-;; -*- lexical-binding: t; -*-
-
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
@@ -61,7 +59,7 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'ef-night)
 
 (use-package! eat
   :init
