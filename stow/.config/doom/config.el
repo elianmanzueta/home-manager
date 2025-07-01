@@ -152,6 +152,9 @@
 (setq corfu-auto-delay 0.2)
 (setq which-key-idle-delay 0.5)
 
+(setq lsp-ui-imenu-auto-refresh t)
+(setq lsp-ui-imenu-buffer-position 'right)
+
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-mode)
   :hook (powershell-mode . lsp-mode)
