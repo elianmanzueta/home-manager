@@ -96,23 +96,17 @@
   # Enable flakes.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.xwayland.enable = true;
-  programs.steam.enable = true;
-  programs.niri.enable = true;
-  programs.gamemode.enable = true;
-  programs.gamescope.enable = true;
   environment.systemPackages = with pkgs; [
     # Tools
     fish
     xwayland-satellite
-    easyeffects
-    kitty
     wl-gammarelay-rs
     wl-gammarelay-applet
     freerdp
     python313Full
     wl-clipboard
     dua
+    libxml2
 
     # Emacs
     emacs-pgtk
@@ -131,14 +125,28 @@
 
   environment.sessionVariables = { EDITOR = "nvim"; };
 
-  programs.fish.enable = true;
-  programs.partition-manager.enable = true;
-  programs.bat.enable = true;
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "~/home-manager";
+  programs = {
+
+    zoxide.enable = true;
+    xwayland.enable = true;
+    steam.enable = true;
+    niri.enable = true;
+    gamemode.enable = true;
+    gamescope.enable = true;
+
+    bash.enable = true;
+    zsh.enable = true;
+    fish.enable = true;
+    partition-manager.enable = true;
+    bat.enable = true;
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "~/home-manager";
+    };
+
   };
 
   services.openssh.enable = true;

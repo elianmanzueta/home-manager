@@ -13,23 +13,13 @@
     ../../shared/code/go.nix
     ../../shared/code/python.nix
     ../../shared/code/data.nix
+    ../../shared/applications/default.nix
   ];
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    vivaldi
-    networkmanager-openvpn
-    proton-pass
-    protonmail-desktop
-    protonmail-bridge
     openfortivpn
     openfortivpn-webview-qt
-    vesktop
-    spotify
-    gparted
-    remmina
-    stremio
-    onlyoffice-desktopeditors
     waybar
     swaybg
     waypaper
@@ -38,14 +28,8 @@
     cargo
     rustc
     vmware-horizon-client
-    unzip
     hugo
-    nix-search-cli
     prismlauncher
-    vlc
-    vips
-    obsidian
-
     graphviz
     teams-for-linux
   ];
