@@ -15,6 +15,7 @@
     stremio
     unzip
     vlc
+    kitty
   ];
 
 }
