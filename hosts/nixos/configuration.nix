@@ -134,7 +134,6 @@
     gamemode.enable = true;
     gamescope.enable = true;
 
-    bash.enable = true;
     zsh.enable = true;
     fish.enable = true;
     partition-manager.enable = true;

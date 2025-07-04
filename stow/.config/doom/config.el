@@ -548,7 +548,26 @@ does not change the window size."
 
   (setq lsp-auto-register-remote-clients nil)
   (setq lsp-warn-no-matched-clients nil)
-  )
+
+  ;; Performance tweaks
+  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (setq magit-tramp-pipe-stty-settings 'pty)
+
+  (with-eval-after-load 'tramp
+    (with-eval-after-load 'compile
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
+
+(defun my/cleanup-tramp ()
+  (tramp-cleanup-all-connections)
+  (tramp-cleanup-all-buffers))
 
 (use-package! ultra-scroll
   :init
