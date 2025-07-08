@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "elian";
@@ -27,7 +27,6 @@
     pavucontrol
     cargo
     rustc
-    vmware-horizon-client
     hugo
     prismlauncher
     graphviz

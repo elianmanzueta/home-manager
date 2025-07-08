@@ -96,6 +96,19 @@
   # Enable flakes.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      vmware-horizon-client = prev.vmware-horizon-client.overrideAttrs (old: {
+        src = prev.fetchFromGitHub {
+          owner = "nixos";
+          repo = "nixpkgs";
+          rev = "4ffc81d48a040d9705d74691769c5ab12360daa5";
+          hash = "sha256-PtLLpjRks3TBEB1DAGDvY95Usl+xSEYZ27S1rIv3PsM=";
+        };
+      });
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     # Tools
     fish
@@ -107,6 +120,10 @@
     wl-clipboard
     dua
     libxml2
+    vmware-horizon-client
+    rustc
+    cargo
+    rust-analyzer
 
     # Emacs
     emacs-pgtk
