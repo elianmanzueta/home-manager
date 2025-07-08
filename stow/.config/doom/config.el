@@ -291,8 +291,21 @@ does not change the window size."
                                )))
 
 (use-package! graphviz-dot-mode
+  :hook (flycheck-mode . flyover-mode)
   :config
   (setq graphviz-dot-preview-extension "svg"))
+
+;; (use-package! flyover
+;;   :hook (flymake-mode . flyover-mode)
+;;   :config
+;;   (setq flyover-levels '(error warning info))
+;;   (setq flyover-use-theme-colors t))
+
+(use-package! flymake
+  :hook (prog-mode . flymake-mode)
+  :config
+  (setq flymake-show-diagnostics-at-end-of-line 'fancy)
+  (setq flymake-popon-mode nil))
 
 (use-package! org-super-agenda
   :after org-agenda
