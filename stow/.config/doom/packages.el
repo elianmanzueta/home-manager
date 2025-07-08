@@ -28,15 +28,18 @@
   :recipe (:host github :repo "orgtre/ankiorg"))
 (package! ox-hugo)
 
-;; Misc
-(package! ssh-config-mode)
+;; Code
 (package! just-mode)
 (package! fish-mode)
 (package! gptel)
-(package! ultra-scroll
-  :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
 (package! powershell-ts-mode
   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
+(package! flyover)
+
+;; Misc
+(package! ssh-config-mode)
+(package! ultra-scroll
+  :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
 (package! nerd-icons-completion)
 (package! eat
   :recipe (:host codeberg

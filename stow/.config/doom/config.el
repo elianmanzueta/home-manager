@@ -291,7 +291,6 @@ does not change the window size."
                                )))
 
 (use-package! graphviz-dot-mode
-  :hook (flycheck-mode . flyover-mode)
   :config
   (setq graphviz-dot-preview-extension "svg"))
 

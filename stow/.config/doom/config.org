@@ -1,5 +1,6 @@
 #+TITLE: Elian's Doom Emacs Config
 #+auto_tangle: t
+#+STARTUP: overview
 
 * Configuration
 ** Auto-fill Mode
@@ -371,6 +372,20 @@ Tweak to make previews work
 (use-package! graphviz-dot-mode
   :config
   (setq graphviz-dot-preview-extension "svg"))
+#+end_src
+** Checkers
+#+begin_src emacs-lisp :tangle yes
+;; (use-package! flyover
+;;   :hook (flymake-mode . flyover-mode)
+;;   :config
+;;   (setq flyover-levels '(error warning info))
+;;   (setq flyover-use-theme-colors t))
+
+(use-package! flymake
+  :hook (prog-mode . flymake-mode)
+  :config
+  (setq flymake-show-diagnostics-at-end-of-line 'fancy)
+  (setq flymake-popon-mode nil))
 #+end_src
 ** Org
 *** Agenda
