@@ -124,6 +124,7 @@
     rustc
     cargo
     rust-analyzer
+    nixpkgs-review
 
     # Emacs
     emacs-pgtk

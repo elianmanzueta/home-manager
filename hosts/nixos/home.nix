@@ -31,6 +31,7 @@
     prismlauncher
     graphviz
     teams-for-linux
+    floorp
   ];
 
   # basic configuration of git, please change to your own
