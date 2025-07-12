@@ -7,7 +7,7 @@ rebuild:
     elif [ "$(uname -a | grep -i WSL)" ]; then \
         home-manager switch -b backup --flake .#wsl; \
     elif [ "$(uname -a | grep -i nixos)" ]; then \
-        sudo nixos-rebuild switch --flake .#elian-nixos; \
+        nh os switch .; \
     elif [ "$(uname)" = "Linux" ]; then \
         home-manager switch -b backup --flake .#linux; \
     else \
@@ -16,3 +16,6 @@ rebuild:
 
 stow:
     @stow -t ~ stow/ --adopt
+
+clean:
+    @nh clean user
