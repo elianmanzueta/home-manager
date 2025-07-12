@@ -15,7 +15,7 @@
     gh
     stow
     nix-search-cli
-    vips
+    nh
   ];
 
   home.sessionVariables = { EDITOR = "nvim"; };

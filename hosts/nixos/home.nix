@@ -16,10 +16,8 @@
     ../../shared/applications/default.nix
   ];
 
-  # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     openfortivpn
-    openfortivpn-webview-qt
     waybar
     swaybg
     waypaper
@@ -31,17 +29,17 @@
     prismlauncher
     graphviz
     teams-for-linux
-    floorp
   ];
 
-  # basic configuration of git, please change to your own
-  programs.git = {
-    enable = true;
-    userName = "Elian Manzueta";
-    userEmail = "elianmanzueta@protonmail.com";
+  programs = {
+    gh = { enable = true; };
+    command-not-found = { enable = true; };
+    git = {
+      enable = true;
+      userName = "Elian Manzueta";
+      userEmail = "elianmanzueta@protonmail.com";
+    };
   };
-
-  programs.gh = { enable = true; };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
