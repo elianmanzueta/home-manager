@@ -7,9 +7,10 @@
   home.homeDirectory = "/home/elian";
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = [
+  home.packages = with pkgs; [
     # Desktop
-    pkgs.spotify
+    spotify
+    openfortivpn
   ];
 
   home.sessionVariables = {

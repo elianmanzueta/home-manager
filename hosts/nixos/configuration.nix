@@ -144,26 +144,22 @@
   environment.sessionVariables = { EDITOR = "nvim"; };
 
   programs = {
-
-    zoxide.enable = true;
     xwayland.enable = true;
     steam.enable = true;
-    niri.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
 
+    zoxide.enable = true;
     zsh.enable = true;
     fish.enable = true;
     partition-manager.enable = true;
     bat.enable = true;
-
     nh = {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "~/home-manager";
     };
-
   };
 
   services.openssh.enable = true;
