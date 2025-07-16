@@ -643,15 +643,15 @@ Automatically push git changes.
 *** Fish
 Setting fish shell paths.
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
-;; (setq explicit-shell-file-name
-;;       (cond
-;;        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-;;        ((eq system-type 'gnu/linux)
-;;         (let ((cmd (shell-command-to-string "uname -a")))
-;;           (if (string-match "NixOS" cmd)
-;;               "/run/current-system/sw/bin/fish"
-;;             "/bin/fish")))
-;;        (t "/bin/sh")))  ; Default to bourne shell for other systems
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+       ((eq system-type 'gnu/linux)
+        (let ((cmd (shell-command-to-string "uname -a")))
+          (if (string-match "NixOS" cmd)
+              "/run/current-system/sw/bin/fish"
+            "/bin/fish")))
+       (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
   :load-path "~/emacs-libvterm"

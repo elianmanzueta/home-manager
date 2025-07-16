@@ -509,15 +509,15 @@ does not change the window size."
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 (add-hook 'ssh-config-mode-hook (lambda () (setq-local evil-shift-width ssh-config-mode-indent)))
 
-;; (setq explicit-shell-file-name
-;;       (cond
-;;        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-;;        ((eq system-type 'gnu/linux)
-;;         (let ((cmd (shell-command-to-string "uname -a")))
-;;           (if (string-match "NixOS" cmd)
-;;               "/run/current-system/sw/bin/fish"
-;;             "/bin/fish")))
-;;        (t "/bin/sh")))  ; Default to bourne shell for other systems
+(setq explicit-shell-file-name
+      (cond
+       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+       ((eq system-type 'gnu/linux)
+        (let ((cmd (shell-command-to-string "uname -a")))
+          (if (string-match "NixOS" cmd)
+              "/run/current-system/sw/bin/fish"
+            "/bin/fish")))
+       (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
   :load-path "~/emacs-libvterm"
