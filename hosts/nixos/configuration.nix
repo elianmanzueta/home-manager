@@ -122,6 +122,12 @@
     # Emacs
     emacs-pgtk
 
+    # Hyprland
+    hyprpanel
+    hyprlock
+    hypridle
+    hyprutils
+
     # Niri
     niri
     niriswitcher
@@ -141,6 +147,9 @@
     steam.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
+
+    hyprland.enable = true;
+    niri.enable = true;
 
     zoxide.enable = true;
     zsh.enable = true;

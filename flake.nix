@@ -4,7 +4,7 @@
   inputs = {
     lix-module = {
       url =
-        "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+        "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -18,12 +18,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, lix-module, ... }@inputs:
-    let
-      pkgsDarwin = nixpkgs.legacyPackages.aarch64-darwin;
-      pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
+  outputs = { self, nixpkgs, nix-darwin, home-manager, lix-module, ... }:
+    let pkgsLinux = nixpkgs.legacyPackages.x86_64-linux;
     in {
       # home-manager standalone
       homeConfigurations = {
@@ -81,6 +85,7 @@
           lix-module.nixosModules.default
 
           home-manager.nixosModules.home-manager
+
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

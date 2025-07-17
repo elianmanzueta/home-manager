@@ -227,6 +227,33 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match app-id="pavucontrol"
+    match app-id="dialog"
+    match app-id="popup"
+    match app-id="org.kde.polkit-kde-authentication-agent-1"
+    match app-id="gammarelay"
+
+    match title="Properties"
+    match title="Downloads"
+    match title="Copying"
+    match title="Moving"
+    match title="Confirmed"
+    match title="Authentication Required"
+    match title="Notice"
+    match title="Warning"
+    match title="Error"
+    match title="wl-gammarelay-applet"
+
+    open-floating true
+}
+
+window-rule {
+    match app-id="zen"
+
+    open-maximized true
+}
+
 binds {
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
