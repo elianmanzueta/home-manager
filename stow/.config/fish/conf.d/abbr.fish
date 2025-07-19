@@ -22,6 +22,7 @@ if type -q emacsclient
     abbr --add em "emacsclient -c &"
     abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
     abbr --add emacs emacs --daemon
+    abbr --add et emacs -nw
 
     abbr --add ff vterm_cmd find-file .
 
