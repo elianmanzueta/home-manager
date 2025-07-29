@@ -29,10 +29,30 @@
   (setq centaur-tabs-set-bar 'right)
   )
 #+end_src
+** Checkers
+#+begin_src emacs-lisp :tangle yes
+;; (use-package! flymake
+;;   :hook (prog-mode . flymake-mode)
+;;   :config
+;;   (setq flymake-show-diagnostics-at-end-of-line 'short)
+;;   (setq flymake-popon-mode nil))
+
+(use-package! flyover
+  :hook (flycheck-mode-hook . flyover-mode)
+  :config
+  (setq flyover-use-theme-colors t)
+  (setq flyover-base-height 1.0))
+
+(custom-set-faces
+  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
+  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
+  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
+  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
+#+end_src
 ** Code
 Keybind to enable inlay hints
 #+begin_src emacs-lisp :tangle ./config.el
-(map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
+;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
 #+end_src
 *** Go
 **** Gopls
@@ -85,7 +105,7 @@ Keybind to enable inlay hints
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'ef-night)
+(setq doom-theme 'ef-eagle)
 #+end_src
 ** EAT
 #+begin_src emacs-lisp :tangle ./config.el
@@ -176,6 +196,13 @@ Keybind to enable inlay hints
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 #+end_src
+** Graphviz
+Tweak to make previews work
+#+begin_src emacs-lisp :tangle yes
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+#+end_src
 ** Indent Bars Mode
 #+begin_src emacs-lisp :tangle ./config.el
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
@@ -211,24 +238,25 @@ Keybind to enable inlay hints
 *** Python
 Enable inlay hints in Python
 #+begin_src emacs-lisp :tangle ./config.el
-(use-package! lsp-pyright
-  :hook (python-mode . lsp-inlay-hints-mode)
-  :config
-  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+;; (use-package! lsp-pyright
+;;   ;; :hook (python-mode . lsp-inlay-hints-mode)
+;;   :config
+;;   (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
-  (setq lsp-pyright-langserver-command "basedpyright")
-  (setq lsp-pyright-type-checking-mode "basic")
+;;   (setq lsp-pyright-langserver-command "basedpyright")
+;;   (setq lsp-pyright-type-checking-mode "basic")
 
-  (setq lsp-pyright-venv-path ".")
-  (setq lsp-pyright-venv-directory ".venv"))
+;;   (setq lsp-pyright-venv-path ".")
+;;   (setq lsp-pyright-venv-directory ".venv"))
 #+end_src
 
 Enable Ruff
 #+begin_src emacs-lisp :tangle ./config.el
 (setq-hook! 'python-mode-hook +format-with 'ruff)
+;; (use-package! flymake-ruff)
 #+end_src
 *** Rust
 **** Inlay hints
@@ -366,27 +394,6 @@ does not change the window size."
                                )))
 #+end_src
 
-** Graphviz
-Tweak to make previews work
-#+begin_src emacs-lisp :tangle yes
-(use-package! graphviz-dot-mode
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-#+end_src
-** Checkers
-#+begin_src emacs-lisp :tangle yes
-;; (use-package! flyover
-;;   :hook (flymake-mode . flyover-mode)
-;;   :config
-;;   (setq flyover-levels '(error warning info))
-;;   (setq flyover-use-theme-colors t))
-
-(use-package! flymake
-  :hook (prog-mode . flymake-mode)
-  :config
-  (setq flymake-show-diagnostics-at-end-of-line 'fancy)
-  (setq flymake-popon-mode nil))
-#+end_src
 ** Org
 *** Agenda
 **** Super Agenda
@@ -474,6 +481,8 @@ Tweak to make previews work
   :config
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
+        org-modern-block-name nil
+        org-modern-keyword nil
         ))
 
 (use-package! org-agenda

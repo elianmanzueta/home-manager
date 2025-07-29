@@ -18,7 +18,25 @@
   (setq centaur-tabs-set-bar 'right)
   )
 
-(map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
+;; (use-package! flymake
+;;   :hook (prog-mode . flymake-mode)
+;;   :config
+;;   (setq flymake-show-diagnostics-at-end-of-line 'short)
+;;   (setq flymake-popon-mode nil))
+
+(use-package! flyover
+  :hook (flycheck-mode-hook . flyover-mode)
+  :config
+  (setq flyover-use-theme-colors t)
+  (setq flyover-base-height 1.0))
+
+(custom-set-faces
+  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
+  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
+  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
+  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
+
+;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
 
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -59,7 +77,7 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'ef-night)
+(setq doom-theme 'ef-eagle)
 
 (use-package! eat
   :init
@@ -141,6 +159,10 @@
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 
+(use-package! graphviz-dot-mode
+  :config
+  (setq graphviz-dot-preview-extension "svg"))
+
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (use-package just-mode
@@ -163,21 +185,22 @@
 
 (use-package! powershell-ts-mode)
 
-(use-package! lsp-pyright
-  :hook (python-mode . lsp-inlay-hints-mode)
-  :config
-  (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-  (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-  (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
+;; (use-package! lsp-pyright
+;;   ;; :hook (python-mode . lsp-inlay-hints-mode)
+;;   :config
+;;   (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
+;;   (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
 
-  (setq lsp-pyright-langserver-command "basedpyright")
-  (setq lsp-pyright-type-checking-mode "basic")
+;;   (setq lsp-pyright-langserver-command "basedpyright")
+;;   (setq lsp-pyright-type-checking-mode "basic")
 
-  (setq lsp-pyright-venv-path ".")
-  (setq lsp-pyright-venv-directory ".venv"))
+;;   (setq lsp-pyright-venv-path ".")
+;;   (setq lsp-pyright-venv-directory ".venv"))
 
 (setq-hook! 'python-mode-hook +format-with 'ruff)
+;; (use-package! flymake-ruff)
 
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
@@ -290,22 +313,6 @@ does not change the window size."
                                orderless-regexp
                                )))
 
-(use-package! graphviz-dot-mode
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-
-;; (use-package! flyover
-;;   :hook (flymake-mode . flyover-mode)
-;;   :config
-;;   (setq flyover-levels '(error warning info))
-;;   (setq flyover-use-theme-colors t))
-
-(use-package! flymake
-  :hook (prog-mode . flymake-mode)
-  :config
-  (setq flymake-show-diagnostics-at-end-of-line 'fancy)
-  (setq flymake-popon-mode nil))
-
 (use-package! org-super-agenda
   :after org-agenda
   :config
@@ -386,6 +393,8 @@ does not change the window size."
   :config
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
+        org-modern-block-name nil
+        org-modern-keyword nil
         ))
 
 (use-package! org-agenda

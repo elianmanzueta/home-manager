@@ -34,7 +34,7 @@
 (package! gptel)
 (package! powershell-ts-mode
   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
-(package! flyover)
+;; (package! flymake-ruff)
 
 ;; Misc
 (package! ssh-config-mode)
@@ -52,3 +52,4 @@
 (package! ef-themes)
 (package! standard-themes)
 (package! nov)
+(package! flyover)
