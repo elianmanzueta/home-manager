@@ -31,10 +31,10 @@
   (setq flyover-base-height 1.0))
 
 (custom-set-faces
-  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
-  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
-  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
-  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
+ '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
+ '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
+ '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
+ '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
 
 ;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
 
@@ -111,6 +111,11 @@
  "gcsm" "git commit --signoff --message")
 
 (setq vterm-tramp-shells '(("ssh" "/bin/bash") ("scp" "/bin/bash") ("docker" "/bin/sh")))
+
+(use-package eglot-booster
+  :after eglot
+  :config
+  (setq eglot-booster-io-only t))
 
 (after! org
   (custom-set-faces!
@@ -275,8 +280,6 @@ does not change the window size."
 
 (defun my/prompt-for-eat-term ()
   "Prompt for a terminal name before opening EAT."
-
-
   (interactive)
   (let ((term-name (read-string "Terminal name: " nil nil "eat")))
     (setq-local eat-buffer-name term-name)
@@ -294,8 +297,8 @@ does not change the window size."
                                    (dedicated . t)))))
       (gptel "gptel-popup" nil nil))))
 
-;; (map! :leader "o t" #'nano-term)
-;; (map! :leader "o T" #'my/prompt-for-eat-term)
+(map! :leader "o t" #'nano-term)
+(map! :leader "o T" #'my/prompt-for-eat-term)
 (map! :leader "g p" #'my/gptel-popup)
 (map! :leader "g P" #'gptel)
 
@@ -344,22 +347,14 @@ does not change the window size."
                            :log t)
                           (:name "In progress"
                            :todo ("IN-PROGRESS"))
-                          (:name "Work Important"
-                           :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
-                          (:name "Work other"
-                           :and (:category "Work" :todo ("TODO" "NEXT")))
-                          (:name "Habits"
-                           :tag "habits"
-                           :time-grid t)
-                          (:name "Scheduled - Future"
-                           :time-grid t
-                           :scheduled future)
                           (:name "Important"
                            :priority "A")
                           (:name "Issues"
                            :tag "issues"
                            :order 0)
                           (:priority<= "B")
+                          (:name "On hold"
+                           :todo "HOLD")
                           ))))))))
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
@@ -485,7 +480,7 @@ does not change the window size."
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
-          (sequence "NOTE(N)" "|"))))
+          (sequence "NOTE(N)" "HOLD(h)" "|"))))
 
 (setq org-todo-keyword-faces
       '(("[-]" . +org-todo-active) ("STRT" . +org-todo-active)
@@ -567,7 +562,7 @@ does not change the window size."
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp))
 
-  (setq lsp-auto-register-remote-clients nil)
+  (setq lsp-auto-register-remote-clients t)
   (setq lsp-warn-no-matched-clients nil)
 
   ;; Performance tweaks
@@ -587,6 +582,7 @@ does not change the window size."
       (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
 
 (defun my/cleanup-tramp ()
+  (interactive)
   (tramp-cleanup-all-connections)
   (tramp-cleanup-all-buffers))
 

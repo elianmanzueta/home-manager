@@ -8,4 +8,5 @@ switch (uname)
         # Linux-specific commands
         fish_add_path /home/elian/.local/bin
         fish_add_path /home/elian/.config/emacs/bin/
+        fish_add_path /home/elian/.cargo/bin/
 end
