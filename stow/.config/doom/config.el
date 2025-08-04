@@ -320,42 +320,39 @@ does not change the window size."
   :after org-agenda
   :config
   (setq org-agenda-start-day nil)
-  (setq org-agenda-block-separator nil)
-  (setq org-agenda-start-day nil)
-  (setq org-habit-show-habits-only-for-today nil)
-  (setq org-habit-show-all-today t)
-  (setq org-super-agenda-unmatched-name "Misc")
   (setq org-super-agenda-header-map (make-sparse-keymap))
-  )
+  (setq org-agenda-skip-scheduled-if-done t)
+  (setq org-agenda-skip-deadline-if-done t)
+  (setq org-agenda-overriding-header "")
+  (setq org-agenda-span 'day))
+
 
 (setq org-agenda-custom-commands
-      '(("n" "Agenda view"
+      '(("n" "Super-agenda view"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today"
-                          :time-grid t
-                          :date today
-                          :scheduled today
-                          :order 1)))))
-
-          (alltodo "" ((org-agenda-overriding-header "")
+                          :time-grid t)))))
+          (alltodo "" ((org-agenda-overriding-header "Inbox")
                        (org-super-agenda-groups
-                        '(;; Each group has an inmplicit boolean OR operator between its selectors.
-                          (:name "Today"
-                           :deadline today
-                           :face (:background "black")
-                           :log t)
+                        '((:name "Important"
+                           :and (:priority>= "B" :tag "inbox")
+                           :order 1)
                           (:name "In progress"
-                           :todo ("IN-PROGRESS"))
-                          (:name "Important"
-                           :priority "A")
-                          (:name "Issues"
-                           :tag "issues"
-                           :order 0)
-                          (:priority<= "B")
+                           :and (:tag "inbox" :todo ("IN-PROGRESS"))
+                           :order 2)
                           (:name "On hold"
-                           :todo "HOLD")
-                          ))))))))
+                           :todo "HOLD"
+                           :order 4)
+                          (:discard (:anything t))))))
+
+          (todo "" ((org-agenda-overriding-header "Projects")
+                    (org-super-agenda-groups
+                     '((:name "Projects - Important"
+                        :and (:todo ("TODO" "IN-PROGRESS") :tag "projects" :priority>= "B"))
+                       (:name nil
+                        :tag "projects")
+                       (:discard (:anything t))))))))))
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
