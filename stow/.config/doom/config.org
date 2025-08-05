@@ -102,7 +102,7 @@ Keybind to enable inlay hints
 #+END_SRC
 ** Doom
 #+begin_src emacs-lisp :tangle ./config.el
-(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16))
+(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'ef-eagle)
