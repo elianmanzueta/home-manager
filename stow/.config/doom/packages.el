@@ -54,4 +54,3 @@
 (package! ef-themes)
 (package! standard-themes)
 (package! nov)
-(package! flyover)

@@ -18,23 +18,23 @@
   (setq centaur-tabs-set-bar 'right)
   )
 
-;; (use-package! flymake
-;;   :hook (prog-mode . flymake-mode)
-;;   :config
-;;   (setq flymake-show-diagnostics-at-end-of-line 'short)
-;;   (setq flymake-popon-mode nil))
-
-(use-package! flyover
-  :hook (flycheck-mode-hook . flyover-mode)
+(use-package! flymake
+  :hook (prog-mode . flymake-mode)
   :config
-  (setq flyover-use-theme-colors t)
-  (setq flyover-base-height 1.0))
+  (setq flymake-show-diagnostics-at-end-of-line 'short)
+  (setq flymake-popon-mode nil))
 
-(custom-set-faces
- '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
- '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
- '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
- '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
+;; (use-package! flyover
+;;   :hook (flycheck-mode-hook . flyover-mode)
+;;   :config
+;;   (setq flyover-use-theme-colors t)
+;;   (setq flyover-base-height 1.0))
+
+;; (custom-set-faces
+;;  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
+;;  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
+;;  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
+;;  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
 
 ;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
 
@@ -77,7 +77,7 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'ef-eagle)
+(setq doom-theme 'doom-gruvbox)
 
 (use-package! eat
   :init
@@ -206,6 +206,8 @@
 
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 ;; (use-package! flymake-ruff)
+
+(setq flycheck-popup-tip-mode nil)
 
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
