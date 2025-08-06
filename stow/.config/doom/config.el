@@ -115,6 +115,7 @@
 (use-package eglot-booster
   :after eglot
   :config
+  (setq eglot-booster-mode t)
   (setq eglot-booster-io-only t))
 
 (after! org
