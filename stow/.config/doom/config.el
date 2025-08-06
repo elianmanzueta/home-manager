@@ -346,23 +346,29 @@ does not change the window size."
                            :and (:tag "inbox" :todo ("IN-PROGRESS"))
                            :order 2)
                           (:name "Entries"
-                           :tag "inbox")
+                           :and (:todo "TODO" :tag "inbox")
+                           :order 3)
                           (:name "On hold"
                            :and (:todo "HOLD" :tag "inbox")
                            :order 4)
+                          (:name "Notes"
+                           :todo "NOTE"
+                           :order 5)
                           (:discard (:anything t))))))
 
           (todo "" ((org-agenda-overriding-header "Projects")
                     (org-super-agenda-groups
                      '((:name "Projects - Important"
                         :and (:todo ("TODO" "IN-PROGRESS") :tag "projects" :priority>= "B"))
+                       (:name "Projects"
+                        :and (:tag "projects" :todo ("TODO")))
                        (:name "Projects - On hold"
                         :and (:todo ("HOLD") :tag "projects"))
-                       (:name nil
-                        :tag "projects")
+                       (:name "Notes"
+                        :and (:tag "projects" :todo "NOTE"))
                        (:discard (:anything t))))))))))
 
-        (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
+(add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
 (add-hook 'org-mode-hook '+org-pretty-mode)
 (add-hook '+org-pretty-mode-hook 'org-appear-mode)
