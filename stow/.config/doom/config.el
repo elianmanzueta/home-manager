@@ -88,22 +88,22 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
-(defun +eshell-default-prompt-fn ()
-  "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
-  (require 'shrink-path)
-  (concat (if (bobp) "" "\n")
-          (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
-          (propertize " in " 'face '+eshell-prompt-pwd)
+;; (defun +eshell-default-prompt-fn ()
+;;   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
+;;   (require 'shrink-path)
+;;   (concat (if (bobp) "" "\n")
+;;           (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
+;;           (propertize " in " 'face '+eshell-prompt-pwd)
 
-          (let ((pwd (eshell/pwd)))
-            (propertize (if (equal pwd "~")
-                            pwd
-                          (abbreviate-file-name pwd))
-                        'face 'nerd-icons-green))
+;;           (let ((pwd (eshell/pwd)))
+;;             (propertize (if (equal pwd "~")
+;;                             pwd
+;;                           (abbreviate-file-name pwd))
+;;                         'face 'nerd-icons-green))
 
-          "\n"
-          (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
-          " "))
+;;           "\n"
+;;           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
+;;           " "))
 
 (set-eshell-alias!
  "ls" "ls -lhaF --color=auto"
