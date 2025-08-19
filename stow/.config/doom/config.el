@@ -13,6 +13,7 @@
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
 
 (use-package! centaur-tabs
+  :defer t
   :init
   (setq centaur-tabs-set-close-button nil)
   (setq centaur-tabs-set-bar 'right)
@@ -60,6 +61,7 @@
 
 (use-package! nerd-icons)
 (use-package! dirvish
+  :defer t
   :config
   (setq dirvish-attributes
         '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
@@ -80,6 +82,7 @@
 (setq doom-theme 'doom-gruvbox)
 
 (use-package! eat
+  :defer t
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color")) ; https://codeberg.org/akib/emacs-eat/issues/119"
@@ -132,6 +135,7 @@
     '(org-verbatim :inherit bold :weight extra-bold)))
 
 (use-package! gptel
+  :defer t
   :config
   (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
   (setq
@@ -166,12 +170,14 @@
         ))
 
 (use-package! graphviz-dot-mode
+  :defer t
   :config
   (setq graphviz-dot-preview-extension "svg"))
 
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (use-package just-mode
+  :defer t
   :mode ("justfile\\'" . just-mode)
   :config
   (setq just-indent-offset 4))
@@ -311,6 +317,7 @@ does not change the window size."
   (setq nov-variable-pitch nil))
 
 (use-package! orderless
+  :defer t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
@@ -377,6 +384,7 @@ does not change the window size."
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
 (use-package! org
+  :defer t
   :config
   (setq org-hide-emphasis-markers t
         org-fontify-quote-and-verse-blocks t
@@ -396,6 +404,7 @@ does not change the window size."
         ))
 
 (use-package! org-modern
+  :defer t
   :config
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
@@ -404,12 +413,14 @@ does not change the window size."
         ))
 
 (use-package! org-agenda
+  :defer t
   :config
   (setq org-agenda-timegrid-use-ampm 't
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package! git-auto-commit-mode
+  :defer t
   :config
   (setq gac-automatically-push-p 't
         gac-automatically-add-new-files-p 't
@@ -421,10 +432,13 @@ does not change the window size."
 (setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
 ;; (setq org-agenda-prefix-format '((todo . " ")))
 
-(use-package! anki-editor)
-(use-package! ankiorg)
+(use-package! anki-editor
+  :defer t)
+(use-package! ankiorg
+  :defer t)
 
 (use-package! org-attach
+  :defer t
   :config
   (setq org-attach-auto-tag nil
         org-attach-store-link-p 'file
@@ -434,18 +448,22 @@ does not change the window size."
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
-(use-package! ox-hugo)
+(use-package! ox-hugo
+  :defer t)
 
 (use-package! org-auto-tangle
+  :defer t
   :hook (org-mode . org-auto-tangle-mode))
 
 (use-package! org-download
+  :defer t
   :config
   (setq org-download-image-org-width '450))
 
 (setq +org-capture-todo-file "inbox.org")
 
 (use-package! org-roam
+  :defer t
   :config
   (setq org-roam-node-default-sort 'file-mtime
         org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
@@ -515,6 +533,7 @@ does not change the window size."
 (setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 
 (use-package! ssh-config-mode
+  :defer t
   :config
   (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
   (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
@@ -535,6 +554,7 @@ does not change the window size."
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
+  :defer t
   :load-path "~/emacs-libvterm"
   :init
   (setq vterm-shell explicit-shell-file-name)
@@ -565,6 +585,7 @@ does not change the window size."
         (t . (1.05))))
 
 (use-package! tramp
+  :defer t
   :config
   (setq tramp-inline-compress-start-size 50000)
   (setq tramp-default-method "scp")
@@ -605,6 +626,7 @@ does not change the window size."
   (ultra-scroll-mode 1))
 
 (use-package! vertico
+  :defer t
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
 
@@ -638,6 +660,7 @@ does not change the window size."
       cand)))
 
 (use-package! vertico-directory
+  :defer t
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
