@@ -17,7 +17,6 @@ spawn-at-startup "polkit-kde-agent"
 spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
 spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'"
 spawn-at-startup "niriswitcher"
-spawn-at-startup "steam"
 
 spawn-at-startup "/home/elian/home-manager/stow/.scripts/gammarelay.sh"
 spawn-at-startup "/home/elian/home-manager/stow/.scripts/swaybg.sh"
@@ -83,7 +82,7 @@ input {
 }
 
 output "DP-2" {
-    mode "1920x1080"
+    mode "2560x1440"
 }
 
 output "DP-3" {
