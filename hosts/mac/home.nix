@@ -15,7 +15,7 @@
     ../../shared/code/data.nix
   ];
 
-  home.packages = with pkgs; [ neovim stow rustup emacs-pgtk cmake ];
+  home.packages = with pkgs; [ neovim stow rustup cmake ];
 
   programs.bat.enable = true;
   programs.zoxide.enable = true;
