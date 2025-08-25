@@ -355,14 +355,14 @@
         ))
 
 (use-package! org-agenda
-  :defer t
+  :after org
   :config
   (setq org-agenda-timegrid-use-ampm 't
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package! git-auto-commit-mode
-  :defer t
+  :after org
   :config
   (setq gac-automatically-push-p 't
         gac-automatically-add-new-files-p 't
@@ -380,7 +380,7 @@
   :defer t)
 
 (use-package! org-attach
-  :defer t
+  :after org
   :config
   (setq org-attach-auto-tag nil
         org-attach-store-link-p 'file
@@ -394,18 +394,18 @@
   :defer t)
 
 (use-package! org-auto-tangle
-  :defer t
+  :after org
   :hook (org-mode . org-auto-tangle-mode))
 
 (use-package! org-download
-  :defer t
+  :after org
   :config
   (setq org-download-image-org-width '450))
 
 (setq +org-capture-todo-file "inbox.org")
 
 (use-package! org-roam
-  :defer t
+  :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
         org-roam-file-exclude-regexp (list "/home/elian/org.attach/")

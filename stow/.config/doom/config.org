@@ -444,7 +444,7 @@ Focus new window after splitting.
         ))
 
 (use-package! org-agenda
-  :defer t
+  :after org
   :config
   (setq org-agenda-timegrid-use-ampm 't
         org-display-custom-times t
@@ -460,7 +460,7 @@ code here:
 Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! git-auto-commit-mode
-  :defer t
+  :after org
   :config
   (setq gac-automatically-push-p 't
         gac-automatically-add-new-files-p 't
@@ -485,7 +485,7 @@ Automatically push git changes.
 *** Org attach
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-attach
-  :defer t
+  :after org
   :config
   (setq org-attach-auto-tag nil
         org-attach-store-link-p 'file
@@ -503,13 +503,13 @@ Automatically push git changes.
 *** Org auto tangle
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-auto-tangle
-  :defer t
+  :after org
   :hook (org-mode . org-auto-tangle-mode))
 #+end_src
 *** Org-download
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-download
-  :defer t
+  :after org
   :config
   (setq org-download-image-org-width '450))
 #+end_src
@@ -520,7 +520,7 @@ Automatically push git changes.
 *** Org roam
 #+begin_src emacs-lisp :tangle yes
 (use-package! org-roam
-  :defer t
+  :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
         org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
