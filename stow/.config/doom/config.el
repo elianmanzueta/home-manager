@@ -496,7 +496,6 @@
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
-  :defer t
   :load-path "~/emacs-libvterm"
   :init
   (setq vterm-shell explicit-shell-file-name)
