@@ -115,11 +115,11 @@
 
 (setq vterm-tramp-shells '(("ssh" "/bin/bash") ("scp" "/bin/bash") ("docker" "/bin/sh")))
 
-(use-package eglot-booster
-  :after eglot
-  :config
-  (setq eglot-booster-mode t)
-  (setq eglot-booster-io-only t))
+;; (use-package eglot-booster
+;;   :after eglot
+;;   :config
+;;   (setq eglot-booster-mode t)
+;;   (setq eglot-booster-io-only t))
 
 (after! org
   (custom-set-faces!
@@ -212,7 +212,7 @@
 ;;   (setq lsp-pyright-venv-directory ".venv"))
 
 (setq-hook! 'python-mode-hook +format-with 'ruff)
-;; (use-package! flymake-ruff)
+(use-package! flymake-ruff)
 
 (setq flycheck-popup-tip-mode nil)
 
@@ -496,7 +496,6 @@
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
-  :load-path "~/emacs-libvterm"
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))

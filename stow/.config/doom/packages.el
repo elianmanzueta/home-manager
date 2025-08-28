@@ -34,7 +34,7 @@
 (package! gptel)
 (package! powershell-ts-mode
   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
-;; (package! flymake-ruff)
+(package! flymake-ruff)
 (package! eglot-booster
   :recipe (:host github :repo "jdtsmith/eglot-booster"))
 

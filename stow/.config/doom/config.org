@@ -149,11 +149,11 @@ Keybind to enable inlay hints
 #+end_src
 ** Eglot
 #+begin_src emacs-lisp :tangle yes
-(use-package eglot-booster
-  :after eglot
-  :config
-  (setq eglot-booster-mode t)
-  (setq eglot-booster-io-only t))
+;; (use-package eglot-booster
+;;   :after eglot
+;;   :config
+;;   (setq eglot-booster-mode t)
+;;   (setq eglot-booster-io-only t))
 #+end_src
 ** Faces
 *** Custom
@@ -270,7 +270,7 @@ Enable inlay hints in Python
 Enable Ruff
 #+begin_src emacs-lisp :tangle ./config.el
 (setq-hook! 'python-mode-hook +format-with 'ruff)
-;; (use-package! flymake-ruff)
+(use-package! flymake-ruff)
 #+end_src
 
 Disable popup tips
@@ -631,7 +631,6 @@ Setting fish shell paths.
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package! vterm
-  :load-path "~/emacs-libvterm"
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
