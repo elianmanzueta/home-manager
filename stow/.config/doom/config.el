@@ -555,8 +555,11 @@
 
 (defun my/cleanup-tramp ()
   (interactive)
-  (tramp-cleanup-all-connections)
-  (tramp-cleanup-all-buffers))
+  (progn
+    (tramp-cleanup-all-connections)
+    (tramp-cleanup-all-buffers)
+    (message "The TRAMP is cleaned!")
+    ))
 
 (use-package! ultra-scroll
   :init
