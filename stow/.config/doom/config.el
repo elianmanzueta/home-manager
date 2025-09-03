@@ -10,7 +10,8 @@
   (evil-define-key '(normal motion) evil-snipe-local-mode-map
     "s" nil
     "S" nil)
-  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
+  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
+  (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
 
 (use-package! centaur-tabs
   :defer t
