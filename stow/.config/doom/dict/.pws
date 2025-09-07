@@ -1,4 +1,4 @@
-personal_ws-1.1 en 261
+personal_ws-1.1 en 265
 aadct
 acls
 addc
@@ -12,6 +12,8 @@ appstd
 architected
 asta
 auth
+authnopriv
+authpriv
 avy
 backend
 backplane
@@ -143,6 +145,7 @@ netplan
 nexthop
 nfsen
 ng
+noauthnopriv
 nps
 oarnet
 odata
@@ -258,5 +261,6 @@ wbpxy
 webpxy
 webrequest
 wireshark
+work
 wsus
 xargs

@@ -80,10 +80,10 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 16 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-moonlight
+      doom-moonlight-padded-modeline t)
 
 (use-package! eat
-  :defer t
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color")) ; https://codeberg.org/akib/emacs-eat/issues/119"
@@ -170,11 +170,6 @@
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 
-(use-package! graphviz-dot-mode
-  :defer t
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-
 (add-hook 'lsp-mode-hook #'indent-bars-mode)
 
 (use-package just-mode
@@ -185,7 +180,6 @@
 
 (setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
-(setq which-key-idle-delay 0.5)
 
 (setq lsp-ui-imenu-auto-refresh t)
 (setq lsp-ui-imenu-buffer-position 'right)
@@ -195,8 +189,6 @@
   :hook (powershell-mode . lsp-mode)
   :config
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-(use-package! powershell-ts-mode)
 
 ;; (use-package! lsp-pyright
 ;;   ;; :hook (python-mode . lsp-inlay-hints-mode)
@@ -213,7 +205,8 @@
 ;;   (setq lsp-pyright-venv-directory ".venv"))
 
 (setq-hook! 'python-mode-hook +format-with 'ruff)
-(use-package! flymake-ruff)
+(use-package! flymake-ruff
+  :after python)
 
 (setq flycheck-popup-tip-mode nil)
 
@@ -233,12 +226,10 @@
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '(("~/projects/" . 3)))
+(setq which-key-idle-delay 0.1)
 
 (setq-default
  delete-by-moving-to-trash t)
-
-(after! which-key
-  (setq which-key-idle-delay 0.05))
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
@@ -246,21 +237,20 @@
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       )
 
-(display-time-mode 1)
-
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 
+; Focus new windows after splitting
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
 (use-package! nov
+  :defer t
   :mode ("\\.epub\\'" . nov-mode)
   :config
   (setq nov-variable-pitch nil))
 
 (use-package! orderless
-  :defer t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
@@ -344,10 +334,15 @@
         org-appear-autolinks t
         org-appear-autoentities t
         org-appear-autokeywords t
+
+        org-directory "~/org/"
+        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
+        org-log-done t
+        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
         ))
 
 (use-package! org-modern
-  :defer t
+  :after org
   :config
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
@@ -358,22 +353,16 @@
 (use-package! org-agenda
   :after org
   :config
-  (setq org-agenda-timegrid-use-ampm 't
+  (setq org-agenda-timegrid-use-ampm t
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package! git-auto-commit-mode
   :after org
   :config
-  (setq gac-automatically-push-p 't
-        gac-automatically-add-new-files-p 't
+  (setq gac-automatically-push-p t
+        gac-automatically-add-new-files-p t
         gac-shell-and " ; and "))
-
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org"))
-(setq org-log-done t)
-(setq org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily")
-;; (setq org-agenda-prefix-format '((todo . " ")))
 
 (use-package! anki-editor
   :defer t)
@@ -439,7 +428,7 @@
   :after org-roam)
 
 (use-package! org-roam-ui
-  :after org
+  :after org-roam
   :config
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
@@ -604,7 +593,6 @@
       cand)))
 
 (use-package! vertico-directory
-  :defer t
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
