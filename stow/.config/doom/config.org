@@ -445,9 +445,9 @@ Enable inlay hints in Rust
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 #+end_src
 *** Git auto commit and push
-The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el. Source
-code here:
-#+begin_src emacs-lisp
+The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
+
+#+begin_src emacs-lisp .dir-locals.el
 ((nil . ((eval git-auto-commit-mode 1))))
 #+end_src
 

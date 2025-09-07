@@ -4,6 +4,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   '("~/home-manager/stow/.config/doom/config.org"
+     "/home/elian/org/roam/daily/work-inbox.org"
+     "/home/elian/org/roam/professional/issues.org"
+     "/home/elian/org/roam/professional/meetings.org"
+     "/home/elian/org/roam/professional/projects.org"
+     "/home/elian/org/roam/professional/work-daily-tasks.org"
+     "/home/elian/org/inbox.org"))
  '(package-selected-packages '(kdl-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
