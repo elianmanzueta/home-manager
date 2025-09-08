@@ -260,7 +260,7 @@
                                )))
 
 (use-package! org-super-agenda
-  :after org-agenda
+  :after org
   :config
   (setq org-agenda-start-day nil)
   (setq org-super-agenda-header-map (make-sparse-keymap))
@@ -398,7 +398,7 @@
   :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
-        org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
+        org-roam-file-exclude-regexp (list "~/org/.attach/")
         org-roam-completion-functions nil))
 
 (setq org-roam-capture-templates
