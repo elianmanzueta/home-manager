@@ -344,7 +344,7 @@ Enable inlay hints in Rust
 **** Super Agenda
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-super-agenda
-  :after org-agenda
+  :after org
   :config
   (setq org-agenda-start-day nil)
   (setq org-super-agenda-header-map (make-sparse-keymap))
@@ -508,7 +508,7 @@ Automatically push git changes.
   :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
-        org-roam-file-exclude-regexp (list "/home/elian/org.attach/")
+        org-roam-file-exclude-regexp (list "~/org/.attach/")
         org-roam-completion-functions nil))
 #+end_src
 **** Capture templates
