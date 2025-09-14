@@ -582,6 +582,13 @@ Automatically push git changes.
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
+*** Org-supertag
+#+begin_src emacs-lisp :tangle yes
+(use-package! org-supertag
+  :config
+  (setq org-supertag-sync-directories '("~/org/roam"))
+  )
+#+end_src
 ** Spelling
 #+begin_src emacs-lisp :tangle ./config.el
 (setq ispell-dictionary "english")

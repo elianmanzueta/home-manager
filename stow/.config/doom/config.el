@@ -461,6 +461,11 @@
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 
+(use-package! org-supertag
+  :config
+  (setq org-supertag-sync-directories '("~/org/roam"))
+  )
+
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 
