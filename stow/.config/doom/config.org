@@ -232,7 +232,6 @@ Tweak to make previews work
 #+end_src
 *** LSP
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
 
 (setq lsp-ui-imenu-auto-refresh t)
@@ -300,7 +299,7 @@ Enable inlay hints in Rust
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '(("~/projects/" . 3)))
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 
 (setq-default
  delete-by-moving-to-trash t)
@@ -583,7 +582,7 @@ Automatically push git changes.
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
 *** Org-supertag
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package! org-supertag
   :config
   (setq org-supertag-sync-directories '("~/org/roam"))

@@ -178,7 +178,6 @@
   :config
   (setq just-indent-offset 4))
 
-(setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
 
 (setq lsp-ui-imenu-auto-refresh t)
@@ -226,7 +225,7 @@
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '(("~/projects/" . 3)))
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 
 (setq-default
  delete-by-moving-to-trash t)
@@ -460,11 +459,6 @@
         ("STRT" :inverse-video t :inherit +org-todo-active)
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
-
-(use-package! org-supertag
-  :config
-  (setq org-supertag-sync-directories '("~/org/roam"))
-  )
 
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")

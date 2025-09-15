@@ -26,9 +26,9 @@
 (package! ankiorg
   :recipe (:host github :repo "orgtre/ankiorg"))
 (package! ox-hugo)
-(package! org-supertag
-  :recipe (:host github
-           :repo "yibie/org-supertag"))
+;; (package! org-supertag
+;;   :recipe (:host github
+;;            :repo "yibie/org-supertag"))
 
 ;; Code
 (package! just-mode)
