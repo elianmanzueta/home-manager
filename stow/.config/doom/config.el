@@ -309,8 +309,6 @@
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
@@ -320,10 +318,10 @@
   :config
   (setq org-hide-emphasis-markers t
         org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
+        ;; org-auto-align-tags nil
+        ;; org-tags-column 0
+        ;; org-agenda-tags-column 0
+        ;; org-ellipsis " ▼"
 
         org-startup-folded 'content
 
@@ -347,6 +345,9 @@
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
         org-modern-keyword nil
+        org-modern-timestamp nil
+        org-modern-priority nil
+        org-modern-todo nil
         ))
 
 (use-package! org-agenda
