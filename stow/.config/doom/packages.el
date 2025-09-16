@@ -12,7 +12,6 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 ;; Org mode stuff
-(unpin! org-roam)
 (package! org-download)
 (package! org-remark)
 (package! org-appear
@@ -27,11 +26,13 @@
 (package! ankiorg
   :recipe (:host github :repo "orgtre/ankiorg"))
 (package! ox-hugo)
+;; (package! org-supertag
+;;   :recipe (:host github
+;;            :repo "yibie/org-supertag"))
 
 ;; Code
 (package! just-mode)
 (package! fish-mode)
-(package! gptel)
 (package! powershell-ts-mode
   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
 (package! flymake-ruff)

@@ -232,7 +232,6 @@ Tweak to make previews work
 #+end_src
 *** LSP
 #+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-idle-delay 0.3)
 (setq corfu-auto-delay 0.2)
 
 (setq lsp-ui-imenu-auto-refresh t)
@@ -300,7 +299,7 @@ Enable inlay hints in Rust
 (setq evil-shift-width 2)
 (setq projectile-project-search-path
       '(("~/projects/" . 3)))
-(setq which-key-idle-delay 0.1)
+(setq which-key-idle-delay 0.5)
 
 (setq-default
  delete-by-moving-to-trash t)
@@ -397,8 +396,6 @@ Enable inlay hints in Rust
 *** Appearance
 
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook '+org-pretty-mode)
-(add-hook '+org-pretty-mode-hook 'org-appear-mode)
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
@@ -408,10 +405,10 @@ Enable inlay hints in Rust
   :config
   (setq org-hide-emphasis-markers t
         org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
+        ;; org-auto-align-tags nil
+        ;; org-tags-column 0
+        ;; org-agenda-tags-column 0
+        ;; org-ellipsis " ▼"
 
         org-startup-folded 'content
 
@@ -435,6 +432,9 @@ Enable inlay hints in Rust
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
         org-modern-keyword nil
+        org-modern-timestamp nil
+        org-modern-priority nil
+        org-modern-todo nil
         ))
 
 (use-package! org-agenda
@@ -444,6 +444,7 @@ Enable inlay hints in Rust
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 #+end_src
+
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
 
@@ -581,6 +582,13 @@ Automatically push git changes.
         ("STRT" :inverse-video t :inherit +org-todo-active)
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
+#+end_src
+*** Org-supertag
+#+begin_src emacs-lisp :tangle no
+(use-package! org-supertag
+  :config
+  (setq org-supertag-sync-directories '("~/org/roam"))
+  )
 #+end_src
 ** Spelling
 #+begin_src emacs-lisp :tangle ./config.el
