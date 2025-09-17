@@ -92,35 +92,27 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
-;; (defun +eshell-default-prompt-fn ()
-;;   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
-;;   (require 'shrink-path)
-;;   (concat (if (bobp) "" "\n")
-;;           (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
-;;           (propertize " in " 'face '+eshell-prompt-pwd)
+(defun +eshell-default-prompt-fn ()
+  "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
+  (require 'shrink-path)
+  (concat (if (bobp) "" "\n")
+          (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
+          (propertize " in " 'face '+eshell-prompt-pwd)
 
-;;           (let ((pwd (eshell/pwd)))
-;;             (propertize (if (equal pwd "~")
-;;                             pwd
-;;                           (abbreviate-file-name pwd))
-;;                         'face 'nerd-icons-green))
+          (let ((pwd (eshell/pwd)))
+            (propertize (if (equal pwd "~")
+                            pwd
+                          (abbreviate-file-name pwd))
+                        'face 'nerd-icons-green))
 
-;;           "\n"
-;;           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
-;;           " "))
+          "\n"
+          (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
+          " "))
 
 (set-eshell-alias!
  "ls" "ls -lhaF --color=auto"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
-
-(setq vterm-tramp-shells '(("ssh" "/bin/bash") ("scp" "/bin/bash") ("docker" "/bin/sh")))
-
-;; (use-package eglot-booster
-;;   :after eglot
-;;   :config
-;;   (setq eglot-booster-mode t)
-;;   (setq eglot-booster-io-only t))
 
 (after! org
   (custom-set-faces!
@@ -323,7 +315,7 @@
         ;; org-agenda-tags-column 0
         ;; org-ellipsis " ▼"
 
-        org-startup-folded 'content
+        org-startup-folded 'show2levels
 
         org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
                              ("~" org-code verbatim) ("+" (:strike-through t)))
@@ -513,43 +505,6 @@
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
-
-(use-package! tramp
-  :defer t
-  :config
-  (setq tramp-inline-compress-start-size 50000)
-  (setq tramp-default-method "scp")
-  (setq vc-ignore-dir-regexp
-        (format "\\(%s\\)\\|\\(%s\\)"
-                vc-ignore-dir-regexp
-                tramp-file-name-regexp))
-
-  (setq lsp-auto-register-remote-clients t)
-  (setq lsp-warn-no-matched-clients nil)
-
-  ;; Performance tweaks
-  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
-  (connection-local-set-profile-variables
-   'remote-direct-async-process
-   '((tramp-direct-async-process . t)))
-
-  (connection-local-set-profiles
-   '(:application tramp :protocol "scp")
-   'remote-direct-async-process)
-
-  (setq magit-tramp-pipe-stty-settings 'pty)
-
-  (with-eval-after-load 'tramp
-    (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
-
-(defun my/cleanup-tramp ()
-  (interactive)
-  (progn
-    (tramp-cleanup-all-connections)
-    (tramp-cleanup-all-buffers)
-    (message "The TRAMP is cleaned!")
-    ))
 
 (use-package! ultra-scroll
   :init

@@ -124,38 +124,32 @@ Keybind to enable inlay hints
 #+end_src
 ** Eshell
 #+begin_src emacs-lisp :tangle yes
-;; (defun +eshell-default-prompt-fn ()
-;;   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
-;;   (require 'shrink-path)
-;;   (concat (if (bobp) "" "\n")
-;;           (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
-;;           (propertize " in " 'face '+eshell-prompt-pwd)
 
-;;           (let ((pwd (eshell/pwd)))
-;;             (propertize (if (equal pwd "~")
-;;                             pwd
-;;                           (abbreviate-file-name pwd))
-;;                         'face 'nerd-icons-green))
+(defun +eshell-default-prompt-fn ()
+  "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
+  (require 'shrink-path)
+  (concat (if (bobp) "" "\n")
+          (propertize (eshell-user-login-name) 'face 'nerd-icons-green)
+          (propertize " in " 'face '+eshell-prompt-pwd)
 
-;;           "\n"
-;;           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
-;;           " "))
+          (let ((pwd (eshell/pwd)))
+            (propertize (if (equal pwd "~")
+                            pwd
+                          (abbreviate-file-name pwd))
+                        'face 'nerd-icons-green))
+
+          "\n"
+          (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
+          " "))
 
 (set-eshell-alias!
  "ls" "ls -lhaF --color=auto"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
+#+end_src
 
-(setq vterm-tramp-shells '(("ssh" "/bin/bash") ("scp" "/bin/bash") ("docker" "/bin/sh")))
-#+end_src
-** Eglot
-#+begin_src emacs-lisp :tangle yes
-;; (use-package eglot-booster
-;;   :after eglot
-;;   :config
-;;   (setq eglot-booster-mode t)
-;;   (setq eglot-booster-io-only t))
-#+end_src
+#+RESULTS:
+
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el
@@ -410,7 +404,7 @@ Enable inlay hints in Rust
         ;; org-agenda-tags-column 0
         ;; org-ellipsis " ▼"
 
-        org-startup-folded 'content
+        org-startup-folded 'show2levels
 
         org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
                              ("~" org-code verbatim) ("+" (:strike-through t)))
@@ -661,46 +655,6 @@ Setting vterm path.
         (3 . (1.12))
         (t . (1.05))))
 #+end_src
-** TRAMP
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! tramp
-  :defer t
-  :config
-  (setq tramp-inline-compress-start-size 50000)
-  (setq tramp-default-method "scp")
-  (setq vc-ignore-dir-regexp
-        (format "\\(%s\\)\\|\\(%s\\)"
-                vc-ignore-dir-regexp
-                tramp-file-name-regexp))
-
-  (setq lsp-auto-register-remote-clients t)
-  (setq lsp-warn-no-matched-clients nil)
-
-  ;; Performance tweaks
-  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
-  (connection-local-set-profile-variables
-   'remote-direct-async-process
-   '((tramp-direct-async-process . t)))
-
-  (connection-local-set-profiles
-   '(:application tramp :protocol "scp")
-   'remote-direct-async-process)
-
-  (setq magit-tramp-pipe-stty-settings 'pty)
-
-  (with-eval-after-load 'tramp
-    (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
-
-(defun my/cleanup-tramp ()
-  (interactive)
-  (progn
-    (tramp-cleanup-all-connections)
-    (tramp-cleanup-all-buffers)
-    (message "The TRAMP is cleaned!")
-    ))
-#+end_src
-
 ** Ultra-scroll
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! ultra-scroll
