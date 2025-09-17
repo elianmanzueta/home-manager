@@ -205,20 +205,27 @@ window-rule {
     draw-border-with-background false
 }
 
-//window-rule {
-//    match is-active=false
-//    opacity 0.9
-//}
+// Runescape
+window-rule {
+  match app-id="Rs3linux" title="Message"
+  match app-id="BoltLauncher"
+  open-floating true
+}
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
+
+
+    match app-id="Horizon-client"
     open-floating true
 }
+
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
+
 binds {
     // === System & Overview ===
     Super+D { spawn "niri" "msg" "action" "toggle-overview"; }
