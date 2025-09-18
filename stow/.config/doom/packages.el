@@ -5,11 +5,8 @@
 ;; on the command line, then restart Emacs for the changes to take effect -- or
 ;; use 'M-x doom/reload'.
 
-
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
-
-(setenv "LSP_USE_PLISTS" "1")
 
 ;; Org mode stuff
 (package! org-download)
@@ -22,9 +19,6 @@
 (package! websocket)
 (package! org-roam-ui)
 (package! org-super-agenda)
-(package! anki-editor)
-(package! ankiorg
-  :recipe (:host github :repo "orgtre/ankiorg"))
 (package! ox-hugo)
 ;; (package! org-supertag
 ;;   :recipe (:host github
@@ -41,9 +35,6 @@
 
 ;; Misc
 (package! ssh-config-mode)
-(package! ultra-scroll
-  :recipe ( :host github :repo "jdtsmith/ultra-scroll"))
-(package! nerd-icons-completion)
 (package! eat
   :recipe (:host codeberg
            :repo "akib/emacs-eat"

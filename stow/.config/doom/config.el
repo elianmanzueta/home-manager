@@ -176,7 +176,7 @@
 (setq lsp-ui-imenu-buffer-position 'right)
 
 (use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-mode)
+  :mode ("\\.ps1\\'" . powershell-ts-mode)
   :hook (powershell-mode . lsp-mode)
   :config
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
