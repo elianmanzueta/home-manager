@@ -1,3 +1,6 @@
+.tab-position {
+    will-change: unset !important;
+}
 .bookmark-bar .observer {
     justify-content: center;
 }
