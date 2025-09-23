@@ -1,4 +1,4 @@
-personal_ws-1.1 en 271
+personal_ws-1.1 en 281
 aadct
 acls
 addc
@@ -17,6 +17,7 @@ authpriv
 avy
 backend
 backplane
+bacnet
 balancer
 balancers
 bcb's
@@ -24,6 +25,7 @@ bcbs
 beb's
 bebs
 bitlocker
+blns
 bootpc
 bootps
 broadcom
@@ -50,6 +52,7 @@ datacore
 datastore
 dcef
 deregistration
+desigo
 dest
 dhcp
 dirvish
@@ -158,6 +161,7 @@ orderless
 ous
 over
 papercut
+pcaps
 pcifm
 pcondb
 pdaq
@@ -179,6 +183,10 @@ reachability
 realmd
 reboot
 repo
+retranmissions
+retransmission
+retransmissions
+retransmitted
 rodc
 rzredg
 sansymphony
@@ -212,10 +220,12 @@ sunsetting
 svis
 svr
 switch
+switchport
 syslog
 sysprep
 system’s
 tac
+tcp's
 terraform
 theme
 tiering
