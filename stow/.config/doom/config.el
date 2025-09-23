@@ -526,7 +526,9 @@
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
 
-  (setq vertico-grid-min-columns 3)
+ (if (eq system-type 'android)
+    (setq vertico-grid-min-columns 1)
+  (setq vertico-grid-min-columns 3))
   )
 
 (defvar +vertico-current-arrow t)
