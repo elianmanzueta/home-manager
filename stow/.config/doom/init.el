@@ -66,6 +66,8 @@
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        word-wrap         ; soft wrapping with language-aware indent
+       (whitespace +guess +trim)  ; a butler for your whitespace
+
 
        :emacs
        (dired +dirvish +icons)             ; making dired pretty [functional]
@@ -74,6 +76,7 @@
        (ibuffer +icons)           ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
+       tramp             ; remote files at your arthritic fingertips
 
        :term
        eshell            ; the elisp shell that works everywhere
@@ -106,7 +109,7 @@
        terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        tree-sitter       ; syntax and parsing, sitting in a tree...
-       upload            ; map local to remote projects via ssh/ftp
+       upload            ; map local nitto remote projects via ssh/ftp
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
