@@ -60,15 +60,11 @@
 
 (setq +doom-dashboard-pwd-policy "~/")
 
-(use-package! nerd-icons)
 (use-package! dirvish
-  :defer t
   :config
   (setq dirvish-attributes
-        '(nerd-icons vc-state subtree-state collapse git-msg file-size file-time)
-        dirvish-side-attributes
-        '(vc-state nerd-icons collapse file-size))
-  (setq dirvish-default-layout '(0 0.50 0.50))
+        '(file-modes nerd-icons vc-state file-mode subtree-state collapse file-size file-time))
+  (setq dirvish-default-layout '(1 0.11 0.55))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   (setq dired-use-ls-dired 't)
   (setq dirvish-peek-mode 't)
@@ -134,8 +130,8 @@
   (setq
    gptel-model   'sonar
    gptel-backend (gptel-make-perplexity "Perplexity"
-                   :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
-                   :stream t))
+                                        :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
+                                        :stream t))
 
   (setq gptel-default-mode #'org-mode)
 
@@ -231,7 +227,7 @@
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
 
-; Focus new windows after splitting
+                                        ; Focus new windows after splitting
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
@@ -526,9 +522,9 @@
   (setq vertico-multiform-commands '((org-roam-node-find grid)
                                      (org-roam-node-insert grid)))
 
- (if (eq system-type 'android)
-    (setq vertico-grid-min-columns 1)
-  (setq vertico-grid-min-columns 3))
+  (if (eq system-type 'android)
+      (setq vertico-grid-min-columns 1)
+    (setq vertico-grid-min-columns 3))
   )
 
 (defvar +vertico-current-arrow t)

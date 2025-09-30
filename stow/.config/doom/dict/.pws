@@ -1,4 +1,4 @@
-personal_ws-1.1 en 281
+personal_ws-1.1 en 290
 aadct
 acls
 addc
@@ -29,6 +29,7 @@ blns
 bootpc
 bootps
 broadcom
+capsulate
 cas
 cbsig
 cgroup
@@ -65,6 +66,7 @@ el
 elian
 elian's
 entra
+eor
 errored
 esha
 eshell
@@ -73,6 +75,7 @@ etc
 etherchannel
 evendale
 example
+facto
 failover
 filebrowser
 follet
@@ -130,7 +133,9 @@ macos
 manzueta
 mastercam
 mc
+meds
 meraki
+mgmt
 mgt
 minitab
 misc
@@ -157,6 +162,7 @@ nps
 oarnet
 odata
 omnissa
+oob
 orderless
 ous
 over
@@ -222,6 +228,7 @@ svr
 switch
 switchport
 syslog
+sysname
 sysprep
 system’s
 tac
@@ -241,6 +248,7 @@ udp
 ufw
 ui
 unconfigure
+unicast
 unlink
 untrusted
 uplink
