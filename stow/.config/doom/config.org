@@ -145,7 +145,17 @@ Keybind to enable inlay hints
 #+end_src
 
 #+RESULTS:
-
+** Elisp
+*** Insert sub-heading
+#+begin_src emacs-lisp :tangle yes
+(defun my/insert-heading-plus-one ()
+  (interactive)
+  (if (org-at-heading-p)
+      (let
+          ((header-level
+            (nth 0 (org-heading-components))))
+        (insert (make-string (+ 1 header-level) ?*)))))
+#+end_src
 ** Faces
 *** Custom
 #+begin_src emacs-lisp :tangle ./config.el

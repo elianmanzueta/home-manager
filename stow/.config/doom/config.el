@@ -110,6 +110,14 @@
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
 
+(defun my/insert-heading-plus-one ()
+  (interactive)
+  (if (org-at-heading-p)
+      (let
+          ((header-level
+            (nth 0 (org-heading-components))))
+        (insert (make-string (+ 1 header-level) ?*)))))
+
 (after! org
   (custom-set-faces!
     '(outline-1 :weight bold :height 1.25)
