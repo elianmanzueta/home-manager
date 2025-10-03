@@ -3,6 +3,11 @@
 #+STARTUP: overview
 
 * Configuration
+** ace-window
+Setting a keybind for ~ace-select-window~.
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader "wa" #'ace-select-window)
+#+end_src
 ** Auto-fill Mode
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (add-hook 'text-mode-hook #'auto-fill-mode)
@@ -10,9 +15,12 @@
 #+END_SRC
 ** Avy
 #+begin_src emacs-lisp :tangle ./config.el
-(setq avy-timeout-seconds 0.35)
-(setq avy-all-windows t)
-(evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
+(use-package! avy
+  :config
+  (setq avy-timeout-seconds 0.35)
+  (setq avy-all-windows t)
+  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
+
 (after! evil-snipe
   (setq evil-snipe-scope 'whole-visible)
   (setq evil-snipe-smart-case t)
@@ -22,40 +30,7 @@
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
   (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
 #+end_src
-** Centaur Tabs
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! centaur-tabs
-  :defer t
-  :init
-  (setq centaur-tabs-set-close-button nil)
-  (setq centaur-tabs-set-bar 'right)
-  )
-#+end_src
-** Checkers
-#+begin_src emacs-lisp :tangle yes
-(use-package! flymake
-  :hook (prog-mode . flymake-mode)
-  :config
-  (setq flymake-show-diagnostics-at-end-of-line 'short)
-  (setq flymake-popon-mode nil))
-
-;; (use-package! flyover
-;;   :hook (flycheck-mode-hook . flyover-mode)
-;;   :config
-;;   (setq flyover-use-theme-colors t)
-;;   (setq flyover-base-height 1.0))
-
-;; (custom-set-faces
-;;  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
-;;  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
-;;  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
-;;  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
-#+end_src
 ** Code
-Keybind to enable inlay hints
-#+begin_src emacs-lisp :tangle ./config.el
-;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
-#+end_src
 *** Go
 **** Gopls
 ***** Inlay hints
@@ -70,15 +45,65 @@ Keybind to enable inlay hints
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 #+end_src
+*** just-mode
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package just-mode
+  :defer t
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
+#+end_src
+*** powershell-ts-mode
+#+begin_src emacs-lisp :tangle yes
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-ts-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+#+end_src
+*** Python
+**** flymake-ruff
+#+begin_src emacs-lisp :tangle ./config.el
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+(use-package! flymake-ruff
+  :after python)
+#+end_src
+
+Disable popup tips
+#+begin_src emacs-lisp :tangle ./config.el
+(setq flycheck-popup-tip-mode nil)
+#+end_src
+*** Rust
+**** Inlay hints
+Enable inlay hints in Rust
+#+begin_src emacs-lisp :tangle ./config.el
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+#+end_src
 ** Completion preview mode
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package completion-preview
   :hook
   ((prog-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 3)
-  (setq completion-preview-completion-styles '(basic partial-completion))
-  )
+  (setq completion-preview-minimum-symbol-length 3))
+#+end_src
+** Custom faces
+*** Org-mode headings
+#+begin_src emacs-lisp :tangle ./config.el
+(after! org
+  (custom-set-faces!
+    '(outline-1 :weight bold :height 1.25)
+    '(outline-2 :weight bold :height 1.15)
+    '(outline-3 :weight bold :height 1.12)
+    '(outline-4 :weight semi-bold :height 1.09)
+    '(outline-5 :weight semi-bold :height 1.06)
+    '(outline-6 :weight semi-bold :height 1.03)
+    '(outline-8 :weight semi-bold)
+    '(outline-9 :weight semi-bold)
+    '(org-document-title :weight extra-bold :height 1.5)
+    '(org-verbatim :inherit bold :weight extra-bold)))
 #+end_src
 ** Dashboard
 #+begin_src emacs-lisp :tangle ./config.el
@@ -118,9 +143,20 @@ Keybind to enable inlay hints
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 #+end_src
-** Eshell
+** Elisp
+*** Insert sub-heading
 #+begin_src emacs-lisp :tangle yes
-
+(defun my/insert-heading-plus-one ()
+  (interactive)
+  (if (org-at-heading-p)
+      (let
+          ((header-level
+            (nth 0 (org-heading-components))))
+        (insert (make-string (+ 1 header-level) ?*)))))
+#+end_src
+** Eshell
+*** Prompt
+#+begin_src emacs-lisp :tangle yes
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -145,33 +181,6 @@ Keybind to enable inlay hints
 #+end_src
 
 #+RESULTS:
-** Elisp
-*** Insert sub-heading
-#+begin_src emacs-lisp :tangle yes
-(defun my/insert-heading-plus-one ()
-  (interactive)
-  (if (org-at-heading-p)
-      (let
-          ((header-level
-            (nth 0 (org-heading-components))))
-        (insert (make-string (+ 1 header-level) ?*)))))
-#+end_src
-** Faces
-*** Custom
-#+begin_src emacs-lisp :tangle ./config.el
-(after! org
-  (custom-set-faces!
-    '(outline-1 :weight bold :height 1.25)
-    '(outline-2 :weight bold :height 1.15)
-    '(outline-3 :weight bold :height 1.12)
-    '(outline-4 :weight semi-bold :height 1.09)
-    '(outline-5 :weight semi-bold :height 1.06)
-    '(outline-6 :weight semi-bold :height 1.03)
-    '(outline-8 :weight semi-bold)
-    '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold :weight extra-bold)))
-#+end_src
 ** gptel
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! gptel
@@ -209,84 +218,11 @@ Keybind to enable inlay hints
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 #+end_src
-** Graphviz
-Tweak to make previews work
-#+begin_src emacs-lisp :tangle no
-(use-package! graphviz-dot-mode
-  :defer t
-  :config
-  (setq graphviz-dot-preview-extension "svg"))
-#+end_src
-** Indent Bars Mode
+** ispell
 #+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
+(setq ispell-dictionary "english")
+(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 #+end_src
-*** Justfiles
-**** just-mode
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package just-mode
-  :defer t
-  :mode ("justfile\\'" . just-mode)
-  :config
-  (setq just-indent-offset 4))
-#+end_src
-*** LSP
-#+begin_src emacs-lisp :tangle ./config.el
-(setq corfu-auto-delay 0.2)
-
-(setq lsp-ui-imenu-auto-refresh t)
-(setq lsp-ui-imenu-buffer-position 'right)
-#+end_src
-
-*** Powershell
-#+begin_src emacs-lisp :tangle yes
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-ts-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-#+end_src
-*** Python
-Enable inlay hints in Python
-#+begin_src emacs-lisp :tangle ./config.el
-;; (use-package! lsp-pyright
-;;   ;; :hook (python-mode . lsp-inlay-hints-mode)
-;;   :config
-;;   (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-
-;;   (setq lsp-pyright-langserver-command "basedpyright")
-;;   (setq lsp-pyright-type-checking-mode "basic")
-
-;;   (setq lsp-pyright-venv-path ".")
-;;   (setq lsp-pyright-venv-directory ".venv"))
-#+end_src
-
-Enable Ruff
-#+begin_src emacs-lisp :tangle ./config.el
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-(use-package! flymake-ruff
-  :after python)
-#+end_src
-
-Disable popup tips
-#+begin_src emacs-lisp :tangle ./config.el
-(setq flycheck-popup-tip-mode nil)
-#+end_src
-*** Rust
-**** Inlay hints
-Enable inlay hints in Rust
-#+begin_src emacs-lisp :tangle ./config.el
-(setq lsp-rust-analyzer-display-chaining-hints t)
-(setq lsp-rust-analyzer-display-closure-return-type-hints t)
-(setq lsp-rust-analyzer-display-parameter-hints t)
-#+end_src
-** Kill-ring
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(map! :leader "y" #'yank-from-kill-ring)
-#+END_SRC
 ** Misc
 #+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
@@ -317,6 +253,7 @@ Enable inlay hints in Rust
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
+(map! :leader "y" #'yank-from-kill-ring)
 #+end_src
 ** nov.el
 #+begin_src emacs-lisp :tangle yes
@@ -326,19 +263,7 @@ Enable inlay hints in Rust
   :config
   (setq nov-variable-pitch nil))
 #+end_src
-** Orderless
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion))))
-  (orderless-matching-styles '(orderless-literal
-                               orderless-regexp
-                               )))
-#+end_src
-
-** Org
+** Org mode
 *** Agenda
 **** Super Agenda
 #+begin_src emacs-lisp :tangle ./config.el
@@ -590,12 +515,7 @@ Automatically push git changes.
   (setq org-supertag-sync-directories '("~/org/roam"))
   )
 #+end_src
-** Spelling
-#+begin_src emacs-lisp :tangle ./config.el
-(setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
-#+end_src
-** SSH config mode
+** ssh-config-mode
 #+begin_src emacs-lisp :tangle yes
 (use-package! ssh-config-mode
   :defer t
@@ -633,7 +553,7 @@ Setting vterm path.
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
 #+end_src
-** Theme Configuration
+** Themes
 *** Modus themes
 #+begin_src emacs-lisp :tangle ./config.el
 (setq modus-themes-italic-constructs t)
@@ -660,15 +580,6 @@ Setting vterm path.
         (3 . (1.12))
         (t . (1.05))))
 #+end_src
-** Ultra-scroll
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! ultra-scroll
-  :init
-  (setq scroll-conservatively 101
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
-#+end_src
 ** Vertico
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! vertico
@@ -689,9 +600,17 @@ Setting vterm path.
     (setq vertico-grid-min-columns 3))
   )
 
+(use-package! vertico-directory
+  :after vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+#+end_src
+
+Draw arrows on candidates
+#+begin_src emacs-lisp :tangle no
+;; Arrows on candidates
 (defvar +vertico-current-arrow t)
 
-;; Arrows on candidates
 (cl-defmethod vertico--format-candidate :around
   (cand prefix suffix index start &context ((and +vertico-current-arrow
                                                  (not (bound-and-true-p vertico-flat-mode)))
@@ -707,15 +626,4 @@ Setting vterm path.
          cand)
       cand)))
 
-(use-package! vertico-directory
-  :after vertico
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package! nerd-icons-completion
-  :after (marginalia nerd-icons-completion))
-#+end_src
-** Windows
-Setting a keybind for ~ace-select-window~.
-#+begin_src emacs-lisp :tangle ./config.el
-(map! :leader "wa" #'ace-select-window)
 #+end_src

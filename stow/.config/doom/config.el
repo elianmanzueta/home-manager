@@ -1,9 +1,14 @@
+(map! :leader "wa" #'ace-select-window)
+
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 
-(setq avy-timeout-seconds 0.35)
-(setq avy-all-windows t)
-(evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
+(use-package! avy
+  :config
+  (setq avy-timeout-seconds 0.35)
+  (setq avy-all-windows t)
+  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
+
 (after! evil-snipe
   (setq evil-snipe-scope 'whole-visible)
   (setq evil-snipe-smart-case t)
@@ -12,33 +17,6 @@
     "S" nil)
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
   (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
-
-(use-package! centaur-tabs
-  :defer t
-  :init
-  (setq centaur-tabs-set-close-button nil)
-  (setq centaur-tabs-set-bar 'right)
-  )
-
-(use-package! flymake
-  :hook (prog-mode . flymake-mode)
-  :config
-  (setq flymake-show-diagnostics-at-end-of-line 'short)
-  (setq flymake-popon-mode nil))
-
-;; (use-package! flyover
-;;   :hook (flycheck-mode-hook . flyover-mode)
-;;   :config
-;;   (setq flyover-use-theme-colors t)
-;;   (setq flyover-base-height 1.0))
-
-;; (custom-set-faces
-;;  '(flyover-warning ((t (:inherit warning :weight normal :height 0.9))))
-;;  '(flyover-error ((t (:inherit error :weight normal :height 0.9))))
-;;  '(flyover-marker ((t (:inherit error :weight normal :height 0.9))))
-;;  '(flyover-info ((t (:inherit error :weight normal :height 0.9)))))
-
-;; (map! :leader :desc "Inlay hints mode" "t h" #'lsp-inlay-hints-mode)
 
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -50,13 +28,46 @@
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 
+(use-package just-mode
+  :defer t
+  :mode ("justfile\\'" . just-mode)
+  :config
+  (setq just-indent-offset 4))
+
+(use-package! powershell
+  :mode ("\\.ps1\\'" . powershell-ts-mode)
+  :hook (powershell-mode . lsp-mode)
+  :config
+  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
+
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+(use-package! flymake-ruff
+  :after python)
+
+(setq flycheck-popup-tip-mode nil)
+
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+
 (use-package completion-preview
   :hook
   ((prog-mode text-mode eshell-mode) . completion-preview-mode)
   :config
-  (setq completion-preview-minimum-symbol-length 3)
-  (setq completion-preview-completion-styles '(basic partial-completion))
-  )
+  (setq completion-preview-minimum-symbol-length 3))
+
+(after! org
+  (custom-set-faces!
+    '(outline-1 :weight bold :height 1.25)
+    '(outline-2 :weight bold :height 1.15)
+    '(outline-3 :weight bold :height 1.12)
+    '(outline-4 :weight semi-bold :height 1.09)
+    '(outline-5 :weight semi-bold :height 1.06)
+    '(outline-6 :weight semi-bold :height 1.03)
+    '(outline-8 :weight semi-bold)
+    '(outline-9 :weight semi-bold)
+    '(org-document-title :weight extra-bold :height 1.5)
+    '(org-verbatim :inherit bold :weight extra-bold)))
 
 (setq +doom-dashboard-pwd-policy "~/")
 
@@ -88,6 +99,14 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
+(defun my/insert-heading-plus-one ()
+  (interactive)
+  (if (org-at-heading-p)
+      (let
+          ((header-level
+            (nth 0 (org-heading-components))))
+        (insert (make-string (+ 1 header-level) ?*)))))
+
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -109,27 +128,6 @@
  "ls" "ls -lhaF --color=auto"
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
-
-(defun my/insert-heading-plus-one ()
-  (interactive)
-  (if (org-at-heading-p)
-      (let
-          ((header-level
-            (nth 0 (org-heading-components))))
-        (insert (make-string (+ 1 header-level) ?*)))))
-
-(after! org
-  (custom-set-faces!
-    '(outline-1 :weight bold :height 1.25)
-    '(outline-2 :weight bold :height 1.15)
-    '(outline-3 :weight bold :height 1.12)
-    '(outline-4 :weight semi-bold :height 1.09)
-    '(outline-5 :weight semi-bold :height 1.06)
-    '(outline-6 :weight semi-bold :height 1.03)
-    '(outline-8 :weight semi-bold)
-    '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold :weight extra-bold)))
 
 (use-package! gptel
   :defer t
@@ -166,50 +164,8 @@
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 
-(add-hook 'lsp-mode-hook #'indent-bars-mode)
-
-(use-package just-mode
-  :defer t
-  :mode ("justfile\\'" . just-mode)
-  :config
-  (setq just-indent-offset 4))
-
-(setq corfu-auto-delay 0.2)
-
-(setq lsp-ui-imenu-auto-refresh t)
-(setq lsp-ui-imenu-buffer-position 'right)
-
-(use-package! powershell
-  :mode ("\\.ps1\\'" . powershell-ts-mode)
-  :hook (powershell-mode . lsp-mode)
-  :config
-  (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
-
-;; (use-package! lsp-pyright
-;;   ;; :hook (python-mode . lsp-inlay-hints-mode)
-;;   :config
-;;   (setq lsp-pyright-basedpyright-inlay-hints-generic-types t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-variable-types t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-call-argument-names t)
-;;   (setq lsp-pyright-basedpyright-inlay-hints-function-return-types t)
-
-;;   (setq lsp-pyright-langserver-command "basedpyright")
-;;   (setq lsp-pyright-type-checking-mode "basic")
-
-;;   (setq lsp-pyright-venv-path ".")
-;;   (setq lsp-pyright-venv-directory ".venv"))
-
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-(use-package! flymake-ruff
-  :after python)
-
-(setq flycheck-popup-tip-mode nil)
-
-(setq lsp-rust-analyzer-display-chaining-hints t)
-(setq lsp-rust-analyzer-display-closure-return-type-hints t)
-(setq lsp-rust-analyzer-display-parameter-hints t)
-
-(map! :leader "y" #'yank-from-kill-ring)
+(setq ispell-dictionary "english")
+(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
@@ -239,20 +195,13 @@
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
+(map! :leader "y" #'yank-from-kill-ring)
+
 (use-package! nov
   :defer t
   :mode ("\\.epub\\'" . nov-mode)
   :config
   (setq nov-variable-pitch nil))
-
-(use-package! orderless
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles partial-completion))))
-  (orderless-matching-styles '(orderless-literal
-                               orderless-regexp
-                               )))
 
 (use-package! org-super-agenda
   :after org
@@ -457,9 +406,6 @@
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 
-(setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
-
 (use-package! ssh-config-mode
   :defer t
   :config
@@ -509,13 +455,6 @@
         (3 . (1.12))
         (t . (1.05))))
 
-(use-package! ultra-scroll
-  :init
-  (setq scroll-conservatively 101
-        scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
-
 (use-package! vertico
   :defer t
   :config
@@ -534,29 +473,6 @@
     (setq vertico-grid-min-columns 3))
   )
 
-(defvar +vertico-current-arrow t)
-
-;; Arrows on candidates
-(cl-defmethod vertico--format-candidate :around
-  (cand prefix suffix index start &context ((and +vertico-current-arrow
-                                                 (not (bound-and-true-p vertico-flat-mode)))
-                                            (eql t)))
-  (setq cand (cl-call-next-method cand prefix suffix index start))
-  (if (bound-and-true-p vertico-grid-mode)
-      (if (= vertico--index index)
-          (concat #("▶" 0 1 (face vertico-current)) cand)
-        (concat #("_" 0 1 (display " ")) cand))
-    (if (= vertico--index index)
-        (concat
-         #(" " 0 1 (display (left-fringe right-triangle vertico-current)))
-         cand)
-      cand)))
-
 (use-package! vertico-directory
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package! nerd-icons-completion
-  :after (marginalia nerd-icons-completion))
-
-(map! :leader "wa" #'ace-select-window)
