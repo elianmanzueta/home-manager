@@ -469,7 +469,6 @@
   (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
-(add-hook 'ssh-config-mode-hook (lambda () (setq-local evil-shift-width ssh-config-mode-indent)))
 
 (setq explicit-shell-file-name
       (cond
