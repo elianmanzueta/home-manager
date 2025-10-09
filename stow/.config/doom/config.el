@@ -343,8 +343,13 @@
   :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
-        org-roam-file-exclude-regexp (list "~/org/.attach/")
-        org-roam-completion-functions nil))
+        org-roam-file-exclude-regexp (list "~/org/.attach/")))
+
+(defun my/org-roam-node-find-prof ()
+  (interactive)
+  (org-roam-node-find nil "@professional " nil))
+
+(map! :leader "nrp" 'my/org-roam-node-find-prof)
 
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
