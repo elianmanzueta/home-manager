@@ -21,13 +21,12 @@ end
 if type -q emacsclient
     abbr --add em "emacsclient -c"
     abbr --add et "emacsclient -nw"
+    abbr --add ed emacs --daemon
     abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
-    abbr --add emacs emacs --daemon
 
     abbr --add ff vterm_cmd find-file .
 
-    abbr --add orgidp git add .
-    git commit --signoff --message ".orgids"
+    abbr --add orgidp git commit --signoff --message ".orgids"
 end
 
 # Ls
