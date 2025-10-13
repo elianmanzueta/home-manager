@@ -1,4 +1,4 @@
-personal_ws-1.1 en 305
+personal_ws-1.1 en 312
 aadct
 acls
 addc
@@ -52,7 +52,9 @@ csc
 cse
 cstate
 cutover
+cutovers
 cves
+datacenter
 datacenters
 datacore
 datastore
@@ -111,6 +113,7 @@ homelab
 hostname
 hostnames
 hurlenko
+idfs
 idworks
 iis
 inbox
@@ -141,8 +144,10 @@ lsps
 macie
 macos
 manzueta
+manzuetanivar
 mastercam
 mc
+mdfs
 meds
 meraki
 mgmt
@@ -207,7 +212,9 @@ retranmissions
 retransmission
 retransmissions
 retransmitted
+ro
 rodc
+rw
 rzredg
 sansymphony
 scalable
