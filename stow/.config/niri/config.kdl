@@ -15,6 +15,13 @@ output "DP-3" {
     mode "1920x1080"
 }
 
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -27,7 +34,7 @@ input {
     touchpad {
     }
     mouse {
-      accel-speed 0
+      accel-profile "flat"
     }
     trackpoint {
     }
@@ -44,7 +51,7 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 10
+    gaps 5
     background-color "transparent"
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -52,7 +59,7 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "always"
+    center-focused-column "never"
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
@@ -88,7 +95,7 @@ layout {
         urgent-color   "#cc4444"      // Softer red
     }
     focus-ring {
-        width 4
+        width 2
         active-color   "#808080"      // Medium gray
         inactive-color "#505050"      // Dark gray
     }
@@ -124,6 +131,7 @@ environment {
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   QT_QPA_PLATFORMTHEME "gtk3"
   QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+  TERMINAL "kitty"
 }
 hotkey-overlay {
     skip-at-startup
@@ -204,31 +212,21 @@ window-rule {
     match app-id="kitty"
     draw-border-with-background false
 }
-
-// Runescape
-window-rule {
-  match app-id="Rs3linux" title="Message"
-  match app-id="BoltLauncher"
-  open-floating true
+window-rule { 
+    match is-active=false
 }
-
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
-
-
-    match app-id="Horizon-client"
     open-floating true
 }
-
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
-
 binds {
     // === System & Overview ===
-    Super+D { spawn "niri" "msg" "action" "toggle-overview"; }
+    Mod+D { spawn "niri" "msg" "action" "toggle-overview"; }
     Mod+O repeat=false { toggle-overview; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     
@@ -246,10 +244,11 @@ binds {
     Mod+Comma hotkey-overlay-title="Settings" { 
         spawn "dms" "ipc" "call" "settings" "toggle"; 
     }
-    Super+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-
+    Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
+    
     // === Security ===
-    Super+Alt+L hotkey-overlay-title="Lock Screen" { 
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
         spawn "dms" "ipc" "call" "lock" "lock"; 
     }
     Mod+Shift+E { quit; }
