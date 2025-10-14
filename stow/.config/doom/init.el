@@ -45,9 +45,9 @@
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        smooth-scroll     ; So smooth you won't believe it's not butter
        ;;tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       (vc-gutter) ; vcs diff in the fringe
+       vc-gutter ; vcs diff in the fringe
        ;;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
@@ -74,7 +74,7 @@
        electric          ; smarter, keyword-based electric-indent
        eww               ; the internet is gross
        (ibuffer +icons)           ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
        tramp             ; remote files at your arthritic fingertips
 
@@ -119,8 +119,8 @@
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        ;;(cc +lsp)         ; C > C++ == 1
-       ;; clojure           ; java with a lisp
-       ;; common-lisp       ; if you've seen one lisp, you've seen them all
+       ;;clojure           ; java with a lisp
+       ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -151,9 +151,9 @@
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;(lua +lsp +tree-sitter)               ; one-based indices? one-based indices
-       (markdown +grip)          ; writing docs for people to ignore
+       (markdown +tree-sitter)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       (nix +lsp)               ; I hereby declare "nix geht mehr!"
+       ;;(nix +lsp)               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +dragndrop +pandoc +pomodoro +roam2 +pretty)               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
@@ -164,7 +164,7 @@
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
-       (rest +jq)              ; Emacs as a REST client
+       ;;(rest +jq)              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust +lsp +tree-sitter)       ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
@@ -189,7 +189,7 @@
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;;(rss +org)        ; emacs as an RSS reader
 
        :config
        ;;literate
