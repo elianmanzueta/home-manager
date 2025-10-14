@@ -380,11 +380,10 @@ The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
 Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! git-auto-commit-mode
-  :after org
   :config
-  (setq gac-automatically-push-p t
-        gac-automatically-add-new-files-p t
-        gac-shell-and " ; and "))
+  (setq! gac-automatically-push-p t
+         gac-automatically-add-new-files-p t
+         gac-shell-and " ; and "))
 #+end_src
 *** Org-anki
 #+begin_src emacs-lisp :tangle ./config.el

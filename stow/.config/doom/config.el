@@ -303,11 +303,10 @@
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package! git-auto-commit-mode
-  :after org
   :config
-  (setq gac-automatically-push-p t
-        gac-automatically-add-new-files-p t
-        gac-shell-and " ; and "))
+  (setq! gac-automatically-push-p t
+         gac-automatically-add-new-files-p t
+         gac-shell-and " ; and "))
 
 (use-package! anki-editor
   :defer t)
