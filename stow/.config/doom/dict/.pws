@@ -1,4 +1,4 @@
-personal_ws-1.1 en 313
+personal_ws-1.1 en 315
 aadct
 acls
 addc
@@ -239,6 +239,7 @@ starship
 stdlic
 sthome
 stick
+stigs
 structs
 subinterface
 subinterfaces
@@ -302,6 +303,7 @@ vsis
 vsns
 vsp
 vsphere
+vsps
 vswitch
 vterm
 vtpm
