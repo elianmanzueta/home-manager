@@ -2,7 +2,6 @@ return {
   "hamidi-dev/org-super-agenda.nvim",
   dependencies = {
     "nvim-orgmode/orgmode", -- required
-    { "lukas-reineke/headlines.nvim", config = true }, -- optional nicety
   },
   config = function()
     require("org-super-agenda").setup({
