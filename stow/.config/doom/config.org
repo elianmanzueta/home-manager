@@ -62,16 +62,9 @@ Setting a keybind for ~ace-select-window~.
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
 #+end_src
 *** Python
-**** flymake-ruff
-#+begin_src emacs-lisp :tangle ./config.el
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-(use-package! flymake-ruff
-  :after python)
-#+end_src
-
-Disable popup tips
-#+begin_src emacs-lisp :tangle ./config.el
-(setq flycheck-popup-tip-mode nil)
+**** lsp-pyright
+#+begin_src emacs-lisp :tangle yes
+(setq lsp-pyright-langserver-command "basedpyright")
 #+end_src
 *** Rust
 **** Inlay hints
@@ -218,6 +211,11 @@ Enable inlay hints in Rust
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
 #+end_src
+** Paths
+Make things installed in ~~/.local/bin~ available to Emacs.
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'exec-path "/home/elian/.local/bin/")
+#+end_src
 ** ispell
 #+begin_src emacs-lisp :tangle ./config.el
 (setq ispell-dictionary "english")
@@ -358,8 +356,9 @@ Enable inlay hints in Rust
         org-modern-block-name nil
         org-modern-keyword nil
         org-modern-timestamp nil
-        org-modern-priority nil
+        org-modern-priority t
         org-modern-todo nil
+        org-modern-table nil
         ))
 
 (use-package! org-agenda

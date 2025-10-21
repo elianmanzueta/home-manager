@@ -68,7 +68,6 @@
        word-wrap         ; soft wrapping with language-aware indent
        (whitespace +guess +trim)  ; a butler for your whitespace
 
-
        :emacs
        (dired +dirvish +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
@@ -79,13 +78,13 @@
        tramp             ; remote files at your arthritic fingertips
 
        :term
-       eshell            ; the elisp shell that works everywhere
+       ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       (syntax +icons +childframe); tasing you for every semicolon you forget
+       (syntax +flymake +icons +childframe); tasing you for every semicolon you forget
        (spell +hunspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 

@@ -40,11 +40,7 @@
   :config
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
 
-(setq-hook! 'python-mode-hook +format-with 'ruff)
-(use-package! flymake-ruff
-  :after python)
-
-(setq flycheck-popup-tip-mode nil)
+(setq lsp-pyright-langserver-command "basedpyright")
 
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
@@ -163,6 +159,8 @@
           (chat
            . "You are a large language model and a conversation partner. Respond concisely."))
         ))
+
+(add-to-list 'exec-path "/home/elian/.local/bin/")
 
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
@@ -291,8 +289,9 @@
         org-modern-block-name nil
         org-modern-keyword nil
         org-modern-timestamp nil
-        org-modern-priority nil
+        org-modern-priority t
         org-modern-todo nil
+        org-modern-table nil
         ))
 
 (use-package! org-agenda

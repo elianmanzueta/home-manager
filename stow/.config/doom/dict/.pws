@@ -1,4 +1,4 @@
-personal_ws-1.1 en 315
+personal_ws-1.1 en 321
 aadct
 acls
 addc
@@ -39,6 +39,7 @@ centos
 cgroup
 cgroups
 chatgpt
+chroot
 cincinnatistate
 citrix
 closed
@@ -91,6 +92,7 @@ failover
 filebrowser
 filesystems
 firewalld
+flymake
 follet
 follet's
 fortianalyzer
@@ -202,6 +204,7 @@ prtmon
 prtstd
 prtstf
 pvue
+pyright
 qos
 qualys
 rdgw
@@ -233,6 +236,7 @@ spbm
 spfs
 splunk
 src
+sshd
 ssids
 stalhood
 starship
@@ -299,6 +303,7 @@ vlcm
 vms
 vmware
 vrfs
+vsftpd
 vsis
 vsns
 vsp
@@ -311,6 +316,7 @@ wbpxy
 webpxy
 webrequest
 wireshark
+wlans
 work
 wsus
 xargs
