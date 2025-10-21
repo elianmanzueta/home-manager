@@ -42,6 +42,13 @@ return {
           strike_through = true,
           fields = { "filename", "todo", "headline", "priority", "date", "tags" },
         },
+        {
+          name = "NOTE",
+          keymap = "on",
+          color = "#50FA7B",
+          strike_through = false,
+          fields = { "filename", "todo", "headline", "priority", "date", "tags" },
+        },
       },
 
       -- Agenda keymaps (inline comments explain each)
@@ -113,14 +120,13 @@ return {
           end,
           sort = { by = "date_nearest", order = "asc" },
         },
-        -- {
-        --   name = "⏳ Overdue",
-        --   matcher = function(i)
-        --     return i.todo_state ~= "DONE"
-        --       and ((i.deadline and i.deadline:is_past()) or (i.scheduled and i.scheduled:is_past()))
-        --   end,
-        --   sort = { by = "date_nearest", order = "asc" },
-        -- },
+        {
+          name = "Note",
+          matcher = function(i)
+            return i.todo_state == "NOTE"
+          end,
+          sort = { by = "date_nearest", order = "asc" },
+        },
         {
           name = "🏠 Personal",
           matcher = function(i)

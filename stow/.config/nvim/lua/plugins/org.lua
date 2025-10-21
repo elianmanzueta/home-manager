@@ -19,6 +19,7 @@ return {
   -- Org roam
   {
     "chipsenkbeil/org-roam.nvim",
+    event = "VeryLazy",
     tag = "0.2.0",
     dependencies = {
       {
@@ -31,6 +32,32 @@ return {
         directory = "~/org/roam",
         bindings = {
           prefix = "<Leader>r",
+        },
+
+        extensions = {
+          dailies = {
+            directory = "~/org/roam/daily",
+            bindings = {
+              goto_today = "<prefix>dt",
+              capture_today = "<prefix>dT",
+              goto_tomorrow = "<prefix>dm",
+              capture_tomorrow = "<prefix>dM",
+            },
+            templates = {
+              w = {
+                description = "work-todo",
+                template = "TODO %?\nCreated %T",
+                target = "~/org/roam/daily/work-inbox.org",
+                datetree = {
+                  tree_type = "week",
+                },
+              },
+              s = {
+                description = "study",
+                template = "#+title: %f\n#+filetags:%^{topics}",
+              },
+            },
+          },
         },
       })
     end,
