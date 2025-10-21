@@ -11,9 +11,7 @@
 ;; Org mode stuff
 (package! org-download)
 (package! org-remark)
-(package! org-appear
-  :recipe (:host github
-           :repo "awth13/org-appear"))
+(package! org-appear)
 (package! org-auto-tangle)
 (package! git-auto-commit-mode)
 (package! websocket)
@@ -27,14 +25,18 @@
 ;; Code
 (package! just-mode)
 (package! fish-mode)
-(package! powershell-ts-mode
-  :recipe (:host github :repo "dmille56/powershell-ts-mode"))
+;; (package! powershell-ts-mode
+;;   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
 (package! flymake-ruff)
-(package! eglot-booster
-  :recipe (:host github :repo "jdtsmith/eglot-booster"))
+;; (package! eglot-booster
+;;   :recipe (:host github :repo "jdtsmith/eglot-booster"))
+(package! ssh-config-mode)
+
+;; Themes
+(package! ef-themes)
+(package! standard-themes)
 
 ;; Misc
-(package! ssh-config-mode)
 (package! eat
   :recipe (:host codeberg
            :repo "akib/emacs-eat"
@@ -43,6 +45,4 @@
                    ("terminfo/65" "terminfo/65/*")
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
-(package! ef-themes)
-(package! standard-themes)
 (package! nov)
