@@ -42,6 +42,9 @@
 
 (setq lsp-pyright-langserver-command "basedpyright")
 
+(use-package flymake-ruff
+  :hook (python-mode . flymake-ruff-load))
+
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
@@ -435,28 +438,6 @@
   (setq vterm-buffer-name-string "vterm: %s"))
 
 (add-load-path! "~/emacs-libvterm")
-
-(setq modus-themes-italic-constructs t)
-(setq modus-themes-bold-constructs t)
-(setq modus-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
-
-(setq modus-themes-common-palette-overrides
-      '((border-mode-line-active bg-mode-line-active)
-        (border-mode-line-inactive bg-mode-line-inactive)))
-
-(setq modus-themes-common-palette-overrides
-      '((prose-done green-intense)
-        (prose-todo red-intense)))
-
-(setq ef-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
 
 (use-package! vertico
   :defer t

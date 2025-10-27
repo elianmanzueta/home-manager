@@ -66,6 +66,11 @@ Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle yes
 (setq lsp-pyright-langserver-command "basedpyright")
 #+end_src
+**** flymake-ruff
+#+begin_src emacs-lisp :tangle yes
+(use-package flymake-ruff
+  :hook (python-mode . flymake-ruff-load))
+#+end_src
 *** Rust
 **** Inlay hints
 Enable inlay hints in Rust
@@ -559,7 +564,7 @@ Setting vterm path.
 #+end_src
 ** Themes
 *** Modus themes
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle no
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-headings
@@ -568,16 +573,16 @@ Setting vterm path.
         (3 . (1.12))
         (t . (1.05))))
 
-(setq modus-themes-common-palette-overrides
-      '((border-mode-line-active bg-mode-line-active)
-        (border-mode-line-inactive bg-mode-line-inactive)))
+;; (setq modus-themes-common-palette-overrides
+;;       '((border-mode-line-active bg-mode-line-active)
+;;         (border-mode-line-inactive bg-mode-line-inactive)))
 
-(setq modus-themes-common-palette-overrides
-      '((prose-done green-intense)
-        (prose-todo red-intense)))
+;; (setq modus-themes-common-palette-overrides
+;;       '((prose-done green-intense)
+;;         (prose-todo red-intense)))
 #+end_src
 *** Ef-themes
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (setq ef-themes-headings
       '((1 . (1.25))
         (2 . (1.15))
