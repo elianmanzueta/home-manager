@@ -261,6 +261,8 @@
 
 (use-package! org
   :defer t
+  :bind (:map org-mode-map
+              ("M-o" . org-appear-mode))
   :config
   (setq org-hide-emphasis-markers t
         org-fontify-quote-and-verse-blocks t
@@ -438,6 +440,25 @@
   (setq vterm-buffer-name-string "vterm: %s"))
 
 (add-load-path! "~/emacs-libvterm")
+
+(use-package! tramp
+  :config
+  (setq magit-tramp-pipe-stty-settings 'pty
+        remote-file-name-inhibit-locks t
+        tramp-use-scp-direct-remote-copying t
+        remote-file-name-inhibit-auto-save-visited t)
+
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (with-eval-after-load 'tramp
+    (with-eval-after-load 'compile
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
 
 (use-package! vertico
   :defer t
