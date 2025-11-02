@@ -104,7 +104,7 @@ Enable inlay hints in Rust
     '(org-verbatim :inherit bold :weight extra-bold)))
 #+end_src
 ** Dashboard
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle no
 (setq +doom-dashboard-pwd-policy "~/")
 #+end_src
 ** Dirvish
@@ -379,7 +379,7 @@ Make things installed in ~~/.local/bin~ available to Emacs.
 *** Git auto commit and push
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
 
-#+begin_src emacs-lisp .dir-locals.el
+#+begin_src emacs-lisp
 ((nil . ((eval git-auto-commit-mode 1))))
 #+end_src
 

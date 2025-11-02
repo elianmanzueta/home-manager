@@ -68,8 +68,6 @@
     '(org-document-title :weight extra-bold :height 1.5)
     '(org-verbatim :inherit bold :weight extra-bold)))
 
-(setq +doom-dashboard-pwd-policy "~/")
-
 (use-package! dirvish
   :config
   (setq dirvish-attributes
