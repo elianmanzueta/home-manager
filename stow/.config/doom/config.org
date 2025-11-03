@@ -90,18 +90,17 @@ Enable inlay hints in Rust
 ** Custom faces
 *** Org-mode headings
 #+begin_src emacs-lisp :tangle ./config.el
-(after! org
-  (custom-set-faces!
-    '(outline-1 :weight bold :height 1.25)
-    '(outline-2 :weight bold :height 1.15)
-    '(outline-3 :weight bold :height 1.12)
-    '(outline-4 :weight semi-bold :height 1.09)
-    '(outline-5 :weight semi-bold :height 1.06)
-    '(outline-6 :weight semi-bold :height 1.03)
-    '(outline-8 :weight semi-bold)
-    '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold :weight extra-bold)))
+(custom-set-faces!
+  '(outline-1 :weight bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5)
+  '(org-verbatim :inherit bold :weight extra-bold))
 #+end_src
 ** Dashboard
 #+begin_src emacs-lisp :tangle no
@@ -127,8 +126,7 @@ Enable inlay hints in Rust
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-moonlight
-      doom-moonlight-padded-modeline t)
+(setq doom-theme 'catppuccin)
 #+end_src
 ** EAT
 #+begin_src emacs-lisp :tangle ./config.el
@@ -257,6 +255,7 @@ Make things installed in ~~/.local/bin~ available to Emacs.
       evil-vsplit-window-right t)
 
 (map! :leader "y" #'yank-from-kill-ring)
+
 #+end_src
 ** nov.el
 #+begin_src emacs-lisp :tangle yes
@@ -565,6 +564,13 @@ Setting vterm path.
 (add-load-path! "~/emacs-libvterm")
 #+end_src
 ** Themes
+*** Catppuccin
+#+begin_src emacs-lisp :tangle yes
+(setq catppuccin-flavor 'mocha
+      catppuccin-italic-comments t
+      catppuccin-italic-variables t
+      catppuccin-highlight-matches t)
+#+end_src
 *** Modus themes
 #+begin_src emacs-lisp :tangle no
 (setq modus-themes-italic-constructs t)

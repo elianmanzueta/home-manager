@@ -35,6 +35,7 @@
 ;; Themes
 (package! ef-themes)
 (package! standard-themes)
+(package! catppuccin-theme)
 
 ;; Misc
 (package! eat

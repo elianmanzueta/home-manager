@@ -55,18 +55,17 @@
   :config
   (setq completion-preview-minimum-symbol-length 3))
 
-(after! org
-  (custom-set-faces!
-    '(outline-1 :weight bold :height 1.25)
-    '(outline-2 :weight bold :height 1.15)
-    '(outline-3 :weight bold :height 1.12)
-    '(outline-4 :weight semi-bold :height 1.09)
-    '(outline-5 :weight semi-bold :height 1.06)
-    '(outline-6 :weight semi-bold :height 1.03)
-    '(outline-8 :weight semi-bold)
-    '(outline-9 :weight semi-bold)
-    '(org-document-title :weight extra-bold :height 1.5)
-    '(org-verbatim :inherit bold :weight extra-bold)))
+(custom-set-faces!
+  '(outline-1 :weight bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5)
+  '(org-verbatim :inherit bold :weight extra-bold))
 
 (use-package! dirvish
   :config
@@ -84,8 +83,7 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-moonlight
-      doom-moonlight-padded-modeline t)
+(setq doom-theme 'catppuccin)
 
 (use-package! eat
   :init
@@ -438,6 +436,11 @@
   (setq vterm-buffer-name-string "vterm: %s"))
 
 (add-load-path! "~/emacs-libvterm")
+
+(setq catppuccin-flavor 'mocha
+      catppuccin-italic-comments t
+      catppuccin-italic-variables t
+      catppuccin-highlight-matches t)
 
 (use-package! tramp
   :config
