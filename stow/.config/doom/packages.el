@@ -36,6 +36,7 @@
 (package! ef-themes)
 (package! standard-themes)
 (package! catppuccin-theme)
+(package! kanagawa-themes)
 
 ;; Misc
 (package! eat

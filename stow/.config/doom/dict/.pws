@@ -1,4 +1,4 @@
-personal_ws-1.1 en 331
+personal_ws-1.1 en 336
 aadct
 acls
 addc
@@ -10,6 +10,7 @@ amis
 anki
 ansible
 appstd
+aps
 architected
 asns
 asta
@@ -55,6 +56,7 @@ creds
 csc
 cse
 cstate
+customizable
 cutover
 cutovers
 cves
@@ -122,11 +124,13 @@ hostname
 hostnames
 hurlenko
 idfs
+idk
 idworks
 iis
 inbox
 interruptible
 intune
+iot
 ips
 ipsec
 ise
@@ -294,6 +298,7 @@ uplinks
 user’s
 util
 vcenter
+vciso
 vcon
 vcons
 vcsa
