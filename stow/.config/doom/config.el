@@ -49,6 +49,8 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
+(use-package! kdl-mode)
+
 (use-package completion-preview
   :hook
   ((prog-mode text-mode eshell-mode) . completion-preview-mode)
@@ -441,6 +443,28 @@
       catppuccin-italic-comments t
       catppuccin-italic-variables t
       catppuccin-highlight-matches t)
+
+(setq modus-themes-italic-constructs t)
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
+
+;; (setq modus-themes-common-palette-overrides
+;;       '((border-mode-line-active bg-mode-line-active)
+;;         (border-mode-line-inactive bg-mode-line-inactive)))
+
+;; (setq modus-themes-common-palette-overrides
+;;       '((prose-done green-intense)
+;;         (prose-todo red-intense)))
+
+(setq ef-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
 
 (use-package! tramp
   :config

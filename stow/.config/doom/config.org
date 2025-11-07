@@ -61,7 +61,7 @@ Setting a keybind for ~ace-select-window~.
   :config
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
 #+end_src
-*** Python
+*** python-mode
 **** lsp-pyright
 #+begin_src emacs-lisp :tangle yes
 (setq lsp-pyright-langserver-command "basedpyright")
@@ -71,13 +71,17 @@ Setting a keybind for ~ace-select-window~.
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 #+end_src
-*** Rust
+*** rust-mode
 **** Inlay hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
+#+end_src
+*** kdl-mode
+#+begin_src emacs-lisp :tangle yes
+(use-package! kdl-mode)
 #+end_src
 ** Completion preview mode
 #+begin_src emacs-lisp :tangle ./config.el
@@ -572,7 +576,7 @@ Setting vterm path.
       catppuccin-highlight-matches t)
 #+end_src
 *** Modus themes
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
 (setq modus-themes-italic-constructs t)
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-headings
@@ -590,7 +594,7 @@ Setting vterm path.
 ;;         (prose-todo red-intense)))
 #+end_src
 *** Ef-themes
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
 (setq ef-themes-headings
       '((1 . (1.25))
         (2 . (1.15))

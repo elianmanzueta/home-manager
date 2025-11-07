@@ -31,7 +31,7 @@
 ;; (package! eglot-booster
 ;;   :recipe (:host github :repo "jdtsmith/eglot-booster"))
 (package! ssh-config-mode)
-
+(package! kdl-mode)
 ;; Themes
 (package! ef-themes)
 (package! standard-themes)

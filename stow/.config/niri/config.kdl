@@ -8,11 +8,11 @@ config-notification {
 // Outputs from existing configuration
 
 output "DP-2" {
-    mode "2560x1440"
+    mode "2560x1440@180.001"
 }
 
-output "DP-3" {
-    mode "1920x1080"
+output "DP-1" {
+    mode "1920x1080@165.003"
 }
 
 
@@ -210,14 +210,12 @@ window-rule {
     match app-id="zen"
     match app-id="com.mitchellh.ghostty"
     match app-id="kitty"
-    draw-border-with-background false
-}
-window-rule { 
-    match is-active=false
+    draw-border-with-background true
 }
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="zoom"
+    match app-id="Horizon-client"
     open-floating true
 }
 window-rule {
@@ -227,7 +225,7 @@ window-rule {
 binds {
     // === System & Overview ===
     Mod+D { spawn "niri" "msg" "action" "toggle-overview"; }
-    Mod+O repeat=false { toggle-overview; }
+    Mod+Tab repeat=false { toggle-overview; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     
     // === Application Launchers ===
@@ -243,6 +241,9 @@ binds {
     }
     Mod+Comma hotkey-overlay-title="Settings" { 
         spawn "dms" "ipc" "call" "settings" "toggle"; 
+    }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
     }
     Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
@@ -422,3 +423,6 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+P { power-off-monitors; }
 }
+debug {
+    honor-xdg-activation-with-invalid-serial
+}    
