@@ -9,6 +9,7 @@
 ;; (package! some-package)
 
 ;; Org mode stuff
+(unpin! org-modern)
 (package! org-download)
 (package! org-remark)
 (package! org-appear)

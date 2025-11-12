@@ -287,13 +287,13 @@
 (use-package! org-modern
   :after org
   :config
-  (setq org-modern-star 'replace
+  (setq org-modern-star 'fold
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
         org-modern-keyword nil
         org-modern-timestamp nil
         org-modern-priority t
-        org-modern-todo nil
+        org-modern-todo t
         org-modern-table nil
         ))
 
