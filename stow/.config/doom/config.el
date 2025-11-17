@@ -290,11 +290,11 @@
   (setq org-modern-star 'fold
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
-        org-modern-keyword nil
+        ;; org-modern-keyword nil
         org-modern-timestamp nil
-        org-modern-priority t
+        ;; org-modern-priority t
         org-modern-todo t
-        org-modern-table nil
+        ;; org-modern-table nil
         ))
 
 (use-package! org-agenda

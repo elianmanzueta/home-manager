@@ -1,4 +1,4 @@
-personal_ws-1.1 en 341
+personal_ws-1.1 en 344
 aadct
 acls
 addc
@@ -105,6 +105,7 @@ flymake
 follet
 follet's
 fortianalyzer
+forticlient
 fortigate
 fortiguard
 fortimanager
@@ -119,6 +120,7 @@ gptel
 graphviz
 groupid
 guids
+gzip
 handoff
 hashable
 having
@@ -275,6 +277,7 @@ sysname
 sysprep
 system’s
 tac
+tacacs
 tcp's
 terraform
 theme
