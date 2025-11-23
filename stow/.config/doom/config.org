@@ -285,13 +285,6 @@ Hooks
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 #+end_src
 *** ~git-auto-commit-and-push~
-The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
-
-#+begin_src emacs-lisp
-((nil . ((eval git-auto-commit-mode 1))))
-#+end_src
-
-Automatically push git changes.
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! git-auto-commit-mode
   :config
