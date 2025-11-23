@@ -34,8 +34,11 @@
 (package! ssh-config-mode)
 (package! kdl-mode)
 ;; Themes
-(package! ef-themes)
+(package! ef-themes
+  :recipe (:host github :repo "protesilaos/ef-themes"))
+
 (package! standard-themes)
+
 (package! catppuccin-theme)
 (package! kanagawa-themes)
 
