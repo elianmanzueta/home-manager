@@ -11,38 +11,27 @@
 ;; Org mode stuff
 (unpin! org-modern)
 (package! org-download)
-(package! org-remark)
 (package! org-appear)
-(package! org-auto-tangle)
 (package! git-auto-commit-mode)
 (package! websocket)
 (package! org-roam-ui)
 (package! org-super-agenda)
-(package! ox-hugo)
-;; (package! org-supertag
-;;   :recipe (:host github
-;;            :repo "yibie/org-supertag"))
 
 ;; Code
 (package! just-mode)
 (package! fish-mode)
-;; (package! powershell-ts-mode
-;;   :recipe (:host github :repo "dmille56/powershell-ts-mode"))
 (package! flymake-ruff)
-;; (package! eglot-booster
-;;   :recipe (:host github :repo "jdtsmith/eglot-booster"))
 (package! ssh-config-mode)
 (package! kdl-mode)
+
 ;; Themes
 (package! ef-themes
   :recipe (:host github :repo "protesilaos/ef-themes"))
-
 (package! standard-themes)
-
 (package! catppuccin-theme)
 (package! kanagawa-themes)
 
-;; Misc
+;; Shells
 (package! eat
   :recipe (:host codeberg
            :repo "akib/emacs-eat"
@@ -51,4 +40,3 @@
                    ("terminfo/65" "terminfo/65/*")
                    ("integration" "integration/*")
                    (:exclude ".dir-locals.el" "*-tests.el"))))
-(package! nov)
