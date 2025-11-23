@@ -3,17 +3,7 @@
 #+STARTUP: overview
 
 * Configuration
-** ace-window
-Setting a keybind for ~ace-select-window~.
-#+begin_src emacs-lisp :tangle ./config.el
-(map! :leader "wa" #'ace-select-window)
-#+end_src
-** Auto-fill Mode
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(add-hook 'text-mode-hook #'auto-fill-mode)
-(setq-default fill-column 80)
-#+END_SRC
-** Avy
+** ~avy~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! avy
   :config
@@ -32,8 +22,7 @@ Setting a keybind for ~ace-select-window~.
 #+end_src
 ** Code
 *** Go
-**** Gopls
-***** Inlay hints
+**** Inlay hints
 #+begin_src emacs-lisp :tangle ./config.el
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -52,6 +41,10 @@ Setting a keybind for ~ace-select-window~.
   :mode ("justfile\\'" . just-mode)
   :config
   (setq just-indent-offset 4))
+#+end_src
+*** kdl-mode
+#+begin_src emacs-lisp :tangle yes
+(use-package! kdl-mode)
 #+end_src
 *** powershell-ts-mode
 #+begin_src emacs-lisp :tangle yes
@@ -79,38 +72,7 @@ Enable inlay hints in Rust
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
-*** kdl-mode
-#+begin_src emacs-lisp :tangle yes
-(use-package! kdl-mode)
-#+end_src
-** Completion preview mode
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package completion-preview
-  :hook
-  ((prog-mode text-mode eshell-mode) . completion-preview-mode)
-  :config
-  (setq completion-preview-minimum-symbol-length 3))
-#+end_src
-** Custom faces
-*** Org-mode headings
-#+begin_src emacs-lisp :tangle ./config.el
-(custom-set-faces!
-  '(outline-1 :weight bold :height 1.25)
-  '(outline-2 :weight bold :height 1.15)
-  '(outline-3 :weight bold :height 1.12)
-  '(outline-4 :weight semi-bold :height 1.09)
-  '(outline-5 :weight semi-bold :height 1.06)
-  '(outline-6 :weight semi-bold :height 1.03)
-  '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)
-  '(org-document-title :weight extra-bold :height 1.5)
-  '(org-verbatim :inherit bold :weight extra-bold))
-#+end_src
-** Dashboard
-#+begin_src emacs-lisp :tangle no
-(setq +doom-dashboard-pwd-policy "~/")
-#+end_src
-** Dirvish
+** ~dirvish~
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (use-package! dirvish
   :config
@@ -132,31 +94,7 @@ Enable inlay hints in Rust
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-moonlight)
 #+end_src
-** EAT
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! eat
-  :init
-  (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
-  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-shell "/bin/bash"))
-
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
-#+end_src
-** Elisp
-*** Insert sub-heading
-#+begin_src emacs-lisp :tangle yes
-(defun my/insert-heading-plus-one ()
-  (interactive)
-  (if (org-at-heading-p)
-      (let
-          ((header-level
-            (nth 0 (org-heading-components))))
-        (insert (make-string (+ 1 header-level) ?*)))))
-#+end_src
 ** Eshell
-*** Prompt
 #+begin_src emacs-lisp :tangle yes
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -180,99 +118,120 @@ Enable inlay hints in Rust
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
 #+end_src
-
-#+RESULTS:
-** gptel
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! gptel
-  :defer t
-  :config
-  (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
-  (setq
-   gptel-model   'sonar
-   gptel-backend (gptel-make-perplexity "Perplexity"
-                                        :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
-                                        :stream t))
-
-  (setq gptel-default-mode #'org-mode)
-
-  (setq gptel-prompt-prefix-alist
-        '((markdown-mode . "# Prompt:\n")
-          (org-mode . "* Prompt:\n")
-          (text-mode . "Prompt:\n "))
-        )
-
-  (setq gptel-response-prefix-alist
-        '((markdown-mode . "# Response:\n")
-          (org-mode . "* Response:\n")
-          (text-mode . "Response:\n"))
-        )
-
-  (setq gptel-directives
-        '((default
-           . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
-          (programming
-           . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
-          (writing
-           . "You are a large language model and a writing assistant. Respond concisely.")
-          (chat
-           . "You are a large language model and a conversation partner. Respond concisely."))
-        ))
-#+end_src
-** Paths
-Make things installed in ~~/.local/bin~ available to Emacs.
-#+begin_src emacs-lisp :tangle yes
-(add-to-list 'exec-path "/home/elian/.local/bin/")
-#+end_src
-** ispell
-#+begin_src emacs-lisp :tangle ./config.el
-(setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
-#+end_src
 ** Misc
 #+begin_src emacs-lisp :tangle ./config.el
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
 
-(setq auto-save-default t
-      make-backup-files t)
-(setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
-(setq evil-shift-width 2)
-(setq projectile-project-search-path
-      '(("~/projects/" . 3)))
-(setq which-key-idle-delay 0.5)
+(setq undo-limit 80000000
+      evil-want-fine-undo t
+      evil-shift-width 2
+      auto-save-default t
+      truncate-string-ellipsis "…"
+      delete-by-moving-to-trash t
 
-(setq-default
- delete-by-moving-to-trash t)
+      display-line-numbers-type 'relative
+      confirm-kill-emacs nil
+      auto-save-default t
+      make-backup-files t
+      which-key-idle-delay 0.5
+      projectile-project-search-path '(("~/projects/" . 3)))
 
-(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
-      )
-
+(add-to-list 'exec-path "/home/elian/.local/bin/")
+(map! :leader "y" #'yank-from-kill-ring)
+#+end_src
+*** ~ace-window~
+Setting a keybind for ~ace-select-window~.
+#+begin_src emacs-lisp :tangle ./config.el
+(map! :leader "wa" #'ace-select-window)
+#+end_src
+*** ~auto-fill-mode~
+#+BEGIN_SRC emacs-lisp :tangle ./config.el
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
+#+END_SRC
+*** ~ispell~
+#+begin_src emacs-lisp :tangle ./config.el
+(setq ispell-dictionary "english")
+(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
+#+end_src
+*** Scratch buffer
+#+begin_src emacs-lisp :tangle yes
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
-
-                                        ; Focus new windows after splitting
+(setq +doom-dashboard-pwd-policy "~/")
+#+end_src
+*** Splits
+Focus new windows after splitting
+#+begin_src emacs-lisp :tangle yes
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
-
-(map! :leader "y" #'yank-from-kill-ring)
-
 #+end_src
-** nov.el
-#+begin_src emacs-lisp :tangle yes
-(use-package! nov
+** ~org-mode~
+Hooks
+#+begin_src emacs-lisp :tangle ./config.el
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+(custom-set-faces!
+  '(outline-1 :weight bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5)
+  '(org-verbatim :inherit bold :weight extra-bold))
+
+(use-package! org
   :defer t
-  :mode ("\\.epub\\'" . nov-mode)
+  :bind (:map org-mode-map
+              ("M-o" . org-appear-mode))
   :config
-  (setq nov-variable-pitch nil))
+  (setq org-hide-emphasis-markers t
+        org-fontify-quote-and-verse-blocks t
+        org-auto-align-tags nil
+        org-tags-column 0
+        org-agenda-tags-column 0
+        org-ellipsis " ▼"
+
+        org-startup-folded 'show2levels
+
+        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+                             ("~" org-code verbatim) ("+" (:strike-through t)))
+
+        org-appear-autolinks t
+        org-appear-autoentities t
+        org-appear-autokeywords t
+
+        org-directory "~/org/"
+        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
+        org-log-done t
+        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
+        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)")))
+
+(use-package! org-modern
+  :after org
+  :config
+  (setq org-modern-star 'fold
+        org-modern-replace-stars "◉○✸✿"
+        org-modern-block-name nil
+        org-modern-timestamp nil
+        org-modern-todo t))
 #+end_src
-** Org mode
-*** Agenda
-**** Super Agenda
+*** ~org-agenda~
+#+begin_src emacs-lisp :tangle yes
+(use-package! org-agenda
+  :after org
+  :config
+  (setq org-agenda-timegrid-use-ampm t
+        org-display-custom-times t
+        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
+#+end_src
+**** ~org-super-agenda~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-super-agenda
   :after org
@@ -325,62 +284,7 @@ Make things installed in ~~/.local/bin~ available to Emacs.
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 #+end_src
-*** Appearance
-
-#+begin_src emacs-lisp :tangle ./config.el
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
-(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-
-(use-package! org
-  :defer t
-  :bind (:map org-mode-map
-              ("M-o" . org-appear-mode))
-  :config
-  (setq org-hide-emphasis-markers t
-        org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
-
-        org-startup-folded 'show2levels
-
-        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-                             ("~" org-code verbatim) ("+" (:strike-through t)))
-
-        org-appear-autolinks t
-        org-appear-autoentities t
-        org-appear-autokeywords t
-
-        org-directory "~/org/"
-        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
-        org-log-done t
-        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
-        ))
-
-(use-package! org-modern
-  :after org
-  :config
-  (setq org-modern-star 'fold
-        org-modern-replace-stars "◉○✸✿"
-        org-modern-block-name nil
-        ;; org-modern-keyword nil
-        org-modern-timestamp nil
-        ;; org-modern-priority t
-        org-modern-todo t
-        ;; org-modern-table nil
-        ))
-
-(use-package! org-agenda
-  :after org
-  :config
-  (setq org-agenda-timegrid-use-ampm t
-        org-display-custom-times t
-        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
-#+end_src
-
-*** Git auto commit and push
+*** ~git-auto-commit-and-push~
 The Git-auto-commit mode in ~/org is enabled using ~/org/.dir-locals.el.
 
 #+begin_src emacs-lisp
@@ -395,14 +299,7 @@ Automatically push git changes.
          gac-automatically-add-new-files-p t
          gac-shell-and " ; and "))
 #+end_src
-*** Org-anki
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! anki-editor
-  :defer t)
-(use-package! ankiorg
-  :defer t)
-#+end_src
-*** Org attach
+*** ~org-download~ and ~org-attach~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! org-attach
   :after org
@@ -414,30 +311,13 @@ Automatically push git changes.
                                               org-attach-id-fallback-folder-format)))
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
-#+end_src
-*** Ox-hugo
-#+begin_src emacs-lisp :tangle yes
-(use-package! ox-hugo
-  :defer t)
-#+end_src
-*** Org auto tangle
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! org-auto-tangle
-  :after org
-  :hook (org-mode . org-auto-tangle-mode))
-#+end_src
-*** Org-download
-#+begin_src emacs-lisp :tangle ./config.el
+
 (use-package! org-download
   :after org
   :config
   (setq org-download-image-org-width '450))
 #+end_src
-*** Org capture
-#+begin_src emacs-lisp :tangle yes
-(setq +org-capture-todo-file "inbox.org")
-#+end_src
-*** Org roam
+*** ~org-roam~
 #+begin_src emacs-lisp :tangle yes
 (use-package! org-roam
   :after org
@@ -460,16 +340,16 @@ Automatically push git changes.
          :unnarrowed t)
         ("s" "study" plain (file "~/org/roam/templates/study.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: study:%^{topics}")
-         :unarrowed t
-         )
+         :unarrowed t)
+
         ("w" "work" plain (file "~/org/roam/templates/default.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
-         :unarrowed t
-         )
+         :unarrowed t)
+
         ("i" "issue" plain (file "~/org/roam/templates/issue.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
-         :unarrowed t
-         )))
+         :unarrowed t)))
+
 #+end_src
 
 **** Dailies capture templates
@@ -492,13 +372,11 @@ Automatically push git changes.
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 #+end_src
-*** Org safe remote
-#+begin_src emacs-lisp :tangle ./config.el
-(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
-#+end_src
-*** Org Todos
+*** ~org-todo-keywords~
 #+begin_src emacs-lisp :tangle ./config.el
 (after! org
+  (setq +org-capture-todo-file "inbox.org")
+
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
@@ -523,14 +401,7 @@ Automatically push git changes.
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
-*** Org-supertag
-#+begin_src emacs-lisp :tangle no
-(use-package! org-supertag
-  :config
-  (setq org-supertag-sync-directories '("~/org/roam"))
-  )
-#+end_src
-** ssh-config-mode
+** ~ssh-config-mode~
 #+begin_src emacs-lisp :tangle yes
 (use-package! ssh-config-mode
   :defer t
@@ -543,9 +414,8 @@ Automatically push git changes.
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 #+end_src
 
-** Terminal Setup
-*** Fish
-Setting fish shell paths.
+** Shells
+*** ~explicit-shell-file-name~
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
 (setq explicit-shell-file-name
       (cond
@@ -562,11 +432,22 @@ Setting fish shell paths.
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 #+END_SRC
-*** Vterm
-**** Set ~libvterm~ path
-Setting vterm path.
+*** ~emacs-libvterm~
+Setting vterm path (if I have to compile manually).
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
+#+end_src
+*** ~eat~
+#+begin_src emacs-lisp :tangle ./config.el
+(use-package! eat
+  :init
+  (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
+  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
+  (setq eat-shell "/bin/bash"))
+
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 #+end_src
 ** Themes
 *** Catppuccin
@@ -586,13 +467,6 @@ Setting vterm path.
         (3 . (1.12))
         (t . (1.05))))
 
-;; (setq modus-themes-common-palette-overrides
-;;       '((border-mode-line-active bg-mode-line-active)
-;;         (border-mode-line-inactive bg-mode-line-inactive)))
-
-;; (setq modus-themes-common-palette-overrides
-;;       '((prose-done green-intense)
-;;         (prose-todo red-intense)))
 #+end_src
 *** Ef-themes
 #+begin_src emacs-lisp :tangle yes
@@ -602,28 +476,7 @@ Setting vterm path.
         (3 . (1.12))
         (t . (1.05))))
 #+end_src
-** TRAMP
-#+begin_src emacs-lisp :tangle yes
-(use-package! tramp
-  :config
-  (setq magit-tramp-pipe-stty-settings 'pty
-        remote-file-name-inhibit-locks t
-        tramp-use-scp-direct-remote-copying t
-        remote-file-name-inhibit-auto-save-visited t)
-
-  (connection-local-set-profile-variables
-   'remote-direct-async-process
-   '((tramp-direct-async-process . t)))
-
-  (connection-local-set-profiles
-   '(:application tramp :protocol "scp")
-   'remote-direct-async-process)
-
-  (with-eval-after-load 'tramp
-    (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
-#+end_src
-** Vertico
+** ~vertico~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! vertico
   :defer t

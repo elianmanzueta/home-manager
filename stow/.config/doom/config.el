@@ -1,8 +1,3 @@
-(map! :leader "wa" #'ace-select-window)
-
-(add-hook 'text-mode-hook #'auto-fill-mode)
-(setq-default fill-column 80)
-
 (use-package! avy
   :config
   (setq avy-timeout-seconds 0.35)
@@ -34,6 +29,8 @@
   :config
   (setq just-indent-offset 4))
 
+(use-package! kdl-mode)
+
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
   :hook (powershell-mode . lsp-mode)
@@ -48,26 +45,6 @@
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
-
-(use-package! kdl-mode)
-
-(use-package completion-preview
-  :hook
-  ((prog-mode text-mode eshell-mode) . completion-preview-mode)
-  :config
-  (setq completion-preview-minimum-symbol-length 3))
-
-(custom-set-faces!
-  '(outline-1 :weight bold :height 1.25)
-  '(outline-2 :weight bold :height 1.15)
-  '(outline-3 :weight bold :height 1.12)
-  '(outline-4 :weight semi-bold :height 1.09)
-  '(outline-5 :weight semi-bold :height 1.06)
-  '(outline-6 :weight semi-bold :height 1.03)
-  '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)
-  '(org-document-title :weight extra-bold :height 1.5)
-  '(org-verbatim :inherit bold :weight extra-bold))
 
 (use-package! dirvish
   :config
@@ -86,24 +63,6 @@
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 (setq doom-theme 'doom-moonlight)
-
-(use-package! eat
-  :init
-  (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
-  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
-  (setq eat-shell "/bin/bash"))
-
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
-
-(defun my/insert-heading-plus-one ()
-  (interactive)
-  (if (org-at-heading-p)
-      (let
-          ((header-level
-            (nth 0 (org-heading-components))))
-        (insert (make-string (+ 1 header-level) ?*)))))
 
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -127,81 +86,99 @@
  "gst" "git status"
  "gcsm" "git commit --signoff --message")
 
-(use-package! gptel
-  :defer t
-  :config
-  (setq gptel-api-key (lambda () (shell-command-to-string "cat ~/.authinfo")))
-  (setq
-   gptel-model   'sonar
-   gptel-backend (gptel-make-perplexity "Perplexity"
-                                        :key (lambda () (shell-command-to-string "cat ~/.authinfo-perplexity"))
-                                        :stream t))
+(setq user-full-name "Elian Manzueta")
+(setq user-mail-address "elianmanzueta@protonmail.com")
 
-  (setq gptel-default-mode #'org-mode)
+(setq undo-limit 80000000
+      evil-want-fine-undo t
+      evil-shift-width 2
+      auto-save-default t
+      truncate-string-ellipsis "…"
+      delete-by-moving-to-trash t
 
-  (setq gptel-prompt-prefix-alist
-        '((markdown-mode . "# Prompt:\n")
-          (org-mode . "* Prompt:\n")
-          (text-mode . "Prompt:\n "))
-        )
-
-  (setq gptel-response-prefix-alist
-        '((markdown-mode . "# Response:\n")
-          (org-mode . "* Response:\n")
-          (text-mode . "Response:\n"))
-        )
-
-  (setq gptel-directives
-        '((default
-           . "You are a large language model living in Emacs and a helpful assistant. Respond concisely. If needed, ask for clarification on questions.")
-          (programming
-           . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note.")
-          (writing
-           . "You are a large language model and a writing assistant. Respond concisely.")
-          (chat
-           . "You are a large language model and a conversation partner. Respond concisely."))
-        ))
+      display-line-numbers-type 'relative
+      confirm-kill-emacs nil
+      auto-save-default t
+      make-backup-files t
+      which-key-idle-delay 0.5
+      projectile-project-search-path '(("~/projects/" . 3)))
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
+(map! :leader "y" #'yank-from-kill-ring)
+
+(map! :leader "wa" #'ace-select-window)
+
+(add-hook 'text-mode-hook #'auto-fill-mode)
+(setq-default fill-column 80)
 
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
 
-(setq user-full-name "Elian Manzueta")
-(setq user-mail-address "elianmanzueta@protonmail.com")
-
-(setq auto-save-default t
-      make-backup-files t)
-(setq confirm-kill-emacs nil)
-(setq display-line-numbers-type 'relative)
-(setq evil-shift-width 2)
-(setq projectile-project-search-path
-      '(("~/projects/" . 3)))
-(setq which-key-idle-delay 0.5)
-
-(setq-default
- delete-by-moving-to-trash t)
-
-(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
-      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
-      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
-      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
-      )
-
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")
+(setq +doom-dashboard-pwd-policy "~/")
 
-                                        ; Focus new windows after splitting
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
-(map! :leader "y" #'yank-from-kill-ring)
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
-(use-package! nov
+(custom-set-faces!
+  '(outline-1 :weight bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5)
+  '(org-verbatim :inherit bold :weight extra-bold))
+
+(use-package! org
   :defer t
-  :mode ("\\.epub\\'" . nov-mode)
+  :bind (:map org-mode-map
+              ("M-o" . org-appear-mode))
   :config
-  (setq nov-variable-pitch nil))
+  (setq org-hide-emphasis-markers t
+        org-fontify-quote-and-verse-blocks t
+        org-auto-align-tags nil
+        org-tags-column 0
+        org-agenda-tags-column 0
+        org-ellipsis " ▼"
+
+        org-startup-folded 'show2levels
+
+        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+                             ("~" org-code verbatim) ("+" (:strike-through t)))
+
+        org-appear-autolinks t
+        org-appear-autoentities t
+        org-appear-autokeywords t
+
+        org-directory "~/org/"
+        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
+        org-log-done t
+        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
+        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)")))
+
+(use-package! org-modern
+  :after org
+  :config
+  (setq org-modern-star 'fold
+        org-modern-replace-stars "◉○✸✿"
+        org-modern-block-name nil
+        org-modern-timestamp nil
+        org-modern-todo t))
+
+(use-package! org-agenda
+  :after org
+  :config
+  (setq org-agenda-timegrid-use-ampm t
+        org-display-custom-times t
+        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package! org-super-agenda
   :after org
@@ -254,67 +231,11 @@
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
-(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-
-(use-package! org
-  :defer t
-  :bind (:map org-mode-map
-              ("M-o" . org-appear-mode))
-  :config
-  (setq org-hide-emphasis-markers t
-        org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
-
-        org-startup-folded 'show2levels
-
-        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-                             ("~" org-code verbatim) ("+" (:strike-through t)))
-
-        org-appear-autolinks t
-        org-appear-autoentities t
-        org-appear-autokeywords t
-
-        org-directory "~/org/"
-        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
-        org-log-done t
-        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
-        ))
-
-(use-package! org-modern
-  :after org
-  :config
-  (setq org-modern-star 'fold
-        org-modern-replace-stars "◉○✸✿"
-        org-modern-block-name nil
-        ;; org-modern-keyword nil
-        org-modern-timestamp nil
-        ;; org-modern-priority t
-        org-modern-todo t
-        ;; org-modern-table nil
-        ))
-
-(use-package! org-agenda
-  :after org
-  :config
-  (setq org-agenda-timegrid-use-ampm t
-        org-display-custom-times t
-        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
-
 (use-package! git-auto-commit-mode
   :config
   (setq! gac-automatically-push-p t
          gac-automatically-add-new-files-p t
          gac-shell-and " ; and "))
-
-(use-package! anki-editor
-  :defer t)
-(use-package! ankiorg
-  :defer t)
 
 (use-package! org-attach
   :after org
@@ -327,19 +248,10 @@
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
-(use-package! ox-hugo
-  :defer t)
-
-(use-package! org-auto-tangle
-  :after org
-  :hook (org-mode . org-auto-tangle-mode))
-
 (use-package! org-download
   :after org
   :config
   (setq org-download-image-org-width '450))
-
-(setq +org-capture-todo-file "inbox.org")
 
 (use-package! org-roam
   :after org
@@ -359,16 +271,15 @@
          :unnarrowed t)
         ("s" "study" plain (file "~/org/roam/templates/study.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: study:%^{topics}")
-         :unarrowed t
-         )
+         :unarrowed t)
+
         ("w" "work" plain (file "~/org/roam/templates/default.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
-         :unarrowed t
-         )
+         :unarrowed t)
+
         ("i" "issue" plain (file "~/org/roam/templates/issue.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
-         :unarrowed t
-         )))
+         :unarrowed t)))
 
 (after! org
   (setq org-roam-dailies-capture-templates
@@ -386,9 +297,9 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-(setq org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
-
 (after! org
+  (setq +org-capture-todo-file "inbox.org")
+
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
@@ -440,6 +351,16 @@
 
 (add-load-path! "~/emacs-libvterm")
 
+(use-package! eat
+  :init
+  (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
+  (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
+  (setq eat-shell "/bin/bash"))
+
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
+
 (setq catppuccin-flavor 'mocha
       catppuccin-italic-comments t
       catppuccin-italic-variables t
@@ -453,38 +374,11 @@
         (3 . (1.12))
         (t . (1.05))))
 
-;; (setq modus-themes-common-palette-overrides
-;;       '((border-mode-line-active bg-mode-line-active)
-;;         (border-mode-line-inactive bg-mode-line-inactive)))
-
-;; (setq modus-themes-common-palette-overrides
-;;       '((prose-done green-intense)
-;;         (prose-todo red-intense)))
-
 (setq ef-themes-headings
       '((1 . (1.25))
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
-
-(use-package! tramp
-  :config
-  (setq magit-tramp-pipe-stty-settings 'pty
-        remote-file-name-inhibit-locks t
-        tramp-use-scp-direct-remote-copying t
-        remote-file-name-inhibit-auto-save-visited t)
-
-  (connection-local-set-profile-variables
-   'remote-direct-async-process
-   '((tramp-direct-async-process . t)))
-
-  (connection-local-set-profiles
-   '(:application tramp :protocol "scp")
-   'remote-direct-async-process)
-
-  (with-eval-after-load 'tramp
-    (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
 
 (use-package! vertico
   :defer t
