@@ -1,29 +1,40 @@
 return {
-  "yousefhadder/markdown-plus.nvim",
-  ft = "markdown",
+  {
+    "yousefhadder/markdown-plus.nvim",
+    ft = "markdown",
+  },
 
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    --- Configuration options for `markview.nvim`.
+    ---@class markview.config
+    ---
+    ---@field experimental? markview.config.experimental
+    ---@field html? markview.config.html
+    ---@field latex? markview.config.latex
+    ---@field markdown? markview.config.markdown
+    ---@field markdown_inline? markview.config.markdown_inline
+    ---@field preview? markview.config.preview
+    ---@field renderers? table<string, function>
+    ---@field typst? markview.config.typst
+    ---@field yaml? markview.config.yaml
     opts = {
-      indent = {
-        enabled = true,
-        skip_level = 0,
-      },
+      markdown = {
 
-      heading = {
-        width = "block",
-      },
-
-      anti_conceal = {
-        ignore = {
-          indent = true,
-          virtual_lines = true,
-          code_background = true,
+        headings = {
+          org_indent = true,
         },
+
+        list_items = {
+          shift_width = 2,
+        },
+
+        code_blocks = {
+          style = "simple",
+        },
+
+        markdown_inline = {},
       },
     },
   },
