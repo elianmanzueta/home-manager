@@ -20,8 +20,8 @@
   (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
 #+end_src
 * Code
-** Go
-*** Inlay hints
+** ~go-mode~
+*** Enable inlay hints
 #+begin_src emacs-lisp :tangle ./config.el
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -33,7 +33,7 @@
                      (parameterNames . t)
                      (rangeVariableTypes . t))))))
 #+end_src
-** just-mode
+** ~just-mode~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package just-mode
   :defer t
@@ -41,11 +41,11 @@
   :config
   (setq just-indent-offset 4))
 #+end_src
-** kdl-mode
+** ~kdl-mode~
 #+begin_src emacs-lisp :tangle yes
 (use-package! kdl-mode)
 #+end_src
-** powershell-ts-mode
+** ~powershell-ts-mode~
 #+begin_src emacs-lisp :tangle yes
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
@@ -53,7 +53,7 @@
   :config
   (setq powershell-location-of-exe "/mnt/c/Program Files/Powershell/7/pwsh.exe"))
 #+end_src
-** python-mode
+** ~python-mode~
 *** lsp-pyright
 #+begin_src emacs-lisp :tangle yes
 (setq lsp-pyright-langserver-command "basedpyright")
@@ -63,13 +63,17 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 #+end_src
-** rust-mode
+** ~rust-mode~
 *** Inlay hints
 Enable inlay hints in Rust
 #+begin_src emacs-lisp :tangle ./config.el
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
+#+end_src
+** ~eldoc-box~
+#+begin_src emacs-lisp :tangle yes
+(use-package! eldoc-box)
 #+end_src
 * ~dirvish~
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -86,7 +90,7 @@ Enable inlay hints in Rust
 
 (map! :leader "e" #'dirvish)
 #+END_SRC
-* Doom
+* DOOM
 #+begin_src emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")

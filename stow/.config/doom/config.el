@@ -46,6 +46,8 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
+(use-package! eldoc-box)
+
 (use-package! dirvish
   :config
   (setq dirvish-attributes

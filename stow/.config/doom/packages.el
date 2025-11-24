@@ -23,6 +23,7 @@
 (package! flymake-ruff)
 (package! ssh-config-mode)
 (package! kdl-mode)
+(package! eldoc-box)
 
 ;; Themes
 (package! ef-themes
