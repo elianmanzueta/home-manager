@@ -46,7 +46,23 @@
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(use-package! eldoc-box)
+(use-package! eldoc-box
+  :bind (:map eglot-mode-map
+              ("M-j" . my/eldoc-box-scroll-down)
+              ("M-k" . my/eldoc-box-scroll-up))
+  :config
+  (defun my/eldoc-box-scroll-up ()
+    "Scroll up in `eldoc-box--frame'."
+    (interactive
+     (with-current-buffer eldoc-box--buffer
+       (with-selected-frame eldoc-box--frame
+         (scroll-down 3)))))
+  (defun my/eldoc-box-scroll-down ()
+    "Scroll down in `eldoc-box--frame'."
+    (interactive)
+    (with-current-buffer eldoc-box--buffer
+      (with-selected-frame eldoc-box--frame
+        (scroll-up 3)))))
 
 (use-package! dirvish
   :config
