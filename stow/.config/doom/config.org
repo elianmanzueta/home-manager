@@ -106,12 +106,11 @@ Enable inlay hints in Rust
 
 (map! :leader "e" #'dirvish)
 #+END_SRC
-* DOOM
+* Fonts
 #+begin_src emacs-lisp :tangle ./config.el
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-moonlight)
 #+end_src
 * Eshell
 #+begin_src emacs-lisp :tangle yes
@@ -462,6 +461,9 @@ Setting vterm path (if I have to compile manually).
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 #+end_src
 * Themes
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'kaolin-bubblegum)
+#+end_src
 ** Catppuccin
 #+begin_src emacs-lisp :tangle yes
 (setq catppuccin-flavor 'mocha
@@ -487,6 +489,11 @@ Setting vterm path (if I have to compile manually).
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
+#+end_src
+** Kaolin-themes
+#+begin_src emacs-lisp :tangle yes
+(setq kaolin-themes-italic-comments t
+      kaolin-themes-modeline-padded t)
 #+end_src
 * ~vertico~
 #+begin_src emacs-lisp :tangle ./config.el

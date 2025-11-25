@@ -80,7 +80,6 @@
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
-(setq doom-theme 'doom-moonlight)
 
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -379,6 +378,8 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
+(setq doom-theme 'kaolin-bubblegum)
+
 (setq catppuccin-flavor 'mocha
       catppuccin-italic-comments t
       catppuccin-italic-variables t
@@ -397,6 +398,9 @@
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
+
+(setq kaolin-themes-italic-comments t
+      kaolin-themes-modeline-padded t)
 
 (use-package! vertico
   :defer t
