@@ -67,8 +67,8 @@
 (use-package! dirvish
   :config
   (setq dirvish-attributes
-        '(file-modes nerd-icons vc-state file-mode subtree-state collapse file-size file-time))
-  (setq dirvish-default-layout '(1 0.11 0.55))
+        '(nerd-icons collapse file-size file-time))
+  (setq dirvish-default-layout '(0 0.11 0.55))
   (setq dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   (setq dired-use-ls-dired 't)
   (setq dirvish-peek-mode 't)
