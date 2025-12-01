@@ -188,6 +188,7 @@
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
         org-modern-timestamp nil
+        org-modern-table nil
         org-modern-todo t))
 
 (use-package! org-agenda
