@@ -1,4 +1,4 @@
-personal_ws-1.1 en 345
+personal_ws-1.1 en 350
 aadct
 acls
 addc
@@ -144,6 +144,7 @@ ists
 itdbwb
 itddb
 it’s
+jamf
 jumpbox
 jumpstation
 jumpstations
@@ -224,6 +225,7 @@ pvue
 pyright
 qos
 qualys
+ranga
 rdgw
 reachability
 realmd
@@ -243,8 +245,10 @@ scalable
 sfdata
 sflow
 sfps
+sftp
 shoutout
 skus
+smallstep
 snmp
 snmppoller
 solarwinds
@@ -259,6 +263,7 @@ sslvpns
 stalhood
 starship
 stdlic
+stepca
 sthome
 stick
 stigs
