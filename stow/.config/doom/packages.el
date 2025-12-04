@@ -8,10 +8,11 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
-(unpin! consult)
 
-;; Org mode stuff
+;; Org
 (unpin! org-modern)
+(unpin! org)
+(unpin! org-roam)
 (package! org-download)
 (package! org-appear)
 (package! git-auto-commit-mode)
