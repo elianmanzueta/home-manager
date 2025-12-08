@@ -108,9 +108,6 @@ symbol = "erl "
 [fennel]
 symbol = "fnl "
 
-[fortran]
-symbol = "fortran "
-
 [fossil_branch]
 symbol = "fossil "
 truncation_symbol = "..."
@@ -212,8 +209,7 @@ AlmaLinux = "alma "
 Alpine = "alp "
 Amazon = "amz "
 Android = "andr "
-AOSC = "aosc "
-Arch = "rch "
+Arch = "arch "
 Artix = "atx "
 Bluefin = "blfn "
 CachyOS = "cach "
@@ -337,9 +333,6 @@ symbol = "vagrant "
 
 [terraform]
 symbol = "terraform "
-
-[xmake]
-symbol = "xmake "
 
 [zig]
 symbol = "zig "
