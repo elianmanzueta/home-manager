@@ -49,7 +49,8 @@
 (use-package! eldoc-box
   :bind (:map eglot-mode-map
               ("M-j" . my/eldoc-box-scroll-down)
-              ("M-k" . my/eldoc-box-scroll-up))
+              ("M-k" . my/eldoc-box-scroll-up)
+              ("M-K" . eldoc-box-help-at-point))
   :config
   (defun my/eldoc-box-scroll-up ()
     "Scroll up in `eldoc-box--frame'."
@@ -121,7 +122,7 @@
       projectile-project-search-path '(("~/projects/" . 3)))
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
-(map! :leader "y" #'yank-from-kill-ring)
+(map! :leader "y" #'consult-yank-from-kill-ring)
 
 (map! :leader "wa" #'ace-select-window)
 
