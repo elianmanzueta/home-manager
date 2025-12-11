@@ -1,4 +1,4 @@
-personal_ws-1.1 en 351
+personal_ws-1.1 en 354
 aadct
 acls
 addc
@@ -36,6 +36,7 @@ bootps
 broadcasted
 broadcom
 caddy
+caddyfile
 capsulate
 cas
 catppuccin
@@ -100,6 +101,7 @@ extremecloudiq
 facto
 failover
 ferrilli
+fi
 filebrowser
 filesystems
 firewalld

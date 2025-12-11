@@ -42,6 +42,8 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 
+(use-package! uv)
+
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)

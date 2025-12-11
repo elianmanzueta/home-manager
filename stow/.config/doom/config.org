@@ -63,6 +63,10 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 #+end_src
+** ~uv~
+#+begin_src emacs-lisp :tangle yes
+(use-package! uv)
+#+end_src
 ** ~rust-mode~
 *** Inlay hints
 Enable inlay hints in Rust
