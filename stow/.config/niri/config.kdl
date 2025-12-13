@@ -1,3 +1,7 @@
+include "dms/binds.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
@@ -14,7 +18,6 @@ output "DP-2" {
 output "DP-1" {
     mode "1920x1080@165.003"
 }
-
 
 gestures {
     hot-corners {
@@ -51,7 +54,7 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 5
+    gaps 4
     background-color "transparent"
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -59,7 +62,7 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "never"
+    center-focused-column "on-overflow"
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
@@ -106,7 +109,7 @@ layout {
         color "#0007"
     }
     struts {
-    }  
+    }
 }
 layer-rule {
     match namespace="^quickshell$"
@@ -125,6 +128,11 @@ overview {
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 spawn-at-startup "dms" "run"
 spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
+
+spawn-at-startup "emacs" "--daemon"
+spawn-at-startup "flatpak" "run" "com.github.wwmm.easyeffects" "--service-mode" "--hide-window"
+spawn-at-startup "flatpak" "run" "one.ablaze.Floorp"
+
 environment {
   XDG_CURRENT_DESKTOP "niri"
   QT_QPA_PLATFORM "wayland"
@@ -223,6 +231,8 @@ window-rule {
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+    tiled-state true
+    draw-border-with-background false
 }
 binds {
     // === System & Overview ===
