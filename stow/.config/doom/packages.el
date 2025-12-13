@@ -13,6 +13,11 @@
 (unpin! org-modern)
 (unpin! org)
 (unpin! org-roam)
+(unpin! consult)
+(unpin! vertico)
+(unpin! corfu)
+(unpin! marginalia)
+
 (package! org-download)
 (package! org-appear)
 (package! git-auto-commit-mode)
@@ -27,6 +32,8 @@
 (package! ssh-config-mode)
 (package! kdl-mode)
 (package! eldoc-box)
+(package! uv
+  :recipe (:host github :repo "johannes-mueller/uv.el"))
 
 ;; Themes
 (package! ef-themes
