@@ -110,6 +110,11 @@ Enable inlay hints in Rust
     (setq insert-directory-program "gls")))
 
 (map! :leader "e" #'dirvish)
+
+(defun Ex ()
+  "Literally just opens dirvish. Made because I keep doing `:Ex`."
+  (interactive)
+  (dirvish))
 #+END_SRC
 * Fonts
 #+begin_src emacs-lisp :tangle ./config.el

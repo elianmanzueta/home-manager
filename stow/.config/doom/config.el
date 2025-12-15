@@ -80,6 +80,11 @@
 
 (map! :leader "e" #'dirvish)
 
+(defun Ex ()
+  "Literally just opens dirvish. Made because I keep doing `:Ex`."
+  (interactive)
+  (dirvish))
+
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
