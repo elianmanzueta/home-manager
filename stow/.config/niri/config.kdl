@@ -130,11 +130,11 @@ spawn-at-startup "dms" "run"
 spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 
 spawn-at-startup "emacs" "--daemon"
-spawn-at-startup "flatpak" "run" "com.github.wwmm.easyeffects" "--service-mode" "--hide-window"
-spawn-at-startup "flatpak" "run" "one.ablaze.Floorp"
+spawn-at-startup "kbuildsycoca6"
 
 environment {
   XDG_CURRENT_DESKTOP "niri"
+  XDG_MENU_PREFIX "arch-"
   QT_QPA_PLATFORM "wayland"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   QT_QPA_PLATFORMTHEME "gtk3"
