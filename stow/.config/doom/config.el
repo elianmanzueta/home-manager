@@ -387,6 +387,10 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
+(use-package! tramp-hlo
+  :config
+  (tramp-hlo-setup))
+
 (setq doom-theme 'kaolin-bubblegum)
 
 (setq catppuccin-flavor 'mocha

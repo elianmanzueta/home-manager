@@ -8,8 +8,6 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
-
-;; Org
 (unpin! org-modern)
 (unpin! org)
 (unpin! org-roam)
@@ -18,6 +16,7 @@
 (unpin! corfu)
 (unpin! marginalia)
 
+;; Org
 (package! org-download)
 (package! org-appear)
 (package! git-auto-commit-mode)
@@ -34,6 +33,7 @@
 (package! eldoc-box)
 (package! uv
   :recipe (:host github :repo "johannes-mueller/uv.el"))
+(package! tramp-hlo)
 
 ;; Themes
 (package! ef-themes

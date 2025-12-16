@@ -435,7 +435,6 @@ Hooks
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 #+end_src
-
 * Shells
 ** ~explicit-shell-file-name~
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -459,7 +458,7 @@ Setting vterm path (if I have to compile manually).
 #+begin_src emacs-lisp :tangle ./config.el
 (add-load-path! "~/emacs-libvterm")
 #+end_src
-** ~eat~
+** ~EAT~
 #+begin_src emacs-lisp :tangle ./config.el
 (use-package! eat
   :init
@@ -470,6 +469,12 @@ Setting vterm path (if I have to compile manually).
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
+#+end_src
+** TRAMP
+#+begin_src emacs-lisp :tangle yes
+(use-package! tramp-hlo
+  :config
+  (tramp-hlo-setup))
 #+end_src
 * Themes
 #+begin_src emacs-lisp :tangle yes
@@ -491,7 +496,6 @@ Setting vterm path (if I have to compile manually).
         (2 . (1.15))
         (3 . (1.12))
         (t . (1.05))))
-
 #+end_src
 ** Ef-themes
 #+begin_src emacs-lisp :tangle yes
@@ -529,7 +533,6 @@ Setting vterm path (if I have to compile manually).
 (use-package! vertico-directory
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
 #+end_src
 
 Draw arrows on candidates
@@ -551,5 +554,4 @@ Draw arrows on candidates
          #(" " 0 1 (display (left-fringe right-triangle vertico-current)))
          cand)
       cand)))
-
 #+end_src
