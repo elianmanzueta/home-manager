@@ -1,0 +1,16 @@
+{
+  "newTabUrl": "https://www.startpage.com/do/mypage.pl?prfe=e635cd987a4682520f1b43b27dc04f9b7c3013c3d13eb9abaa96f0ef99de0786bfd30ddb09bb598f3fc882c597783ac84ccc642e6715eb256984505b06da252fbb5ba79198e918359f6d06d63c8e",
+  "scrollStepSize": 100,
+  "grabBackFocus": true,
+  "settingsVersion": "2.3.1",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://mydesktop.cincinnatistate.edu/*"
+    }
+  ]
+}

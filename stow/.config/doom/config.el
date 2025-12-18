@@ -146,58 +146,11 @@
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
-(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
-
-(custom-set-faces!
-  '(outline-1 :weight bold :height 1.25)
-  '(outline-2 :weight bold :height 1.15)
-  '(outline-3 :weight bold :height 1.12)
-  '(outline-4 :weight semi-bold :height 1.09)
-  '(outline-5 :weight semi-bold :height 1.06)
-  '(outline-6 :weight semi-bold :height 1.03)
-  '(outline-8 :weight semi-bold)
-  '(outline-9 :weight semi-bold)
-  '(org-document-title :weight extra-bold :height 1.5)
-  '(org-verbatim :inherit bold :weight extra-bold))
-
-(use-package! org
-  :defer t
-  :bind (:map org-mode-map
-              ("M-o" . org-appear-mode))
+(use-package! git-auto-commit-mode
   :config
-  (setq org-hide-emphasis-markers t
-        org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
-
-        org-startup-folded 'show2levels
-
-        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-                             ("~" org-code verbatim) ("+" (:strike-through t)))
-
-        org-appear-autolinks t
-        org-appear-autoentities t
-        org-appear-autokeywords t
-
-        org-directory "~/org/"
-        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
-        org-log-done t
-        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
-        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)")))
-
-(use-package! org-modern
-  :after org
-  :config
-  (setq org-modern-star 'fold
-        org-modern-replace-stars "◉○✸✿"
-        org-modern-block-name nil
-        org-modern-timestamp nil
-        org-modern-table nil
-        org-modern-todo t))
+  (setq! gac-automatically-push-p t
+         gac-automatically-add-new-files-p t
+         gac-shell-and " ; and "))
 
 (use-package! org-agenda
   :after org
@@ -257,12 +210,6 @@
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-(use-package! git-auto-commit-mode
-  :config
-  (setq! gac-automatically-push-p t
-         gac-automatically-add-new-files-p t
-         gac-shell-and " ; and "))
-
 (use-package! org-attach
   :after org
   :config
@@ -278,6 +225,59 @@
   :after org
   :config
   (setq org-download-image-org-width '450))
+
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+(custom-set-faces!
+  '(outline-1 :weight bold :height 1.25)
+  '(outline-2 :weight bold :height 1.15)
+  '(outline-3 :weight bold :height 1.12)
+  '(outline-4 :weight semi-bold :height 1.09)
+  '(outline-5 :weight semi-bold :height 1.06)
+  '(outline-6 :weight semi-bold :height 1.03)
+  '(outline-8 :weight semi-bold)
+  '(outline-9 :weight semi-bold)
+  '(org-document-title :weight extra-bold :height 1.5)
+  '(org-verbatim :inherit bold :weight extra-bold))
+
+(use-package! org
+  :defer t
+  :bind (:map org-mode-map
+              ("M-o" . org-appear-mode))
+  :config
+  (setq org-hide-emphasis-markers t
+        org-fontify-quote-and-verse-blocks t
+        org-auto-align-tags nil
+        org-tags-column 0
+        org-agenda-tags-column 0
+        org-ellipsis " ▼"
+
+        org-startup-folded 'show2levels
+
+        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+                             ("~" org-code verbatim) ("+" (:strike-through t)))
+
+        org-appear-autolinks t
+        org-appear-autoentities t
+        org-appear-autokeywords t
+
+        org-directory "~/org/"
+        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
+        org-log-done t
+        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
+        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)")))
+
+(use-package! org-modern
+  :after org
+  :config
+  (setq org-modern-star 'fold
+        org-modern-replace-stars "◉○✸✿"
+        org-modern-block-name nil
+        org-modern-timestamp nil
+        org-modern-table nil
+        org-modern-todo t))
 
 (use-package! org-roam
   :after org
@@ -423,15 +423,7 @@
   (setq vertico-multiform-categories
         '((symbol (vertico-sort-function . vertico-sort-alpha))
           (file (vertico-sort-function . vertico-sort-history-alpha)
-                )))
-
-  (setq vertico-multiform-commands '((org-roam-node-find grid)
-                                     (org-roam-node-insert grid)))
-
-  (if (eq system-type 'android)
-      (setq vertico-grid-min-columns 1)
-    (setq vertico-grid-min-columns 3))
-  )
+                ))))
 
 (use-package! vertico-directory
   :after vertico
