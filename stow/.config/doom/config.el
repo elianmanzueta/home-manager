@@ -106,10 +106,15 @@
           (propertize "$" 'face (if (zerop eshell-last-command-status) 'success 'error))
           " "))
 
-(set-eshell-alias!
- "ls" "ls -lhaF --color=auto"
- "gst" "git status"
- "gcsm" "git commit --signoff --message")
+(if (executable-find "eza")
+    (set-eshell-alias!
+     "ls" "eza -lhaF --color=auto"
+     "gst" "git status"
+     "gcsm" "git commit --signoff --message")
+  (set-eshell-alias!
+   "ls" "ls -lhaF --color=auto"
+   "gst" "git status"
+   "gcsm" "git commit --signoff --message"))
 
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
