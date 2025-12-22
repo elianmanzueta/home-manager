@@ -120,16 +120,17 @@
 (setq user-mail-address "elianmanzueta@protonmail.com")
 
 (setq undo-limit 80000000
-      evil-want-fine-undo t
-      evil-shift-width 2
-      auto-save-default t
-      truncate-string-ellipsis "…"
-      delete-by-moving-to-trash t
-
-      display-line-numbers-type 'relative
       confirm-kill-emacs nil
       auto-save-default t
       make-backup-files t
+      auto-save-default t
+      truncate-string-ellipsis "…"
+      delete-by-moving-to-trash t
+      kill-ring-max 200
+
+      evil-want-fine-undo t
+      evil-shift-width 2
+      display-line-numbers-type 'relative
       which-key-idle-delay 0.5
       projectile-project-search-path '(("~/projects/" . 3)))
 
