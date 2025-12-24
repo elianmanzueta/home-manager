@@ -8,13 +8,8 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
-(unpin! org-modern)
-(unpin! org)
-(unpin! org-roam)
-(unpin! consult)
-(unpin! vertico)
-(unpin! corfu)
-(unpin! marginalia)
+(unpin! (:lang org))
+(unpin! (:completion))
 
 ;; Org
 (package! org-download)
