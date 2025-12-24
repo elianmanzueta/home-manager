@@ -13,6 +13,37 @@
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
   (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
 
+(use-package! cperl-mode
+  :hook (cperl-mode . flymake-mode)
+  :config
+  (setq cperl-indent-parens-as-block t
+        cperl-close-paren-offset (- cperl-indent-level)
+        cperl-invalid-face (quote off)
+        cperl-hairy t
+        cperl-electric-keywords t
+        cperl-highlight-variables-indiscriminately t
+        )
+  )
+
+(use-package! eldoc-box
+  :bind (:map eglot-mode-map
+              ("M-j" . my/eldoc-box-scroll-down)
+              ("M-k" . my/eldoc-box-scroll-up)
+              ("M-K" . eldoc-box-help-at-point))
+  :config
+  (defun my/eldoc-box-scroll-up ()
+    "Scroll up in `eldoc-box--frame'."
+    (interactive
+     (with-current-buffer eldoc-box--buffer
+       (with-selected-frame eldoc-box--frame
+         (scroll-down 3)))))
+  (defun my/eldoc-box-scroll-down ()
+    "Scroll down in `eldoc-box--frame'."
+    (interactive)
+    (with-current-buffer eldoc-box--buffer
+      (with-selected-frame eldoc-box--frame
+        (scroll-up 3)))))
+
 (after! lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
@@ -42,30 +73,11 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 
-(use-package! uv)
-
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(use-package! eldoc-box
-  :bind (:map eglot-mode-map
-              ("M-j" . my/eldoc-box-scroll-down)
-              ("M-k" . my/eldoc-box-scroll-up)
-              ("M-K" . eldoc-box-help-at-point))
-  :config
-  (defun my/eldoc-box-scroll-up ()
-    "Scroll up in `eldoc-box--frame'."
-    (interactive
-     (with-current-buffer eldoc-box--buffer
-       (with-selected-frame eldoc-box--frame
-         (scroll-down 3)))))
-  (defun my/eldoc-box-scroll-down ()
-    "Scroll down in `eldoc-box--frame'."
-    (interactive)
-    (with-current-buffer eldoc-box--buffer
-      (with-selected-frame eldoc-box--frame
-        (scroll-up 3)))))
+(use-package! uv)
 
 (use-package! dirvish
   :config
