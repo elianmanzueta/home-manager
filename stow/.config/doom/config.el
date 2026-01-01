@@ -25,24 +25,19 @@
         )
   )
 
-(use-package! eldoc-box
-  :bind (:map eglot-mode-map
-              ("M-j" . my/eldoc-box-scroll-down)
-              ("M-k" . my/eldoc-box-scroll-up)
-              ("M-K" . eldoc-box-help-at-point))
-  :config
-  (defun my/eldoc-box-scroll-up ()
-    "Scroll up in `eldoc-box--frame'."
-    (interactive
-     (with-current-buffer eldoc-box--buffer
-       (with-selected-frame eldoc-box--frame
-         (scroll-down 3)))))
-  (defun my/eldoc-box-scroll-down ()
-    "Scroll down in `eldoc-box--frame'."
-    (interactive)
-    (with-current-buffer eldoc-box--buffer
-      (with-selected-frame eldoc-box--frame
-        (scroll-up 3)))))
+(defun my/eldoc-box-scroll-up ()
+  "Scroll up in `eldoc-box--frame'."
+  (interactive
+   (with-current-buffer eldoc-box--buffer
+     (with-selected-frame eldoc-box--frame
+       (scroll-down 3)))))
+
+(defun my/eldoc-box-scroll-down ()
+  "Scroll down in `eldoc-box--frame'."
+  (interactive)
+  (with-current-buffer eldoc-box--buffer
+    (with-selected-frame eldoc-box--frame
+      (scroll-up 3))))
 
 (after! lsp-mode
   (lsp-register-custom-settings
@@ -61,6 +56,10 @@
   (setq just-indent-offset 4))
 
 (use-package! kdl-mode)
+
+(use-package! lsp-mode
+  :bind (:map lsp-mode-map
+              ("M-k" . lsp-ui-doc-glance)))
 
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
@@ -97,9 +96,33 @@
   (interactive)
   (dirvish))
 
+(setq doom-theme 'kaolin-bubblegum)
+
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
+
+(setq catppuccin-flavor 'mocha
+      catppuccin-italic-comments t
+      catppuccin-italic-variables t
+      catppuccin-highlight-matches t)
+
+(setq modus-themes-italic-constructs t)
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
+
+(setq ef-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
+
+(setq kaolin-themes-italic-comments t
+      kaolin-themes-modeline-padded t)
 
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -368,16 +391,6 @@
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 
-(use-package! ssh-config-mode
-  :defer t
-  :config
-  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
-  (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
-  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
-  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
-
-(add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
-
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
@@ -409,29 +422,15 @@
   :config
   (tramp-hlo-setup))
 
-(setq doom-theme 'kaolin-bubblegum)
+(use-package! ssh-config-mode
+  :defer t
+  :config
+  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
+  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
-(setq catppuccin-flavor 'mocha
-      catppuccin-italic-comments t
-      catppuccin-italic-variables t
-      catppuccin-highlight-matches t)
-
-(setq modus-themes-italic-constructs t)
-(setq modus-themes-bold-constructs t)
-(setq modus-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
-
-(setq ef-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
-
-(setq kaolin-themes-italic-comments t
-      kaolin-themes-modeline-padded t)
+(add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
 (use-package! vertico
   :defer t

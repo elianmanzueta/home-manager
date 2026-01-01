@@ -36,24 +36,19 @@
 #+end_src
 ** ~eldoc-box~
 #+begin_src emacs-lisp :tangle yes
-(use-package! eldoc-box
-  :bind (:map eglot-mode-map
-              ("M-j" . my/eldoc-box-scroll-down)
-              ("M-k" . my/eldoc-box-scroll-up)
-              ("M-K" . eldoc-box-help-at-point))
-  :config
-  (defun my/eldoc-box-scroll-up ()
-    "Scroll up in `eldoc-box--frame'."
-    (interactive
-     (with-current-buffer eldoc-box--buffer
-       (with-selected-frame eldoc-box--frame
-         (scroll-down 3)))))
-  (defun my/eldoc-box-scroll-down ()
-    "Scroll down in `eldoc-box--frame'."
-    (interactive)
-    (with-current-buffer eldoc-box--buffer
-      (with-selected-frame eldoc-box--frame
-        (scroll-up 3)))))
+(defun my/eldoc-box-scroll-up ()
+  "Scroll up in `eldoc-box--frame'."
+  (interactive
+   (with-current-buffer eldoc-box--buffer
+     (with-selected-frame eldoc-box--frame
+       (scroll-down 3)))))
+
+(defun my/eldoc-box-scroll-down ()
+  "Scroll down in `eldoc-box--frame'."
+  (interactive)
+  (with-current-buffer eldoc-box--buffer
+    (with-selected-frame eldoc-box--frame
+      (scroll-up 3))))
 #+end_src
 ** ~go-mode~
 *** Enable inlay hints
@@ -79,6 +74,12 @@
 ** ~kdl-mode~
 #+begin_src emacs-lisp :tangle yes
 (use-package! kdl-mode)
+#+end_src
+** ~lsp-mode~
+#+begin_src emacs-lisp :tangle yes
+(use-package! lsp-mode
+  :bind (:map lsp-mode-map
+              ("M-k" . lsp-ui-doc-glance)))
 #+end_src
 ** ~powershell-ts-mode~
 #+begin_src emacs-lisp :tangle yes
@@ -130,13 +131,46 @@ Enable inlay hints in Rust
   (interactive)
   (dirvish))
 #+END_SRC
-* Fonts
-#+begin_src emacs-lisp :tangle ./config.el
+* Doom
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'kaolin-bubblegum)
+
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'medium))
 (setq doom-emoji-font "Noto Color Emoji")
 (setq doom-symbol-font "Symbols Nerd Font Mono")
 #+end_src
-* Eshell
+** Themes
+*** Catppuccin
+#+begin_src emacs-lisp :tangle yes
+(setq catppuccin-flavor 'mocha
+      catppuccin-italic-comments t
+      catppuccin-italic-variables t
+      catppuccin-highlight-matches t)
+#+end_src
+*** Modus themes
+#+begin_src emacs-lisp :tangle yes
+(setq modus-themes-italic-constructs t)
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
+#+end_src
+*** Ef-themes
+#+begin_src emacs-lisp :tangle yes
+(setq ef-themes-headings
+      '((1 . (1.25))
+        (2 . (1.15))
+        (3 . (1.12))
+        (t . (1.05))))
+#+end_src
+*** Kaolin-themes
+#+begin_src emacs-lisp :tangle yes
+(setq kaolin-themes-italic-comments t
+      kaolin-themes-modeline-padded t)
+#+end_src
+* ~eshell~
 #+begin_src emacs-lisp :tangle yes
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -443,18 +477,6 @@ Focus new windows after splitting
         ("NOTE" :inverse-video t :inherit flymake-note-echo)
         ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
-* ~ssh-config-mode~
-#+begin_src emacs-lisp :tangle yes
-(use-package! ssh-config-mode
-  :defer t
-  :config
-  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
-  (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
-  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
-  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
-
-(add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
-#+end_src
 * Shells
 ** ~explicit-shell-file-name~
 #+BEGIN_SRC emacs-lisp :tangle ./config.el
@@ -496,39 +518,17 @@ Setting vterm path (if I have to compile manually).
   :config
   (tramp-hlo-setup))
 #+end_src
-* Themes
+* ~ssh-config-mode~
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'kaolin-bubblegum)
-#+end_src
-** Catppuccin
-#+begin_src emacs-lisp :tangle yes
-(setq catppuccin-flavor 'mocha
-      catppuccin-italic-comments t
-      catppuccin-italic-variables t
-      catppuccin-highlight-matches t)
-#+end_src
-** Modus themes
-#+begin_src emacs-lisp :tangle yes
-(setq modus-themes-italic-constructs t)
-(setq modus-themes-bold-constructs t)
-(setq modus-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
-#+end_src
-** Ef-themes
-#+begin_src emacs-lisp :tangle yes
-(setq ef-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
-#+end_src
-** Kaolin-themes
-#+begin_src emacs-lisp :tangle yes
-(setq kaolin-themes-italic-comments t
-      kaolin-themes-modeline-padded t)
+(use-package! ssh-config-mode
+  :defer t
+  :config
+  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/sshd?_config\\(\\.d/.*\\.conf\\)?\\'"  . ssh-config-mode))
+  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
+  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+
+(add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 #+end_src
 * ~vertico~
 #+begin_src emacs-lisp :tangle ./config.el
