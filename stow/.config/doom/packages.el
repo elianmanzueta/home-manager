@@ -9,7 +9,6 @@
 ;; (package! some-package)
 
 (unpin! (:lang org))
-(unpin! (:completion))
 
 ;; Org
 (package! org-download)
