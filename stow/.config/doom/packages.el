@@ -28,6 +28,8 @@
 (package! uv
   :recipe (:host github :repo "johannes-mueller/uv.el"))
 (package! tramp-hlo)
+(package! flyover
+  :recipe (:host github :repo "konrad1977/flyover"))
 
 ;; Themes
 (package! ef-themes

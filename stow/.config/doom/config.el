@@ -72,6 +72,24 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 
+(use-package! flycheck
+  :config
+  (setq flycheck-posframe-mode nil
+        flycheck-posframe-border-width 2))
+
+(use-package! flyover
+  :hook (lsp-mode . flyover-mode)
+  :config
+  (setq flyover-show-error-id t
+        flyover-virtual-line-type 'curved-arrow
+        flyover-base-height 0.9))
+
+(custom-set-faces!
+  '(flyover-error :inherit error :weight semi-bold :height 0.9)
+  '(flyover-info :inherit success :weight semi-bold :height 0.9)
+  '(flyover-marker :inherit link :weight semi-bold :height 0.9)
+  '(flyover-warning :inherit warning :weight semi-bold :height 0.9))
+
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
@@ -165,6 +183,8 @@
 
       evil-want-fine-undo t
       evil-shift-width 2
+      evil-want-C-i-jump t
+      +evil-want-move-window-to-wrap-around t
       display-line-numbers-type 'relative
       which-key-idle-delay 0.5
       projectile-project-search-path '(("~/projects/" . 3)))

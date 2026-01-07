@@ -99,6 +99,28 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 #+end_src
+*** ~flycheck~
+#+begin_src emacs-lisp :tangle yes
+(use-package! flycheck
+  :config
+  (setq flycheck-posframe-mode nil
+        flycheck-posframe-border-width 2))
+#+end_src
+**** Flyover
+#+begin_src emacs-lisp :tangle yes
+(use-package! flyover
+  :hook (lsp-mode . flyover-mode)
+  :config
+  (setq flyover-show-error-id t
+        flyover-virtual-line-type 'curved-arrow
+        flyover-base-height 0.9))
+
+(custom-set-faces!
+  '(flyover-error :inherit error :weight semi-bold :height 0.9)
+  '(flyover-info :inherit success :weight semi-bold :height 0.9)
+  '(flyover-marker :inherit link :weight semi-bold :height 0.9)
+  '(flyover-warning :inherit warning :weight semi-bold :height 0.9))
+#+end_src
 ** ~rust-mode~
 *** Inlay hints
 Enable inlay hints in Rust
@@ -215,6 +237,8 @@ Enable inlay hints in Rust
 
       evil-want-fine-undo t
       evil-shift-width 2
+      evil-want-C-i-jump t
+      +evil-want-move-window-to-wrap-around t
       display-line-numbers-type 'relative
       which-key-idle-delay 0.5
       projectile-project-search-path '(("~/projects/" . 3)))
