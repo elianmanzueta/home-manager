@@ -59,7 +59,13 @@
 
 (use-package! lsp-mode
   :bind (:map lsp-mode-map
-              ("M-k" . lsp-ui-doc-glance)))
+              ("M-k" . lsp-ui-doc-glance))
+  :config
+  (lsp-register-client   (make-lsp-client
+                          :new-connection (lsp-stdio-connection '("fish-lsp" "start"))
+                          :activation-fn (lsp-activate-on "fish")
+                          :server-id 'fish-lsp))
+  (add-to-list 'lsp-language-id-configuration '(fish-mode . "fish")))
 
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
@@ -82,7 +88,8 @@
   :config
   (setq flyover-show-error-id t
         flyover-virtual-line-type 'curved-arrow
-        flyover-base-height 0.9))
+        flyover-base-height 0.9
+        lsp-ui-sideline-enable nil))
 
 (custom-set-faces!
   '(flyover-error :inherit error :weight semi-bold :height 0.9)
@@ -425,6 +432,8 @@
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
+
+
 
 (add-load-path! "~/emacs-libvterm")
 
