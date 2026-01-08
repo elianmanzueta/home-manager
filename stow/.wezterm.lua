@@ -9,7 +9,8 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 -- Apperance
-config.color_scheme = "duckbones"
+config.color_scheme = "Seti (Gogh)"
+-- config.color_scheme = "duckbones"
 config.font = wezterm.font("IosevkaTerm Nerd Font Mono")
 config.font_size = 14
 
@@ -22,6 +23,8 @@ config.keys = {
     { key = "w", mods = "CTRL|ALT",  action = act.CloseCurrentPane({ confirm = false }) },
     { key = "h", mods = "CTRL|ALT",  action = act.ActivatePaneDirection("Left") },
     { key = "l", mods = "CTRL|ALT",  action = act.ActivatePaneDirection("Right") },
+    { key = "k", mods = "CTRL|ALT",  action = act.ActivatePaneDirection("Up") },
+    { key = "j", mods = "CTRL|ALT",  action = act.ActivatePaneDirection("Down") },
 
     -- Tabs
     { key = "{", mods = "ALT",       action = act.ActivateTabRelative(-1) },
