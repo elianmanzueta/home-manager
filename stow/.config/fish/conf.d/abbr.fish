@@ -19,8 +19,15 @@ end
 
 # Emacs
 if type -q emacsclient
-    abbr --add em "emacsclient -c"
-    abbr --add et "emacsclient -nw"
+    if type -q wslinfo
+        abbr --add em "emacsclient -c"
+        abbr --add et "emacsclient -nw"
+
+    else
+        abbr --add em "emacsclient -c &"
+        abbr --add et "emacsclient -nw &"
+
+    end
     abbr --add ed emacs --daemon
     abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
 
