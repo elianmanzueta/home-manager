@@ -194,7 +194,8 @@
       +evil-want-move-window-to-wrap-around t
       display-line-numbers-type 'relative
       which-key-idle-delay 0.5
-      projectile-project-search-path '(("~/projects/" . 3)))
+      projectile-project-search-path '(("~/projects/" . 3))
+      magit-show-long-lines-warning nil)
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
@@ -321,7 +322,6 @@
         org-tags-column 0
         org-agenda-tags-column 0
         org-ellipsis " ▼"
-
         org-startup-folded 'show2levels
 
         org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
@@ -340,7 +340,7 @@
 (use-package! org-modern
   :after org
   :config
-  (setq org-modern-star 'fold
+  (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
         org-modern-timestamp nil
