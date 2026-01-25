@@ -1,4 +1,4 @@
-personal_ws-1.1 en 408
+personal_ws-1.1 en 415
 aadct
 acls
 addc
@@ -36,6 +36,7 @@ bitlocker
 bitrate
 bitrates
 bitwarden
+bitwise
 bld
 blns
 blocklists
@@ -113,6 +114,8 @@ espressif
 esxi
 etc
 etherchannel
+etherchannels
+ethertype
 evendale
 example
 extremecloud
@@ -231,6 +234,7 @@ nexthop
 nfsen
 ng
 nginx
+nics
 noauthnopriv
 nps
 oarnet
@@ -242,6 +246,7 @@ orderless
 ospfauth
 ous
 over
+pagp
 papercut
 pcaps
 pcifm
@@ -307,8 +312,10 @@ sshd
 ssids
 sslvpn
 sslvpns
+stackwise
 stalhood
 starship
+stateful
 stdlic
 stepca
 sthome
