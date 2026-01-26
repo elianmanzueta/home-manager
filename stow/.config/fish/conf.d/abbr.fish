@@ -19,17 +19,10 @@ end
 
 # Emacs
 if type -q emacsclient
-    if type -q wslinfo
-        abbr --add em "emacsclient -c"
-        abbr --add et "emacsclient -nw"
-
-    else
-        abbr --add em "emacsclient -c &"
-        abbr --add et "emacsclient -nw &"
-
-    end
-    abbr --add ed emacs --daemon
-    abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
+    abbr --add em "emacsclient -c"
+    abbr --add et "emacsclient -nw"
+    abbr --add killemacs "systemctl --user stop emacs"
+    abbr --add startemacs "systemctl --user start emacs"
 
     abbr --add ff vterm_cmd find-file .
 
