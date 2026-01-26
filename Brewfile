@@ -37,6 +37,7 @@ brew "gopls"
 # Emacs
 
 brew "libgccjit"
+brew "libtool"
 brew "cmake"
 brew "coreutils"
 brew "gcc"
