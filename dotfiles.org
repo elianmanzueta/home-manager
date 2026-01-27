@@ -4,25 +4,30 @@
 
 * Dots
 ** Fish
-*** Abbreviations
+#+begin_src fish :tangle ~/home-manager/stow/.config/fish/config.fish
+starship init fish | source
+zoxide init fish | source
+#+end_src
+*** Conf.d
+**** Abbreviations
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/abbr.fish
-abbr -a ls eza -lhaF --color=auto --icons=always
-abbr -a l eza -lhaF --color=auto --icons=always
-abbr -a lt eza --tree
+abbr -a ls 'eza -lhaF --color=auto --icons=always'
+abbr -a l 'eza -lhaF --color=auto --icons=always'
+abbr -a lt 'eza --tree'
 
-abbr -a cr cargo run
+abbr -a cr 'cargo run'
 abbr -a dc 'docker compose'
 
 if type -q nvim
-    abbr -a vi nvim
-    abbr -a vim nvim
+    abbr -a vi 'nvim'
+    abbr -a vim 'nvim'
 end
 
 if type -q zoxide
     abbr -a cd z
 end
 #+end_src
-**** Git
+***** Git
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/abbr.fish
 abbr -a gst git status
 abbr -a gcsm git commit signoff --message
@@ -30,7 +35,7 @@ abbr -a gp git push
 abbr -a ga git add
 abbr -a gc git clone
 #+end_src
-**** Emacs
+***** Emacs
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/abbr.fish
 if type -q emacsclient
     abbr -a em "emacsclient -c"
@@ -49,13 +54,8 @@ if type -q emacsclient
     abbr -a orgidp git commit --signoff --message ".orgids"
 end
 #+end_src
-*** Config
-#+begin_src fish :tangle ~/home-manager/stow/.config/fish/config.fish
-starship init fish | source
-zoxide init fish | source
-#+end_src
-*** Functions
-**** upgrade
+**** Functions
+***** upgrade
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/abbr.fish
 function upgrade --description "Performs updates on a system."
     echo "===============UPDATING PACKAGES==============="
@@ -86,7 +86,7 @@ function upgrade --description "Performs updates on a system."
     end
 end
 #+end_src
-*** Homebrew
+**** Homebrew
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/brew.fish
 if test -d /home/linuxbrew/.linuxbrew
     # Homebrew is installed on Linux
@@ -105,13 +105,13 @@ else if test -d /opt/homebrew
     /opt/homebrew/bin/brew shellenv | source
 end
 #+end_src
-*** Misc
-#+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/test.fish
+**** Misc
+#+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/misc.fish
 set -U LSP_USE_PLISTS true
 set -U fish_key_bindings fish_vi_key_bindings
 set -gx GUIX_PROFILE "/home/elian/.config/guix/current"
 #+end_src
-*** Paths
+**** Paths
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/path.fish
 switch (uname)
     case Darwin
@@ -126,7 +126,7 @@ switch (uname)
         fish_add_path /home/elian/.cargo/bin/
 end
 #+end_src
-*** Vterm
+**** Vterm
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/vterm.fish
 
 # Some of the most useful features in emacs-libvterm require shell-side
@@ -200,7 +200,7 @@ function fish_prompt --description 'Write out the prompt; do not replace this. I
 end
 
 #+end_src
-*** WSL
+**** WSL
 #+begin_src fish :tangle ~/home-manager/stow/.config/fish/conf.d/wsl.fish
 if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     set -x DISPLAY (route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
@@ -212,6 +212,30 @@ end
 #+begin_src ruby :tangle ./Brewfile
 tap "d12frosted/emacs-plus"
 #+end_src
+**** Casks
+#+begin_src ruby :tangle ./Brewfile
+cask "Vivaldi"
+cask "font-iosevka-term-nerd-font"
+cask "jagex"
+cask "kitty"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
+cask "microsoft-teams"
+cask "stremio"
+#+end_src
+**** Code
+#+begin_src ruby :tangle ./Brewfile
+brew "fish-lsp"
+
+# Python
+brew "pyright"
+brew "uv"
+
+# Go
+brew "go"
+brew "gopls"
+#+end_src
+
 **** Utilities
 ***** Terminal
 #+begin_src ruby :tangle ./Brewfile
@@ -242,28 +266,4 @@ brew "cmake"
 brew "coreutils"
 brew "gcc"
 brew "d12frosted/emacs-plus/emacs-plus@30"
-#+end_src
-**** Code
-#+begin_src ruby :tangle ./Brewfile
-brew "fish-lsp"
-
-# Python
-brew "pyright"
-brew "uv"
-
-# Go
-brew "go"
-brew "gopls"
-#+end_src
-
-**** Casks
-#+begin_src ruby :tangle ./Brewfile
-cask "Vivaldi"
-cask "font-iosevka-term-nerd-font"
-cask "jagex"
-cask "kitty"
-cask "microsoft-auto-update"
-cask "microsoft-outlook"
-cask "microsoft-teams"
-cask "stremio"
 #+end_src
