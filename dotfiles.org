@@ -206,3 +206,64 @@ if test -f /proc/sys/fs/binfmt_misc/WSLInterop
     set -x DISPLAY (route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 end
 #+end_src
+** Homebrew
+*** Brewfile
+**** Taps
+#+begin_src ruby :tangle ./Brewfile
+tap "d12frosted/emacs-plus"
+#+end_src
+**** Utilities
+***** Terminal
+#+begin_src ruby :tangle ./Brewfile
+brew "eza"
+brew "fd"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "just"
+brew "wget"
+brew "ripgrep"
+brew "starship"
+brew "stow"
+brew "vips"
+brew "zoxide"
+brew "bash"
+brew "node"
+brew "imagemagick"
+brew "neovim"
+#+end_src
+
+***** Emacs
+#+begin_src ruby :tangle ./Brewfile
+brew "hunspell"
+brew "aspell"
+brew "libtool"
+brew "cmake"
+brew "coreutils"
+brew "gcc"
+brew "d12frosted/emacs-plus/emacs-plus@30"
+#+end_src
+**** Code
+#+begin_src ruby :tangle ./Brewfile
+brew "fish-lsp"
+
+# Python
+brew "pyright"
+brew "uv"
+
+# Go
+brew "go"
+brew "gopls"
+#+end_src
+
+**** Casks
+#+begin_src ruby :tangle ./Brewfile
+cask "Vivaldi"
+cask "font-iosevka-term-nerd-font"
+cask "jagex"
+cask "kitty"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
+cask "microsoft-teams"
+cask "stremio"
+#+end_src

@@ -1,59 +1,41 @@
-# Taps
 tap "d12frosted/emacs-plus"
-
-# CLI
 
 brew "eza"
 brew "fd"
 brew "fish"
 brew "fzf"
 brew "gh"
+brew "just"
+brew "wget"
 brew "ripgrep"
 brew "starship"
 brew "stow"
 brew "vips"
-brew "wget"
 brew "zoxide"
-brew "just"
 brew "bash"
 brew "node"
-brew "neovim"
 brew "imagemagick"
+brew "neovim"
 
-# Code
-
-brew "fish-lsp"
-
-## Python
-
-brew "pyright"
-brew "uv"
-
-## Go
-
-brew "go"
-brew "gopls"
-
-# Emacs
-
-brew "libgccjit"
+brew "hunspell"
+brew "aspell"
 brew "libtool"
 brew "cmake"
 brew "coreutils"
 brew "gcc"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
-## Spell-check
+brew "fish-lsp"
 
-brew "hunspell"
-brew "aspell"
+# Python
+brew "pyright"
+brew "uv"
 
-# Casks
+# Go
+brew "go"
+brew "gopls"
 
 cask "Vivaldi"
-
-# cask "floorp"
-
 cask "font-iosevka-term-nerd-font"
 cask "jagex"
 cask "kitty"
