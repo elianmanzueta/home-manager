@@ -1,4 +1,4 @@
-personal_ws-1.1 en 415
+personal_ws-1.1 en 420
 aadct
 acls
 addc
@@ -93,6 +93,7 @@ distro
 dl
 dns
 dockerfile
+dotfiles
 dotnet
 downlink
 ebs
@@ -120,6 +121,7 @@ evendale
 example
 extremecloud
 extremecloudiq
+eza
 facto
 failover
 ferrilli
@@ -154,6 +156,7 @@ handoff
 hashable
 having
 helpdesk
+homebrew
 homelab
 hostname
 hostnames
@@ -163,6 +166,7 @@ idk
 idworks
 iis
 inbox
+init
 interruptible
 intune
 iot
@@ -414,3 +418,4 @@ wlans
 work
 wsus
 xargs
+zoxide

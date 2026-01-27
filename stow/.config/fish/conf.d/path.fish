@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 switch (uname)
     case Darwin
         # macOS-specific commands
