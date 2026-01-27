@@ -1,3 +1,4 @@
+# @fish-lsp-disable 7001
 # Git
 if type -q git
     abbr --add gst git status
@@ -5,11 +6,6 @@ if type -q git
     abbr --add gp git push
     abbr --add ga git add
     abbr --add gc git clone
-end
-
-# Brew
-if type -q brew
-    abbr --add bu brew upgrade
 end
 
 # Cargo
@@ -21,8 +17,14 @@ end
 if type -q emacsclient
     abbr --add em "emacsclient -c"
     abbr --add et "emacsclient -nw"
-    abbr --add killemacs "systemctl --user stop emacs"
-    abbr --add startemacs "systemctl --user start emacs"
+
+    if type -q systemctl
+        abbr --add killemacs "systemctl --user stop emacs"
+        abbr --add startemacs "systemctl --user start emacs"
+    else
+        abbr --add killemacs "emacsclient -e \"(kill-emacs)"\"
+        abbr --add startemacs "emacs --daemon"
+    end
 
     abbr --add ff vterm_cmd find-file .
 
@@ -30,30 +32,31 @@ if type -q emacsclient
 end
 
 function upgrade --description "Performs updates on a system."
-    switch (uname)
-        case Linux
-            set distro (cat /etc/os-release | awk -F "=" ' /ID_LIKE/ { print $2 }' | tr -d '"')
-            echo "===============UPDATING PACKAGES==============="
-            if test $distro = arch
-                if type -q paru
-                    paru -Syu --skipreview
-                else
-                    pacman -Syu --noconfirm
-                end
-            end
+    echo "===============UPDATING PACKAGES==============="
+    if type -q pacman
+        if type -q paru
+            paru -Syu
+        else
+            pacman -Syu --noconfirm
+        end
 
-            if type -q flatpak
-                echo "===============UPDATING FLATPAKS==============="
-                flatpak upgrade -y
-            end
+    else if type -q dnf
+        dnf upgrade
+    else if type -q apt
+        apt update
+        apt upgrade -y
+    else if type -q brew
+        brew upgrade
+    end
 
-            if type -q doom
-                echo "===============UPDATING DOOM EMACS==============="
-                doom upgrade
-            end
-        case Darwin
-            echo "===============UPDATING PACKAGES==============="
-            brew upgrade
+    if type -q flatpak
+        echo "===============UPDATING FLATPAKS==============="
+        flatpak upgrade -y
+    end
+
+    if type -q doom
+        echo "===============UPDATING DOOM EMACS==============="
+        doom upgrade
     end
 end
 
