@@ -1,9 +1,10 @@
-personal_ws-1.1 en 422
+personal_ws-1.1 en 428
 aadct
 acls
 addc
 adjacencies
 adminem
+agentless
 alist
 almalinux
 altiris
@@ -141,6 +142,8 @@ fortigate
 fortiguard
 fortimanager
 fqdns
+freebsd
+frontend
 fsfips
 fslogix
 fw
@@ -155,6 +158,7 @@ guids
 gunicorn
 gzip
 handoff
+haproxy
 hashable
 having
 helpdesk
@@ -167,6 +171,7 @@ idfs
 idk
 idworks
 iis
+imgur
 inbox
 init
 interruptible
@@ -181,6 +186,7 @@ itdbwb
 itddb
 it’s
 jamf
+jitter
 jumpbox
 jumpstation
 jumpstations
@@ -270,6 +276,7 @@ powershell
 pre
 pri
 proxmox
+proxying
 prtmon
 prtstd
 prtstf
