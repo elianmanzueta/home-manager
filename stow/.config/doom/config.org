@@ -87,6 +87,12 @@
                           :server-id 'fish-lsp))
   (add-to-list 'lsp-language-id-configuration '(fish-mode . "fish")))
 #+end_src
+** Mason
+#+begin_src emacs-lisp :tangle yes
+(use-package! mason
+  :config
+  (mason-setup))
+#+end_src
 ** ~powershell-ts-mode~
 #+begin_src emacs-lisp :tangle yes
 (use-package! powershell

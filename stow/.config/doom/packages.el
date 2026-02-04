@@ -30,6 +30,7 @@
 (package! tramp-hlo)
 (package! flyover
   :recipe (:host github :repo "konrad1977/flyover"))
+(package! mason)
 
 ;; Themes
 (package! ef-themes

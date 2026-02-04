@@ -67,6 +67,10 @@
                           :server-id 'fish-lsp))
   (add-to-list 'lsp-language-id-configuration '(fish-mode . "fish")))
 
+(use-package! mason
+  :config
+  (mason-setup))
+
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
   :hook (powershell-mode . lsp-mode)
