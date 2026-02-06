@@ -223,6 +223,7 @@
   :config
   (setq! gac-automatically-push-p t
          gac-automatically-add-new-files-p t
+         gac-debounce-interval 300
          gac-shell-and " ; and "))
 
 (use-package! org-agenda
