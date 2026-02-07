@@ -210,7 +210,7 @@
 (setq-default fill-column 80)
 
 (setq ispell-dictionary "english")
-(setq ispell-personal-dictionary "~/home-manager/stow/.config/doom/dict/.pws")
+(setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
 
 (setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 (setq initial-scratch-message "")

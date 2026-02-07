@@ -1,5 +1,24 @@
 tap "d12frosted/emacs-plus"
 
+cask "Vivaldi"
+cask "font-iosevka-term-nerd-font"
+cask "jagex"
+cask "kitty"
+cask "microsoft-auto-update"
+cask "microsoft-outlook"
+cask "microsoft-teams"
+cask "stremio"
+
+brew "fish-lsp"
+
+# Python
+brew "pyright"
+brew "uv"
+
+# Go
+brew "go"
+brew "gopls"
+
 brew "eza"
 brew "fd"
 brew "fish"
@@ -24,22 +43,3 @@ brew "cmake"
 brew "coreutils"
 brew "gcc"
 brew "d12frosted/emacs-plus/emacs-plus@30"
-
-brew "fish-lsp"
-
-# Python
-brew "pyright"
-brew "uv"
-
-# Go
-brew "go"
-brew "gopls"
-
-cask "Vivaldi"
-cask "font-iosevka-term-nerd-font"
-cask "jagex"
-cask "kitty"
-cask "microsoft-auto-update"
-cask "microsoft-outlook"
-cask "microsoft-teams"
-cask "stremio"
