@@ -43,10 +43,10 @@ if type -q emacsclient
 
     if type -q systemctl
         abbr -a killemacs "systemctl --user stop emacs"
-        abbr -a startemacs "systemctl --user start emacs"
+        abbr -a ed "systemctl --user start emacs"
     else
         abbr -a killemacs "emacsclient -e \"(kill-emacs)"\"
-        abbr -a startemacs "emacs --daemon"
+        abbr -a ed "emacs --daemon"
     end
 
     abbr -a ff vterm_cmd find-file .
@@ -214,7 +214,6 @@ tap "d12frosted/emacs-plus"
 #+end_src
 **** Casks
 #+begin_src ruby :tangle ./Brewfile
-cask "Vivaldi"
 cask "font-iosevka-term-nerd-font"
 cask "jagex"
 cask "kitty"
@@ -222,6 +221,8 @@ cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "stremio"
+cask "emacs-plus-app"
+cask "floorp"
 #+end_src
 **** Code
 #+begin_src ruby :tangle ./Brewfile
@@ -265,5 +266,4 @@ brew "libtool"
 brew "cmake"
 brew "coreutils"
 brew "gcc"
-brew "d12frosted/emacs-plus/emacs-plus@30"
 #+end_src

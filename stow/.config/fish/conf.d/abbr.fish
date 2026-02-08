@@ -26,10 +26,10 @@ if type -q emacsclient
 
     if type -q systemctl
         abbr -a killemacs "systemctl --user stop emacs"
-        abbr -a startemacs "systemctl --user start emacs"
+        abbr -a ed "systemctl --user start emacs"
     else
         abbr -a killemacs "emacsclient -e \"(kill-emacs)"\"
-        abbr -a startemacs "emacs --daemon"
+        abbr -a ed "emacs --daemon"
     end
 
     abbr -a ff vterm_cmd find-file .

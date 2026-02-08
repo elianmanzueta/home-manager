@@ -1,6 +1,5 @@
 tap "d12frosted/emacs-plus"
 
-cask "Vivaldi"
 cask "font-iosevka-term-nerd-font"
 cask "jagex"
 cask "kitty"
@@ -8,6 +7,8 @@ cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
 cask "stremio"
+cask "emacs-plus-app"
+cask "floorp"
 
 brew "fish-lsp"
 
@@ -42,4 +43,3 @@ brew "libtool"
 brew "cmake"
 brew "coreutils"
 brew "gcc"
-brew "d12frosted/emacs-plus/emacs-plus@30"
