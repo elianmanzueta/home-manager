@@ -35,7 +35,7 @@
   )
 #+end_src
 ** ~eldoc-box~
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (defun my/eldoc-box-scroll-up ()
   "Scroll up in `eldoc-box--frame'."
   (interactive
@@ -168,7 +168,7 @@ Enable inlay hints in Rust
 #+END_SRC
 * Doom
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'kaolin-bubblegum)
+(setq doom-theme 'ef-dark)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 (setq doom-emoji-font "Noto Color Emoji")
@@ -259,6 +259,8 @@ Enable inlay hints in Rust
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
+
+(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 #+end_src
 ** ~ace-window~
 Setting a keybind for ~ace-select-window~.

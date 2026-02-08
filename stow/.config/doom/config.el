@@ -25,20 +25,6 @@
         )
   )
 
-(defun my/eldoc-box-scroll-up ()
-  "Scroll up in `eldoc-box--frame'."
-  (interactive
-   (with-current-buffer eldoc-box--buffer
-     (with-selected-frame eldoc-box--frame
-       (scroll-down 3)))))
-
-(defun my/eldoc-box-scroll-down ()
-  "Scroll down in `eldoc-box--frame'."
-  (interactive)
-  (with-current-buffer eldoc-box--buffer
-    (with-selected-frame eldoc-box--frame
-      (scroll-up 3))))
-
 (after! lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
@@ -125,7 +111,7 @@
   (interactive)
   (dirvish))
 
-(setq doom-theme 'kaolin-bubblegum)
+(setq doom-theme 'ef-dark)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 (setq doom-emoji-font "Noto Color Emoji")
@@ -203,6 +189,8 @@
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
+
+(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 
 (map! :leader "wa" #'ace-select-window)
 

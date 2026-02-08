@@ -24,7 +24,6 @@
 (package! flymake-ruff)
 (package! ssh-config-mode)
 (package! kdl-mode)
-(package! eldoc-box)
 (package! uv
   :recipe (:host github :repo "johannes-mueller/uv.el"))
 (package! tramp-hlo)
