@@ -262,8 +262,8 @@ Enable inlay hints in Rust
 
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 #+end_src
+
 ** ~ace-window~
-Setting a keybind for ~ace-select-window~.
 #+begin_src emacs-lisp :tangle ./config.el
 (map! :leader "wa" #'ace-select-window)
 #+end_src
