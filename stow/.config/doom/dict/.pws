@@ -74,6 +74,7 @@ config
 configs
 connectionless
 creds
+crestron
 crypto
 cryptographic
 csc
