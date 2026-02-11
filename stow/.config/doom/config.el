@@ -111,7 +111,7 @@
   (interactive)
   (dirvish))
 
-(setq doom-theme 'ef-dark)
+(setq doom-theme 'doom-tomorrow-night)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 (setq doom-emoji-font "Noto Color Emoji")
