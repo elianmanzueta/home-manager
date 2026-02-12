@@ -4,7 +4,7 @@
   (setq avy-all-windows t)
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
 
-(after! evil-snipe
+(with-eval-after-load 'evil-snipe
   (setq evil-snipe-scope 'whole-visible)
   (setq evil-snipe-smart-case t)
   (evil-define-key '(normal motion) evil-snipe-local-mode-map
@@ -25,7 +25,7 @@
         )
   )
 
-(after! lsp-mode
+(with-eval-after-load 'lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
                      (compositeLiteralFields . t)
@@ -139,6 +139,8 @@
 (setq kaolin-themes-italic-comments t
       kaolin-themes-modeline-padded t)
 
+(use-package tramp-hlo)
+
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -207,21 +209,21 @@
 (setq evil-split-window-below t
       evil-vsplit-window-right t)
 
-(use-package! git-auto-commit-mode
+(use-package git-auto-commit-mode
   :config
   (setq! gac-automatically-push-p t
          gac-automatically-add-new-files-p t
          gac-debounce-interval 60
          gac-shell-and " ; and "))
 
-(use-package! org-agenda
+(use-package org-agenda
   :after org
   :config
   (setq org-agenda-timegrid-use-ampm t
         org-display-custom-times t
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
-(use-package! org-super-agenda
+(use-package org-super-agenda
   :after org
   :config
   (setq org-agenda-start-day nil)
@@ -272,7 +274,7 @@
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-(use-package! org-attach
+(use-package org-attach
   :after org
   :config
   (setq org-attach-auto-tag nil
@@ -283,7 +285,7 @@
 (setq org-id-method 'ts)
 (setq org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
-(use-package! org-download
+(use-package org-download
   :after org
   :config
   (setq org-download-image-org-width '450))
@@ -296,7 +298,7 @@
   '(org-document-title :weight extra-bold :height 1.3)
   '(org-verbatim :inherit bold :weight extra-bold))
 
-(use-package! org
+(use-package org
   :defer t
   :bind (:map org-mode-map
               ("M-o" . org-appear-mode))
@@ -320,9 +322,13 @@
         org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
         org-log-done t
         org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
-        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)")))
+        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 
-(use-package! org-modern
+  ;; Multi-line emphasis in org-mode
+  (setcar (nthcdr 4 org-emphasis-regexp-components) 20)
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components))
+
+(use-package org-modern
   :after org
   :config
   (setq org-modern-star 'replace
@@ -332,7 +338,7 @@
         org-modern-table nil
         org-modern-todo t))
 
-(use-package! org-roam
+(use-package org-roam
   :after org
   :config
   (setq org-roam-node-default-sort 'file-mtime
@@ -360,23 +366,23 @@
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
          :unarrowed t)))
 
-(after! org
+(with-eval-after-load 'org
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
            :if-new (file+datetree "work-inbox.org" week)
            :unarrowed t))))
 
-(use-package! websocket
+(use-package websocket
   :after org-roam)
 
-(use-package! org-roam-ui
+(use-package org-roam-ui
   :after org-roam
   :config
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-(after! org
+(with-eval-after-load 'org
   (setq +org-capture-todo-file "inbox.org")
 
   (setq org-todo-keywords
@@ -413,7 +419,7 @@
             "/bin/fish")))
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
-(use-package! vterm
+(use-package vterm
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
@@ -422,7 +428,7 @@
 
 (add-load-path! "~/emacs-libvterm")
 
-(use-package! eat
+(use-package eat
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
@@ -432,11 +438,11 @@
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
-(use-package! tramp-hlo
+(use-package tramp-hlo
   :config
   (tramp-hlo-setup))
 
-(use-package! ssh-config-mode
+(use-package ssh-config-mode
   :defer t
   :config
   (add-to-list 'auto-mode-alist '("/\\.ssh/config\\(\\.d/.*\\.conf\\)?\\'" . ssh-config-mode))
@@ -446,7 +452,7 @@
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
-(use-package! vertico
+(use-package vertico
   :defer t
   :config
   (setq vertico-buffer-display-action '(display-buffer-reuse-window))
@@ -456,6 +462,6 @@
           (file (vertico-sort-function . vertico-sort-history-alpha)
                 ))))
 
-(use-package! vertico-directory
+(use-package vertico-directory
   :after vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))

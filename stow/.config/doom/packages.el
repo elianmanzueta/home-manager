@@ -10,13 +10,21 @@
 
 (unpin! (:lang org))
 
-;; Org
+;; Emacs
+
+;;; Org
 (package! org-download)
 (package! org-appear)
 (package! git-auto-commit-mode)
 (package! websocket)
 (package! org-roam-ui)
 (package! org-super-agenda)
+
+;;; TRAMP
+(package! msgpack)
+(package! tramp-hlo)
+(package! tramp-rpc
+  :recipe (:host github :repo "ArthurHeymans/emacs-tramp-rpc"))
 
 ;; Code
 (package! just-mode)
@@ -26,7 +34,6 @@
 (package! kdl-mode)
 (package! uv
   :recipe (:host github :repo "johannes-mueller/uv.el"))
-(package! tramp-hlo)
 (package! flyover
   :recipe (:host github :repo "konrad1977/flyover"))
 (package! mason)
