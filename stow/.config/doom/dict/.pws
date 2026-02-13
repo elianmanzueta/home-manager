@@ -1,4 +1,4 @@
-personal_ws-1.1 en 445
+personal_ws-1.1 en 461
 aadct
 acl
 acls
@@ -16,6 +16,7 @@ ansible
 appstd
 aps
 architected
+asn
 asns
 asta
 auth
@@ -67,6 +68,7 @@ cincinnatistate
 circuitless
 citrix
 closed
+cloudflare
 cloudfront
 cmdlet
 codemeter
@@ -153,6 +155,7 @@ frontend
 fsfips
 fslogix
 fw
+gcp
 gigabitethernet
 globalrouter
 godaddy
@@ -173,6 +176,7 @@ homebrew
 homelab
 hostname
 hostnames
+https
 hurlenko
 idfs
 idk
@@ -185,6 +189,7 @@ interruptible
 intune
 iot
 ipads
+ipam
 iphones
 ipilot
 ips
@@ -197,6 +202,7 @@ itddb
 it’s
 jamf
 jitter
+json
 jumpbox
 jumpstation
 jumpstations
@@ -240,6 +246,7 @@ multimode
 multisim
 mydesktop
 nameserver
+nameservers
 namespaces
 nano
 nautobot
@@ -305,9 +312,11 @@ reachability
 readonly
 realmd
 reboot
+recursor
 reddit
 rekey
 repo
+resolvers
 retranmissions
 retransmission
 retransmissions
@@ -372,8 +381,10 @@ tacacs
 tcp's
 terraform
 theme
+thinh
 thirdparty
 tiering
+tld
 tlvs
 todos
 tos
@@ -400,6 +411,7 @@ uplinkfast
 uplinks
 uptime
 user’s
+usr
 util
 valkey
 vaultwarden
@@ -425,6 +437,7 @@ vlcm
 vms
 vmware
 vrfs
+vscode
 vsftpd
 vsis
 vsns
@@ -438,9 +451,12 @@ wbpxy
 webex
 webpxy
 webrequest
+websockets
 wireshark
 wlans
 work
 wsus
 xargs
+yaml
+yml
 zoxide
