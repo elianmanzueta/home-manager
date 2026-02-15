@@ -207,7 +207,7 @@
       '(("n" "Super-agenda view"
          ((agenda "" ((org-agenda-span 'week)
                       (org-super-agenda-groups
-                       '((:name "Today"
+                       '((:name ""
                           :time-grid t)))))
 
           (alltodo "" ((org-agenda-overriding-header "Inbox")
