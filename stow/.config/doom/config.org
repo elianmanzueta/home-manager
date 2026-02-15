@@ -3,8 +3,8 @@
 #+STARTUP: overview
 
 * ~avy~
-#+begin_src emacs-lisp :tangle ./config.el
-(use-package! avy
+#+begin_src emacs-lisp :tangle yes
+(use-package avy
   :config
   (setq avy-timeout-seconds 0.35)
   (setq avy-all-windows t)
@@ -21,8 +21,8 @@
 #+end_src
 * Code
 ** ~cperl-mode~
-#+begin_src emacs-lisp :tangle yes
-(use-package! cperl-mode
+#+begin_src emacs-lisp :tangle no
+(use-package cperl-mode
   :hook (cperl-mode . flymake-mode)
   :config
   (setq cperl-indent-parens-as-block t
@@ -52,7 +52,7 @@
 #+end_src
 ** ~go-mode~
 *** Enable inlay hints
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (with-eval-after-load 'lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
@@ -64,7 +64,7 @@
                      (rangeVariableTypes . t))))))
 #+end_src
 ** ~just-mode~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package just-mode
   :defer t
   :mode ("justfile\\'" . just-mode)
@@ -73,11 +73,13 @@
 #+end_src
 ** ~kdl-mode~
 #+begin_src emacs-lisp :tangle yes
-(use-package! kdl-mode)
+(use-package kdl-mode
+  :defer t
+  :mode ("\\.kdl\\'" . kdl-mode))
 #+end_src
 ** ~lsp-mode~
 #+begin_src emacs-lisp :tangle yes
-(use-package! lsp-mode
+(use-package lsp-mode
   :bind (:map lsp-mode-map
               ("M-k" . lsp-ui-doc-glance))
   :config
@@ -88,14 +90,15 @@
   (add-to-list 'lsp-language-id-configuration '(fish-mode . "fish")))
 #+end_src
 ** Mason
-#+begin_src emacs-lisp :tangle yes
-(use-package! mason
+#+begin_src emacs-lisp :tangle no
+(use-package mason
+  :defer t
   :config
   (mason-setup))
 #+end_src
 ** ~powershell-ts-mode~
 #+begin_src emacs-lisp :tangle yes
-(use-package! powershell
+(use-package powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
   :hook (powershell-mode . lsp-mode)
   :config
@@ -111,44 +114,22 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 #+end_src
-*** ~flycheck~
-#+begin_src emacs-lisp :tangle yes
-(use-package! flycheck
-  :config
-  (setq flycheck-posframe-mode nil
-        flycheck-posframe-border-width 2))
-#+end_src
-**** Flyover
-#+begin_src emacs-lisp :tangle yes
-(use-package! flyover
-  :hook (lsp-mode . flyover-mode)
-  :config
-  (setq flyover-show-error-id t
-        flyover-virtual-line-type 'curved-arrow
-        flyover-base-height 0.9
-        lsp-ui-sideline-enable nil))
-
-(custom-set-faces!
-  '(flyover-error :inherit error :weight semi-bold :height 0.9)
-  '(flyover-info :inherit success :weight semi-bold :height 0.9)
-  '(flyover-marker :inherit link :weight semi-bold :height 0.9)
-  '(flyover-warning :inherit warning :weight semi-bold :height 0.9))
-#+end_src
 ** ~rust-mode~
 *** Inlay hints
 Enable inlay hints in Rust
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 #+end_src
 ** ~uv~
 #+begin_src emacs-lisp :tangle yes
-(use-package! uv)
+(use-package uv
+  :defer t)
 #+end_src
 * ~dirvish~
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
-(use-package! dirvish
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package dirvish
   :config
   (setq dirvish-attributes
         '(nerd-icons collapse file-size file-time))
@@ -168,7 +149,7 @@ Enable inlay hints in Rust
 #+END_SRC
 * Doom
 #+begin_src emacs-lisp :tangle yes
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-monokai-spectrum)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 (setq doom-emoji-font "Noto Color Emoji")
@@ -239,7 +220,7 @@ Enable inlay hints in Rust
    "gcsm" "git commit --signoff --message"))
 #+end_src
 * Misc
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
 
@@ -264,20 +245,21 @@ Enable inlay hints in Rust
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
 
+;; For .service files
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 #+end_src
 
 ** ~ace-window~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (map! :leader "wa" #'ace-select-window)
 #+end_src
 ** ~auto-fill-mode~
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+#+BEGIN_SRC emacs-lisp :tangle yes
 (add-hook 'text-mode-hook #'auto-fill-mode)
 (setq-default fill-column 80)
 #+END_SRC
 ** ~ispell~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (setq ispell-dictionary "english")
 (setq ispell-personal-dictionary "~/.config/doom/dict/.pws")
 #+end_src
@@ -295,7 +277,7 @@ Focus new windows after splitting
 #+end_src
 * ~org-mode~
 ** ~git-auto-commit-and-push~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package git-auto-commit-mode
   :config
   (setq! gac-automatically-push-p t
@@ -313,21 +295,21 @@ Focus new windows after splitting
         org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 #+end_src
 *** ~org-super-agenda~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package org-super-agenda
   :after org
   :config
-  (setq org-agenda-start-day nil)
+  (setq org-agenda-start-on-weekday 0)
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-overriding-header "")
-  (setq org-agenda-span 'day))
+  (setq org-agenda-span 'week))
 
 
 (setq org-agenda-custom-commands
       '(("n" "Super-agenda view"
-         ((agenda "" ((org-agenda-span 'day)
+         ((agenda "" ((org-agenda-span 'week)
                       (org-super-agenda-groups
                        '((:name "Today"
                           :time-grid t)))))
@@ -366,7 +348,7 @@ Focus new windows after splitting
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 #+end_src
 ** ~org-download~ and ~org-attach~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package org-attach
   :after org
   :config
@@ -384,7 +366,7 @@ Focus new windows after splitting
   (setq org-download-image-org-width '450))
 #+end_src
 ** ~org-mode~ and ~org-modern~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook (lambda () (hl-line-mode -1)))
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
@@ -429,7 +411,7 @@ Focus new windows after splitting
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
-        org-modern-timestamp nil
+        org-modern-timestamp t
         org-modern-table nil
         org-modern-todo t))
 #+end_src
@@ -449,7 +431,7 @@ Focus new windows after splitting
 
 #+end_src
 *** Capture templates
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (setq org-roam-capture-templates
       '(("d" "default" plain (file "~/org/roam/templates/default.org")
          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
@@ -469,7 +451,7 @@ Focus new windows after splitting
 #+end_src
 
 *** Dailies capture templates
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (with-eval-after-load 'org
   (setq org-roam-dailies-capture-templates
         '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
@@ -489,7 +471,7 @@ Focus new windows after splitting
         org-roam-ui-open-on-start t))
 #+end_src
 ** ~org-todo-keywords~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (with-eval-after-load 'org
   (setq +org-capture-todo-file "inbox.org")
 
@@ -519,7 +501,7 @@ Focus new windows after splitting
 #+end_src
 * Shells
 ** ~explicit-shell-file-name~
-#+BEGIN_SRC emacs-lisp :tangle ./config.el
+#+BEGIN_SRC emacs-lisp :tangle yes
 (setq explicit-shell-file-name
       (cond
        ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
@@ -531,21 +513,20 @@ Focus new windows after splitting
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package vterm
+  :defer t
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 #+END_SRC
-** ~fish-lsp~
-#+begin_src emacs-lisp :tangle yes
-#+end_src
 ** ~emacs-libvterm~
 Setting vterm path (if I have to compile manually).
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (add-load-path! "~/emacs-libvterm")
 #+end_src
 ** ~eat~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package eat
+  :defer t
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
@@ -558,6 +539,7 @@ Setting vterm path (if I have to compile manually).
 ** ~tramp~
 #+begin_src emacs-lisp :tangle yes
 (use-package tramp-hlo
+  :defer t
   :config
   (tramp-hlo-setup))
 #+end_src
@@ -574,7 +556,7 @@ Setting vterm path (if I have to compile manually).
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 #+end_src
 * ~vertico~
-#+begin_src emacs-lisp :tangle ./config.el
+#+begin_src emacs-lisp :tangle yes
 (use-package vertico
   :defer t
   :config

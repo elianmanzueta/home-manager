@@ -1,4 +1,4 @@
-(use-package! avy
+(use-package avy
   :config
   (setq avy-timeout-seconds 0.35)
   (setq avy-all-windows t)
@@ -12,18 +12,6 @@
     "S" nil)
   (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
   (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
-
-(use-package! cperl-mode
-  :hook (cperl-mode . flymake-mode)
-  :config
-  (setq cperl-indent-parens-as-block t
-        cperl-close-paren-offset (- cperl-indent-level)
-        cperl-invalid-face (quote off)
-        cperl-hairy t
-        cperl-electric-keywords t
-        cperl-highlight-variables-indiscriminately t
-        )
-  )
 
 (with-eval-after-load 'lsp-mode
   (lsp-register-custom-settings
@@ -41,9 +29,11 @@
   :config
   (setq just-indent-offset 4))
 
-(use-package! kdl-mode)
+(use-package kdl-mode
+  :defer t
+  :mode ("\\.kdl\\'" . kdl-mode))
 
-(use-package! lsp-mode
+(use-package lsp-mode
   :bind (:map lsp-mode-map
               ("M-k" . lsp-ui-doc-glance))
   :config
@@ -53,11 +43,7 @@
                           :server-id 'fish-lsp))
   (add-to-list 'lsp-language-id-configuration '(fish-mode . "fish")))
 
-(use-package! mason
-  :config
-  (mason-setup))
-
-(use-package! powershell
+(use-package powershell
   :mode ("\\.ps1\\'" . powershell-ts-mode)
   :hook (powershell-mode . lsp-mode)
   :config
@@ -68,32 +54,14 @@
 (use-package flymake-ruff
   :hook (python-mode . flymake-ruff-load))
 
-(use-package! flycheck
-  :config
-  (setq flycheck-posframe-mode nil
-        flycheck-posframe-border-width 2))
-
-(use-package! flyover
-  :hook (lsp-mode . flyover-mode)
-  :config
-  (setq flyover-show-error-id t
-        flyover-virtual-line-type 'curved-arrow
-        flyover-base-height 0.9
-        lsp-ui-sideline-enable nil))
-
-(custom-set-faces!
-  '(flyover-error :inherit error :weight semi-bold :height 0.9)
-  '(flyover-info :inherit success :weight semi-bold :height 0.9)
-  '(flyover-marker :inherit link :weight semi-bold :height 0.9)
-  '(flyover-warning :inherit warning :weight semi-bold :height 0.9))
-
 (setq lsp-rust-analyzer-display-chaining-hints t)
 (setq lsp-rust-analyzer-display-closure-return-type-hints t)
 (setq lsp-rust-analyzer-display-parameter-hints t)
 
-(use-package! uv)
+(use-package uv
+  :defer t)
 
-(use-package! dirvish
+(use-package dirvish
   :config
   (setq dirvish-attributes
         '(nerd-icons collapse file-size file-time))
@@ -111,7 +79,7 @@
   (interactive)
   (dirvish))
 
-(setq doom-theme 'doom-tomorrow-night)
+(setq doom-theme 'doom-monokai-spectrum)
 
 (setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 (setq doom-emoji-font "Noto Color Emoji")
@@ -192,6 +160,7 @@
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
 
+;; For .service files
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-mode))
 
 (map! :leader "wa" #'ace-select-window)
@@ -226,17 +195,17 @@
 (use-package org-super-agenda
   :after org
   :config
-  (setq org-agenda-start-day nil)
+  (setq org-agenda-start-on-weekday 0)
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-overriding-header "")
-  (setq org-agenda-span 'day))
+  (setq org-agenda-span 'week))
 
 
 (setq org-agenda-custom-commands
       '(("n" "Super-agenda view"
-         ((agenda "" ((org-agenda-span 'day)
+         ((agenda "" ((org-agenda-span 'week)
                       (org-super-agenda-groups
                        '((:name "Today"
                           :time-grid t)))))
@@ -334,7 +303,7 @@
   (setq org-modern-star 'replace
         org-modern-replace-stars "◉○✸✿"
         org-modern-block-name nil
-        org-modern-timestamp nil
+        org-modern-timestamp t
         org-modern-table nil
         org-modern-todo t))
 
@@ -420,15 +389,15 @@
        (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package vterm
+  :defer t
   :init
   (setq vterm-shell explicit-shell-file-name)
   (setq vterm-buffer-name-string "vterm: %s"))
 
-
-
 (add-load-path! "~/emacs-libvterm")
 
 (use-package eat
+  :defer t
   :init
   (setq process-adaptive-read-buffering nil) ; makes EAT a lot quicker!
   (setq eat-term-name "xterm-256color") ; https://codeberg.org/akib/emacs-eat/issues/119"
@@ -439,6 +408,7 @@
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color")))
 
 (use-package tramp-hlo
+  :defer t
   :config
   (tramp-hlo-setup))
 

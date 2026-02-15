@@ -8,8 +8,6 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
-(unpin! (:lang org))
-
 ;; Emacs
 
 ;;; Org
