@@ -10,6 +10,9 @@
 
 ;; Emacs
 
+(package! flash)
+(disable-packages! evil-snipe avy)
+
 ;;; Org
 (package! org-download)
 (package! org-appear)

@@ -1,18 +1,3 @@
-(use-package avy
-  :config
-  (setq avy-timeout-seconds 0.35)
-  (setq avy-all-windows t)
-  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2))
-
-(with-eval-after-load 'evil-snipe
-  (setq evil-snipe-scope 'whole-visible)
-  (setq evil-snipe-smart-case t)
-  (evil-define-key '(normal motion) evil-snipe-local-mode-map
-    "s" nil
-    "S" nil)
-  (evil-define-key 'normal 'global (kbd "s") 'avy-goto-char-2)
-  (evil-define-key 'normal 'global (kbd "f") 'avy-goto-char))
-
 (with-eval-after-load 'lsp-mode
   (lsp-register-custom-settings
    '(("gopls.hints" ((assignVariableTypes . t)
@@ -107,8 +92,6 @@
 (setq kaolin-themes-italic-comments t
       kaolin-themes-modeline-padded t)
 
-(use-package tramp-hlo)
-
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
   (require 'shrink-path)
@@ -135,6 +118,22 @@
    "ls" "ls -lhaF --color=auto"
    "gst" "git status"
    "gcsm" "git commit --signoff --message"))
+
+(use-package flash
+  :commands (flash-jump flash-treesitter)
+  :init
+  (flash-evil-setup t)
+  :config
+  (require 'flash-isearch)
+  (setq flash-isearch-mode t
+        flash-autojump t
+        flash-rainbow t
+        flash-char-multi-line t
+        flash-char-jump-labels t)
+
+  (when (featurep 'evil)
+    (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
+    (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)))
 
 (setq user-full-name "Elian Manzueta")
 (setq user-mail-address "elianmanzueta@protonmail.com")
@@ -421,6 +420,8 @@
   (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
+
+(use-package tramp-hlo)
 
 (use-package vertico
   :defer t

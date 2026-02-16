@@ -3,7 +3,7 @@
 #+STARTUP: overview
 
 * ~avy~
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package avy
   :config
   (setq avy-timeout-seconds 0.35)
@@ -186,10 +186,6 @@ Enable inlay hints in Rust
 (setq kaolin-themes-italic-comments t
       kaolin-themes-modeline-padded t)
 #+end_src
-* TRAMP
-#+begin_src emacs-lisp :tangle yes
-(use-package tramp-hlo)
-#+end_src
 * ~eshell~
 #+begin_src emacs-lisp :tangle yes
 (defun +eshell-default-prompt-fn ()
@@ -218,6 +214,24 @@ Enable inlay hints in Rust
    "ls" "ls -lhaF --color=auto"
    "gst" "git status"
    "gcsm" "git commit --signoff --message"))
+#+end_src
+* ~flash~
+#+begin_src emacs-lisp :tangle yes
+(use-package flash
+  :commands (flash-jump flash-treesitter)
+  :init
+  (flash-evil-setup t)
+  :config
+  (require 'flash-isearch)
+  (setq flash-isearch-mode t
+        flash-autojump t
+        flash-rainbow t
+        flash-char-multi-line t
+        flash-char-jump-labels t)
+
+  (when (featurep 'evil)
+    (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
+    (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)))
 #+end_src
 * Misc
 #+begin_src emacs-lisp :tangle yes
@@ -554,6 +568,10 @@ Setting vterm path (if I have to compile manually).
   (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
+#+end_src
+* TRAMP
+#+begin_src emacs-lisp :tangle yes
+(use-package tramp-hlo)
 #+end_src
 * ~vertico~
 #+begin_src emacs-lisp :tangle yes
