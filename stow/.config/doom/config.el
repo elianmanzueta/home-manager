@@ -125,8 +125,8 @@
   (flash-evil-setup t)
   :config
   (require 'flash-isearch)
-  (setq flash-isearch-mode t
-        flash-autojump t
+  (flash-isearch-mode 1)
+  (setq flash-autojump t
         flash-rainbow t
         flash-char-multi-line t
         flash-char-jump-labels t)
