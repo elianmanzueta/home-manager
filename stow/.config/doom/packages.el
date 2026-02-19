@@ -8,6 +8,9 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 
+;; Unpin
+(unpin! :checkers :tools :os :term :emacs)
+
 ;; Emacs
 
 (package! flash)
