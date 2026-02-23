@@ -213,7 +213,7 @@ Enable inlay hints in Rust
   (set-eshell-alias!
    "ls" "ls -lhaF --color=auto"
    "gst" "git status"
-   "gcsm" "git commit --signoff --message"))
+   "gcsm" "git commit --signoff --message")))
 #+end_src
 * ~flash~
 #+begin_src emacs-lisp :tangle yes

@@ -117,7 +117,7 @@
   (set-eshell-alias!
    "ls" "ls -lhaF --color=auto"
    "gst" "git status"
-   "gcsm" "git commit --signoff --message"))
+   "gcsm" "git commit --signoff --message")))
 
 (use-package flash
   :commands (flash-jump flash-treesitter)
