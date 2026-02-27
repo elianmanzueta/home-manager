@@ -1,5 +1,6 @@
 #+title: Dotfiles
 #+author: Elian Manzueta
+#+auto_tangle: t
 #+date: <2026-01-26 Wed>
 
 * Dots

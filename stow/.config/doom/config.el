@@ -46,6 +46,12 @@
 (use-package uv
   :defer t)
 
+(use-package flyover
+  :config
+  (setq flyover-virtual-line-type nil
+        flyover-show-at-eol t
+        flyover-base-height 1))
+
 (use-package dirvish
   :config
   (setq dirvish-attributes
@@ -204,7 +210,7 @@
 
 (setq org-agenda-custom-commands
       '(("n" "Super-agenda view"
-         ((agenda "" ((org-agenda-span 'week)
+         ((agenda "Weekly Overview" ((org-agenda-span 'week)
                       (org-super-agenda-groups
                        '((:name ""
                           :time-grid t)))))

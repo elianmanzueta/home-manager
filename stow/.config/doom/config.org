@@ -127,6 +127,14 @@ Enable inlay hints in Rust
 (use-package uv
   :defer t)
 #+end_src
+* ~flyover~
+#+begin_src emacs-lisp :tangle yes
+(use-package flyover
+  :config
+  (setq flyover-virtual-line-type nil
+        flyover-show-at-eol t
+        flyover-base-height 1))
+#+end_src
 * ~dirvish~
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package dirvish
@@ -323,7 +331,7 @@ Focus new windows after splitting
 
 (setq org-agenda-custom-commands
       '(("n" "Super-agenda view"
-         ((agenda "" ((org-agenda-span 'week)
+         ((agenda "Weekly Overview" ((org-agenda-span 'week)
                       (org-super-agenda-groups
                        '((:name ""
                           :time-grid t)))))
