@@ -205,46 +205,20 @@
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-overriding-header "")
-  (setq org-agenda-span 'week))
+  (setq org-agenda-span 14)
 
-
-(setq org-agenda-custom-commands
-      '(("n" "Super-agenda view"
-         ((agenda "Weekly Overview" ((org-agenda-span 'week)
-                      (org-super-agenda-groups
-                       '((:name ""
-                          :time-grid t)))))
-
-          (alltodo "" ((org-agenda-overriding-header "Inbox")
-                       (org-super-agenda-groups
-                        '((:name "Important"
-                           :and (:priority>= "B" :tag "inbox")
-                           :order 1)
-                          (:name "In progress"
-                           :and (:tag "inbox" :todo ("IN-PROGRESS"))
-                           :order 2)
-                          (:name "Entries"
-                           :and (:todo "TODO" :tag "inbox")
-                           :order 3)
-                          (:name "On hold"
-                           :and (:todo "HOLD" :tag "inbox")
-                           :order 4)
-                          (:name "Notes"
-                           :todo "NOTE"
-                           :order 5)
-                          (:discard (:anything t))))))
-
-          (todo "" ((org-agenda-overriding-header "Projects")
-                    (org-super-agenda-groups
-                     '((:name "Projects - Important"
-                        :and (:todo ("TODO" "IN-PROGRESS") :tag "projects" :priority>= "B"))
-                       (:name "Projects"
-                        :and (:tag "projects" :todo ("TODO")))
-                       (:name "Projects - On hold"
-                        :and (:todo ("HOLD") :tag "projects"))
-                       (:name "Notes"
-                        :and (:tag "projects" :todo "NOTE"))
-                       (:discard (:anything t))))))))))
+  (setq org-super-agenda-groups
+        '((:name ""
+           :time-grid t)
+          (:name "Projects"
+           :and (:children t :tag "projects"))
+          (:name "Inbox - Important"
+           :and (:tag "inbox" :priority>= "B"))
+          (:name "Inbox"
+           :tag "inbox")
+          (:name "Notes"
+           :tag "note")
+          (:discard (:anything t)))))
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
@@ -293,7 +267,7 @@
         org-appear-autokeywords t
 
         org-directory "~/org/"
-        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org")
+        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org" "~/org/roam/life/")
         org-log-done t
         org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
         org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
@@ -311,6 +285,10 @@
         org-modern-timestamp t
         org-modern-table nil
         org-modern-todo t))
+
+(use-package org-repeat-by-cron
+  :config
+  (global-org-repeat-by-cron-mode))
 
 (use-package org-roam
   :after org

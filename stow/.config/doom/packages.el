@@ -12,7 +12,6 @@
 (unpin! :checkers :tools :os :term :emacs)
 
 ;; Emacs
-
 (package! flash)
 (disable-packages! evil-snipe avy)
 
@@ -23,6 +22,7 @@
 (package! websocket)
 (package! org-roam-ui)
 (package! org-super-agenda)
+(package! org-repeat-by-cron)
 
 ;;; TRAMP
 (package! msgpack)
