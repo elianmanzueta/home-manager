@@ -23,6 +23,7 @@
 (package! org-roam-ui)
 (package! org-super-agenda)
 (package! org-repeat-by-cron)
+(package! verb)
 
 ;;; TRAMP
 (package! msgpack)

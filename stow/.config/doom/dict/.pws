@@ -1,4 +1,4 @@
-personal_ws-1.1 en 480
+personal_ws-1.1 en 485
 aadct
 acl
 acls
@@ -66,6 +66,7 @@ centos
 certsage
 cgroup
 cgroups
+charset
 chatgpt
 chroot
 cincinnatistate
@@ -277,6 +278,7 @@ ng
 nginx
 nics
 noauthnopriv
+notequals
 nps
 oarnet
 odata
@@ -287,6 +289,7 @@ oob
 openssh
 openssl
 orderless
+oref
 ospfauth
 ous
 over
@@ -430,6 +433,7 @@ uplinks
 uptime
 user’s
 usr
+utf
 util
 valkey
 vaultwarden
@@ -453,6 +457,7 @@ vlan
 vlan's
 vlans
 vlcm
+vm
 vms
 vmware
 vrfs

@@ -61,15 +61,6 @@
 (use-package uv
   :defer t)
 
-(use-package indent-bars
-  :config
-  (setq indent-bars-no-descend-lists 'skip
-        indent-bars-pattern "."
-        indent-bars-width-frac 0.5
-        indent-bars-pad-frac 0.25
-        indent-bars-highlight-current-depth '(:face default :blend 0.4 :zigzag)
-        indent-bars-color-by-depth nil))
-
 (use-package dirvish
   :config
   (setopt dirvish-attributes
@@ -158,6 +149,15 @@
   (when (featurep 'evil)
     (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
     (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)))
+
+(use-package indent-bars
+  :config
+  (setq indent-bars-pattern "."
+        indent-bars-width-frac 0.5
+        indent-bars-pad-frac 0.25
+        indent-bars-zigzag 0.1
+        indent-bars-highlight-current-depth '(:face default :blend 0.4 :zigzag)
+        indent-bars-color-by-depth nil))
 
 (setopt user-full-name "Elian Manzueta")
 (setopt user-mail-address "elianmanzueta@protonmail.com")
@@ -444,6 +444,14 @@
         (format "\\(%s\\)\\|\\(%s\\)"
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp)))
+
+(use-package verb
+  :after org
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((verb . t)))
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package vertico
   :defer t
