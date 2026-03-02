@@ -1,8 +1,8 @@
 (use-package flyover
   :config
   (setopt flyover-virtual-line-type nil
-        flyover-show-at-eol t
-        flyover-base-height 1))
+          flyover-show-at-eol t
+          flyover-base-height 1))
 
 (with-eval-after-load 'lsp-mode
   (lsp-register-custom-settings
@@ -61,10 +61,19 @@
 (use-package uv
   :defer t)
 
+(use-package indent-bars
+  :config
+  (setq indent-bars-no-descend-lists 'skip
+        indent-bars-pattern "."
+        indent-bars-width-frac 0.5
+        indent-bars-pad-frac 0.25
+        indent-bars-highlight-current-depth '(:face default :blend 0.4 :zigzag)
+        indent-bars-color-by-depth nil))
+
 (use-package dirvish
   :config
   (setopt dirvish-attributes
-        '(nerd-icons collapse file-size file-time))
+          '(nerd-icons collapse file-size file-time))
   (setopt dirvish-default-layout '(0 0.11 0.55))
   (setopt dirvish-time-format-string "%d-%m-%y %I:%S:%p %Z")
   (setopt dired-use-ls-dired 't)
@@ -86,26 +95,26 @@
 (setopt doom-symbol-font "Symbols Nerd Font Mono")
 
 (setopt catppuccin-flavor 'mocha
-      catppuccin-italic-comments t
-      catppuccin-italic-variables t
-      catppuccin-highlight-matches t)
+        catppuccin-italic-comments t
+        catppuccin-italic-variables t
+        catppuccin-highlight-matches t)
 
 (setopt modus-themes-italic-constructs t)
 (setopt modus-themes-bold-constructs t)
 (setopt modus-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
+        '((1 . (1.25))
+          (2 . (1.15))
+          (3 . (1.12))
+          (t . (1.05))))
 
 (setopt ef-themes-headings
-      '((1 . (1.25))
-        (2 . (1.15))
-        (3 . (1.12))
-        (t . (1.05))))
+        '((1 . (1.25))
+          (2 . (1.15))
+          (3 . (1.12))
+          (t . (1.05))))
 
 (setopt kaolin-themes-italic-comments t
-      kaolin-themes-modeline-padded t)
+        kaolin-themes-modeline-padded t)
 
 (defun +eshell-default-prompt-fn ()
   "Generate the prompt string for eshell. Use for `eshell-prompt-function'."
@@ -142,9 +151,9 @@
   (require 'flash-isearch)
   (flash-isearch-mode 1)
   (setopt flash-autojump t
-        flash-rainbow t
-        flash-char-multi-line t
-        flash-char-jump-labels t)
+          flash-rainbow t
+          flash-char-multi-line t
+          flash-char-jump-labels t)
 
   (when (featurep 'evil)
     (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
@@ -154,22 +163,22 @@
 (setopt user-mail-address "elianmanzueta@protonmail.com")
 
 (setopt undo-limit 80000000
-      confirm-kill-emacs nil
-      auto-save-default t
-      make-backup-files t
-      auto-save-default t
-      truncate-string-ellipsis "…"
-      delete-by-moving-to-trash t
-      kill-ring-max 200
+        confirm-kill-emacs nil
+        auto-save-default t
+        make-backup-files t
+        auto-save-default t
+        truncate-string-ellipsis "…"
+        delete-by-moving-to-trash t
+        kill-ring-max 200
 
-      evil-want-fine-undo t
-      evil-shift-width 2
-      evil-want-C-i-jump t
-      +evil-want-move-window-to-wrap-around t
-      display-line-numbers-type 'relative
-      which-key-idle-delay 0.5
-      projectile-project-search-path '(("~/projects/" . 3))
-      magit-show-long-lines-warning nil)
+        evil-want-fine-undo t
+        evil-shift-width 2
+        evil-want-C-i-jump t
+        +evil-want-move-window-to-wrap-around t
+        display-line-numbers-type 'relative
+        which-key-idle-delay 0.5
+        projectile-project-search-path '(("~/projects/" . 3))
+        magit-show-long-lines-warning nil)
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
@@ -190,21 +199,21 @@
 (setopt +doom-dashboard-pwd-policy "~/")
 
 (setopt evil-split-window-below t
-      evil-vsplit-window-right t)
+        evil-vsplit-window-right t)
 
 (use-package git-auto-commit-mode
   :config
   (setopt gac-automatically-push-p t
-         gac-automatically-add-new-files-p t
-         gac-debounce-interval 60
-         gac-shell-and " ; and "))
+          gac-automatically-add-new-files-p t
+          gac-debounce-interval 60
+          gac-shell-and " ; and "))
 
 (use-package org-agenda
   :after org
   :config
   (setopt org-agenda-timegrid-use-ampm t
-        org-display-custom-times t
-        org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
+          org-display-custom-times t
+          org-time-stamp-custom-formats '("<%m/%d/%y %a>" . "<%m/%d/%y %a %I:%M %p>")))
 
 (use-package org-super-agenda
   :after org
@@ -217,19 +226,19 @@
   (setopt org-agenda-span 14)
 
   (setopt org-super-agenda-groups
-        '((:name ""
-           :time-grid t)
-          (:name "Projects"
-           :and (:children t :tag "projects"))
-          (:name "Inbox - Important"
-           :and (:tag "inbox" :priority>= "B"))
-          (:name "Inbox - In progress"
-           :and (:tag "inbox" :todo "IN-PROGRESS"))
-          (:name "Inbox"
-           :and (:tag "inbox" :todo "TODO"))
-          (:name "Notes"
-           :todo "NOTE")
-          (:discard (:anything t)))))
+          '((:name ""
+             :time-grid t)
+            (:name "Projects"
+             :and (:children t :tag "projects"))
+            (:name "Inbox - Important"
+             :and (:tag "inbox" :priority>= "B"))
+            (:name "Inbox - In progress"
+             :and (:tag "inbox" :todo "IN-PROGRESS"))
+            (:name "Inbox"
+             :and (:tag "inbox" :todo "TODO"))
+            (:name "Notes"
+             :todo "NOTE")
+            (:discard (:anything t)))))
 
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
@@ -237,10 +246,10 @@
   :after org
   :config
   (setopt org-attach-auto-tag nil
-        org-attach-store-link-p 'file
-        org-attach-id-to-path-function-list '(org-attach-id-ts-folder-format
-                                              org-attach-id-uuid-folder-format
-                                              org-attach-id-fallback-folder-format)))
+          org-attach-store-link-p 'file
+          org-attach-id-to-path-function-list '(org-attach-id-ts-folder-format
+                                                org-attach-id-uuid-folder-format
+                                                org-attach-id-fallback-folder-format)))
 (setopt org-id-method 'ts)
 (setopt org-id-ts-format "%Y-%m-%dT%H%M%S.%6N")
 
@@ -263,25 +272,25 @@
               ("M-o" . org-appear-mode))
   :config
   (setopt org-hide-emphasis-markers t
-        org-fontify-quote-and-verse-blocks t
-        org-auto-align-tags nil
-        org-tags-column 0
-        org-agenda-tags-column 0
-        org-ellipsis " ▼"
-        org-startup-folded 'show2levels
+          org-fontify-quote-and-verse-blocks t
+          org-auto-align-tags nil
+          org-tags-column 0
+          org-agenda-tags-column 0
+          org-ellipsis " ▼"
+          org-startup-folded 'show2levels
 
-        org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
-                             ("~" org-code verbatim) ("+" (:strike-through t)))
+          org-emphasis-alist '(("*" org-verbatim bold) ("/" italic) ("_" underline) ("=" org-verbatim verbatim)
+                               ("~" org-code verbatim) ("+" (:strike-through t)))
 
-        org-appear-autolinks t
-        org-appear-autoentities t
-        org-appear-autokeywords t
+          org-appear-autolinks t
+          org-appear-autoentities t
+          org-appear-autokeywords t
 
-        org-directory "~/org/"
-        org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org" "~/org/roam/life/")
-        org-log-done t
-        org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
-        org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
+          org-directory "~/org/"
+          org-agenda-files '("~/org/roam/daily/" "~/org/roam/professional/" "~/org/inbox.org" "~/org/roam/life/")
+          org-log-done 'time
+          org-agenda-hide-tags-regexp "todo\\|work\\|workinfo\\|daily"
+          org-safe-remote-resources '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"))
 
   ;; Multi-line emphasis in org-mode
   (setcar (nthcdr 4 org-emphasis-regexp-components) 20)
@@ -291,11 +300,11 @@
   :after org
   :config
   (setopt org-modern-star 'replace
-        org-modern-replace-stars "◉○✸✿"
-        org-modern-block-name nil
-        org-modern-timestamp t
-        org-modern-table nil
-        org-modern-todo t))
+          org-modern-replace-stars "◉○✸✿"
+          org-modern-block-name nil
+          org-modern-timestamp t
+          org-modern-table nil
+          org-modern-todo t))
 
 (use-package org-repeat-by-cron
   :config
@@ -305,7 +314,7 @@
   :after org
   :config
   (setopt org-roam-node-default-sort 'file-mtime
-        org-roam-file-exclude-regexp (list "~/org/.attach/")))
+          org-roam-file-exclude-regexp (list "~/org/.attach/")))
 
 (defun my/org-roam-node-find-prof ()
   (interactive)
@@ -314,26 +323,26 @@
 (map! :leader "nrp" 'my/org-roam-node-find-prof)
 
 (setopt org-roam-capture-templates
-      '(("d" "default" plain (file "~/org/roam/templates/default.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
-         :unnarrowed t)
-        ("s" "study" plain (file "~/org/roam/templates/study.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: study:%^{topics}")
-         :unarrowed t)
+        '(("d" "default" plain (file "~/org/roam/templates/default.org")
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n")
+           :unnarrowed t)
+          ("s" "study" plain (file "~/org/roam/templates/study.org")
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: study:%^{topics}")
+           :unarrowed t)
 
-        ("w" "work" plain (file "~/org/roam/templates/default.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
-         :unarrowed t)
+          ("w" "work" plain (file "~/org/roam/templates/default.org")
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: work")
+           :unarrowed t)
 
-        ("i" "issue" plain (file "~/org/roam/templates/issue.org")
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
-         :unarrowed t)))
+          ("i" "issue" plain (file "~/org/roam/templates/issue.org")
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+author: %n\n#+date: %t\n#+filetags: issue")
+           :unarrowed t)))
 
 (with-eval-after-load 'org
   (setopt org-roam-dailies-capture-templates
-        '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
-           :if-new (file+datetree "work-inbox.org" week)
-           :unarrowed t))))
+          '(("w" "work-todo" plain (file "~/org/roam/templates/work-todo.org")
+             :if-new (file+datetree "work-inbox.org" week)
+             :unarrowed t))))
 
 (use-package websocket
   :after org-roam)
@@ -342,45 +351,45 @@
   :after org-roam
   :config
   (setopt org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 (with-eval-after-load 'org
   (setopt +org-capture-todo-file "inbox.org")
 
   (setopt org-todo-keywords
-        '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
-          (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
-          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
-          (sequence "NOTE(N)" "HOLD(h)" "|"))))
+          '((sequence "TODO(t)" "IN-PROGRESS(i@/!)" "|" "DONE(d!)" "WONT-DO(w@/!)")
+            (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
+            (sequence "|" "OKAY(o)" "YES(y)" "NO(n)")
+            (sequence "NOTE(N)" "HOLD(h)" "|"))))
 
 (setopt org-todo-keyword-faces
-      '(("[-]" . +org-todo-active) ("STRT" . +org-todo-active)
-        ("[?]" . +org-todo-onhold) ("WAIT" . +org-todo-onhold)
-        ("HOLD" . +org-todo-onhold) ("PROJ" . +org-todo-project)
-        ("NO" . +org-todo-cancel) ("KILL" . +org-todo-cancel)
-        ("NOTE" . flymake-note-echo)))
+        '(("[-]" . +org-todo-active) ("STRT" . +org-todo-active)
+          ("[?]" . +org-todo-onhold) ("WAIT" . +org-todo-onhold)
+          ("HOLD" . +org-todo-onhold) ("PROJ" . +org-todo-project)
+          ("NO" . +org-todo-cancel) ("KILL" . +org-todo-cancel)
+          ("NOTE" . flymake-note-echo)))
 
 (setopt org-modern-todo-faces
-      '(("KILL" :inverse-video t :inherit +org-todo-cancel)
-        ("NO" :inverse-video t :inherit +org-todo-cancel)
-        ("PROJ" :inverse-video t :inherit +org-todo-project)
-        ("HOLD" :inverse-video t :inherit +org-todo-onhold)
-        ("WAIT" :inverse-video t :inherit +org-todo-onhold)
-        ("[?]" :inverse-video t :inherit +org-todo-onhold)
-        ("STRT" :inverse-video t :inherit +org-todo-active)
-        ("NOTE" :inverse-video t :inherit flymake-note-echo)
-        ("[-]" :inverse-video t :inherit +org-todo-active)))
+        '(("KILL" :inverse-video t :inherit +org-todo-cancel)
+          ("NO" :inverse-video t :inherit +org-todo-cancel)
+          ("PROJ" :inverse-video t :inherit +org-todo-project)
+          ("HOLD" :inverse-video t :inherit +org-todo-onhold)
+          ("WAIT" :inverse-video t :inherit +org-todo-onhold)
+          ("[?]" :inverse-video t :inherit +org-todo-onhold)
+          ("STRT" :inverse-video t :inherit +org-todo-active)
+          ("NOTE" :inverse-video t :inherit flymake-note-echo)
+          ("[-]" :inverse-video t :inherit +org-todo-active)))
 
 (setopt explicit-shell-file-name
-      (cond
-       ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
-       ((eq system-type 'gnu/linux)
-        (let ((cmd (shell-command-to-string "uname -a")))
-          (if (string-match "NixOS" cmd)
-              "/run/current-system/sw/bin/fish"
-            "/bin/fish")))
-       (t "/bin/sh")))  ; Default to bourne shell for other systems
+        (cond
+         ((eq system-type 'darwin) "/opt/homebrew/bin/fish")
+         ((eq system-type 'gnu/linux)
+          (let ((cmd (shell-command-to-string "uname -a")))
+            (if (string-match "NixOS" cmd)
+                "/run/current-system/sw/bin/fish"
+              "/bin/fish")))
+         (t "/bin/sh")))  ; Default to bourne shell for other systems
 
 (use-package vterm
   :defer t
@@ -416,7 +425,25 @@
 
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
-(use-package tramp-hlo)
+(use-package tramp
+  :init
+  (with-eval-after-load 'tramp
+    (with-eval-after-load 'compile
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
+
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (setq magit-tramp-pipe-stty-settings 'pty)
+  (setq vc-ignore-dir-regexp
+        (format "\\(%s\\)\\|\\(%s\\)"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp)))
 
 (use-package vertico
   :defer t
@@ -424,9 +451,9 @@
   (setopt vertico-buffer-display-action '(display-buffer-reuse-window))
 
   (setopt vertico-multiform-categories
-        '((symbol (vertico-sort-function . vertico-sort-alpha))
-          (file (vertico-sort-function . vertico-sort-history-alpha)
-                ))))
+          '((symbol (vertico-sort-function . vertico-sort-alpha))
+            (file (vertico-sort-function . vertico-sort-history-alpha)
+                  ))))
 
 (use-package vertico-directory
   :after vertico
