@@ -26,10 +26,7 @@
 (package! verb)
 
 ;;; TRAMP
-(package! msgpack)
 (package! tramp-hlo)
-(package! tramp-rpc
-  :recipe (:host github :repo "ArthurHeymans/emacs-tramp-rpc"))
 
 ;; Code
 (package! just-mode)
@@ -47,7 +44,6 @@
 (package! ef-themes
   :recipe (:host github :repo "protesilaos/ef-themes"))
 (package! standard-themes)
-(package! kanagawa-themes)
 (package! kaolin-themes)
 
 ;; Shells
