@@ -1,8 +1,9 @@
-personal_ws-1.1 en 485
+personal_ws-1.1 en 487
 aadct
 acl
 acls
 addc
+addr
 adjacencies
 adminem
 agentless
@@ -16,6 +17,7 @@ ansible
 appstd
 aps
 architected
+arpa
 arpanet
 asn
 asns
@@ -237,7 +239,6 @@ macos
 manzueta
 manzuetanivar
 mastercam
-mc
 mdfs
 meds
 meraki
