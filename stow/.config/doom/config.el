@@ -137,7 +137,6 @@
 (use-package flash
   :commands (flash-jump flash-treesitter)
   :init
-  (flash-evil-setup t)
   :config
   (require 'flash-isearch)
   (flash-isearch-mode 1)
@@ -156,7 +155,7 @@
         indent-bars-width-frac 0.5
         indent-bars-pad-frac 0.25
         indent-bars-zigzag 0.1
-        indent-bars-highlight-current-depth '(:face default :blend 0.4 :zigzag)
+        indent-bars-highlight-current-depth '(:face default :blend 0.4 :zigzag 0.2)
         indent-bars-color-by-depth nil))
 
 (setopt user-full-name "Elian Manzueta")
