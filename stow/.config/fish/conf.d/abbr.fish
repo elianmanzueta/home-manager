@@ -15,7 +15,7 @@ if type -q zoxide
 end
 
 abbr -a gst git status
-abbr -a gcsm git commit signoff --message
+abbr -a gcsm git commit --signoff --message
 abbr -a gp git push
 abbr -a ga git add
 abbr -a gc git clone
