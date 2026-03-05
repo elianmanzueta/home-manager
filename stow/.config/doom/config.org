@@ -247,9 +247,15 @@ Enable inlay hints in Rust
           flash-char-multi-line t
           flash-char-jump-labels t)
 
-  (when (featurep 'evil)
+  (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
-    (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)))
+    (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)
+    (define-key evil-motion-state-map "f" #'flash-char-find)
+    (define-key evil-motion-state-map "t" #'flash-char-find-to)
+    (define-key evil-motion-state-map "F" #'flash-char-find-backward)
+    (define-key evil-motion-state-map "T" #'flash-char-find-to-backward)
+    (define-key evil-motion-state-map ";" #'flash-char-repeat)
+    (define-key evil-motion-state-map "," #'flash-char-repeat-reverse)))
 #+end_src
 * ~indent-bars~
 #+begin_src emacs-lisp :tangle yes
