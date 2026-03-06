@@ -134,12 +134,15 @@
    "gst" "git status"
    "gcsm" "git commit --signoff --message"))
 
+(require 'flash-isearch)
+(require 'flash-evil)
+
 (use-package flash
   :commands (flash-jump flash-treesitter)
   :init
   :config
-  (require 'flash-isearch)
   (flash-isearch-mode 1)
+  (flash-evil-setup)
   (setopt flash-autojump t
           flash-rainbow t
           flash-char-multi-line t
@@ -147,6 +150,8 @@
 
   (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "s") #'flash-evil-jump)
+    (evil-global-set-key 'operator (kbd "s") #'flash-evil-jump)
+    (evil-global-set-key 'motion (kbd "s") #'flash-evil-jump)
     (evil-global-set-key 'visual (kbd "s") #'flash-evil-jump)
     (define-key evil-motion-state-map "f" #'flash-char-find)
     (define-key evil-motion-state-map "t" #'flash-char-find-to)
@@ -449,6 +454,10 @@
         (format "\\(%s\\)\\|\\(%s\\)"
                 vc-ignore-dir-regexp
                 tramp-file-name-regexp)))
+
+(use-package! remember
+  :config
+  (setq remember-notes-initial-major-mode 'org-mode))
 
 (use-package verb
   :after org
