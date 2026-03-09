@@ -7,11 +7,11 @@ config-notification {
 }
 // Outputs from existing configuration
 
-output "DP-2" {
+output "DP-1" {
     mode "2560x1440@180.001"
 }
 
-output "DP-1" {
+output "DP-2" {
     mode "1920x1080@165.003"
 }
 
@@ -167,9 +167,13 @@ overview {
 environment {
   XDG_CURRENT_DESKTOP "niri"
 }
+
 hotkey-overlay {
     skip-at-startup
 }
+
+spawn-at-startup "qs" "-c" "noctalia-shell"
+
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
@@ -274,12 +278,11 @@ recent-windows {
     }
 }
 
+include "binds.kdl"
+
 // Include dms files
 include "dms/colors.kdl"
 include "dms/layout.kdl"
 include "dms/alttab.kdl"
-include "dms/binds.kdl"
 include "dms/outputs.kdl"
 include "dms/cursor.kdl"
-
-include "dms/windowrules.kdl"
