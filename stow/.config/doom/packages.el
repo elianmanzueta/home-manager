@@ -24,6 +24,8 @@
 (package! org-super-agenda)
 (package! org-repeat-by-cron)
 (package! verb)
+(package! org-supertag
+  :recipe (:host github :repo "yibie/org-supertag"))
 
 ;;; TRAMP
 (package! tramp-hlo)

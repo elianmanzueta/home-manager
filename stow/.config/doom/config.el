@@ -188,7 +188,8 @@
         display-line-numbers-type 'relative
         which-key-idle-delay 0.5
         projectile-project-search-path '(("~/projects/" . 3))
-        magit-show-long-lines-warning nil)
+        magit-show-long-lines-warning nil
+        +whitespace-guess-in-projects t)
 
 (add-to-list 'exec-path "/home/elian/.local/bin/")
 (map! :leader "y" #'consult-yank-from-kill-ring)
@@ -312,9 +313,10 @@
   :config
   (setopt org-modern-star 'replace
           org-modern-replace-stars "◉○✸✿"
-          org-modern-block-name nil
+          org-modern-block-name '("‣ " . "‣ ")
           org-modern-timestamp t
-          org-modern-table nil
+          org-modern-keyword "‣ "
+          org-modern-table t
           org-modern-todo t))
 
 (use-package org-repeat-by-cron
@@ -391,6 +393,10 @@
           ("STRT" :inverse-video t :inherit +org-todo-active)
           ("NOTE" :inverse-video t :inherit flymake-note-echo)
           ("[-]" :inverse-video t :inherit +org-todo-active)))
+
+(use-package org-supertag
+  :config
+  (setopt org-supertag-sync-directories '("~/org/roam/")))
 
 (setopt explicit-shell-file-name
         (cond
