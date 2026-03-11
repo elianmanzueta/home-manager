@@ -540,7 +540,7 @@ Focus new windows after splitting
           ("[-]" :inverse-video t :inherit +org-todo-active)))
 #+end_src
 ** ~org-supertag~
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package org-supertag
   :config
   (setopt org-supertag-sync-directories '("~/org/roam/")))
