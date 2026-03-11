@@ -321,7 +321,8 @@ Enable inlay hints in Rust
 ** Scratch buffer
 #+begin_src emacs-lisp :tangle yes
 (setopt doom-scratch-initial-major-mode 'lisp-interaction-mode)
-(setopt initial-scratch-message "")
+(setopt initial-scratch-message ";;; scratch-buffer -*- lexical-binding: t; -*-\n")
+
 (setopt +doom-dashboard-pwd-policy "~/")
 #+end_src
 ** Splits

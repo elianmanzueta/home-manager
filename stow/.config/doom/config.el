@@ -205,7 +205,8 @@
 (setopt ispell-personal-dictionary "~/.config/doom/dict/.pws")
 
 (setopt doom-scratch-initial-major-mode 'lisp-interaction-mode)
-(setopt initial-scratch-message "")
+(setopt initial-scratch-message ";;; scratch-buffer -*- lexical-binding: t; -*-\n")
+
 (setopt +doom-dashboard-pwd-policy "~/")
 
 (setopt evil-split-window-below t
