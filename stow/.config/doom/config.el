@@ -79,11 +79,9 @@
   (interactive)
   (dirvish))
 
-(setopt doom-theme 'doom-monokai-spectrum)
-
-(setopt doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
-(setopt doom-emoji-font "Noto Color Emoji")
-(setopt doom-symbol-font "Symbols Nerd Font Mono")
+(setq doom-font-increment 1)
+(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 18 :weight 'regular))
 
 (setopt catppuccin-flavor 'mocha
         catppuccin-italic-comments t
